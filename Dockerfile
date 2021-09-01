@@ -63,11 +63,14 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py &&\
 RUN pip install boto3 awscli
 RUN yum -y install jq
 
-# Libraries for htslib
+# htslib/samtools
 RUN yum -y install gcc make \
     unzip bzip2 bzip2-devel xz-devel zlib-devel \
     curl-devel openssl-devel \
     ncurses-devel
+
+# R
+RUN yum -y install libxml2-devel
 
 #==========================================================
 # Install Software ========================================
@@ -93,6 +96,15 @@ RUN wget -O /usr/local/bin/palmscan \
   https://github.com/ababaian/palmscan/releases/download/v${PALMSCANVERSION}/palmscan-v${PALMSCANVERSION} &&\
   chmod 755 /usr/local/bin/palmscan
 
+# R 4.0 =========================================
+# Install R and packages
+# Note: 1 GB install
+# - devtools
+# - palmid
+RUN amazon-linux-extras install R4 &&\
+  R -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")' &&\
+  R -e 'library("devtools"); install_github("ababaian/palmid")'
+
 
 #==========================================================
 # Resource Files ==========================================
@@ -111,8 +123,8 @@ RUN chmod 755 palmid.sh &&\
     chmod 755 fev2tsv.py
 
 # test data
-RUN mkdir -p test
-COPY test/* test/
+RUN mkdir -p data
+COPY data/* data/
 
 # Increase the default chunksize for `aws s3 cp`.  By default it is 8MB,
 # which results in a very high number of PUT and POST requests.  These
@@ -122,6 +134,15 @@ COPY test/* test/
 # the part limit.
 # RUN aws configure set default.s3.multipart_threshold 4GB \
 #  && aws configure set default.s3.multipart_chunksize 4GB
+
+#==========================================================
+# palmid-R initialize =====================================
+#==========================================================
+# Copy palmidR R package
+#COPY R ./
+#COPY DESCRIPTION ./
+#COPY NAMESPACE ./
+#COPY man ./
 
 #==========================================================
 # ENTRYPOINT ==============================================

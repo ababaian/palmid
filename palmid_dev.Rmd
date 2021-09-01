@@ -10,7 +10,7 @@ roxygen2::roxygenise()
 ```
 
 ```{r}
-# library initialization
+# library initialization for development
 library(ggplot2)
 library(gridExtra)
 ```
