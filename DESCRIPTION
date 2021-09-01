@@ -1,0 +1,12 @@
+Package: palmid
+Title: R Palmid Analysis Suite
+Description: R component of the `palmid` analysis suite.
+Version: 0.0.0
+Author: ababaian (artem@rRNA.ca)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports:
+    ggplot2 (>= 3.3.3),
+    gridExtra (>= 2.3)

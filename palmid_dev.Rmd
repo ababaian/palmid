@@ -1,0 +1,59 @@
+---
+title: "palmid development notebook"
+output: html_notebook
+---
+
+```{r, include=FALSE, warning=FALSE}
+# Development libraries
+library(roxygen2)
+roxygen2::roxygenise()
+```
+
+```{r}
+# library initialization
+library(ggplot2)
+library(gridExtra)
+```
+
+```{r}
+# INITIALIZE PALMID WORKSPACE -------------------
+
+# Import a palmprint-analysis
+ps.waxsys <- read.fev('waxsys/waxsys.fev', FIRST = TRUE)
+
+# Import a background dataset (palmDB)
+## Make background data-set (run once)
+# fev.path <- 'R/palmdb210302.fev'
+# make_bg_data(fev.path)
+# pp.bg <- readRDS(paste0( fev.path, '.RDS') )
+
+# Read background data-set
+pp.bg <- readRDS('R/palmdb210302.fev.RDS')
+
+```
+
+```{r}
+# ANALYZE PALMPRINT -----------------------------
+# Print out standard palmscan report
+system('cat test/waxsys.txt')
+
+# Generate a palmid-report
+waxsys.report <- PlotReport(ps.waxsys, pp.bg)
+
+# Print out palmid-report
+plot(waxsys.report)
+```
+
+```{r}
+# SAVE PP-REPORT --------------------------------
+png(filename = "test/waxsys.ppreport.png", width = 800, height = 400)
+  plot(waxsys.report)
+dev.off()
+```
+
+
+```{r}
+# Button for 1-click BLAST search
+# https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&USER_FORMAT_DEFAULTS=on&SET_SAVED_SEARCH=true&PAGE=Proteins&PROGRAM=blastp&QUERY=FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYECYRSPIIRVQDADGNLMWLHGRGQRMSGTIVTYAMNTITNAIIQQAVSKDLGNTYGRENRLISGDDCLV&JOB_TITLE=SRR9968562_waxsystermes_virus_microassembly&GAPCOSTS=11%201&DATABASE=nr&BLAST_PROGRAMS=blastp&MAX_NUM_SEQ=100&SHORT_QUERY_ADJUST=on&EXPECT=0.05&WORD_SIZE=6&MATRIX_NAME=BLOSUM62&COMPOSITION_BASED_STATISTICS=2&EQ_MENU=Enter%20organism%20name%20or%20id--completions%20will%20be%20suggested&PROG_DEFAULTS=on&SHOW_OVERVIEW=on&SHOW_LINKOUT=on&ALIGNMENT_VIEW=Pairwise&MASK_CHAR=2&MASK_COLOR=1&GET_SEQUENCE=on&NEW_VIEW=on&NUM_OVERVIEW=100&DESCRIPTIONS=100&ALIGNMENTS=100&FORMAT_OBJECT=Alignment&FORMAT_TYPE=HTML
+
+```
