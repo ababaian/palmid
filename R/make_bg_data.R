@@ -11,7 +11,7 @@
 #' # Generate FEV with palmscan
 #' system("palmscan -search_pp palmdb/2021-03-02/otu_centroids.fa -all -rdrp -fevout data/palmdb210302.fev")
 #' # Create R object (data.frame)
-#' make_bg_data(data/palmdb210302.fev)
+#' make_bg_data(data/palmdb210302.fev, dataset.it = 'palmdb')
 #' @export
 make_bg_data <- function(fev.path, dataset.id = NULL) {
   # Read a multiple-FEV file from palmscan
