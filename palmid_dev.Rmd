@@ -5,40 +5,45 @@ output: html_notebook
 
 ```{r, include=FALSE, warning=FALSE}
 # Development libraries
-library(roxygen2)
+#library(roxygen2)
 roxygen2::roxygenise()
 ```
 
 ```{r}
 # library initialization for development
+library(palmid)
+  load("data/palmdb.Rdata") 
 library(ggplot2)
 library(gridExtra)
 ```
 
 ```{r}
 # INITIALIZE PALMID WORKSPACE -------------------
+input.fev     <- 'data/waxsys.fev'
+output.report <- gsub('.fev', '_pp.png', input.fev)
 
 # Import a palmprint-analysis
-ps.waxsys <- read.fev('data/waxsys.fev', FIRST = TRUE)
+pp.in <- read.fev(input.fev, FIRST = TRUE)
 
 ```
 
 ```{r}
 # ANALYZE PALMPRINT -----------------------------
+# Generate a palmid-report
+pp.report <- PlotReport(pp.in, palmdb)
+
+# Print out palmid-report
+plot(pp.report)
+
 # Print out standard palmscan report
 system('cat data/waxsys.txt')
 
-# Generate a palmid-report
-waxsys.report <- PlotReport(ps.waxsys, palmdb)
-
-# Print out palmid-report
-plot(waxsys.report)
 ```
 
 ```{r}
 # SAVE PP-REPORT --------------------------------
-png(filename = "test/waxsys.ppreport.png", width = 800, height = 400)
-  plot(waxsys.report)
+png(filename = output.report, width = 800, height = 400)
+  plot(pp.report)
 dev.off()
 ```
 

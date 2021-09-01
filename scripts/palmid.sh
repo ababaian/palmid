@@ -91,10 +91,14 @@ mkdir -p $OUTDIR
 # RUN PALMSCAN ============================================
 # currently set with only defaults
 
+# palmscan
 palmscan -search_pp $INPUT -hiconf -rdrp \
   -report $OUTDIR/$OUTNAME.txt \
   -fevout $OUTDIR/$OUTNAME.fev \
   -ppout $OUTDIR/$OUTNAME.trim.fa
+
+# palmid (palmprint-report)
+Rscript palmid.R $OUTDIR/$OUTNAME.fev
 
 # Convert FEV to TSV (DEPRECATED)
 #python3 /home/palmid/fev2tsv.py < $OUTDIR/$OUTNAME.fev > $OUTDIR/$OUTNAME.tsv

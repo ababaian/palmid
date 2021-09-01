@@ -26,9 +26,10 @@ ARG TYPE='base'
 ARG VERSION='0.0.0'
 
 # Software Versions (pass to shell)
-ENV SAMTOOLSVERSION='1.10'
+#ENV SAMTOOLSVERSION='1.10'
 ENV SEQKITVERSION='0.16.1'
 ENV PALMSCANVERSION='1.0'
+ENV R='4'
 
 # Additional Metadata
 LABEL author="ababaian"
@@ -39,7 +40,7 @@ LABEL container.type=${TYPE}
 LABEL container.version=${VERSION}
 LABEL container.description="palmid-base image"
 LABEL software.license="GPLv3"
-LABEL tags="palmscan, R, samtools"
+LABEL tags="palmscan, R"
 
 #==========================================================
 # Dependencies ============================================
