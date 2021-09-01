@@ -27,6 +27,9 @@ function usage {
   echo "          *(must be in current working dir)"
   echo "    -o    prefix for output files"
   echo ""
+  echo "    [Optional]"
+  echo "    -d    output directory [<value from -o>]"
+  echo ""
   echo "ex: sudo docker run -v `pwd`:`pwd` -w `pwd` palmid -i /home/palmid/test/waxsys.fa -o waxsys"
   echo ""
   exit 1
@@ -35,6 +38,7 @@ function usage {
 # PARSE INPUT =============================================
 INPUT=""
 OUTNAME=""
+OUTDIR=""
 
 while getopts i:o:h! FLAG; do
   case $FLAG in
@@ -43,6 +47,9 @@ while getopts i:o:h! FLAG; do
       ;;
     o)
       OUTNAME=$OPTARG
+      ;;
+    o)
+      OUTDIR=$OPTARG
       ;;
     h)  #show help ----------
       usage
@@ -71,17 +78,24 @@ if [ -z "$OUTNAME" ]; then
     exit 1
 fi
 
+# If no explicit output directory set (-d)
+# use OUTNAME as directory
+if [ -z "$OUTDIR" ]; then
+  OUTDIR=$OUTNAME
+fi
+
 # Output options
 #echo "Creating dir $OUTNAME"
-mkdir -p $OUTNAME
+mkdir -p $OUTDIR
 
 # RUN PALMSCAN ============================================
 # currently set with only defaults
 
 palmscan -search_pp $INPUT -hiconf -rdrp \
-  -report $OUTNAME/$OUTNAME.txt \
-  -fevout $OUTNAME/$OUTNAME.fev \
-  -ppout $OUTNAME/$OUTNAME.trim.fa
+  -report $OUTDIR/$OUTNAME.txt \
+  -fevout $OUTDIR/$OUTNAME.fev \
+  -ppout $OUTDIR/$OUTNAME.trim.fa
 
-python3 /home/palmid/fev2tsv.py < $OUTNAME/$OUTNAME.fev > $OUTNAME/$OUTNAME.tsv
+# Convert FEV to TSV (DEPRECATED)
+#python3 /home/palmid/fev2tsv.py < $OUTDIR/$OUTNAME.fev > $OUTDIR/$OUTNAME.tsv
 

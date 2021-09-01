@@ -10,22 +10,18 @@ import sys
 FieldNames = [
 	"score",
 	"query",
-	"class",
-	"comments",
-	"dist1",
-	"dist2",
-	"frame",
-	"group",
-	"motifs",
+	"gene",
 	"order",
-	"palm_end",
-	"palm_length",
-	"palm_start",
-	"pssm_min_score",
-	"pssm_total_score",
+	"confidence",
 	"qlen",
-	"super",
-	"xlat" ]
+	"pp_start",
+	"pp_end",
+	"pp_length",
+	"v1_length",
+	"v2_length",
+	"pssm_total_score",
+	"motifs",
+	"super"]
 
 s = ""
 for Name in FieldNames:
