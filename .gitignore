@@ -5,3 +5,5 @@
 .Ruserdata
 
 *.tmp
+
+local/*

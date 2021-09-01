@@ -19,26 +19,17 @@ library(gridExtra)
 # INITIALIZE PALMID WORKSPACE -------------------
 
 # Import a palmprint-analysis
-ps.waxsys <- read.fev('waxsys/waxsys.fev', FIRST = TRUE)
-
-# Import a background dataset (palmDB)
-## Make background data-set (run once)
-# fev.path <- 'R/palmdb210302.fev'
-# make_bg_data(fev.path)
-# pp.bg <- readRDS(paste0( fev.path, '.RDS') )
-
-# Read background data-set
-pp.bg <- readRDS('R/palmdb210302.fev.RDS')
+ps.waxsys <- read.fev('data/waxsys.fev', FIRST = TRUE)
 
 ```
 
 ```{r}
 # ANALYZE PALMPRINT -----------------------------
 # Print out standard palmscan report
-system('cat test/waxsys.txt')
+system('cat data/waxsys.txt')
 
 # Generate a palmid-report
-waxsys.report <- PlotReport(ps.waxsys, pp.bg)
+waxsys.report <- PlotReport(ps.waxsys, palmdb)
 
 # Print out palmid-report
 plot(waxsys.report)

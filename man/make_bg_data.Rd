@@ -5,13 +5,15 @@
 \title{Read a multiple-FEV file to create a background set of palmprints
 Standard approach is to use palmDB}
 \usage{
-make_bg_data(fev.path)
+make_bg_data(fev.path, dataset.id = NULL)
 }
 \arguments{
 \item{fev.path}{Path to multiple fev file}
+
+\item{dataset.id}{Name for output dataset.}
 }
 \value{
-NULL: will write an RDS file to <fev.path>.RDS
+NULL: will write an Rdata file to data/<fev.path>.Rdata
 }
 \description{
 Read a multiple-FEV file to create a background set of palmprints
@@ -21,9 +23,9 @@ Standard approach is to use palmDB
 # Download palmDB to make background set on
 system("git clone https://github.com/rcedgar/palmdb.git")
 # Generate FEV with palmscan
-system("palmscan -search_pp palmdb/2021-03-02/otu_centroids.fa -all -rdrp -fevout R/palmdb210302.fev")
+system("palmscan -search_pp palmdb/2021-03-02/otu_centroids.fa -all -rdrp -fevout data/palmdb210302.fev")
 # Create R object (data.frame)
-make_bg_data(R/palmdb210302.fev)
+make_bg_data(data/palmdb210302.fev)
 }
 \keyword{palmdb}
 \keyword{palmid}
