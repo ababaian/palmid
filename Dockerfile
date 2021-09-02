@@ -17,8 +17,8 @@ FROM amazonlinux:2 AS serratus-base
 # 
 #
 # sudo docker build \
-#  -t serratusbio/palmid 
-#  -t serratusbio/palmid:0.0.0
+#  -t serratusbio/palmid \
+#  -t serratusbio/palmid:0.0.0 \
 #  -t palmid:latest .
 #
 # sudo docker push serratusbio/palmid
@@ -64,7 +64,7 @@ LABEL tags="palmscan, R"
 COPY scripts/* ./
 COPY data/* data/
 RUN chmod 755 palmid.sh &&\
-    chmod 755 fev2tsv.py &&\
+    chmod 755 fev2tsv.py
 
 #==========================================================
 # Dependencies ============================================

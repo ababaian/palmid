@@ -36,6 +36,14 @@ encompassing three conserved catalytic motifs
 
 `palmid` (container)
 ```bash
+# Download the `palmid` container
+sudo docker pull serratusbio/palmid:latest
+
+```
+
+```bash
+# Alternative: build container locally
+
 # Clone repository
 git clone https://github.com/ababaian/palmid.git && cd palmid
 
