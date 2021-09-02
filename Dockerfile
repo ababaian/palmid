@@ -4,11 +4,26 @@
 # Docker Base: amazon linux2
 FROM amazonlinux:2 AS serratus-base
 
-## Build/test container for serratus
+## Build/test container for palmid
 # sudo yum install -y docker git
 # sudo service docker start
-## git clone https://github.com/ababaian/palmid.git; cd palmid
-# sudo docker build -t palmid:latest ./
+# git clone https://github.com/ababaian/palmid.git; cd palmid
+#
+# sudo docker build -t palmid:local
+#
+
+## Push to dockerhub
+# sudo docker login
+# 
+#
+# sudo docker build \
+#  -t serratusbio/palmid 
+#  -t serratusbio/palmid:0.0.0
+#  -t palmid:latest .
+#
+# sudo docker push serratusbio/palmid
+
+## Dev testing to enter enter
 # sudo docker run --rm --entrypoint /bin/bash -it palmid:latest
 
 #==========================================================
@@ -43,15 +58,30 @@ LABEL software.license="GPLv3"
 LABEL tags="palmscan, R"
 
 #==========================================================
+# palmid Initialize =======================================
+#==========================================================
+# scripts + test data
+COPY scripts/* ./
+COPY data/* data/
+RUN chmod 755 palmid.sh &&\
+    chmod 755 fev2tsv.py &&\
+
+#==========================================================
 # Dependencies ============================================
 #==========================================================
-# For development only
-RUN yum -y install vim htop less
-
 # Update Core
 RUN yum -y update
 RUN yum -y install tar wget gzip which sudo shadow-utils \
            util-linux byacc git
+
+# For development
+RUN yum -y install vim htop less
+
+# htslib/samtools
+RUN yum -y install gcc make \
+    unzip bzip2 bzip2-devel xz-devel zlib-devel \
+    curl-devel openssl-devel \
+    ncurses-devel
 
 # Python3
 RUN yum -y install python3 python3-devel
@@ -63,12 +93,6 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py &&\
 # AWS S3
 RUN pip install boto3 awscli
 RUN yum -y install jq
-
-# htslib/samtools
-RUN yum -y install gcc make \
-    unzip bzip2 bzip2-devel xz-devel zlib-devel \
-    curl-devel openssl-devel \
-    ncurses-devel
 
 # R
 RUN yum -y install libxml2-devel
@@ -106,7 +130,6 @@ RUN amazon-linux-extras install R4 &&\
   R -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")' &&\
   R -e 'library("devtools"); install_github("ababaian/palmid")'
 
-
 #==========================================================
 # Resource Files ==========================================
 #==========================================================
@@ -114,18 +137,6 @@ RUN amazon-linux-extras install R4 &&\
 # RUN cd /home/palmid/ &&\
 #   git clone https://github.com/rcedgar/palmdb.git &&\
 #   gzip -dr palmdb/*
-
-#==========================================================
-# palmid Initialize =======================================
-#==========================================================
-# scripts
-COPY scripts/* ./
-RUN chmod 755 palmid.sh &&\
-    chmod 755 fev2tsv.py
-
-# test data
-RUN mkdir -p data
-COPY data/* data/
 
 # Increase the default chunksize for `aws s3 cp`.  By default it is 8MB,
 # which results in a very high number of PUT and POST requests.  These

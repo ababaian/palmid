@@ -8,7 +8,7 @@
 
 ```
 RdRP Palmprint
-==============================================
+=============================================
 The `palmprint` is an ~100 aa segment of RdRP
 encompassing three conserved catalytic motifs
 "A", "B", and "C" within the palm sub-domain.
@@ -117,6 +117,7 @@ Score 55.4, high-confidence-RdRP: high-PSSM-score.reward-DDGGDD.good-segment-len
 
 The results are visualized in the `palmid` R package, showing the relative score and length-distributions for the input sequence compared against 15,000 RdRP palmprints in [`palmdb`](https://github.com/rcedgar/palmdb).
 
+`data/waxsys_pp.png`
 ![Waxsystermes virus palmprint report](data/waxsys_pp.png) 
 
 ## References
