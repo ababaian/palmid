@@ -1,12 +1,36 @@
 ## Introduction
 
-`palmid` is a containerized analysis suite and R-package for the identification and classification of **viral RNA-dependent RNA Polymerases** based on the **palmprint** sub-domain and the RNA viral palmprint database [`palmdb`](https://github.com/rcedgar/palmdb).
+`palmid` is a containerized analysis suite and R-package for the classification of **viral RNA-dependent RNA Polymerases (RdRP)** based on the **palmprint** sub-domain and the RNA viral palmprint database [`palmdb`](https://github.com/rcedgar/palmdb).
 
-#### RdRP Palmprint
+#### 
 
-![RdRP palmprint](http://drive5.com/images/palm_structure_figure.png)
+<img align="left" src="http://drive5.com/images/palm_structure_figure.png">
 
-	The palmprint is a ~100aa segment of RdRP encompassing the conserved catalytic motifs "A", "B", and "C" within the palm sub-domain.
+```
+RdRP Palmprint
+==============================================
+The `palmprint` is an ~100 aa segment of RdRP
+encompassing three conserved catalytic motifs
+"A", "B", and "C" within the palm sub-domain.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
 
 ## Install
 
@@ -20,7 +44,7 @@ sudo docker build -t palmid:latest ./
 
 ```
 
-`palmid`-R package only
+`palmid` (R package)
 ```R
 # R (>= v4.0.3)
 # Install dependencies
@@ -78,7 +102,7 @@ FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYECYRSPIIRVQDADGNLMWLHGRGQRMSGTIVTYAMNTI
 TNAIIQQAVSKDLGNTYGRENRLISGDDCLV
 ```
 
-A [`palmscan`](https://github.com/rcedgar/palmscan). `.txt` report shows each catalytic motif and their scores
+A [`palmscan`](https://github.com/rcedgar/palmscan) `.txt` report shows each catalytic motif and their scores
 
 `data/waxsys.txt`
 ```
