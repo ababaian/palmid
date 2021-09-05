@@ -36,9 +36,20 @@ function usage {
 }
 
 # PARSE INPUT =============================================
+## test-set
+# OUTDIR='data'
+# OUTNAME='waxsys'
+# DB='/home/palmid/palmdb/palmdb'
+
+# Variable inputs
 INPUT=""
 OUTNAME=""
 OUTDIR=""
+
+# Hardcoded inputs
+DB = '/home/palmid/palmdb/palmdb'
+
+# Parse inputs
 
 while getopts i:o:h! FLAG; do
   case $FLAG in
@@ -102,4 +113,49 @@ Rscript palmid.R $OUTDIR/$OUTNAME.fev
 
 # Convert FEV to TSV (DEPRECATED)
 #python3 /home/palmid/fev2tsv.py < $OUTDIR/$OUTNAME.fev > $OUTDIR/$OUTNAME.tsv
+
+# RUN DIAMOND =============================================
+# currently set with only defaults
+
+# diamond 1e-6 cutoff 
+diamond blastp \
+  -q $OUTDIR/$OUTNAME.trim.fa\
+  -d $DB \
+  --masking 0 -e 0.00001 \
+  --ultra-sensitive -k0 \
+  -f 6 qseqid  qstart qend qlen \
+       sseqid  sstart send slen \
+       pident evalue cigar \
+       full_sseq \
+  > $OUTDIR/$OUTNAME.pro.tmp
+
+# Sort by alignment identity
+sort -nr -k9 $OUTDIR/$OUTNAME.pro.tmp > $OUTDIR/$OUTNAME.pro
+rm $OUTDIR/$OUTNAME.pro.tmp
+
+  
+# RUN MUSCLE =============================================
+# create a multiple-sequence alignment of the top 10 hits
+
+# make fasta file of top 10 hits
+head -n10  $OUTDIR/$OUTNAME.pro \
+  | cut -f5,9,12 - \
+  | tr '\t' '_' \
+  | sed 's/^/>/g' \
+  | sed 's/\(.*\)_/\1\n/g' - \
+  >  $OUTDIR/$OUTNAME.10h.tmp
+
+cat $OUTDIR/$OUTNAME.trim.fa $OUTDIR/$OUTNAME.10h.tmp \
+  > $OUTDIR/$OUTNAME.msa.input.tmp
+
+# make MSA from sequence and hits
+muscle -in  $OUTDIR/$OUTNAME.msa.input.tmp \
+       -out $OUTDIR/$OUTNAME.msa.output.tmp
+
+# remove newlines (sequence is on one line)
+seqkit head -n 1000 -w 1000 $OUTDIR/$OUTNAME.msa.output.tmp \
+  > $OUTDIR/$OUTNAME.msa.fa 
+
+# Clean-up
+rm $OUTDIR/*.tmp
 

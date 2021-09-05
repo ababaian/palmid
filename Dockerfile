@@ -43,7 +43,10 @@ ARG VERSION='0.0.0'
 # Software Versions (pass to shell)
 #ENV SAMTOOLSVERSION='1.10'
 ENV SEQKITVERSION='0.16.1'
+ENV DIAMONDVERSION='2.0.6-dev'
+ENV MUSCLEVERSION='3.8.31'
 ENV PALMSCANVERSION='1.0'
+ENV PALMDBVERSION='2021-03-14'
 ENV R='4'
 
 # Additional Metadata
@@ -55,7 +58,7 @@ LABEL container.type=${TYPE}
 LABEL container.version=${VERSION}
 LABEL container.description="palmid-base image"
 LABEL software.license="GPLv3"
-LABEL tags="palmscan, R"
+LABEL tags="palmscan, diamond, muscle, R"
 
 #==========================================================
 # palmid Initialize =======================================
@@ -115,11 +118,35 @@ RUN wget https://github.com/shenwei356/seqkit/releases/download/v${SEQKITVERSION
 #   cd samtools-${SAMTOOLSVERSION} && make && make install &&\
 #   cd .. && rm -rf samtools-${SAMTOOLSVERSION}
 
+# MUSCLE =======================================
+RUN wget http://drive5.com/muscle/downloads"$MUSCLEVERSION"/muscle"$MUSCLEVERSION"_i86linux64.tar.gz &&\
+  tar -xvf muscle* &&\
+  rm muscle*.tar.gz &&\
+  mv muscle* /usr/local/bin/muscle
+
+# DIAMOND ======================================
+# RUN wget --quiet https://github.com/bbuchfink/diamond/releases/download/v"$DIAMONDVERSION"/diamond-linux64.tar.gz &&\
+#   tar -xvf diamond-linux64.tar.gz &&\
+#   rm    diamond-linux64.tar.gz &&\
+#   mv    diamond /usr/local/bin/
+
+# Use serratus-built dev version
+RUN wget --quiet https://serratus-public.s3.amazonaws.com/bin/diamond &&\
+    chmod 755 diamond &&\
+    mv    diamond /usr/local/bin/
 
 # PALMSCAN ======================================
 RUN wget -O /usr/local/bin/palmscan \
   https://github.com/ababaian/palmscan/releases/download/v${PALMSCANVERSION}/palmscan-v${PALMSCANVERSION} &&\
   chmod 755 /usr/local/bin/palmscan
+
+# PALMDB ========================================
+# clone repo + make sOTU-database
+RUN git clone https://github.com/rcedgar/palmdb.git &&\
+  gzip -dr palmdb/* &&\
+  cp "palmdb/"$PALMDBVERSION"/otu_centroids.fa" palmdb/palmdb.fa &&\
+  diamond makedb --in palmdb/palmdb.fa -d palmdb/palmdb
+  # db hash: 0c43dc6647b7ba99b4035bc1b1abf746
 
 # R 4.0 =========================================
 # Install R and packages
