@@ -61,15 +61,6 @@ LABEL software.license="GPLv3"
 LABEL tags="palmscan, diamond, muscle, R"
 
 #==========================================================
-# palmid Initialize =======================================
-#==========================================================
-# scripts + test data
-COPY scripts/* ./
-COPY data/* data/
-RUN chmod 755 palmid.sh &&\
-    chmod 755 fev2tsv.py
-
-#==========================================================
 # Dependencies ============================================
 #==========================================================
 # Update Core
@@ -156,6 +147,15 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 RUN amazon-linux-extras install R4 &&\
   R -e 'install.packages(c("roxygen2","devtools"), repos = "http://cran.us.r-project.org")' &&\
   R -e 'library("devtools"); install_github("ababaian/palmid")'
+
+#==========================================================
+# palmid Initialize =======================================
+#==========================================================
+# scripts + test data
+COPY scripts/* ./
+COPY data/* data/
+RUN chmod 755 palmid.sh &&\
+    chmod 755 fev2tsv.py
 
 #==========================================================
 # Resource Files ==========================================
