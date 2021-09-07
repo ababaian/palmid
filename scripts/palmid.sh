@@ -47,7 +47,7 @@ OUTNAME=""
 OUTDIR=""
 
 # Hardcoded inputs
-DB = '/home/palmid/palmdb/palmdb'
+DB='/home/palmid/palmdb/palmdb'
 
 # Parse inputs
 

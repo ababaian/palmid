@@ -42,7 +42,7 @@ ARG VERSION='0.0.0'
 
 # Software Versions (pass to shell)
 #ENV SAMTOOLSVERSION='1.10'
-ENV SEQKITVERSION='0.16.1'
+ENV SEQKITVERSION='2.0.0'
 ENV DIAMONDVERSION='2.0.6-dev'
 ENV MUSCLEVERSION='3.8.31'
 ENV PALMSCANVERSION='1.0'
@@ -154,7 +154,7 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 # - devtools
 # - palmid
 RUN amazon-linux-extras install R4 &&\
-  R -e 'install.packages("devtools", repos = "http://cran.us.r-project.org")' &&\
+  R -e 'install.packages(c("roxygen2","devtools"), repos = "http://cran.us.r-project.org")' &&\
   R -e 'library("devtools"); install_github("ababaian/palmid")'
 
 #==========================================================
