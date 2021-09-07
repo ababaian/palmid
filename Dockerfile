@@ -64,7 +64,7 @@ LABEL tags="palmscan, diamond, muscle, R"
 # Dependencies ============================================
 #==========================================================
 # Update Core
-RUN yum -y update
+# RUN yum -y update
 RUN yum -y install tar wget gzip which sudo shadow-utils \
            util-linux byacc git
 
