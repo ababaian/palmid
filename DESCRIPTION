@@ -5,7 +5,7 @@ Version: 0.0.0
 Author: ababaian (artem@rRNA.ca)
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 RoxygenNote: 7.1.1
 Imports:
     ggplot2 (>= 3.3.3),
