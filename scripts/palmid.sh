@@ -48,6 +48,7 @@ OUTDIR=""
 
 # Hardcoded inputs
 DB='/home/palmid/palmdb/palmdb'
+PALMID='/home/palmid'
 
 # Parse inputs
 
@@ -59,7 +60,7 @@ while getopts i:o:h! FLAG; do
     o)
       OUTNAME=$OPTARG
       ;;
-    o)
+    d)
       OUTDIR=$OPTARG
       ;;
     h)  #show help ----------
@@ -109,7 +110,7 @@ palmscan -search_pp $INPUT -hiconf -rdrp \
   -ppout $OUTDIR/$OUTNAME.trim.fa
 
 # palmid (palmprint-report)
-Rscript palmid.R $OUTDIR/$OUTNAME.fev
+Rscript $PALMID/palmid.R $OUTDIR/$OUTNAME.fev
 
 # Convert FEV to TSV (DEPRECATED)
 #python3 /home/palmid/fev2tsv.py < $OUTDIR/$OUTNAME.fev > $OUTDIR/$OUTNAME.tsv
