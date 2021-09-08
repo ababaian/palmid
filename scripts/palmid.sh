@@ -109,9 +109,6 @@ palmscan -search_pp $INPUT -hiconf -rdrp \
   -fevout $OUTDIR/$OUTNAME.fev \
   -ppout $OUTDIR/$OUTNAME.trim.fa
 
-# palmid (palmprint-report)
-Rscript $PALMID/palmid.R $OUTDIR/$OUTNAME.fev
-
 # Convert FEV to TSV (DEPRECATED)
 #python3 /home/palmid/fev2tsv.py < $OUTDIR/$OUTNAME.fev > $OUTDIR/$OUTNAME.tsv
 
@@ -160,3 +157,8 @@ seqkit head -n 1000 -w 1000 $OUTDIR/$OUTNAME.msa.output.tmp \
 # Clean-up
 rm $OUTDIR/*.tmp
 
+# RUN PALMID ==============================================
+# Create visual reports for above data
+
+# palmid
+Rscript $PALMID/palmid.R $OUTDIR/$OUTNAME.fev
