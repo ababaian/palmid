@@ -99,7 +99,7 @@ sudo docker run -v `pwd`:`pwd` -w `pwd` \
 
 ```
 
-### Palmprint Report
+### 1) Palmprint Report
 
 A viral RdRP palmprint sub-sequence is recognized in the _waxystermes_ ORF.
 
@@ -123,10 +123,17 @@ Score 55.4, high-confidence-RdRP: high-PSSM-score.reward-DDGGDD.good-segment-len
 
 ```
 
-The results are visualized in the `palmid` R package, showing the relative score and length-distributions for the input sequence compared against 15,000 RdRP palmprints in [`palmdb`](https://github.com/rcedgar/palmdb).
+The results are visualized in the `palmid` R package, showing the relative score and length-distributions for the input sequence compared against 15,000 GenBank RdRP palmprints in [`palmdb`](https://github.com/rcedgar/palmdb).
 
 `data/waxsys_pp.png`
-![Waxsystermes virus palmprint report](data/waxsys_pp.png) 
+![Waxsystermes virus palmprint report](data/waxsys_pp.png)
+
+### 2) PalmDB Alignment
+
+The input RdRP palmprint is then `diamond` aligned against [`palmdb`](https://github.com/rcedgar/palmdb) to retrieve similar sequences. The resulting `data/waxsys.pro` alignment file is visualized in the `palmid` R package to show the relative similarity of RdRP palmprints.
+
+`data/waxsys_pp.png`
+![Waxsystermes virus palmdb report](data/waxsys_pro.png)
 
 ## References
 
