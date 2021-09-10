@@ -11,8 +11,10 @@
 # -----------------------------------------------
 
 # LIBRARES ======================================
-library(ggplot2)
-library(gridExtra)
+#library(ggplot2)
+#library(gridExtra)
+#library(RPostgreSQL)
+#library(dbplyr)
 library(palmid)
 #roxygen2::roxygenise()
   load("data/palmdb.Rdata")

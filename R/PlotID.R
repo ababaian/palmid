@@ -8,31 +8,44 @@
 #'
 #' @export
 PlotID <- function(pro){
+  
+  # phylum, family, genus, species
+  rankCols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")
+  
   # Process data for plotting
   pro$escore <- -(log10(pro$evalue))
   pro <- pro[ order(pro$escore, decreasing = T), ]
   
-  # Add plot labels for best 10 hits
-  pro$label <- ''
+  # Add color highlight to hits within the same phylum
+  pro$paint <- rankCols[1]
+  pro$paint[ which( pro$pident > 45 ) ] <- rankCols[2]
+  pro$paint[ which( pro$pident > 70 ) ] <- rankCols[3]
+  pro$paint[ which( pro$pident > 90 ) ] <- rankCols[4]
+  
+  # Add plot labels for best 10 hits within phylum (45%)
+  pro$label  <- ''
   if (length(pro$qseqid) >= 10){
     pro$label[1:10] <- pro$sseqid[1:10]
   } else {
     pro$label <- pro$sseqid
   }
+  # unassign labels from sub-family match
+  pro$label[ which( pro$pident < 45 ) ] <- ''
   
   idPlot <- ggplot() +
-    geom_point(data = pro, aes(x=pident, y=escore),
+    geom_point(data = pro, aes(x=pident, y=escore, color = paint),
                alpha = 0.75) +
+    scale_color_identity() +
     geom_text(data = pro, aes(x=pident, y=escore, label=label),
               color = c("#4D4D4D"),
               hjust = 'right', vjust = "bottom", check_overlap = T) +
     geom_vline( xintercept = c(0, 45, 70, 90),
-                color = c("#68228B", "#8B2323", "#8B4500", "#CD9B1D")) +
+                color = rankCols) +
     ggtitle(label = 'Palmprint alignment to palmDB') +
     xlab('% AA-Identity') + ylab('-log(e-value)') +
     theme_bw()
   
-  idPlot
+  #idPlot
   
   return(idPlot)
 }

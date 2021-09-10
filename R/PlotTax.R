@@ -8,6 +8,7 @@
 #'
 #' @export
 PlotTax <- function(pro){
+  rankCols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")
   
   # Taxonomic ranges
   tax <- data.frame(
@@ -29,7 +30,7 @@ PlotTax <- function(pro){
   taxPlot <- ggplot() +
     geom_col(data = tax, aes(x=rank, y=count, fill = rank),
             show.legend = F) +
-    scale_fill_manual(values = c("#68228B", "#8B2323", "#8B4500", "#CD9B1D")) +
+    scale_fill_manual(values = rankCols) +
     geom_label(data = tax, aes(x = rank, y = 5, label = count)) +
     ggtitle('') + theme_bw()
   
