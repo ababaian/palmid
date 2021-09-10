@@ -89,7 +89,7 @@ RUN pip install boto3 awscli
 RUN yum -y install jq
 
 # R
-RUN yum -y install libxml2-devel
+RUN yum -y install libxml2-devel postgresql-devel
 
 #==========================================================
 # Install Software ========================================
@@ -140,12 +140,19 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
   # db hash: 0c43dc6647b7ba99b4035bc1b1abf746
 
 # R 4.0 =========================================
-# Install R and packages
+# Install R
 # Note: 1 GB install
-# - devtools
-# - palmid
-RUN amazon-linux-extras install R4 &&\
-  R -e 'install.packages(c("roxygen2","devtools"), repos = "http://cran.us.r-project.org")' &&\
+RUN amazon-linux-extras install R4
+
+
+# R Packages ====================================
+RUN \
+  R -e 'install.packages(
+  c("roxygen2",
+  "devtools",
+  'dbplyr',
+  'RPostgreSQL'
+  ), repos = "http://cran.us.r-project.org")' &&\
   R -e 'library("devtools"); install_github("ababaian/palmid")'
 
 #==========================================================
