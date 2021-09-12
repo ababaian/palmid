@@ -11,9 +11,9 @@ Depends:
     dbplyr,
     ggplot2 (>= 3.3.3),
     gridExtra (>= 2.3),
-    RPostgreSQL (>= 1.3.3)
+    RPostgreSQL 
 Imports:
     dbplyr,
     ggplot2 (>= 3.3.3),
     gridExtra (>= 2.3),
-    RPostgreSQL (>= 1.3.3)
+    RPostgreSQL
