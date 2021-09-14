@@ -13,15 +13,19 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 # Development libraries
 #library(roxygen2)
 roxygen2::roxygenise()
-  load("data/palmdb.Rdata") 
+  load("data/palmdb.Rdata")
+
+#library(palmid)
 ```
 
 ```{r}
 # INITIALIZE PALMID WORKSPACE -------------------
 input.fev     <- 'data/waxsys.fev'
-output.report <- 'data/waxsys_pp.png'
 input.pro     <- 'data/waxsys.pro'
+
+output.report <- 'data/waxsys_pp.png'
 output.pro    <- 'data/waxsys_pro.png'
+output.geo    <- 'data/waxsys_geo.png'
 
 # Import a palmprint-analysis
 pp.in <- read.fev(input.fev, FIRST = TRUE)
@@ -85,7 +89,17 @@ ppdb.hits <- pro.df$sseqid[(pro.df$pident >= 0)]
   #palm.contigs<- get.sra(palm.group, con, get_contig.df = T)
 
 # ANALYZE SRA/BIOSAMPLE SOURCES ---------------------------
-palm.geo <- get.sraGeo(biosample_ids = palm.bsv, con = con)
+geo.report <- PlotGeoReport(palm.usra, con)
+```
+
+```{r}
+# Print geospatical-time report
+plot(geo.report)
+
+# SAVE PP-REPORT 
+# png(filename = output.pro, width = 800, height = 500)
+#   plot(geo.report)
+# dev.off()
 ```
 
 ```{r}
