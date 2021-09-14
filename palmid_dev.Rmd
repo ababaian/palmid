@@ -63,7 +63,7 @@ system('cat data/waxsys.msa.fa')
 
 # ANALYZE PALMDB ALIGNMENT -----------------------------
 pro.df  <- read.pro("data/waxsys.pro")
-pro.report <- PlotPro(pro.df)
+pro.report <- PlotProReport(pro.df)
 ```
 
 ```{r}

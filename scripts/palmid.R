@@ -65,7 +65,7 @@ pro.in <- read.pro(input.pro)
 
 # ANALYZE PALMPRINT 
 # Generate a palmid-report
-pro.report <- PlotPro(pro.in)
+pro.report <- PlotProReport(pro.in)
 
 # SAVE PRO-REPORT 
 png(filename = output.pro, width = 800, height = 400)
