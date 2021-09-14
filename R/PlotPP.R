@@ -8,6 +8,8 @@
 #'
 #' @export
 PlotPP <- function(ps){
+  load.lib('ggplot')
+
   # plot variables
   pp.col <- c('red', 'gray50', 'green', 'gray50', 'blue')
   vbump = 0.5

@@ -1,4 +1,4 @@
-# PlotPro
+# PlotProReport
 #' Create PlotID and PlotTax grid-plot
 #' @param pro A diamond-aligned pro file
 #' @return A grid-table object. Dimension standard is 800 x 400 px.
@@ -8,11 +8,12 @@
 #' plot(proPlot)
 #'
 #' @export
-PlotPro <- function(pro){
+PlotProReport <- function(pro){
+  load.lib('ggplot')
   
   # Create individual plots
-  id  <- PlotID(pro)
-  tax <- PlotTax(pro)
+  id  <- as.grob(PlotID(pro))
+  tax <- as.grob(PlotTax(pro))
   
   proPlot <- arrangeGrob( id, tax,
                           layout_matrix = rbind(c(1, 1, 2),

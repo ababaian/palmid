@@ -7,13 +7,16 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.1.1
-Depends:
-    dbplyr,
-    ggplot2 (>= 3.3.3),
-    gridExtra (>= 2.3),
-    RPostgreSQL 
 Imports:
     dbplyr,
+    dplyr,
+    ggplotify,
     ggplot2 (>= 3.3.3),
     gridExtra (>= 2.3),
-    RPostgreSQL
+    rnaturalearth,
+    RPostgreSQL,
+    scales,
+    sf,
+    viridisLite
+Depends:
+    dplyr

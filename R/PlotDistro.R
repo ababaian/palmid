@@ -14,6 +14,7 @@
 #' PlotDistro( ps, pp.bg, 'pp_length', 'skyblue')
 #' @export
 PlotDistro <- function(pp, pp.bg, plotValue, distrocol = 'skyblue', set.ylab = 'palmDB density') {
+  load.lib('ggplot')
   ## debug
   # pp = ps
   # plotValue = 'score'

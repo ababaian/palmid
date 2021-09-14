@@ -13,6 +13,7 @@
 #' @export
 # Retrieve date from input of sra run_ids
 get.sraDate <- function(run_ids, con, as.df = FALSE) {
+  load.lib('sql')
   
   # get contigs containing palm_ids
   sra.date <- tbl(con, 'srarun') %>%

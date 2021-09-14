@@ -4,12 +4,14 @@
 #' See also: https://github.com/ababaian/serratus/wiki/SQL-Schema
 #' 
 #' @return con PostgreSQLConnection 
-#' @keywords palmid Serratus Tantalus postgres
+#' @keywords palmid sql Serratus Tantalus
 #' @examples
 #' con <- SerratusConnect()
 #'
 #' @export
 SerratusConnect <- function(){
+  load.lib('sql')
+
   con <- DBI::dbConnect(
     drv = 'PostgreSQL',
     user="public_reader", 

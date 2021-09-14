@@ -14,6 +14,7 @@
 #' 
 #' @export
 get.sra <- function(palm_ids, con, get_contig.df = FALSE, qc = TRUE) {
+  load.lib('sql')
   
   if (qc){
     # get contigs containing palm_ids

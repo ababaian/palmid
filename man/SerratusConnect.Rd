@@ -20,4 +20,4 @@ con <- SerratusConnect()
 \keyword{Serratus}
 \keyword{Tantalus}
 \keyword{palmid}
-\keyword{postgres}
+\keyword{sql}

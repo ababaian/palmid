@@ -9,15 +9,16 @@
 #' plot(ppRep)
 #' @export
 PlotReport <- function(pp, pp.bg) {
+  load.lib('ggplot')
   
   # Gene Diagram
-  pp.line  <- PlotPP(pp)
+  pp.line  <- as.grob(PlotPP(pp))
   
   # Score distribution
-  pp.score <- PlotDistro(pp, pp.bg, 'score', 'black')
+  pp.score <- as.grob(PlotDistro(pp, pp.bg, 'score', 'black'))
   
   # Length distribution
-  pp.len   <- PlotLengths(pp, pp.bg, set.ylab = NULL)
+  pp.len   <- as.grob(PlotLengths(pp, pp.bg, set.ylab = NULL))
   
   
   PP.Report <- arrangeGrob( pp.line, pp.score, pp.len,

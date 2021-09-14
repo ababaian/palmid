@@ -3,18 +3,17 @@ title: "palmid development notebook"
 output: html_notebook
 ---
 
+## Initialization
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
 ```{r, include=FALSE, warning=FALSE}
 # Development libraries
 #library(roxygen2)
 roxygen2::roxygenise()
-```
-
-```{r}
-# library initialization for development
-library(palmid)
   load("data/palmdb.Rdata") 
-library(ggplot2)
-library(gridExtra)
 ```
 
 ```{r}
@@ -31,44 +30,66 @@ pp.in <- read.fev(input.fev, FIRST = TRUE)
 pro.in <- read.pro(input.pro)
 ```
 
+## Input Palmprint Analysis
+
 ```{r}
 # ANALYZE PALMPRINT -----------------------------
-# Generate a palmid-report
-pp.report <- PlotReport(pp.in, palmdb)
-
-# Print out palmid-report
-plot(pp.report)
-
 # Print out standard palmscan report
 system('cat data/waxsys.txt')
 
+# Generate a palmid-report
+pp.report <- PlotReport(pp.in, palmdb)
 ```
 
 ```{r}
+# Print out palmid-report graphic
+plot(pp.report)
+
 # SAVE PP-REPORT --------------------------------
-png(filename = output.report, width = 800, height = 400)
- plot(pp.report)
-dev.off()
+# png(filename = output.report, width = 800, height = 400)
+#  plot(pp.report)
+# dev.off()
 ```
 
+## Palmprint vs. PalmDB Analysis
+
+```{r}
+# Print out MSA
+system('cat data/waxsys.msa.fa')
+
+# ANALYZE PALMDB ALIGNMENT -----------------------------
+pro.df  <- read.pro("data/waxsys.pro")
+pro.report <- PlotPro(pro.df)
+```
+
+```{r}
+# Print protein-alignment report
+plot(pro.report)
+
+# SAVE PP-REPORT 
+# png(filename = output.pro, width = 800, height = 400)
+#   plot(pro.report)
+# dev.off()
+```
+
+## PalmDB / SRA-Run Analysis
+
+```{r}
+# Establish Serratus server connection
+con <- SerratusConnect()
+
+# For each parent and child sOTU, retrieve matching SRA runs
+ppdb.hits <- pro.df$sseqid[(pro.df$pident >= 0)]
+  palm.uid  <- get.sOTU(ppdb.hits, con, get_childs = T)
+  palm.usra <- get.sra(palm.uid, con)
+  #palm.contigs<- get.sra(palm.group, con, get_contig.df = T)
+
+# ANALYZE SRA/BIOSAMPLE SOURCES ---------------------------
+palm.geo <- get.sraGeo(biosample_ids = palm.bsv, con = con)
+```
 
 ```{r}
 # Button for 1-click BLAST search
 # https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&USER_FORMAT_DEFAULTS=on&SET_SAVED_SEARCH=true&PAGE=Proteins&PROGRAM=blastp&QUERY=FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYECYRSPIIRVQDADGNLMWLHGRGQRMSGTIVTYAMNTITNAIIQQAVSKDLGNTYGRENRLISGDDCLV&JOB_TITLE=SRR9968562_waxsystermes_virus_microassembly&GAPCOSTS=11%201&DATABASE=nr&BLAST_PROGRAMS=blastp&MAX_NUM_SEQ=100&SHORT_QUERY_ADJUST=on&EXPECT=0.05&WORD_SIZE=6&MATRIX_NAME=BLOSUM62&COMPOSITION_BASED_STATISTICS=2&EQ_MENU=Enter%20organism%20name%20or%20id--completions%20will%20be%20suggested&PROG_DEFAULTS=on&SHOW_OVERVIEW=on&SHOW_LINKOUT=on&ALIGNMENT_VIEW=Pairwise&MASK_CHAR=2&MASK_COLOR=1&GET_SEQUENCE=on&NEW_VIEW=on&NUM_OVERVIEW=100&DESCRIPTIONS=100&ALIGNMENTS=100&FORMAT_OBJECT=Alignment&FORMAT_TYPE=HTML
 
-```
-
-```{r}
-# ANALYZE PALMDB ALIGNMENT -----------------------------
-
-pro.df  <- read.pro("data/waxsys.pro")
-  pro.report <- PlotPro(pro.df)
-plot(pro.report)
-
-```
-```{r}
-# SAVE PP-REPORT 
-png(filename = output.pro, width = 800, height = 400)
-  plot(pro.report)
-dev.off()
 ```

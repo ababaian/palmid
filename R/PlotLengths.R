@@ -11,6 +11,8 @@
 #' plot(ppLen)
 #' @export
 PlotLengths <- function(pp, pp.bg, set.ylab = 'palmDB density') {
+  load.lib('ggplot')
+
   plPlot    <- PlotDistro( pp, pp.bg, 'pp_length', 'skyblue', set.ylab)
   v1Plot    <- PlotDistro( pp, pp.bg, 'v1_length', 'gray50',  set.ylab)
   v2Plot    <- PlotDistro( pp, pp.bg, 'v2_length', 'gray50',  set.ylab)

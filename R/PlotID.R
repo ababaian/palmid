@@ -8,6 +8,7 @@
 #'
 #' @export
 PlotID <- function(pro){
+  load.lib('ggplot')
   
   # phylum, family, genus, species
   rankCols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")

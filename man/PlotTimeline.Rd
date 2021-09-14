@@ -5,13 +5,17 @@
 \title{PlotTimeline
 Create a timeline of}
 \usage{
-PlotTimeline(sra.date)
+PlotTimeline(run_ids = NULL, sra.dates = NULL, con = SerratusConnect())
 }
 \arguments{
+\item{run_ids}{character, vector of sra run_ids}
+
+\item{con}{pq-connection, use SerratusConnect()}
+
 \item{sra.date}{POSIXct, set of dates}
 }
 \value{
-ggplot2,
+ggplot2, timeline of SRA load dates
 }
 \description{
 PlotTimeline
@@ -23,4 +27,5 @@ plot(sc2.timeline)
 
 }
 \keyword{palmid}
+\keyword{sql}
 \keyword{timeline}

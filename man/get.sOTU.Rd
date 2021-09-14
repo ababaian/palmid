@@ -4,7 +4,7 @@
 \alias{get.sOTU}
 \title{get.sOTU}
 \usage{
-get.sOTU(palm_ids, con, get_childs = FALSE)
+get.sOTU(palm_ids, con, get_childs = FALSE, ordinal = FALSE)
 }
 \arguments{
 \item{palm_ids}{character, set of `palm_id` to lookup in palmdb}
@@ -12,6 +12,8 @@ get.sOTU(palm_ids, con, get_childs = FALSE)
 \item{con}{pq-connection, use SerratusConnect()}
 
 \item{get_childs}{boolean, return all children `palm_id` instead of parent sOTU [F]}
+
+\item{ordinal}{boolean, return an ordered sOTU vector based on input `palm_ids`}
 }
 \value{
 character, unique `palm_id` sOTU or sOTU-children
@@ -29,14 +31,18 @@ or the set of all children `palm_id` within an species/sOTU
 # 
 
 # Retrieve the parent sOTU for an input of palm_ids
-get.sOTU(c('u2',u4'), con, get_childs = F)
+get.sOTU(c('u1','u2',u4'), con, get_childs = F)
 # -- returns c('u3',u4')
+
+# Return an ordinal list of sOTU for iput
+get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
+# -- returns c('u3', u4', 'u3', 'u3')
 
 # Return all children palm_id within an sOTU
 get.sOTU(c('u2'), con, get_childs = T)
 # -- returns c('u1', u2', 'u3')
 
-function_name( var1 = x, var2 = T)
+
 
 }
 \keyword{Serratus}
