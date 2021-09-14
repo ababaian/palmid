@@ -144,10 +144,9 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 # Note: 1 GB install
 RUN amazon-linux-extras install R4
 
-
 # R Packages ====================================
 RUN \
-  R -e 'install.packages( c("roxygen2", "devtools", "dbplyr", "PostgreSQL"), repos = "http://cran.us.r-project.org")' &&\
+  R -e 'install.packages( c("roxygen2", "devtools"), repos = "http://cran.us.r-project.org")' &&\
   R -e 'library("devtools"); install_github("ababaian/palmid")'
 
 #==========================================================
