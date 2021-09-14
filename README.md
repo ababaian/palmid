@@ -165,6 +165,14 @@ FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYEC-YRSPIIRV--QDADG---NLMWLHGRGQRMSGTIVT
 FQGDISGWDTRVSEYELEWEQRTLVERAQTEGHKRAIMTQYEC-YRNPIIKM--PQQGG---REVWLSGRGQRMSGTNVTYYCNTLTN---AVLQEAVFTDL---------FGISEVARKRRM------------ISGDDCCC
 ```
 
+### 3) Geo-spatial Data
+
+The input RdRP palmprint is then `diamond` aligned against [`palmdb`](https://github.com/rcedgar/palmdb) to retrieve similar sequences. The resulting `data/waxsys.pro` alignment file is visualized in the `palmid` R package to show the relative similarity of RdRP palmprints.
+
+`data/waxsys_geo.png`
+
+![Waxsystermes virus geospatial](data/waxsys_geo.png)
+
 ## References
 
 A. Babaian and R. C. Edgar (2021), Ribovirus classification by a polymerase barcode sequence, biorxiv
