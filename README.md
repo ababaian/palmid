@@ -138,7 +138,7 @@ The input RdRP palmprint is then `diamond` aligned against [`palmdb`](https://gi
 ![Waxsystermes virus palmdb report](data/waxsys_pro.png)
 
 
-`data/waxsys.msa.fa`
+`data/waxsys.msa.fa` (top 10 hits)
 
 ```
 >u18590_41.8
@@ -167,7 +167,7 @@ FQGDISGWDTRVSEYELEWEQRTLVERAQTEGHKRAIMTQYEC-YRNPIIKM--PQQGG---REVWLSGRGQRMSGTNVT
 
 ### 3) Geo-spatial Data
 
-The input RdRP palmprint is then `diamond` aligned against [`palmdb`](https://github.com/rcedgar/palmdb) to retrieve similar sequences. The resulting `data/waxsys.pro` alignment file is visualized in the `palmid` R package to show the relative similarity of RdRP palmprints.
+Palmprints matching the input-sequence (upto a threshold) are cross-referneced against all processed SRA sequencing libraries. Geo-spatial data (when available) and timeline of the matching sequencing runs are reported.
 
 `data/waxsys_geo.png`
 
