@@ -66,9 +66,11 @@ library("palmid")
 
 ```
 
-### Usage
+## Usage
 
-Input a `.fa` sequence file. Here we show a 'microassembly' open-reading-frame from a sequencing library of _Waxsystermes_ termites (`SRR9968562`) as derived from the [`Serratus`: Finding Novel Viruses Tutorial](https://github.com/ababaian/serratus/wiki/Find_novel_viruses).
+### 0) Input
+
+Input a `.fa` sequence file containing an RdRP. Here we show a 'microassembly' open-reading-frame from a sequencing library of _Waxsystermes_ termites (`SRR9968562`) as derived from the [`Serratus`: Finding Novel Viruses Tutorial](https://github.com/ababaian/serratus/wiki/Find_novel_viruses).
 
 
 `data/waxsys.fa`
@@ -101,16 +103,7 @@ sudo docker run -v `pwd`:`pwd` -w `pwd` \
 
 ### 1) Palmprint Report
 
-A viral RdRP palmprint sub-sequence is recognized in the _waxystermes_ ORF.
-
-`data/waxsys.trim.fa`
-```
->SRR9968562_waxsystermes_virus_microassembly
-FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYECYRSPIIRVQDADGNLMWLHGRGQRMSGTIVTYAMNTI
-TNAIIQQAVSKDLGNTYGRENRLISGDDCLV
-```
-
-A [`palmscan`](https://github.com/rcedgar/palmscan) `.txt` report shows each catalytic motif and their scores
+[`palmscan`](https://github.com/rcedgar/palmscan) will analyze the RdRP and a `.txt` report shows the catalytic motifs and their scores. It will also report the amino acid sequence "trimmed" to its palmprint sub-sequence.
 
 `data/waxsys.txt`
 ```
@@ -123,20 +116,34 @@ Score 55.4, high-confidence-RdRP: high-PSSM-score.reward-DDGGDD.good-segment-len
 
 ```
 
-The results are visualized in the `palmid` R package, showing the relative score and length-distributions for the input sequence compared against 15,000 GenBank RdRP palmprints in [`palmdb`](https://github.com/rcedgar/palmdb).
+`data/waxsys.trim.fa`
+```
+>SRR9968562_waxsystermes_virus_microassembly
+FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYECYRSPIIRVQDADGNLMW
+LHGRGQRMSGTIVTYAMNTITNAIIQQAVSKDLGNTYGRENRLISGDDCLV
+```
+
+The `palmid` R package visualizes this data, showing the relative palmprint scores and length-distributions for the input sequence vs a control set 15,000 GenBank RdRP palmprints in [`palmdb`](https://github.com/rcedgar/palmdb).
 
 `data/waxsys_pp.png`
 
 ![Waxsystermes virus palmprint report](data/waxsys_pp.png)
 
-### 2) PalmDB Alignment
+### 2) Comparison to PalmDB
 
-The input RdRP palmprint is then `diamond` aligned against [`palmdb`](https://github.com/rcedgar/palmdb) to retrieve similar sequences. The resulting `data/waxsys.pro` alignment file is visualized in the `palmid` R package to show the relative similarity of RdRP palmprints.
+Input RdRP palmprint is aligned against [`palmdb`](https://github.com/rcedgar/palmdb) using `diamond` to retrieve similar viruses. The `data/waxsys.pro` alignment file is visualized in the `palmid` R package to show the relative similarity of RdRP palmprints.
 
-`data/waxsys_pp.png`
+`data/waxsys_pro.png`
 
 ![Waxsystermes virus palmdb report](data/waxsys_pro.png)
 
+Known virus taxonomy is extracted from `palmdb`-matches (when available) and the species/family/phylum are shown as a function of percent-identity to the input sequence.
+
+`data/waxsys_tax.png`
+
+![Waxsystermes virus palmdb-tax report](data/waxsys_tax.png)
+
+A multiple sequence alignment of the top 10 palmprint hits is produced for manual validation. A central observation here is that the A,B,C catalytic motifs align to one another.
 
 `data/waxsys.msa.fa` (top 10 hits)
 
@@ -165,13 +172,20 @@ FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYEC-YRSPIIRV--QDADG---NLMWLHGRGQRMSGTIVT
 FQGDISGWDTRVSEYELEWEQRTLVERAQTEGHKRAIMTQYEC-YRNPIIKM--PQQGG---REVWLSGRGQRMSGTNVTYYCNTLTN---AVLQEAVFTDL---------FGISEVARKRRM------------ISGDDCCC
 ```
 
-### 3) Geo-spatial Data
+### 3) Cross-analysis to SRA metadata
 
 Palmprints matching the input-sequence (upto a threshold) are cross-referneced against all processed SRA sequencing libraries. Geo-spatial data (when available) and timeline of the matching sequencing runs are reported.
 
 `data/waxsys_geo.png`
 
 ![Waxsystermes virus geospatial](data/waxsys_geo.png)
+
+The organism reported with each sequencing run is conglomerated into a wordcloud to visualize possible hosts. Current default will report the organisms associated with all palmprint-matches, for specificity to the input virus species use a threshold of 90%.
+
+`data/waxsys_orgn.png`
+
+![Waxsystermes virus organism](data/waxsys_orgn.png)
+
 
 ## References
 
