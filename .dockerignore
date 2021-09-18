@@ -1,0 +1,6 @@
+local
+.git
+.cache
+.Rproj.user
+*tmp
+tmp*
