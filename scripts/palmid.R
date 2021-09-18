@@ -4,7 +4,7 @@
 #   input is a `palmscan`-generated `.fev`
 #   output is a `.png` in the same directory
 #
-# Usage: Rscript palmid.Rscript <path/to/palmprint.fev> [path/to/output.png]
+# Usage: Rscript palmid.Rscript <path/to/palmprint.fev>
 #
 # Author: ababaian (artem@rRNA.ca)
 # Date  : 2021-09-01
@@ -35,12 +35,20 @@ if (length(args)==0) {
 }
 
 input.fev     <- args[1]
-output.report <- args[2]
+input.pro     <- gsub('.fev', '.pro', input.fev)
 
-input.pro     <- gsub('_pp.png', '.pro',     output.report)
-output.pro    <- gsub('_pp.png', '_pro.png', output.report)
-output.geo    <- gsub('_pp.png', '_geo.png', output.report)
+output.pp     <- args[2]
+output.pro    <- gsub('_pp.png', '_pro.png', input.fev)
+output.geo    <- gsub('_pp.png', '_geo.png', input.fev)
+output.tax    <- gsub('_pp.png', '_tax.png', input.fev)
+output.orgn   <- gsub('_pp.png', '_orgn.png', input.fev)
 
+# ID Threshold for inclusion of a palmprint-match
+# into the SRA workflow
+id_threshold <- 0 #include all
+
+# Establish Serratus server connection
+con <- SerratusConnect()
 
 # SCRIPT ========================================
 
@@ -58,34 +66,55 @@ png(filename = output.report, width = 800, height = 400)
   plot(pp.report)
 dev.off()
 
-# PALMDB ----------------------------------------
+# PRO/ALIGN -------------------------------------
 #------------------------------------------------
 # Import a diamond-alignd pro file
-pro.in <- read.pro(input.pro)
+pro.df <- read.pro(input.pro)
 
 # ANALYZE PALMPRINT 
 # Generate a palmid-report
-pro.report <- PlotProReport(pro.in)
+pro.report <- PlotProReport(pro.df)
 
 # SAVE PRO-REPORT 
 png(filename = output.pro, width = 800, height = 400)
   plot(pro.report)
 dev.off()
 
+# TAXREP ----------------------------------------
+#------------------------------------------------
+# ANALYZE PALMDB TAXONOMY
+tax.report <- PlotTaxReport(pro.df)
+
+# SAVE TAX-REPORT 
+ggsave(output.tax,
+  plot(tax.report),
+  width = 16,
+  height = 10,
+  dpi = 72
+)
+
 # GEOTIME ---------------------------------------
 #------------------------------------------------
-# Establish Serratus server connection
-con <- SerratusConnect()
-
 # For each parent and child sOTU, retrieve matching SRA runs
-ppdb.hits <- pro.in$sseqid[(pro.in$pident >= 0)]
+ppdb.hits <- pro.df$sseqid[(pro.df$pident >= id_threshold)]
   palm.uid  <- get.sOTU(ppdb.hits, con, get_childs = T)
   palm.usra <- get.sra(palm.uid, con)
 
-# ANALYZE SRA/BIOSAMPLE SOURCES ---------------------------
+# ANALYZE SRA/BIOSAMPLE SOURCES -----------------
 geo.report <- PlotGeoReport(palm.usra, con)
 
 # SAVE GEO-REPORT 
 png(filename = output.pro, width = 800, height = 500)
   plot(geo.report)
+dev.off()
+
+# SRA-ORGANISM ----------------------------------
+#------------------------------------------------
+# Retrieve "scientific_name" field of associated sra runs
+palm.orgn <- get.sraOrgn(palm.usra, con)
+orgn.report <- PlotOrgn( palm.orgn )
+
+# # SAVE ORGN-REPORT 
+png(filename = output.orgn, width = 800, height = 400, res = 100)
+  plot(orgn.report)
 dev.off()
