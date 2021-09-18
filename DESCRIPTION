@@ -12,6 +12,7 @@ Imports:
     dplyr,
     ggplotify,
     ggplot2 (>= 3.3.3),
+    ggwordcloud,
     gridExtra (>= 2.3),
     rnaturalearth,
     RPostgreSQL,

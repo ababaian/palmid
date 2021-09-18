@@ -1,0 +1,71 @@
+---
+  title: "palmid development scratch"
+  output: html_notebook
+---
+  
+```{r, include = FALSE}
+## DEVELOPMENT SPACE ----------------
+
+library("wordcloud")
+#png(filename = 'tmp2.png', width = 800, height = 500)
+ggsave(
+  "tmp2.png",
+  wordcloud( words = rownames(orgn.tb), scale = c(2.5,0.1),
+             max.words = 50,
+             freq =  orgn.tb,
+             rot.per = 0,
+             random.order = F,
+             use.r.layout = F,
+             colors = rev(plasma(50)),
+             ordered.colors = T ),
+  scale = 1.25,
+  width = 8,
+  height = 6,
+  dpi = 300
+)
+
+ggplot() +
+  wordcloud( words = rownames(orgn.tb), scale = c(2.5,0.1),
+             max.words = 50,
+             freq =  orgn.tb,
+             rot.per = 0,
+             random.order = F,
+             use.r.layout = F,
+             colors = rev(plasma(50)),
+             ordered.colors = T ),
+
+dev.off()
+
+# wordcloud(mooncloud
+#         , scale=c(5,0.5)     # Set min and max scale
+#         , max.words=100      # Set top n words
+#         , random.order=FALSE # Words in decreasing freq
+#         , rot.per=0.35       # % of vertical words
+#         , use.r.layout=FALSE # Use C++ collision detection
+#         , colors=brewer.pal(8, "Dark2"))
+# 
+
+```
+
+
+```{r}
+# load wordcloud2 testing
+#library(wordcloud2)
+# orgn.cloud2 <- wordcloud2(org.tb2, color = rev(plasma(50)),
+#                          size = 0.3, ellipticity = 0.5)
+
+```
+
+```{r}
+# SAVE PP-REPORT 
+#png(filename = 'tmp.png', width = 800, height = 500)
+#  orgn.cloud
+#dev.off()
+```
+
+
+```{r}
+# Button for 1-click BLAST search
+# https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&USER_FORMAT_DEFAULTS=on&SET_SAVED_SEARCH=true&PAGE=Proteins&PROGRAM=blastp&QUERY=FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYECYRSPIIRVQDADGNLMWLHGRGQRMSGTIVTYAMNTITNAIIQQAVSKDLGNTYGRENRLISGDDCLV&JOB_TITLE=SRR9968562_waxsystermes_virus_microassembly&GAPCOSTS=11%201&DATABASE=nr&BLAST_PROGRAMS=blastp&MAX_NUM_SEQ=100&SHORT_QUERY_ADJUST=on&EXPECT=0.05&WORD_SIZE=6&MATRIX_NAME=BLOSUM62&COMPOSITION_BASED_STATISTICS=2&EQ_MENU=Enter%20organism%20name%20or%20id--completions%20will%20be%20suggested&PROG_DEFAULTS=on&SHOW_OVERVIEW=on&SHOW_LINKOUT=on&ALIGNMENT_VIEW=Pairwise&MASK_CHAR=2&MASK_COLOR=1&GET_SEQUENCE=on&NEW_VIEW=on&NUM_OVERVIEW=100&DESCRIPTIONS=100&ALIGNMENTS=100&FORMAT_OBJECT=Alignment&FORMAT_TYPE=HTML
+
+```

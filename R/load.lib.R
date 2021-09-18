@@ -22,6 +22,8 @@ load.lib <- function( lib_set ){
     require("ggplot2", quietly = T)
     require("gridExtra", quietly = T)
     require("ggplotify", quietly = T)
+    require("viridisLite", quietly = T)
+    #require("ggwordcloud", quietly = T)
     
   } else if (lib_set == 'geo'){
     require("ggExtra", quietly = T)

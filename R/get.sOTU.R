@@ -37,7 +37,9 @@ get.sOTU <- function(palm_ids, con, get_childs = FALSE, ordinal = FALSE) {
   load.lib('sql')
   
   # Coerce palm_ids to vector
-  palm_ids <- as.character(palm_ids)
+  if (class(palm_ids) != 'character'){
+    palm_ids <- as.character(palm_ids)
+  }
   
   # get sOTU from palm_id
   sotus <- tbl(con, 'palmdb') %>%
