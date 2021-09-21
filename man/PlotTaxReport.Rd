@@ -5,12 +5,10 @@
 \title{A multi-plot wrapper to convert a list of SRA `run_ids` into
 a geographic world-map and timeline.}
 \usage{
-PlotTaxReport(pro.df, con = SerratusConnect())
+PlotTaxReport(pro.df)
 }
 \arguments{
-\item{con}{pq-connection, use SerratusConnect()}
-
-\item{run_ids}{character, vector of SRA run_id}
+\item{pro.df}{data.frame, imported diamond pro df. use get.pro()}
 }
 \value{
 A grid-table object. Dimension standard is 800 x 600 px.
@@ -21,7 +19,7 @@ a geographic world-map and timeline.
 }
 \examples{
 
-geoSRA <- PlotGeoReport( XXX )
+proTax <- PlotTaxReport( pro.df[1:50, ])
 
 }
 \keyword{Serratus}

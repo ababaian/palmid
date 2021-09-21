@@ -1,6 +1,6 @@
 #' get.tax
 #' 
-#' Retrieve the taxonomic identifiers for a set of `palm_id`
+#' Retrieve the taxonomic identifiers for a set of `palm_id` 
 #' for a given rank.
 #' 
 #' @param palm_ids character, set of `palm_id` to lookup in palmdb

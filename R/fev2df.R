@@ -16,10 +16,16 @@ fev2df <- function(fev.col) {
                 "qlen",	"pp_start",	"pp_end",	"pp_length",
                 "v1_length", "v2_length",
                 "pssm_total_score", "pssm_min_score",
-                "motifs",	"super", 'comments', 'group')
+                "motifs",	"super", 'group', 'comments')
+  
+
   
   if ( !(fev.name %in% fev.cols) ) {
-    error_msg <- paste0("'", fev.name, "' is not a recognized .fev value")
+    print("fev.input:")
+    print(fev.name)
+    print("fev.expect:")
+    print(fev.cols)
+    error_msg <- c("'.fev input has an unrecognized .fev value")
     stop(error_msg)
   }
   
@@ -37,9 +43,9 @@ fev2df <- function(fev.col) {
     fev.value <- as.factor(fev.value)
   }
   
-  # return data.frame
+  # return data.frame in canonical order
   ret.df <-  data.frame( col1 = fev.value )
-  colnames(ret.df) <- fev.name
-  
+    colnames(ret.df) <- fev.name
+    
   return(ret.df)
 }

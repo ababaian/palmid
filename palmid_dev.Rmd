@@ -6,7 +6,7 @@ output: html_notebook
 ## Initialization
 
 ```{r setup, include=FALSE} 
-knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
 ```{r, include=FALSE, warning=FALSE}
@@ -25,13 +25,23 @@ input.pro     <- 'data/waxsys.pro'
 
 output.report <- 'data/waxsys_pp.png'
 output.pro    <- 'data/waxsys_pro.png'
+output.tax    <- 'data/waxsys_tax.png'
 output.geo    <- 'data/waxsys_geo.png'
+output.orgn   <- 'data/waxsys_orgn.png'
+
+# ID Threshold for inclusion of a palmprint-match
+# into the SRA workflow
+id_threshold <- 0 #include all
 
 # Import a palmprint-analysis
 pp.in <- read.fev(input.fev, FIRST = TRUE)
 
 # Import a diamond-alignd pro file
 pro.in <- read.pro(input.pro)
+
+# Establish Serratus server connection
+con <- SerratusConnect()
+
 ```
 
 ## Input Palmprint Analysis
@@ -45,7 +55,7 @@ system('cat data/waxsys.txt')
 pp.report <- PlotReport(pp.in, palmdb)
 ```
 
-```{r}
+```{r, fig.height=6, fig.width=8, fig.retina=2}
 # Print out palmid-report graphic
 plot(pp.report)
 
@@ -63,12 +73,12 @@ system('cat data/waxsys.msa.fa')
 
 # ANALYZE PALMDB ALIGNMENT -----------------------------
 pro.df  <- read.pro("data/waxsys.pro")
-pro.report <- PlotProReport(pro.df)
+pro.report <- PlotProReport(pro.df, html = T)
 ```
 
-```{r}
+```{r, fig.height=4, fig.width=8, fig.retina=2}
 # Print protein-alignment report
-plot(pro.report)
+ggplotly(pro.report)
 
 # SAVE PP-REPORT 
 # png(filename = output.pro, width = 800, height = 400)
@@ -76,34 +86,67 @@ plot(pro.report)
 # dev.off()
 ```
 
+```{r}
+# Populate pro.df with PalmDB Taxonomic data, generate report
+pro.df     <- get.proTax(pro.df, con)
+tax.report <- PlotTaxReport(pro.df)
+```
+
+```{r, fig.height=10, fig.width=16, retina = 1}
+# Create PalmDB Taxonomy plots
+plot(tax.report)
+
+# ggsave(output.tax,
+#   plot(tax.report),
+#   width = 16,
+#   height = 10,
+#   dpi = 72
+# )
+```
+
 ## PalmDB / SRA-Run Analysis
 
 ```{r}
-# Establish Serratus server connection
-con <- SerratusConnect()
-
-# For each parent and child sOTU, retrieve matching SRA runs
-ppdb.hits <- pro.df$sseqid[(pro.df$pident >= 0)]
-  palm.uid  <- get.sOTU(ppdb.hits, con, get_childs = T)
-  palm.usra <- get.sra(palm.uid, con)
-  #palm.contigs<- get.sra(palm.group, con, get_contig.df = T)
-
-# ANALYZE SRA/BIOSAMPLE SOURCES ---------------------------
-geo.report <- PlotGeoReport(palm.usra, con)
+# Perform Serratus SQL queries to retrieve
+# parent/child sOTU lookup, sra, biosample, date, organism, geo
+palm.sra <- get.palmSra(pro.df, con)
 ```
 
 ```{r}
-# Print geospatical-time report
-plot(geo.report)
+# # For each parent and child sOTU, retrieve matching SRA runs
+# ppdb.hits <- pro.df$sseqid[(pro.df$pident >= id_threshold)]
+#   palm.uid  <- get.sOTU(ppdb.hits, con, get_childs = T)
+#   palm.usra <- get.sra(palm.uid, con)
+#   #palm.contigs<- get.sra(palm.group, con, get_contig.df = T)
 
-# SAVE PP-REPORT 
+# ANALYZE SRA/BIOSAMPLE SOURCES ---------------------------
+geo.report <- PlotGeo2(palm.sra)
+
+```
+
+```{r, out.width = '100%'}
+# Print geospatical-time report
+geo.report
+
+# SAVE GEO-REPORT 
 # png(filename = output.pro, width = 800, height = 500)
 #   plot(geo.report)
 # dev.off()
 ```
 
+
 ```{r}
-# Button for 1-click BLAST search
-# https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&USER_FORMAT_DEFAULTS=on&SET_SAVED_SEARCH=true&PAGE=Proteins&PROGRAM=blastp&QUERY=FQGDIAGWDTRVSEYELQNEQRICEERAESEDHRRKIRTIYECYRSPIIRVQDADGNLMWLHGRGQRMSGTIVTYAMNTITNAIIQQAVSKDLGNTYGRENRLISGDDCLV&JOB_TITLE=SRR9968562_waxsystermes_virus_microassembly&GAPCOSTS=11%201&DATABASE=nr&BLAST_PROGRAMS=blastp&MAX_NUM_SEQ=100&SHORT_QUERY_ADJUST=on&EXPECT=0.05&WORD_SIZE=6&MATRIX_NAME=BLOSUM62&COMPOSITION_BASED_STATISTICS=2&EQ_MENU=Enter%20organism%20name%20or%20id--completions%20will%20be%20suggested&PROG_DEFAULTS=on&SHOW_OVERVIEW=on&SHOW_LINKOUT=on&ALIGNMENT_VIEW=Pairwise&MASK_CHAR=2&MASK_COLOR=1&GET_SEQUENCE=on&NEW_VIEW=on&NUM_OVERVIEW=100&DESCRIPTIONS=100&ALIGNMENTS=100&FORMAT_OBJECT=Alignment&FORMAT_TYPE=HTML
+# Create Organism-tag wordcloud
+orgn.report <- PlotOrgn(palm.sra)
+```
+
+```{r, fig.width=8, fig.height=5, retina = 2}
+# Plot SRA-Organism Wordcloud
+plot(orgn.report)
+
+# # SAVE ORGN-REPORT 
+# png(filename = output.orgn, width = 800, height = 400, res = 100)
+#   plot(orgn.report)
+# dev.off()
 
 ```

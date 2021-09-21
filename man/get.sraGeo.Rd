@@ -4,14 +4,16 @@
 \alias{get.sraGeo}
 \title{get.sraGeo}
 \usage{
-get.sraGeo(run_ids = NULL, con, biosample_ids = NULL)
+get.sraGeo(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALSE)
 }
 \arguments{
 \item{run_ids}{character, SRA `run_id`}
 
+\item{biosample_ids}{character, BioSample `biosample_id`}
+
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{biosample_ids}{character, BioSample `biosample_id`}
+\item{ordinal}{boolean, return `run_ids` ordered vector [F]}
 }
 \value{
 data.frame, lon and lat numeric vectors

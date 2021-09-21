@@ -4,12 +4,14 @@
 \alias{get.sraDate}
 \title{get.sraDate}
 \usage{
-get.sraDate(run_ids, con, as.df = FALSE)
+get.sraDate(run_ids, con, ordinal = FALSE, as.df = FALSE)
 }
 \arguments{
 \item{run_ids}{character, SRA `run_id`}
 
 \item{con}{pq-connection, use SerratusConnect()}
+
+\item{ordinal}{boolean, return `run_ids` ordered vector [F]}
 
 \item{as.df}{boolean, return run_id, date data.frame [F]}
 }

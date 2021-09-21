@@ -20,7 +20,7 @@ get.tax(palm_ids, con, rank = "family", ordinal = FALSE)
 character, unique `tax_id` vector (i.e. "Coronaviridae")
 }
 \description{
-Retrieve the taxonomic identifiers for a set of `palm_id`
+Retrieve the taxonomic identifiers for a set of `palm_id` 
 for a given rank.
 }
 \examples{

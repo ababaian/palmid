@@ -4,6 +4,7 @@
 #' 
 #' @param run_ids character, SRA `run_id`
 #' @param con     pq-connection, use SerratusConnect()
+#' @param ordinal boolean, return `run_ids` ordered vector [F]
 #' @param as.df   boolean, return run_id, date data.frame [F]
 #' @return POSIXct, date object vector
 #' @keywords palmid Serratus timeline
@@ -12,7 +13,7 @@
 #' 
 #' @export
 # Retrieve date from input of sra run_ids
-get.sraDate <- function(run_ids, con, as.df = FALSE) {
+get.sraDate <- function(run_ids, con, ordinal = FALSE, as.df = FALSE) {
   load.lib('sql')
   
   # get contigs containing palm_ids
@@ -20,11 +21,20 @@ get.sraDate <- function(run_ids, con, as.df = FALSE) {
     filter(run %in% run_ids) %>%
     select(run, load_date) %>%
     as.data.frame()
+    colnames(sra.date) <- c("run_id", "date")
   
   #sra.date <- parse_datetime( sradate$load_data)
   #sra.date <- format( sradate, format = "%y-%m")
   
-  if (as.df){
+  if (ordinal){
+    # Left join on palm_ids to make a unique vector
+    ord.date <- data.frame( run_id = run_ids )
+    ord.date <- merge(ord.date, sra.date, all.x = T)
+    ord.date <- ord.date[ match(run_ids, ord.date$run_id), ]
+    
+    return(ord.date$date)
+    
+  } else if (as.df){
     colnames(sra.date) <- c('run_id','date')
   } else {
     sra.date <- data.frame( date = sra.date[,2])

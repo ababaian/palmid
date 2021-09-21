@@ -53,16 +53,27 @@ sudo docker build -t palmid:latest ./
 ```
 
 `palmid` (R package)
+
+
+
+
 ```R
 # R (>= v4.0.3)
 # Install dependencies
-install.packages("devtools", "ggplot2", "gridExtra")
+install.packages("devtools")
 devtools::install_github("ababaian/palmid")
 
 # Load libraries
-library("ggplot2")
-library("gridExtra")
 library("palmid")
+
+# Install Mapping Functions (optional)
+#  'libudunits2-dev' and geo system libraries needed
+#   sudo apt-get install -y  libudunits2-dev \
+#                            libgdal-dev     \ 
+#                            libgeos-dev     \
+#                            libproj-dev     \
+install.packages("sf")
+install.packages("rnaturalearth")
 
 ```
 

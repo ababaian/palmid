@@ -23,5 +23,23 @@ read.fev <- function(fev.path, FIRST = FALSE) {
   # convert field equals value format to data.frame
   fev.df <- as.data.frame( apply(fev.tsv, 2, fev2df) )
   
+  # Check column names match, return canonical col order
+  fev.cols <- c("score", "query", "gene",	"order", "confidence",
+                "qlen",	"pp_start",	"pp_end",	"pp_length",
+                "v1_length", "v2_length",
+                "pssm_total_score", "pssm_min_score",
+                "motifs",	"super", 'group', 'comments')
+  
+  if ( !(all( fev.cols %in% colnames(fev.df))) ) {
+    print("fev.input:")
+    print(fev.name)
+    print("fev.expect:")
+    print(fev.cols)
+    error_msg <- c(".fev input is missing a fev column")
+    stop(error_msg)
+  }
+  
+  fev.df <- fev.df[ , fev.cols]
+  
   return(fev.df)
 }

@@ -7,6 +7,9 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.1.1
+Suggests:
+    sf,
+    rnaturalearth
 Imports:
     dbplyr,
     dplyr,
@@ -14,10 +17,11 @@ Imports:
     ggplot2 (>= 3.3.3),
     ggwordcloud,
     gridExtra (>= 2.3),
-    rnaturalearth,
+    htmltools,
+    leaflet,
+    plotly,
     RPostgreSQL,
     scales,
-    sf,
     viridisLite
 Depends:
     dplyr

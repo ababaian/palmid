@@ -2,18 +2,20 @@
 % Please edit documentation in R/PlotOrgn.R
 \name{PlotOrgn}
 \alias{PlotOrgn}
-\title{Plot a wordcloud of the}
+\title{Plot a wordcloud of the organisms in a palm.sra object or orgn.vec}
 \usage{
-PlotOrgn(orgns)
+PlotOrgn(palm.sra = NULL, orgn.vec = NULL)
 }
 \arguments{
-\item{orgns}{character, vector of "scientific_name" from sra run table}
+\item{palm.sra}{data.frame, created from get.palmSra() [NULL]}
+
+\item{orgn.vec}{character, vector of "scientific_name" from sra run table [NULL]}
 }
 \value{
 A ggwordcloud object of the "ntop" frequent terms
 }
 \description{
-Plot a wordcloud of the
+Plot a wordcloud of the organisms in a palm.sra object or orgn.vec
 }
 \examples{
 

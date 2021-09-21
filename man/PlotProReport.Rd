@@ -4,7 +4,7 @@
 \alias{PlotProReport}
 \title{Create PlotID and PlotTax grid-plot}
 \usage{
-PlotProReport(pro)
+PlotProReport(pro, html = F)
 }
 \arguments{
 \item{pro}{A diamond-aligned pro file}

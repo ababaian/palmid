@@ -31,6 +31,12 @@ read.pro <- function(pro.path) {
     pro.df$evalue <- as.numeric(pro.df$evalue)
     pro.df$cigar  <- as.character(pro.df$cigar)
     pro.df$full_sseq <- as.character(pro.df$full_sseq)
+    
+  # Initialize empty taxonomy columns (use get.tax)
+    pro.df$tspe <- as.character(NA)
+    pro.df$tfam <- as.character(NA)
+    pro.df$tphy <- as.character(NA)
+    
   return(pro.df)
 }
 

@@ -4,12 +4,14 @@
 \alias{get.sraBio}
 \title{get.sraBio}
 \usage{
-get.sraBio(run_ids, con)
+get.sraBio(run_ids, con, ordinal = F)
 }
 \arguments{
 \item{run_ids}{character, SRA `run_id`}
 
 \item{con}{pq-connection, use SerratusConnect()}
+
+\item{ordinal}{boolean, return `run_ids` ordered vector [F]}
 }
 \value{
 data.frame, run_id, biosample character vectors

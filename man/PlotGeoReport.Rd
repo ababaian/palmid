@@ -21,7 +21,7 @@ a geographic world-map and timeline.
 }
 \examples{
 
-geoSRA <- PlotGeoReport( XXX )
+geoSRA <- PlotGeoReport( run_ids, con )
 
 }
 \keyword{Serratus}

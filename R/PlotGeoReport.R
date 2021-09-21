@@ -8,7 +8,7 @@
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
 #' 
-#' geoSRA <- PlotGeoReport( XXX )
+#' geoSRA <- PlotGeoReport( run_ids, con )
 #'
 #' @export
 PlotGeoReport <- function(run_ids, con = SerratusConnect()) {

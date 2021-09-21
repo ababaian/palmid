@@ -12,7 +12,7 @@
 #'
 #' @export
 PlotGeo <- function(run_ids, con = SerratusConnect()){
-  load.lib('geo')
+  load.lib("geo")
   
   # Count unique input run_ids
   run_ids <- unique(run_ids)
@@ -24,13 +24,14 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
   pp.bs  <- get.sraBio(run_ids, con = con)
     pp.bs <-  unique(as.character(pp.bs$biosample_id))
   
+  # Static (sf) Version ---------------------------------
+  
   # biosample_id --> geo_coordinates.df (and filter)
-  pp.geo   <- get.sraGeo(biosample_ids = pp.bs, con = con)
-    pp.geo <- geoFilter(pp.geo)
+  pp.geo <- get.sraGeo(palm.usra, con = con)
+  pp.geo <- geoFilter(pp.geo, wobble = F)
     n.geo  <- length(pp.geo[,1])
-    
-  nn.stat <- paste0("geo-data for ", n.geo, " / ", n.sra," runs retrieved")
-
+    nn.stat <- paste0("geo-data for ", n.geo, " / ", n.sra," runs retrieved")
+  
   # Map pallete-set
   rdrp_dark <- c('black',  'gray5', 'gray10', 'gray20')
   rdrp_lite <- c('white',   NA,   'gray70', 'gray95')
@@ -56,7 +57,7 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
                color = 'black', size = 5, label = nn.stat) +
     # Hex points of available data
     geom_hex( bins = 36, data = pp.geo,
-              aes(x = lon, y = lat)) +
+              aes(x = lng, y = lat)) +
     scale_fill_continuous(name = 'runs/point', 
                           type = "viridis", option = "plasma", trans = "log2")
   

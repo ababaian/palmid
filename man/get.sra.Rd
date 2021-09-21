@@ -4,14 +4,16 @@
 \alias{get.sra}
 \title{get.sra}
 \usage{
-get.sra(palm_ids, con, get_contig.df = FALSE, qc = TRUE)
+get.sra(palm_ids, con, ret_df = FALSE, ret_contig.df = FALSE, qc = TRUE)
 }
 \arguments{
-\item{palm_ids}{character, set of `palm_id` to lookup in palmdb}
+\item{palm_ids}{character or list, set of `palm_id` to lookup in palmdb}
 
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{get_contig.df}{boolean, return a data.frame of matching contigs [F]}
+\item{ret_df}{boolean, return a `palm_id` `run_id`, `coverage`, `qsequence` data.frame [F]}
+
+\item{ret_contig.df}{boolean, return a data.frame of matching contigs [F]}
 
 \item{qc}{boolean, require 85% palmprint coverage and e-value < 1e-6}
 }
@@ -19,8 +21,7 @@ get.sra(palm_ids, con, get_contig.df = FALSE, qc = TRUE)
 character, de-duplicated run_ids with a potential match for `palm_ids`
 }
 \description{
-Retrieve the SRA runs containing a microassemblied contig matching
-a given `palm_id`
+Retrieve the SRA runs containing a `palm_id`-matching contig.
 }
 \examples{
 palm.sra   <- get.sra(palm.group, con)

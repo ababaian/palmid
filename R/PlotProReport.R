@@ -8,16 +8,27 @@
 #' plot(proPlot)
 #'
 #' @export
-PlotProReport <- function(pro){
+PlotProReport <- function(pro, html = F){
   load.lib('ggplot')
   
-  # Create individual plots
-  id  <- as.grob(PlotID(pro))
-  tax <- as.grob(PlotTax(pro))
-  
-  proPlot <- arrangeGrob( id, tax,
-                          layout_matrix = rbind(c(1, 1, 2),
-                                                c(1, 1, 2)) )
+  if (html){
+    pro.plot <- hide_legend( PlotID(pro.df, html = html) )
+    tax.plot <- hide_legend( PlotTax(pro.df, html = html) )
+    
+    proPlot<- subplot(pro.plot, tax.plot,
+                      widths = c(0.8, 0.2))
+    
+    return(proPlot)
+    
+  } else {
+    # Create individual plots
+    id  <- as.grob(PlotID(pro, html = html))
+    tax <- as.grob(PlotTax(pro, html = html))
+    
+    proPlot <- arrangeGrob( id, tax,
+                            layout_matrix = rbind(c(1, 1, 2),
+                                                  c(1, 1, 2)) )
+  }
   
   return(proPlot)
 }

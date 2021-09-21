@@ -5,13 +5,14 @@
 #' @param run_ids character, SRA `run_id`
 #' @param biosample_ids character, BioSample `biosample_id`
 #' @param con     pq-connection, use SerratusConnect()
+#' @param ordinal boolean, return `run_ids` ordered vector [F]
 #' @return data.frame, lon and lat numeric vectors
 #' @keywords palmid Serratus geo
 #' @examples
 #' palm.geo   <- get.sraGeo(palm.sras, con)
 #' 
 #' @export
-get.sraGeo <- function(run_ids = NULL, con, biosample_ids = NULL) {
+get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALSE ) {
   load.lib('sql')
   
   if ( is.null(run_ids) & is.null(biosample_ids)){
@@ -19,7 +20,7 @@ get.sraGeo <- function(run_ids = NULL, con, biosample_ids = NULL) {
   } else if ( is.null(biosample_ids) ){
     # If run_ids are provided,
     # first convert to biosample_id
-    biosample_ids <- get.sraBio(run_ids, con)
+    biosample_ids <- get.sraBio(run_ids, con, ordinal = ordinal)
     biosample_ids <- biosample_ids$biosample_id
   }
   
@@ -35,11 +36,17 @@ get.sraGeo <- function(run_ids = NULL, con, biosample_ids = NULL) {
     filter(biosample_id %in% biosample_ids) %>%
     select(biosample_id, geo_coordinate_x, geo_coordinate_y) %>%
     as.data.frame()
+    colnames(sra.geo) <- c('biosample_id', 'lng', 'lat')
   
-  # turn warnings back on
-  ##options(warn = defWarn)
-  
-  colnames(sra.geo) <- c('biosample_id', 'lat', 'lon')
-  
-  return(sra.geo)
+  if (ordinal){
+    # Left join on biosample_ids to make a unique vector
+    ord.geo <- data.frame( biosample_id = biosample_ids )
+    ord.geo <- merge(ord.geo, sra.geo, all.x = T, by = "biosample_id")
+    ord.geo <- ord.geo[ match(biosample_ids, ord.geo$biosample_id), ]
+    
+    return(ord.geo)
+    
+  } else {
+    return(sra.geo)
+  }
 }
