@@ -1,6 +1,7 @@
 # PlotProReport
 #' Create PlotID and PlotTax grid-plot
-#' @param pro A diamond-aligned pro file
+#' @param pro data.frame, pro.df object
+#' @param html boolean, generate htmlWidget instead of ggplot [F]
 #' @return A grid-table object. Dimension standard is 800 x 400 px.
 #' @keywords palmid pro plot
 #' @examples

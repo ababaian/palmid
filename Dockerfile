@@ -88,8 +88,16 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py &&\
 RUN pip install boto3 awscli
 RUN yum -y install jq
 
-# R
-RUN yum -y install libxml2-devel postgresql-devel
+# R package dependencies
+RUN yum -y install libxml2-devel postgresql-devel 
+
+# && \
+#  wget ftp://ftp.unidata.ucar.edu/pub/udunits/udunits-2.2.28.tar.gz &&\
+#  tar -xvzf udunits-2.2.28.tar.gz; rm udunits-2.2.28.tar.gz &&\
+#  cd udunits-2.2.28 &&\
+#  ./configure -prefix=/usr/local &&\
+#  make install &&\
+#  cd .. && rm -rf udunits-2.2.28
 
 #==========================================================
 # Install Software ========================================

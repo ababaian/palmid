@@ -26,7 +26,7 @@ input.pro     <- 'data/waxsys.pro'
 output.report <- 'data/waxsys_pp.png'
 output.pro    <- 'data/waxsys_pro.png'
 output.tax    <- 'data/waxsys_tax.png'
-output.geo    <- 'data/waxsys_geo.png'
+output.geo    <- 'data/waxsys_geo.html'
 output.orgn   <- 'data/waxsys_orgn.png'
 
 # ID Threshold for inclusion of a palmprint-match
@@ -50,7 +50,9 @@ con <- SerratusConnect()
 # ANALYZE PALMPRINT -----------------------------
 # Print out standard palmscan report
 system('cat data/waxsys.txt')
+```
 
+```{r}
 # Generate a palmid-report
 pp.report <- PlotReport(pp.in, palmdb)
 ```
@@ -70,9 +72,11 @@ plot(pp.report)
 ```{r}
 # Print out MSA
 system('cat data/waxsys.msa.fa')
+```
 
+```{r}
 # ANALYZE PALMDB ALIGNMENT -----------------------------
-pro.df  <- read.pro("data/waxsys.pro")
+pro.df     <- read.pro("data/waxsys.pro")
 pro.report <- PlotProReport(pro.df, html = T)
 ```
 
@@ -129,9 +133,7 @@ geo.report <- PlotGeo2(palm.sra)
 geo.report
 
 # SAVE GEO-REPORT 
-# png(filename = output.pro, width = 800, height = 500)
-#   plot(geo.report)
-# dev.off()
+#htmlwidgets::saveWidget(geo.report, file=output.geo)
 ```
 
 

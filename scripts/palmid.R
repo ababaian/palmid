@@ -39,7 +39,7 @@ input.pro     <- gsub('.fev', '.pro', input.fev)
 
 output.pp     <- args[2]
 output.pro    <- gsub('_pp.png', '_pro.png', input.fev)
-output.geo    <- gsub('_pp.png', '_geo.png', input.fev)
+output.geo    <- gsub('_pp.png', '_geo.html', input.fev)
 output.tax    <- gsub('_pp.png', '_tax.png', input.fev)
 output.orgn   <- gsub('_pp.png', '_orgn.png', input.fev)
 
@@ -82,6 +82,9 @@ dev.off()
 
 # TAXREP ----------------------------------------
 #------------------------------------------------
+# Import Taxonomy data into pro.df (Serratus)
+pro.df     <- get.proTax(pro.df, con)
+
 # ANALYZE PALMDB TAXONOMY
 tax.report <- PlotTaxReport(pro.df)
 
@@ -93,26 +96,23 @@ ggsave(output.tax,
   dpi = 72
 )
 
-# GEOTIME ---------------------------------------
+# PALMSRA ---------------------------------------
 #------------------------------------------------
-# For each parent and child sOTU, retrieve matching SRA runs
-ppdb.hits <- pro.df$sseqid[(pro.df$pident >= id_threshold)]
-  palm.uid  <- get.sOTU(ppdb.hits, con, get_childs = T)
-  palm.usra <- get.sra(palm.uid, con)
+# Perform Serratus SQL queries to retrieve
+# parent/child sOTU lookup, sra, biosample, date, organism, geo
+palm.sra <- get.palmSra(pro.df, con)
 
-# ANALYZE SRA/BIOSAMPLE SOURCES -----------------
-geo.report <- PlotGeoReport(palm.usra, con)
+
+# GEO ORIGINS -----------------------------------
+geo.report <- PlotGeo2(palm.sra)
 
 # SAVE GEO-REPORT 
-png(filename = output.pro, width = 800, height = 500)
-  plot(geo.report)
-dev.off()
+htmlwidgets::saveWidget(geo.report, file=output.geo)
 
 # SRA-ORGANISM ----------------------------------
 #------------------------------------------------
 # Retrieve "scientific_name" field of associated sra runs
-palm.orgn <- get.sraOrgn(palm.usra, con)
-orgn.report <- PlotOrgn( palm.orgn )
+orgn.report <- PlotOrgn(palm.sra)
 
 # # SAVE ORGN-REPORT 
 png(filename = output.orgn, width = 800, height = 400, res = 100)

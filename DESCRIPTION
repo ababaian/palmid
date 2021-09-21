@@ -18,6 +18,7 @@ Imports:
     ggwordcloud,
     gridExtra (>= 2.3),
     htmltools,
+    htmlwidgets,
     leaflet,
     plotly,
     RPostgreSQL,
