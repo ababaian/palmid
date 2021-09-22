@@ -15,7 +15,7 @@
 #' @export
 PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL){
   load.lib("ggplot")
-  require("ggwordcloud")
+  require("ggwordcloud", quietly = T)
   
   if (is.null(palm.sra) & is.null(orgn.vec)){
     stop("One of palm.sra or orgn.vec needs to be provided")

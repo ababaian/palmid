@@ -10,17 +10,19 @@
 # Date  : 2021-09-01
 # -----------------------------------------------
 
+# Suppress warnings
+defaultW <- getOption("warn") 
+options(warn = -1) 
+# Display warnings
+# options(warn = defaultW)
+
+
 # LIBRARES ======================================
-#library(ggplot2)
-#library(gridExtra)
-#library(RPostgreSQL)
-#library(dbplyr)
 library(palmid)
 #roxygen2::roxygenise()
   load("data/palmdb.Rdata")
 
 # INITIALIZE ====================================
-
 # Read arguments from command-line
 args = commandArgs(trailingOnly=TRUE)
 
@@ -38,10 +40,10 @@ input.fev     <- args[1]
 input.pro     <- gsub('.fev', '.pro', input.fev)
 
 output.pp     <- args[2]
-output.pro    <- gsub('_pp.png', '_pro.png', input.fev)
-output.geo    <- gsub('_pp.png', '_geo.html', input.fev)
-output.tax    <- gsub('_pp.png', '_tax.png', input.fev)
-output.orgn   <- gsub('_pp.png', '_orgn.png', input.fev)
+output.pro    <- gsub('_pp.png', '_pro.png',  output.pp)
+output.geo    <- gsub('_pp.png', '_geo.html', output.pp)
+output.tax    <- gsub('_pp.png', '_tax.png',  output.pp)
+output.orgn   <- gsub('_pp.png', '_orgn.png', output.pp)
 
 # ID Threshold for inclusion of a palmprint-match
 # into the SRA workflow
@@ -107,7 +109,9 @@ palm.sra <- get.palmSra(pro.df, con)
 geo.report <- PlotGeo2(palm.sra)
 
 # SAVE GEO-REPORT 
-htmlwidgets::saveWidget(geo.report, file=output.geo)
+htmlwidgets::saveWidget(geo.report, file=output.geo,
+  selfcontained = FALSE)
+  # selfcontained requires PANDOC
 
 # SRA-ORGANISM ----------------------------------
 #------------------------------------------------

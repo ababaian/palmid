@@ -57,7 +57,7 @@ PlotPP <- function(ps){
                color = pp.col) +
     ggtitle(label = paste0('>', ps$query)) +
     ylim(c(-1, 1)) +
-    xlim(c(0, ps.query$segend)) +
+    xlim(c(0, NA)) +
     theme(axis.text.y=element_blank(),
           axis.ticks.y=element_blank(),
           axis.title.y=element_blank(),

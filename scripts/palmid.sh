@@ -35,6 +35,15 @@ function usage {
   exit 1
 }
 
+# SCRIPT ==================================================
+
+echo '================================================='
+echo "================= palmID -- $PIPE_VERSION ================="
+echo '================================================='
+echo 'ababaian (artem@rRNA.ca)'
+echo 'issues: https://github.com/ababaian/palmid/issues'
+echo ''
+
 # PARSE INPUT =============================================
 ## test-set
 # OUTDIR='data'
@@ -100,8 +109,13 @@ fi
 #echo "Creating dir $OUTNAME"
 mkdir -p $OUTDIR
 
+# PALMID
+
 # RUN PALMSCAN ============================================
 # currently set with only defaults
+
+echo '-- running palmscan RdRP-detection'
+echo ''
 
 # palmscan
 palmscan -search_pp $INPUT -hiconf -rdrp \
@@ -109,11 +123,23 @@ palmscan -search_pp $INPUT -hiconf -rdrp \
   -fevout $OUTDIR/$OUTNAME.fev \
   -ppout $OUTDIR/$OUTNAME.trim.fa
 
+echo ''
+echo ' palmprint:'
+cat  $OUTDIR/$OUTNAME.trim.fa
+echo ''
+echo ' catalytic motifs:'
+cat  $OUTDIR/$OUTNAME.txt
+
+
 # Convert FEV to TSV (DEPRECATED)
 #python3 /home/palmid/fev2tsv.py < $OUTDIR/$OUTNAME.fev > $OUTDIR/$OUTNAME.tsv
 
 # RUN DIAMOND =============================================
 # currently set with only defaults
+
+echo ''
+echo '-- running DIAMOND search of palmDB...'
+echo ''
 
 # diamond 1e-6 cutoff 
 diamond blastp \
@@ -131,9 +157,14 @@ diamond blastp \
 sort -nr -k9 $OUTDIR/$OUTNAME.pro.tmp > $OUTDIR/$OUTNAME.pro
 rm $OUTDIR/$OUTNAME.pro.tmp
 
+echo " hits in palmDB: $(wc -l $OUTDIR/$OUTNAME.pro)"
   
 # RUN MUSCLE =============================================
 # create a multiple-sequence alignment of the top 10 hits
+
+echo ''
+echo '-- running MUSCLE msa of top-10 hits'
+echo ''
 
 # make fasta file of top 10 hits
 head -n10  $OUTDIR/$OUTNAME.pro \
@@ -154,11 +185,18 @@ muscle -in  $OUTDIR/$OUTNAME.msa.input.tmp \
 seqkit head -n 1000 -w 1000 $OUTDIR/$OUTNAME.msa.output.tmp \
   > $OUTDIR/$OUTNAME.msa.fa 
 
+echo ''
+echo ' msa:'
+cat  $OUTDIR/$OUTNAME.msa.fa 
+
 # Clean-up
 rm $OUTDIR/*.tmp
 
 # RUN PALMID ==============================================
 # Create visual reports for above data
+echo ''
+echo '-- running palmID R-visualization package'
+echo ''
 
 # palmid
 Rscript $PALMID/palmid.R $OUTDIR/$OUTNAME.fev
