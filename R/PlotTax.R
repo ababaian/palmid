@@ -12,7 +12,7 @@ PlotTax <- function(pro, html = T){
   load.lib('ggplot')
 
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
-  rankCols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")
+  rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
   
   # Taxonomic ranges
   tax <- data.frame(
@@ -39,7 +39,7 @@ PlotTax <- function(pro, html = T){
   taxPlot <- ggplot() +
     geom_col(data = tax, aes(x=rank, y=count, fill = rank),
             show.legend = F) +
-    scale_fill_manual(values = rankCols) +
+    scale_fill_manual(values = rankcols) +
     #add_label +
     ggtitle('') + theme_bw()
   

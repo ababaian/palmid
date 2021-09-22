@@ -13,7 +13,11 @@ PlotID <- function(pro, html = T){
   
   # phylum, family, genus, species
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
-  rankCols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")
+  
+  rankcols <- c('phylum' = "#9f62a1",
+                'family' = "#00cc07",
+                'genus'  = "#ff9607",
+                'species'= "#ff2a24")
   
   # Process data for plotting
   pro$escore <- -(log10(pro$evalue))
@@ -21,9 +25,9 @@ PlotID <- function(pro, html = T){
   
   # Add color highlight to hits within the same phylum
   pro$matching <- ranklvl[1]
-  pro$matching[ which( pro$pident > 45 ) ] <- ranklvl[2]
-  pro$matching[ which( pro$pident > 70 ) ] <- ranklvl[3]
-  pro$matching[ which( pro$pident > 90 ) ] <- ranklvl[4]
+  pro$matching[ which( pro$pident >= 45 ) ] <- ranklvl[2]
+  pro$matching[ which( pro$pident >= 70 ) ] <- ranklvl[3]
+  pro$matching[ which( pro$pident >= 90 ) ] <- ranklvl[4]
   
   pro$matching <- factor(pro$matching,
                          levels = ranklvl)
@@ -56,12 +60,12 @@ PlotID <- function(pro, html = T){
                                x=pident, y=escore, color = matching),
                 show.legend = F,
                alpha = 0.75) +
-    scale_color_manual(values = rankCols) +
+    scale_color_manual(values = rankcols, drop = FALSE) +
     geom_text(data = pro, aes(x=pident, y=escore, label=label),
               color = c("#4D4D4D"),
               hjust = 'right', vjust = "bottom", check_overlap = T) +
     geom_vline( xintercept = c(0, 45, 70, 90),
-                color = rankCols) +
+                color = rankcols) +
     ggtitle(label = 'Palmprint alignment to palmDB') +
     xlab('% AA-Identity') + ylab('-log(e-value)') +
     theme(legend.position='none') +

@@ -22,7 +22,7 @@ PlotGeo2 <- function(palm.sra) {
   # Color pallette
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
   #rankcols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")
-  rankcols <- c("#51A149", "#85CC1D", "#CD9B1D", "#CC221D")
+  rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
   
   palm.sra$rank <- ranklvl[1]
   palm.sra$colr <- rankcols[1]
