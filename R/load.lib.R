@@ -15,7 +15,7 @@
 load.lib <- function( lib_set ){
   
   if (lib_set == 'sql'){
-    require("RPostgres", quietly = T)
+    require("RPostgreSQL", quietly = T)
     require("dplyr", quietly = T)
     require("dbplyr", quietly = T)
     

@@ -7,7 +7,9 @@
 PlotProReport(pro, html = F)
 }
 \arguments{
-\item{pro}{A diamond-aligned pro file}
+\item{pro}{data.frame, pro.df object}
+
+\item{html}{boolean, generate htmlWidget instead of ggplot [F]}
 }
 \value{
 A grid-table object. Dimension standard is 800 x 400 px.
