@@ -2,7 +2,7 @@
 % Please edit documentation in R/PlotTaxHist.R
 \name{PlotTaxHist}
 \alias{PlotTaxHist}
-\title{Plot %-identity, factored on taxonomic strings of a pro df}
+\title{Plot Percent-identity, factored on taxonomic strings of a pro df}
 \usage{
 PlotTaxHist(pro.pident, pro.tax, rank = NA)
 }
@@ -17,7 +17,7 @@ PlotTaxHist(pro.pident, pro.tax, rank = NA)
 A histogram as a ggplot2 object
 }
 \description{
-Plot %-identity, factored on taxonomic strings of a pro df
+Plot Percent-identity, factored on taxonomic strings of a pro df
 }
 \examples{
 taxHist <- PlotTaxHist( pro.df$pident, pro.df$tax_family, 'family')

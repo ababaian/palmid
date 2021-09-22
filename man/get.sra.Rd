@@ -15,7 +15,7 @@ get.sra(palm_ids, con, ret_df = FALSE, ret_contig.df = FALSE, qc = TRUE)
 
 \item{ret_contig.df}{boolean, return a data.frame of matching contigs [F]}
 
-\item{qc}{boolean, require 85% palmprint coverage and e-value < 1e-6}
+\item{qc}{boolean, require 85-percent palmprint coverage and e-value < 1e-6}
 }
 \value{
 character, de-duplicated run_ids with a potential match for `palm_ids`

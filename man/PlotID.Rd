@@ -2,7 +2,7 @@
 % Please edit documentation in R/PlotID.R
 \name{PlotID}
 \alias{PlotID}
-\title{Plot %-identity vs. E-value of a pro file}
+\title{Plot Percent-identity vs. E-value of a pro file}
 \usage{
 PlotID(pro, html = T)
 }
@@ -15,7 +15,7 @@ PlotID(pro, html = T)
 A scatterplot as a ggplot2 object
 }
 \description{
-Plot %-identity vs. E-value of a pro file
+Plot Percent-identity vs. E-value of a pro file
 }
 \examples{
 idPlot <- PlotID(pro)

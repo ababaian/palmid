@@ -1,5 +1,5 @@
 # PlotTaxHist
-#' Plot %-identity, factored on taxonomic strings of a pro df
+#' Plot Percent-identity, factored on taxonomic strings of a pro df
 #' @param pro.pident numeric, pident column from pro.df
 #' @param pro.tax    character, tax column from pro.df (use: get.tax)
 #' @param rank       character, string of tax-rank to label graph

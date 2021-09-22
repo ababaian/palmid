@@ -6,7 +6,7 @@
 #' @param con      pq-connection, use SerratusConnect()
 #' @param ret_df   boolean, return a `palm_id` `run_id`, `coverage`, `qsequence` data.frame [F]
 #' @param ret_contig.df boolean, return a data.frame of matching contigs [F]
-#' @param qc       boolean, require 85% palmprint coverage and e-value < 1e-6
+#' @param qc       boolean, require 85-percent palmprint coverage and e-value < 1e-6
 #' @return character, de-duplicated run_ids with a potential match for `palm_ids`
 #' @keywords palmid Serratus palmdb sOTU
 #' @examples

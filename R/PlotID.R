@@ -1,5 +1,5 @@
 # PlotID
-#' Plot %-identity vs. E-value of a pro file
+#' Plot Percent-identity vs. E-value of a pro file
 #' @param pro   data.frame, A diamond-aligned pro file
 #' @param html  boolean, include additional parsing for htmlwidget display
 #' @return A scatterplot as a ggplot2 object
