@@ -62,7 +62,7 @@ pp.in <- read.fev(input.fev, FIRST = TRUE)
 pp.report <- PlotReport(pp.in, palmdb)
 
 # SAVE PP-REPORT 
-png(filename = output.report, width = 800, height = 400)
+png(filename = output.pp, width = 800, height = 400)
   plot(pp.report)
 dev.off()
 
