@@ -1,12 +1,24 @@
 ---
-title: "palmid development notebook"
-output: html_notebook
+title: "palmID: viral-RdRP report"
+output:
+  html_notebook:
+    code_folding: hide
 ---
 
-## Initialization
+`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases
+(RdRP) based on [Babaian and Edgar, 2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
+
+## palmID Initialize
 
 ```{r setup, include=FALSE} 
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+```{css, echo=FALSE}
+/* Move code folding buttons to the left */
+div.col-md-12 .pull-right {
+  float: left !important
+}
 ```
 
 ```{r, include=FALSE, warning=FALSE}
@@ -18,137 +30,175 @@ roxygen2::roxygenise()
 #library(palmid)
 ```
 
-```{r}
+-- Input Parameters: 
+```{r class.source = 'fold-show'}
 # INITIALIZE PALMID WORKSPACE -------------------
-input.fev     <- 'data/waxsys.fev'
-input.pro     <- 'data/waxsys.pro'
-
-output.report <- 'data/waxsys_pp.png'
-output.pro    <- 'data/waxsys_pro.png'
-output.tax    <- 'data/waxsys_tax.png'
-output.geo    <- 'data/waxsys_geo.html'
-output.orgn   <- 'data/waxsys_orgn.png'
-
-# ID Threshold for inclusion of a palmprint-match
-# into the SRA workflow
-id_threshold <- 0 #include all
-
-# Import a palmprint-analysis
-pp.in <- read.fev(input.fev, FIRST = TRUE)
-
-# Import a diamond-alignd pro file
-pro.in <- read.pro(input.pro)
+#library('palmid')
 
 # Establish Serratus server connection
 con <- SerratusConnect()
 
+# Input file
+# Generated in `palmid` container
+input.path      <- 'amexnv/amexnv'
+  input.pp      <- paste0(input.path, '.trim.fa')    # palmscan-palmprint sequence
+  input.fev     <- paste0(input.path, '.fev')    # palmscan .fev report
+  input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
+  input.pro     <- paste0(input.path, '.pro')    # diamond palmDB-alignment file
+  input.msa     <- paste0(input.path, '.msa.fa') # muscle msa
+
+# Output HTML Report
+output.html   <- paste0(input.path, '.html')
+save.plots    <- F # save individual plots as png
+
+# Parameters
+  id_threshold <- 0 # Minimum AA% to retain a hit
+
+run.time <- Sys.time()
 ```
 
-## Input Palmprint Analysis
-
+-- Import Data: 
 ```{r}
-# ANALYZE PALMPRINT -----------------------------
-# Print out standard palmscan report
-system('cat data/waxsys.txt')
+# IMPORT DATASETS -------------------------------
+# Import a palmprint-analysis
+pp.in <- read.fev(input.fev, FIRST = TRUE)
+
+# Import a diamond-aligned pro file
+pro.df <- read.pro(input.pro)
+  # Populate with Taxonomy-data
+  pro.df     <- get.proTax(pro.df, con)
+
+# SQL-Import of palmprint/sra meta-data
+  # parent/child sOTU lookup, sra, biosample, date, organism, geo
+palm.sra <- get.palmSra(pro.df, con)
+  
 ```
 
+-- Generate Reports: 
 ```{r}
-# Generate a palmid-report
+# GENERATE REPORT-PLOTS -------------------------
+# Palmprint Report
 pp.report <- PlotReport(pp.in, palmdb)
+
+# Diamond-palmDB Alignment Report
+pro.report <- PlotProReport(pro.df, html = T)
+
+# PalmDB Viral Taxonomy Report
+tax.report <- PlotTaxReport(pro.df)
+
+# Geospatial distribution Report
+geo.report <- PlotGeo2(palm.sra)
+
+# Host/Library organism Report
+orgn.report.freq <- PlotOrgn(palm.sra, freq = T)
+orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
+
 ```
 
-```{r, fig.height=6, fig.width=8, fig.retina=2}
-# Print out palmid-report graphic
-plot(pp.report)
+## RdRP palmprint QC
 
-# SAVE PP-REPORT --------------------------------
-# png(filename = output.report, width = 800, height = 400)
-#  plot(pp.report)
-# dev.off()
+-- palmscan:
+
+```{r}
+# Palmscan-generated reports
+system(paste0( 'echo "palmprint sequence: \n" ;
+                cat ', input.pp, ';',
+               'echo "\ncatalytic-motifs: " ;
+                cat ', input.rep ))
+
+```
+
+-- palm-report:
+
+```{r, fig.height = 4.5, fig.width = 9}
+# Palmscan QC-plot
+plot(pp.report)
 ```
 
 ## Palmprint vs. PalmDB Analysis
 
-```{r}
-# Print out MSA
-system('cat data/waxsys.msa.fa')
-```
+-- Multiple-Sequence Alignment (top 10 palmDB)
 
 ```{r}
-# ANALYZE PALMDB ALIGNMENT -----------------------------
-pro.df     <- read.pro("data/waxsys.pro")
-pro.report <- PlotProReport(pro.df, html = T)
+# Multiple Sequence Alignment of Top-10 hits in palmDB
+system( paste0 ('cat ', input.msa ))
 ```
 
-```{r, fig.height=4, fig.width=8, fig.retina=2}
-# Print protein-alignment report
+-- Input palmprint aligned to palmDB
+
+```{r, fig.height = 5, fig.width = 9}
+# Protein-alignment of Input vs. palmDB
 ggplotly(pro.report)
-
-# SAVE PP-REPORT 
-# png(filename = output.pro, width = 800, height = 400)
-#   plot(pro.report)
-# dev.off()
 ```
 
-```{r}
-# Populate pro.df with PalmDB Taxonomic data, generate report
-pro.df     <- get.proTax(pro.df, con)
-tax.report <- PlotTaxReport(pro.df)
-```
+-- palmDB-hits Viral Taxonomy
 
 ```{r, fig.height=10, fig.width=16, retina = 1}
-# Create PalmDB Taxonomy plots
+# Viral Taxonomy of palmDB Hits
 plot(tax.report)
-
-# ggsave(output.tax,
-#   plot(tax.report),
-#   width = 16,
-#   height = 10,
-#   dpi = 72
-# )
 ```
 
-## PalmDB / SRA-Run Analysis
+## SRA Meta-data Analysis
 
-```{r}
-# Perform Serratus SQL queries to retrieve
-# parent/child sOTU lookup, sra, biosample, date, organism, geo
-palm.sra <- get.palmSra(pro.df, con)
-```
+-- Geospatial distribution of palmprint-containing sequencing libraries
+   (click to explore)
 
-```{r}
-# # For each parent and child sOTU, retrieve matching SRA runs
-# ppdb.hits <- pro.df$sseqid[(pro.df$pident >= id_threshold)]
-#   palm.uid  <- get.sOTU(ppdb.hits, con, get_childs = T)
-#   palm.usra <- get.sra(palm.uid, con)
-#   #palm.contigs<- get.sra(palm.group, con, get_contig.df = T)
-
-# ANALYZE SRA/BIOSAMPLE SOURCES ---------------------------
-geo.report <- PlotGeo2(palm.sra)
-
-```
-
-```{r, out.width = '100%'}
-# Print geospatical-time report
+```{r, fig.height = 6, fig.width = 9}
+# Geo-distribution of palmprint-containing SRA
 geo.report
-
-# SAVE GEO-REPORT 
-#htmlwidgets::saveWidget(geo.report, file=output.geo)
 ```
 
-
-```{r}
-# Create Organism-tag wordcloud
-orgn.report <- PlotOrgn(palm.sra)
+-- Source organism of sequencing libraries
+```{r, fig.width=8, fig.height=5, retina = 2}
+# Plot SRA-Organism Wordcloud - id
+# (scaled by AA% proximity to input palmprint)
+plot(orgn.report.pidn)
 ```
 
 ```{r, fig.width=8, fig.height=5, retina = 2}
-# Plot SRA-Organism Wordcloud
-plot(orgn.report)
+# Plot SRA-Organism Wordcloud - freq
+# (scaled by frequency in the SRA)
+plot(orgn.report.freq)
+```
 
-# # SAVE ORGN-REPORT 
-# png(filename = output.orgn, width = 800, height = 400, res = 100)
-#   plot(orgn.report)
-# dev.off()
+#### Footer
+- [Source code](https://github.com/ababaian/palmid)
+- [Submit issue / ask question](https://github.com/ababaian/palmid/issues)
 
+```{r, include=FALSE}
+if (save.plots){
+  
+  # SAVE PP-REPORT
+  png(filename = output.report, width = 800, height = 400)
+   plot(pp.report)
+  dev.off()
+  
+  # SAVE PRO-REPORT 
+  png(filename = output.pro, width = 800, height = 400)
+    plot(pro.report)
+  dev.off()
+  
+  # SAVE TAX-REPORT
+  ggsave(output.tax,
+    plot(tax.report),
+    width = 16,
+    height = 10,
+    dpi = 72
+  )
+  
+  # SAVE GEO-REPORT
+  htmlwidgets::saveWidget(geo.report, file=output.geo)
+
+  # SAVE ORGN-REPORT
+  png(filename = output.orgn, width = 800, height = 400, res = 100)
+    plot(orgn.report)
+  dev.off()
+
+}
+
+```
+
+```{r, include = FALSE}
+#rmarkdown::render('palmid_dev.Rmd',
+#                  output_file = output.html)
 ```

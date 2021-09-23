@@ -12,7 +12,7 @@ PlotPP <- function(ps){
 
   # plot variables
   pp.col <- c('red', 'gray50', 'green', 'gray50', 'blue')
-  vbump = 0.5
+  vbump = 0.85
   
   # motif variables
   # length
