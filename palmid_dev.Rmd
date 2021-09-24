@@ -40,7 +40,7 @@ con <- SerratusConnect()
 
 # Input file
 # Generated in `palmid` container
-input.path      <- 'amexnv/amexnv'
+input.path      <- 'data/waxsys'
   input.pp      <- paste0(input.path, '.trim.fa')    # palmscan-palmprint sequence
   input.fev     <- paste0(input.path, '.fev')    # palmscan .fev report
   input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
