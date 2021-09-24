@@ -3,6 +3,8 @@ title: "palmID: viral-RdRP report"
 output:
   html_notebook:
     code_folding: hide
+params:
+  input.path: 'data/waxsys'
 ---
 
 `palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases
@@ -10,7 +12,17 @@ output:
 
 ## palmID Initialize
 
-```{r setup, include=FALSE} 
+```{r setup, include=FALSE}
+# Command Line Interface ----
+
+# Rscript -e "rmarkdown::render( \
+#   input = 'palmid_dev.Rmd', \
+#   output_file = 'amexnv.html', \
+#   output_format = 'html_notebook', \
+#   params=list( input.path = 'amexnv/amexnv'))"
+
+# ---------------------------
+
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ```
 
@@ -40,7 +52,13 @@ con <- SerratusConnect()
 
 # Input file
 # Generated in `palmid` container
-input.path      <- 'data/waxsys'
+# params are defined in YAML header to expose to CLI
+input.path      <- params$input.path
+
+if (is.null(input.path)){
+  stop("Error: No input provided.")
+}
+
   input.pp      <- paste0(input.path, '.trim.fa')    # palmscan-palmprint sequence
   input.fev     <- paste0(input.path, '.fev')    # palmscan .fev report
   input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
