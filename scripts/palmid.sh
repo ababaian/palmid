@@ -11,9 +11,9 @@ set -eu
 # base: 9 Gb
 
 # Test cmd: ./serratus-align.sh 
-PIPE_VERSION="0.0"
+PIPE_VERSION="0.0.0"
 AMI_VERSION='ami-0fdf24f2ce3c33243'
-CONTAINER_VERSION='palmid-base:0.0'
+CONTAINER_VERSION='palmid-base:0.0.0'
 
 
 function usage {
@@ -198,5 +198,16 @@ echo ''
 echo '-- running palmID R-visualization package'
 echo ''
 
-# palmid
-Rscript $PALMID/palmid.R $OUTDIR/$OUTNAME.fev
+# palmid via R-script (deprecated)
+#Rscript $PALMID/palmid.R $OUTDIR/$OUTNAME.fev
+
+# palmid HTML-Report
+INPUT_PATH="'$OUTDIR/$OUTNAME'"
+HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
+
+Rscript -e "rmarkdown::render( \
+  input = 'palmid_dev.Rmd', \
+  output_file = $HTML_OUTPUT, \
+  output_format = 'html_notebook', \
+  params=list( input.path = $INPUT_PATH))"
+
