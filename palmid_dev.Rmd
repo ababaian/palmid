@@ -40,7 +40,7 @@ con <- SerratusConnect()
 
 # Input file
 # Generated in `palmid` container
-input.path      <- 'amexnv/amexnv'
+input.path      <- 'data/waxsys'
   input.pp      <- paste0(input.path, '.trim.fa')    # palmscan-palmprint sequence
   input.fev     <- paste0(input.path, '.fev')    # palmscan .fev report
   input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
@@ -129,6 +129,7 @@ system( paste0 ('cat ', input.msa ))
 ```{r, fig.height = 5, fig.width = 9}
 # Protein-alignment of Input vs. palmDB
 ggplotly(pro.report)
+
 ```
 
 -- palmDB-hits Viral Taxonomy
@@ -149,7 +150,8 @@ geo.report
 ```
 
 -- Source organism of sequencing libraries
-```{r, fig.width=8, fig.height=5, retina = 2}
+
+```{r, fig.width=8, fig.height=5, retina = 2, out.width=c('50%', '50%')}
 # Plot SRA-Organism Wordcloud - id
 # (scaled by AA% proximity to input palmprint)
 plot(orgn.report.pidn)
@@ -159,6 +161,33 @@ plot(orgn.report.pidn)
 # Plot SRA-Organism Wordcloud - freq
 # (scaled by frequency in the SRA)
 plot(orgn.report.freq)
+```
+
+### PalmDB Alignment
+
+```{r, echo = FALSE}
+# library(downloadthis)
+# library(DT)
+# 
+# blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
+# 
+# cbind( pro.df[, c("qseqid", "sseqid", 'tspe', "pident", "evalue", "cigar")],
+#        blast.col) %>%
+#   datatable(
+#     rownames = FALSE, filter = "top", escape = F,
+#     options = list(pageLength = 10, scrollX = T)
+#   )
+# 
+# pro.df %>% 
+#   download_this(
+#     output_name = paste0(input.path, '.pro'),
+#     output_extension = ".csv",
+#     button_label = "Download .csv",
+#     button_type = "success",
+#     has_icon = TRUE,
+#     icon = "fa fa-file-export"
+#   )
+
 ```
 
 #### Footer
