@@ -13,6 +13,7 @@ params:
 ## palmID Initialize
 
 ```{r setup, include=FALSE}
+# RMarkdown Setting Initialization
 # Command Line Interface ----
 
 # Rscript -e "rmarkdown::render( \
@@ -42,7 +43,6 @@ roxygen2::roxygenise()
 #library(palmid)
 ```
 
--- Input Parameters: 
 ```{r class.source = 'fold-show'}
 # INITIALIZE PALMID WORKSPACE -------------------
 #library('palmid')
@@ -73,10 +73,7 @@ save.plots    <- F # save individual plots as png
   id_threshold <- 0 # Minimum AA% to retain a hit
 
 run.time <- Sys.time()
-```
 
--- Import Data: 
-```{r}
 # IMPORT DATASETS -------------------------------
 # Import a palmprint-analysis
 pp.in <- read.fev(input.fev, FIRST = TRUE)
@@ -89,11 +86,7 @@ pro.df <- read.pro(input.pro)
 # SQL-Import of palmprint/sra meta-data
   # parent/child sOTU lookup, sra, biosample, date, organism, geo
 palm.sra <- get.palmSra(pro.df, con)
-  
-```
 
--- Generate Reports: 
-```{r}
 # GENERATE REPORT-PLOTS -------------------------
 # Palmprint Report
 pp.report <- PlotReport(pp.in, palmdb)
@@ -111,6 +104,29 @@ geo.report <- PlotGeo2(palm.sra)
 orgn.report.freq <- PlotOrgn(palm.sra, freq = T)
 orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
 
+```
+
+
+```{r, echo = FALSE}
+pro.df %>%
+  downloadthis::download_this(
+    output_name = paste0(input.path, '.pro'),
+    output_extension = ".csv",
+    button_label = "Download palmDB.csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-file-export"
+  )
+
+palm.sra %>%
+  downloadthis::download_this(
+    output_name = paste0(input.path, '.sra.metadata'),
+    output_extension = ".csv",
+    button_label = "Download sra.metadata.csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-file-export"
+  )
 ```
 
 ## RdRP palmprint QC
@@ -184,7 +200,6 @@ plot(orgn.report.freq)
 ### PalmDB Alignment
 
 ```{r, echo = FALSE}
-# library(downloadthis)
 # library(DT)
 # 
 # blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
@@ -196,15 +211,6 @@ plot(orgn.report.freq)
 #     options = list(pageLength = 10, scrollX = T)
 #   )
 # 
-# pro.df %>% 
-#   download_this(
-#     output_name = paste0(input.path, '.pro'),
-#     output_extension = ".csv",
-#     button_label = "Download .csv",
-#     button_type = "success",
-#     has_icon = TRUE,
-#     icon = "fa fa-file-export"
-#   )
 
 ```
 

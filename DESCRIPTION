@@ -13,6 +13,7 @@ Suggests:
 Imports:
     dbplyr,
     dplyr,
+    downloadthis,
     ggplotify,
     ggplot2 (>= 3.3.3),
     ggwordcloud,
