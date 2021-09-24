@@ -89,15 +89,12 @@ RUN pip install boto3 awscli
 RUN yum -y install jq
 
 # R package dependencies
-RUN yum -y install libxml2-devel postgresql-devel 
+RUN yum -y install libxml2-devel postgresql-devel
 
-# && \
-#  wget ftp://ftp.unidata.ucar.edu/pub/udunits/udunits-2.2.28.tar.gz &&\
-#  tar -xvzf udunits-2.2.28.tar.gz; rm udunits-2.2.28.tar.gz &&\
-#  cd udunits-2.2.28 &&\
-#  ./configure -prefix=/usr/local &&\
-#  make install &&\
-#  cd .. && rm -rf udunits-2.2.28
+# pandoc for RMarkdown
+RUN wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz &&\
+  tar xvzf pandoc-2.14.2-linux-amd64.tar.gz --strip-components 1 -C /usr/local &&\
+  rm -rf pandoc-2.14.2*
 
 #==========================================================
 # Install Software ========================================
