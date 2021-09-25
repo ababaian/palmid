@@ -179,25 +179,28 @@ system( paste0 ('cat ', input.msa ))
 ggplotly(pro.report)
 
 ```
-```{r, echo = FALSE}
-# 
-# blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
-# 
-# cbind( pro.df[, c("qseqid", "sseqid", 'tspe', "pident", "evalue", "cigar")],
-#        blast.col) %>%
-#   DT::datatable(
-#     rownames = FALSE, filter = "top", escape = F,
-#     options = list(pageLength = 10, scrollX = T)
-#   )
-# 
-
-```
-
 -- palmDB-hits Viral Taxonomy
 
 ```{r, fig.height=10, fig.width=16, retina = 1}
 # Viral Taxonomy of palmDB Hits
 plot(tax.report)
+```
+
+#### Data-Table: `palmDB.csv`
+
+```{r, echo = FALSE}
+# Data table for palmDB Alignment
+
+blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
+
+cbind( pro.df[, c("qseqid", "sseqid", 'tspe', "pident", "evalue", "cigar")],
+       blast.col) %>%
+  DT::datatable(
+    rownames = FALSE, filter = "top", escape = F,
+    options = list(pageLength = 10, scrollX = T)
+  )
+
+
 ```
 
 ## SRA Meta-data Analysis
@@ -224,6 +227,25 @@ plot(orgn.report.pidn)
 plot(orgn.report.freq)
 ```
 
+
+#### Data-Table: `sra.metadata.csv`
+
+```{r, echo = FALSE}
+# Data table for palmDB Alignment
+
+blast.col <- linkBLAST(palm.sra$sra_sequence, 
+                       paste0(palm.sra$run_id,"_",palm.sra$palm_id)
+                       )
+
+cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', 'evalue', 'scientific_name')],
+       blast.col) %>%
+  DT::datatable(
+    rownames = FALSE, filter = "top", escape = F,
+    options = list(pageLength = 10, scrollX = T)
+  )
+
+
+```
 
 #### Footer
 - [Source code](https://github.com/ababaian/palmid)

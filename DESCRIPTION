@@ -14,6 +14,7 @@ Imports:
     dbplyr,
     dplyr,
     downloadthis,
+    DT,
     ggplotify,
     ggplot2 (>= 3.3.3),
     ggwordcloud,
