@@ -2,7 +2,7 @@
 # PALMID BASE CONTAINER ===================================
 #==========================================================
 # Docker Base: amazon linux2
-FROM amazonlinux:2 AS serratus-base
+FROM public.ecr.aws/lambda/python:3.9
 
 ## Build/test container for palmid
 # sudo yum install -y docker git
@@ -91,6 +91,9 @@ RUN yum -y install jq
 # R package dependencies
 RUN yum -y install libxml2-devel postgresql-devel
 
+# libgit2-dev required for DT
+# 'gert', 'gh', 'jsonlite'
+
 # pandoc for RMarkdown
 RUN wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz &&\
   tar xvzf pandoc-2.14.2-linux-amd64.tar.gz --strip-components 1 -C /usr/local &&\
@@ -147,7 +150,7 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 # R 4.0 =========================================
 # Install R
 # Note: 1 GB install
-RUN amazon-linux-extras install R4
+RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum -y install R
 
 # R Packages ====================================
 RUN \
@@ -191,6 +194,6 @@ RUN chmod 755 palmid.sh &&\
 #COPY man ./
 
 #==========================================================
-# ENTRYPOINT ==============================================
+# CMD =====================================================
 #==========================================================
-ENTRYPOINT ["/home/palmid/palmid.sh"]
+CMD ["/home/palmid/palmid.sh"]
