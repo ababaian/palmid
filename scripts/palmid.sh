@@ -68,7 +68,7 @@ PALMID='/home/palmid'
 
 # Parse inputs
 
-while getopts i:o:h! FLAG; do
+while getopts i:o:d:h! FLAG; do
   case $FLAG in
     i)
       INPUT=$OPTARG
