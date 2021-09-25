@@ -34,6 +34,7 @@ div.col-md-12 .pull-right {
   float: left !important
 }
 ```
+
 ```{r, include=FALSE, warning=FALSE}
 # Run as Production Pipeline or Development
 production.version = params$prod.run
@@ -54,6 +55,7 @@ if (production.version){
 }
 
 ```
+
 
 ```{r}
 # INITIALIZE PALMID WORKSPACE -------------------
@@ -130,7 +132,7 @@ orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
 
 
 ```{r, echo = FALSE}
-noquote(print.hitn)
+print(print.hitn)
 
 pro.df %>%
   downloadthis::download_this(
@@ -168,7 +170,11 @@ system(paste0( 'echo "palmprint sequence: \n" ;
                'echo "\ncatalytic-motifs: " ;
                 cat ', input.rep ))
 
-#lapply(scan(input.pp, 'raw'),cat)[[1]]
+# noquote("palmprint sequence: ")
+# lapply(scan(input.pp, 'character'),cat)[[1]]
+# 
+# noquote("catalytic-motifs: ")
+# lapply(scan(input.rep, 'character'),cat)[[1]]
 
 ```
 
