@@ -1,5 +1,5 @@
 ---
-title: "palmID: RNA Virus Report"
+title: "Open Virome: RNA Virus Report"
 output:
   html_notebook:
     code_folding: hide
