@@ -189,17 +189,16 @@ plot(tax.report)
 #### Data-Table: `palmDB.csv`
 
 ```{r, echo = FALSE}
-# Data table for palmDB Alignment
-
-blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
-
-cbind( pro.df[, c("qseqid", "sseqid", 'tspe', "pident", "evalue", "cigar")],
-       blast.col) %>%
-  DT::datatable(
-    rownames = FALSE, filter = "top", escape = F,
-    options = list(pageLength = 10, scrollX = T)
-  )
-
+# # Data table for palmDB Alignment
+# 
+# blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
+# 
+# cbind( pro.df[, c("qseqid", "sseqid", 'tspe', "pident", "evalue", "cigar")],
+#        blast.col) %>%
+#   DT::datatable(
+#     rownames = FALSE, filter = "top", escape = F,
+#     options = list(pageLength = 10, scrollX = T)
+#   )
 
 ```
 
@@ -231,19 +230,18 @@ plot(orgn.report.freq)
 #### Data-Table: `sra.metadata.csv`
 
 ```{r, echo = FALSE}
-# Data table for palmDB Alignment
-
-blast.col <- linkBLAST(palm.sra$sra_sequence, 
-                       paste0(palm.sra$run_id,"_",palm.sra$palm_id)
-                       )
-
-cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', 'evalue', 'scientific_name')],
-       blast.col) %>%
-  DT::datatable(
-    rownames = FALSE, filter = "top", escape = F,
-    options = list(pageLength = 10, scrollX = T)
-  )
-
+# # Data table for palmDB Alignment
+# 
+# blast.col <- linkBLAST(palm.sra$sra_sequence, 
+#                        paste0(palm.sra$run_id,"_",palm.sra$palm_id)
+#                        )
+# 
+# cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', 'evalue', 'scientific_name')],
+#        blast.col) %>%
+#   DT::datatable(
+#     rownames = FALSE, filter = "top", escape = F,
+#     options = list(pageLength = 10, scrollX = T)
+#   )
 
 ```
 
