@@ -48,7 +48,7 @@ sudo docker pull serratusbio/palmid:latest
 git clone https://github.com/ababaian/palmid.git && cd palmid
 
 # Requires `docker` (>= v20.10)
-sudo docker build -t palmid:latest ./
+sudo docker build -t serratusbio/palmid:latest ./
 
 ```
 
