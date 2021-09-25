@@ -18,7 +18,13 @@ CONTAINER_VERSION='palmid-base:0.0.0'
 
 function usage {
   echo ""
-  echo "Usage: docker run  -v `pwd`:`pwd` -w `pwd` palmid -i <input.fa> -o <output_prefix> [OPTIONS]"
+  echo "Usage: sudo docker run  -v `pwd`:`pwd` -w `pwd` \
+                 --entrypoint "/bin/bash" serratusbio/palmid:latest \
+                 /home/palmid/palmid.sh -i <input.fa> -o <output_prefix> [OPTIONS]"
+  echo " OR"
+  echo "palmid='sudo docker run  -v `pwd`:`pwd` -w `pwd` --entrypoint "/bin/bash" serratusbio/palmid:latest /home/palmid/palmid.sh'"
+  echo ""
+  echo "\$palmid -i <input.fa> -o <output_prefix> [OPTIONS]"
   echo ""
   echo "    -h    Show this help/usage message"
   echo ""
@@ -30,7 +36,8 @@ function usage {
   echo "    [Optional]"
   echo "    -d    output directory [<value from -o>]"
   echo ""
-  echo "ex: sudo docker run -v `pwd`:`pwd` -w `pwd` palmid -i /home/palmid/test/waxsys.fa -o waxsys"
+  echo "e.g:"
+  echo " sudo docker run  -v `pwd`:`pwd` -w `pwd` --entrypoint "/bin/bash" serratusbio/palmid:latest /home/palmid/palmid.sh -i data/waxsys.fa -o waxsys"
   echo ""
   exit 1
 }
@@ -38,7 +45,7 @@ function usage {
 # SCRIPT ==================================================
 
 echo '================================================='
-echo "================= palmID -- $PIPE_VERSION ================="
+echo "================ palmID -- $PIPE_VERSION ================"
 echo '================================================='
 echo 'ababaian (artem@rRNA.ca)'
 echo 'issues: https://github.com/ababaian/palmid/issues'
