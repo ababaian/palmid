@@ -77,7 +77,7 @@ while getopts i:o:d:h! FLAG; do
       OUTNAME=$OPTARG
       ;;
     d)
-      OUTDIR=$OPTARG
+      OUTDIR=$(readlink -f $OPTARG)
       ;;
     h)  #show help ----------
       usage
@@ -109,7 +109,7 @@ fi
 # If no explicit output directory set (-d)
 # use OUTNAME as directory
 if [ -z "$OUTDIR" ]; then
-  OUTDIR=$OUTNAME
+  OUTDIR=$PWD/$OUTNAME
 fi
 
 # Output options
@@ -207,8 +207,8 @@ echo '-- running palmID R-visualization package'
 echo ''
 
 # palmid HTML-Report
-INPUT_PATH="'$PWD/$OUTDIR/$OUTNAME'"
-HTML_OUTPUT="'$PWD/$OUTDIR/$OUTNAME.html'"
+INPUT_PATH="'$OUTDIR/$OUTNAME'"
+HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
 
 Rscript -e "rmarkdown::render( \
   input = '/home/palmid/palmid.Rmd', \
