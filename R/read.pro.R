@@ -11,7 +11,8 @@
 #pro.path <- 'data/waxsys.pro'
 read.pro <- function(pro.path) {
   # read fev as tsv
-  pro.df <- read.csv2(pro.path, header = F, sep = '\t')
+  pro.df <- read.csv2(pro.path, header = F, sep = '\t',
+                      stringsAsFactors=FALSE)
   
   pro.cols <- c("qseqid", "qstart", "qend", "qlen",
                 "sseqid", "sstart", "send", "slen",

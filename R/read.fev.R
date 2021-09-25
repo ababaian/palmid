@@ -10,7 +10,8 @@
 #' @export
 read.fev <- function(fev.path, FIRST = FALSE) {
   # read fev as tsv
-  fev.tsv <- read.csv2(fev.path, header = F, sep = '\t')
+  fev.tsv <- read.csv2(fev.path, header = F, sep = '\t',
+                       stringsAsFactors = FALSE)
   
   # For single palmprint analysis, only use first palmprint
   if (FIRST) {
