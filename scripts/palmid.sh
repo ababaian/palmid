@@ -125,6 +125,7 @@ palmscan -search_pp $INPUT -hiconf -rdrp \
 
 echo ''
 echo ' palmprint:'
+echo ''
 cat  $OUTDIR/$OUTNAME.trim.fa
 echo ''
 echo ' catalytic motifs:'
@@ -203,7 +204,7 @@ INPUT_PATH="'$OUTDIR/$OUTNAME'"
 HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
 
 Rscript -e "rmarkdown::render( \
-  input = '/home/palmid/palmid.Rmd', \
+  input = 'palmid.Rmd', \
   output_file = $HTML_OUTPUT, \
   output_format = 'html_notebook', \
   params=list( input.path = $INPUT_PATH))"

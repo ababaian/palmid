@@ -36,16 +36,24 @@ div.col-md-12 .pull-right {
 
 ```{r, include=FALSE, warning=FALSE}
 # Development libraries
-#library(roxygen2)
-roxygen2::roxygenise()
-  load("data/palmdb.Rdata")
+production.version = TRUE
 
-#library(palmid)
+if (production.version){
+  # Load stable palmid package
+  library('palmid', quietly = T)
+} else {
+  
+  # Compile a new palmid from source
+  library(roxygen2)
+    roxygen2::roxygenise()
+    load("data/palmdb.Rdata")
+}
+
 ```
 
 ```{r}
 # INITIALIZE PALMID WORKSPACE -------------------
-#library('palmid')
+library('palmid')
 
 # Establish Serratus server connection
 con <- SerratusConnect()
