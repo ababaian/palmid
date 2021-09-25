@@ -43,7 +43,7 @@ roxygen2::roxygenise()
 #library(palmid)
 ```
 
-```{r class.source = 'fold-show'}
+```{r}
 # INITIALIZE PALMID WORKSPACE -------------------
 #library('palmid')
 
@@ -140,6 +140,8 @@ system(paste0( 'echo "palmprint sequence: \n" ;
                'echo "\ncatalytic-motifs: " ;
                 cat ', input.rep ))
 
+#lapply(scan(input.pp, 'raw'),cat)[[1]]
+
 ```
 
 -- palm-report:
@@ -163,6 +165,19 @@ system( paste0 ('cat ', input.msa ))
 ```{r, fig.height = 5, fig.width = 9}
 # Protein-alignment of Input vs. palmDB
 ggplotly(pro.report)
+
+```
+```{r, echo = FALSE}
+# 
+# blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
+# 
+# cbind( pro.df[, c("qseqid", "sseqid", 'tspe', "pident", "evalue", "cigar")],
+#        blast.col) %>%
+#   DT::datatable(
+#     rownames = FALSE, filter = "top", escape = F,
+#     options = list(pageLength = 10, scrollX = T)
+#   )
+# 
 
 ```
 
@@ -197,22 +212,6 @@ plot(orgn.report.pidn)
 plot(orgn.report.freq)
 ```
 
-### PalmDB Alignment
-
-```{r, echo = FALSE}
-# library(DT)
-# 
-# blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
-# 
-# cbind( pro.df[, c("qseqid", "sseqid", 'tspe', "pident", "evalue", "cigar")],
-#        blast.col) %>%
-#   datatable(
-#     rownames = FALSE, filter = "top", escape = F,
-#     options = list(pageLength = 10, scrollX = T)
-#   )
-# 
-
-```
 
 #### Footer
 - [Source code](https://github.com/ababaian/palmid)

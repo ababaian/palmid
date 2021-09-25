@@ -198,15 +198,12 @@ echo ''
 echo '-- running palmID R-visualization package'
 echo ''
 
-# palmid via R-script (deprecated)
-#Rscript $PALMID/palmid.R $OUTDIR/$OUTNAME.fev
-
 # palmid HTML-Report
 INPUT_PATH="'$OUTDIR/$OUTNAME'"
 HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
 
 Rscript -e "rmarkdown::render( \
-  input = 'palmid_dev.Rmd', \
+  input = '/home/palmid/palmid.Rmd', \
   output_file = $HTML_OUTPUT, \
   output_format = 'html_notebook', \
   params=list( input.path = $INPUT_PATH))"

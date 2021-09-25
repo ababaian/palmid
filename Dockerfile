@@ -158,6 +158,7 @@ RUN \
 # palmid Initialize =======================================
 #==========================================================
 # scripts + test data
+COPY palmid.Rmd ./
 COPY scripts/* ./
 COPY data/* data/
 RUN chmod 755 palmid.sh &&\
