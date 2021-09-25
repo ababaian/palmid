@@ -54,9 +54,6 @@ sudo docker build -t palmid:latest ./
 
 `palmid` (R package)
 
-
-
-
 ```R
 # R (>= v4.0.3)
 # Install dependencies
@@ -66,7 +63,7 @@ devtools::install_github("ababaian/palmid")
 # Load libraries
 library("palmid")
 
-# Install Mapping Functions (optional)
+# Install Mapping Functions for static maps (optional)
 #  'libudunits2-dev' and geo system libraries needed
 #   sudo apt-get install -y  libudunits2-dev \
 #                            libgdal-dev     \ 
@@ -107,8 +104,9 @@ Run `palmid` workflow
 # palmid -i <input_fasta> -o <output_path>
 # -v | -w flags are to mount the work dir into the conntainer
 #
-sudo docker run -v `pwd`:`pwd` -w `pwd` \
-  palmid -i data/waxsys.fa -o data
+sudo docker run  -v `pwd`:`pwd` -w `pwd`  \
+  --entrypoint "/bin/bash" serratusbio/palmid:latest \
+  /home/palmid/palmid.sh -i data/waxsys.fa -d test -o waxsys
 
 ```
 

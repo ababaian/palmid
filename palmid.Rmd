@@ -1,17 +1,17 @@
 ---
-title: "palmID: viral-RdRP report"
+title: "palmID: RNA Virus Report"
 output:
   html_notebook:
     code_folding: hide
 params:
-  input.path: 'u42024/u42024'
+  input.path: 'data/waxsys'
   prod.run: FALSE
 ---
 
 `palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases
-(RdRP) based on [Babaian and Edgar, 2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
+(RdRP) based on the "Palmprint" RNA virus barcodes described by [Babaian and Edgar, 2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
 
-## palmID Initialize
+## Initialize
 
 ```{r setup, include=FALSE}
 # RMarkdown Setting Initialization
@@ -34,7 +34,6 @@ div.col-md-12 .pull-right {
   float: left !important
 }
 ```
-
 ```{r, include=FALSE, warning=FALSE}
 # Run as Production Pipeline or Development
 production.version = params$prod.run
@@ -58,12 +57,13 @@ if (production.version){
 
 ```{r}
 # INITIALIZE PALMID WORKSPACE -------------------
+# library("palmid")
 
 # Establish Serratus server connection
 con <- SerratusConnect()
 
 # Input file
-# Generated in `palmid` container
+# Generated within `palmid` container
 # params are defined in YAML header to expose to CLI
 input.path      <- params$input.path
 
@@ -100,9 +100,9 @@ pro.df <- read.pro(input.pro)
 palmdb.hits <- length(pro.df$qseqid)
 if (palmdb.hits > max_palmdb_hits){
   pro.df <- pro.df[ 1:max_palmdb_hits, ]
-  print( paste0("Reporting Top ", max_palmdb_hits, "/", palmdb.hits, " matches in PalmDB"))
+  print.hitn <- paste0("Reporting Top ", max_palmdb_hits, "/", palmdb.hits, " matches in PalmDB")
 } else {
-  print( paste0("Reporting ", palmdb.hits, " matches in PalmDB"))
+  print.hitn <-  paste0("Reporting ", palmdb.hits, " matches in PalmDB")
 }
 
 # SQL-Import of palmprint/sra meta-data
@@ -130,6 +130,8 @@ orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
 
 
 ```{r, echo = FALSE}
+noquote(print.hitn)
+
 pro.df %>%
   downloadthis::download_this(
     output_name = paste0(input.path, '.pro'),
@@ -153,7 +155,11 @@ palm.sra %>%
 
 ## RdRP palmprint QC
 
--- palmscan:
+#### palmscan motif analysis
+
+Identification of the the core catalytic motifs A,B,C 
+within the input sequence and reporting the "palmprint"
+RNA-virus barcode.
 
 ```{r}
 # Palmscan-generated reports
@@ -166,7 +172,12 @@ system(paste0( 'echo "palmprint sequence: \n" ;
 
 ```
 
--- palm-report:
+#### palmprint QC-report
+
+Quality control metrics on the motif-scores and size distribution
+of the "palmprint" informs the confidence that the input sequence
+contains a viral RdRP. Input scores are shown compared to score 
+distribution from 15,010 canonical viral RdRP from GenBank.
 
 ```{r, fig.height = 4.5, fig.width = 9}
 # Palmscan QC-plot
@@ -175,21 +186,33 @@ plot(pp.report)
 
 ## Palmprint vs. PalmDB Analysis
 
--- Multiple-Sequence Alignment (top 10 palmDB)
+#### Multiple Sequence Alignment
+
+A `MUSCLE`-generated multiple sequence alignment of the 
+top-10 matching hits in [`palmdb`](https://github.com/rcedgar/palmdb).
 
 ```{r}
 # Multiple Sequence Alignment of Top-10 hits in palmDB
 system( paste0 ('cat ', input.msa ))
 ```
 
--- Input palmprint aligned to palmDB
+#### Input palmprint aligned to palmDB
+
+Input "palmprint" are aligned against [`palmdb`](https://github.com/rcedgar/palmdb)
+using `diamond` to retrieve related viruses. Upto the top 500 related viruses
+are reported.
+
 
 ```{r, fig.height = 5, fig.width = 9}
 # Protein-alignment of Input vs. palmDB
 ggplotly(pro.report)
 
 ```
--- palmDB-hits Viral Taxonomy
+#### Virus Taxonomy of PalmDB matches
+
+Species-, Genus- and Phylum- level taxonomy of the matching
+hits in PalmDB allow for taxonomic-inference of the input
+virus.
 
 ```{r, fig.height=10, fig.width=16, retina = 1}
 # Viral Taxonomy of palmDB Hits
@@ -213,15 +236,26 @@ plot(tax.report)
 
 ## SRA Meta-data Analysis
 
--- Geospatial distribution of palmprint-containing sequencing libraries
-   (click to explore)
+RNA viruses matching input are cross-referenced against
+5.7M SRA sequencing libraries to identify sra-virus matches
+and their associated meta-data.
+
+#### Geospatial distribution of related RNA viruses
+
+Distribution of matching RNA viruses. Click to explore
+each matching record. Species, genus, family and phylum
+level matches are red, orange, green and purple, respectively.
 
 ```{r, fig.height = 6, fig.width = 9}
 # Geo-distribution of palmprint-containing SRA
 geo.report
 ```
 
--- Source organism of sequencing libraries
+#### Source organism
+
+Organisms associated with the matching sequencing libraries.
+Word size is scaled by a) proximity of input virus to sra-virus
+match or b) frequency of organism tag within all sra-virus matches.
 
 ```{r, fig.width=8, fig.height=5, retina = 2, out.width=c('50%', '50%')}
 # Plot SRA-Organism Wordcloud - id
@@ -254,8 +288,11 @@ plot(orgn.report.freq)
 ```
 
 #### Footer
+
 - [Source code](https://github.com/ababaian/palmid)
 - [Submit issue / ask question](https://github.com/ababaian/palmid/issues)
+
+To save this report: `File` --> `Save Page As`.
 
 ```{r, include=FALSE}
 if (save.plots){
@@ -294,3 +331,4 @@ if (save.plots){
 #rmarkdown::render('palmid_dev.Rmd',
 #                  output_file = output.html)
 ```
+
