@@ -200,8 +200,8 @@ echo '-- running palmID R-visualization package'
 echo ''
 
 # palmid HTML-Report
-INPUT_PATH="'$OUTDIR/$OUTNAME'"
-HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
+INPUT_PATH="'$PWD/$OUTDIR/$OUTNAME'"
+HTML_OUTPUT="'$PWD/$OUTDIR/$OUTNAME.html'"
 
 Rscript -e "rmarkdown::render( \
   input = '/home/palmid/palmid.Rmd', \
