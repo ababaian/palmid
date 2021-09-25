@@ -32,9 +32,9 @@ get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALS
   ##defWarn <- getOption("warn") 
   ##options(warn = -1) 
   
-  sra.geo <- tbl(con, 'biosample') %>%
+  sra.geo <- tbl(con, 'biosample_geo_coordinates') %>%
     filter(biosample_id %in% biosample_ids) %>%
-    select(biosample_id, geo_coordinate_x, geo_coordinate_y) %>%
+    select(biosample_id, coordinate_x, coordinate_y) %>%
     as.data.frame()
     colnames(sra.geo) <- c('biosample_id', 'lng', 'lat')
   

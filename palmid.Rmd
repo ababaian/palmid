@@ -45,8 +45,11 @@ if (production.version){
   load("/home/palmid/data/palmdb.Rdata") 
 
   # Disable warnings
-   options(warn = -1) 
+   defaultW <- getOption("warn")
+   options(warn = -1)
 } else {
+  # Warnings variable
+  defaultW <- getOption("warn")
   
   # Compile a new palmid from source
   library(roxygen2)
@@ -132,7 +135,7 @@ orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
 
 
 ```{r, echo = FALSE}
-print(print.hitn)
+options(warn = defaultW)
 
 pro.df %>%
   downloadthis::download_this(
@@ -164,17 +167,21 @@ within the input sequence and reporting the "palmprint"
 RNA-virus barcode.
 
 ```{r}
+# noquote("palmprint sequence: ")
+# lapply(scan(input.pp, 'character'),cat)[[1]]
+# 
+# noquote("catalytic-motifs: ")
+# lapply(scan(input.rep, 'character'),cat)[[1]]
+
 # Palmscan-generated reports
 system(paste0( 'echo "palmprint sequence: \n" ;
                 cat ', input.pp, ';',
                'echo "\ncatalytic-motifs: " ;
                 cat ', input.rep ))
 
-# noquote("palmprint sequence: ")
-# lapply(scan(input.pp, 'character'),cat)[[1]]
-# 
-# noquote("catalytic-motifs: ")
-# lapply(scan(input.rep, 'character'),cat)[[1]]
+print(print.hitn)
+
+options(warn = -1)
 
 ```
 
