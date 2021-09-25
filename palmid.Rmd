@@ -41,8 +41,10 @@ production.version = TRUE
 if (production.version){
   # Load stable palmid package
   library('palmid', quietly = T)
-  load("data/palmdb.Rdata") 
-  ### REQUIRES CONTAINER/RMD IS RUN FROM palmid/ REPO FOLDER
+  load("/home/palmid/data/palmdb.Rdata") 
+
+  # Disable warnings
+   options(warn = -1) 
 } else {
   
   # Compile a new palmid from source
