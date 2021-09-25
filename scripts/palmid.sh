@@ -64,7 +64,7 @@ PALMID='/home/palmid'
 while getopts i:o:h! FLAG; do
   case $FLAG in
     i)
-      INPUT=$(readlink -f $OPTARG)
+      INPUT=$OPTARG
       ;;
     o)
       OUTNAME=$OPTARG
@@ -204,7 +204,7 @@ INPUT_PATH="'$OUTDIR/$OUTNAME'"
 HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
 
 Rscript -e "rmarkdown::render( \
-  input = 'palmid.Rmd', \
+  input = '/home/palmid/palmid.Rmd', \
   output_file = $HTML_OUTPUT, \
   output_format = 'html_notebook', \
   params=list( input.path = $INPUT_PATH))"
