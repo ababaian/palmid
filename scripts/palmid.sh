@@ -154,6 +154,7 @@ diamond blastp \
   -q $OUTDIR/$OUTNAME.trim.fa\
   -d $DB \
   --masking 0 -e 0.00001 \
+  --tmpdir /tmp \
   --ultra-sensitive -k0 \
   -f 6 qseqid  qstart qend qlen \
        sseqid  sstart send slen \
@@ -210,8 +211,10 @@ echo ''
 INPUT_PATH="'$OUTDIR/$OUTNAME'"
 HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
 
+cp /home/palmid/palmid.Rmd /tmp/palmid.Rmd
+
 Rscript -e "rmarkdown::render( \
-  input = '/home/palmid/palmid.Rmd', \
+  input = '/tmp/palmid.Rmd', \
   output_file = $HTML_OUTPUT, \
   output_format = 'html_notebook', \
   params=list( input.path = $INPUT_PATH , \
