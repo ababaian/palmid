@@ -15,13 +15,28 @@ FROM public.ecr.aws/lambda/python:3.9
 ## Push to dockerhub
 # sudo docker login
 # 
-#
 # sudo docker build \
 #  -t serratusbio/palmid \
 #  -t serratusbio/palmid:0.0.0 \
 #  -t palmid:latest .
 #
 # sudo docker push serratusbio/palmid
+
+## Push to ecr (palmid-lambda)
+#
+# aws ecr-public get-login-password --region us-east-1 \
+#  | sudo docker login --username AWS \
+#                      --password-stdin public.ecr.aws/q4q7t4w2
+#
+# docker build -t palmid .
+#
+# docker tag palmid
+#            palmid:0.0.0 \
+#            palmid:latest \
+#            public.ecr.aws/q4q7t4w2/palmid:latest
+# 
+# docker push public.ecr.aws/q4q7t4w2/palmid:latest
+#
 
 ## Dev testing to enter enter
 # sudo docker run --rm --entrypoint /bin/bash -it palmid:latest
