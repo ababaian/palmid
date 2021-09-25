@@ -207,5 +207,6 @@ Rscript -e "rmarkdown::render( \
   input = '/home/palmid/palmid.Rmd', \
   output_file = $HTML_OUTPUT, \
   output_format = 'html_notebook', \
-  params=list( input.path = $INPUT_PATH))"
+  params=list( input.path = $INPUT_PATH , \
+               prod.run   = TRUE ))"
 

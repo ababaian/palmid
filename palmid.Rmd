@@ -5,6 +5,7 @@ output:
     code_folding: hide
 params:
   input.path: 'data/waxsys'
+  prod.run: FALSE
 ---
 
 `palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases
@@ -35,8 +36,8 @@ div.col-md-12 .pull-right {
 ```
 
 ```{r, include=FALSE, warning=FALSE}
-# Development libraries
-production.version = TRUE
+# Run as Production Pipeline or Development
+production.version = params$prod.run
 
 if (production.version){
   # Load stable palmid package
@@ -186,9 +187,8 @@ ggplotly(pro.report)
 plot(tax.report)
 ```
 
-#### Data-Table: `palmDB.csv`
-
 ```{r, echo = FALSE}
+#### Data-Table: `palmDB.csv`
 # # Data table for palmDB Alignment
 # 
 # blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
@@ -227,9 +227,8 @@ plot(orgn.report.freq)
 ```
 
 
-#### Data-Table: `sra.metadata.csv`
-
 ```{r, echo = FALSE}
+#### Data-Table: `sra.metadata.csv`
 # # Data table for palmDB Alignment
 # 
 # blast.col <- linkBLAST(palm.sra$sra_sequence, 
