@@ -2,7 +2,7 @@
 # PALMID BASE CONTAINER ===================================
 #==========================================================
 # Docker Base: amazon linux2
-FROM public.ecr.aws/lambda/python:3.9
+FROM amazonlinux:2 AS serratus-base
 
 ## Build/test container for palmid
 # sudo yum install -y docker git
@@ -76,6 +76,7 @@ LABEL software.license="GPLv3"
 LABEL tags="palmscan, diamond, muscle, R"
 
 #==========================================================
+# Dependencies ============================================
 # Dependencies ============================================
 #==========================================================
 # Update Core
@@ -165,11 +166,7 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 # R 4.0 =========================================
 # Install R
 # Note: 1 GB install
-# RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum -y install R
-
-RUN yum -y install amazon-linux-extras &&\
-  sudo amazon-linux-extras install -y R4
-
+RUN amazon-linux-extras install R4
 
 # R Packages ====================================
 RUN \
