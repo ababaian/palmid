@@ -4,7 +4,7 @@ output:
   html_notebook:
     code_folding: hide
 params:
-  input.path: 'data/waxsys'
+  input.path: 'u42024/u42024'
   prod.run: FALSE
 ---
 
@@ -58,7 +58,6 @@ if (production.version){
 
 ```{r}
 # INITIALIZE PALMID WORKSPACE -------------------
-library('palmid')
 
 # Establish Serratus server connection
 con <- SerratusConnect()
@@ -83,7 +82,8 @@ output.html   <- paste0(input.path, '.html')
 save.plots    <- F # save individual plots as png
 
 # Parameters
-  id_threshold <- 0 # Minimum AA% to retain a hit
+  id_threshold    <- 0   # Minimum AA% to retain a hit
+  max_palmdb_hits <- 500 # Maximum number of alignment hits in PalmDB hits to return
 
 run.time <- Sys.time()
 
@@ -95,6 +95,15 @@ pp.in <- read.fev(input.fev, FIRST = TRUE)
 pro.df <- read.pro(input.pro)
   # Populate with Taxonomy-data
   pro.df     <- get.proTax(pro.df, con)
+
+# Set backstop when too many similar hits come up
+palmdb.hits <- length(pro.df$qseqid)
+if (palmdb.hits > max_palmdb_hits){
+  pro.df <- pro.df[ 1:max_palmdb_hits, ]
+  print( paste0("Reporting Top ", max_palmdb_hits, "/", palmdb.hits, " matches in PalmDB"))
+} else {
+  print( paste0("Reporting ", palmdb.hits, " matches in PalmDB"))
+}
 
 # SQL-Import of palmprint/sra meta-data
   # parent/child sOTU lookup, sra, biosample, date, organism, geo
