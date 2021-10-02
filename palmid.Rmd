@@ -170,21 +170,22 @@ RNA-virus barcode.
 
 ```{r, echo = FALSE}
 # Input Sequence
-noquote("Input FASTA sequence: ")
-cat(paste0(readLines(input.fa), collapse="\n"))
-
+cat("Input FASTA sequence: \n\n")
+cat(paste0(readLines(input.fa), collapse="\n"), "\n")
+cat("\n")
 
 # Palmscan-generated reports
-noquote("palmprint sequence: ")
-cat(paste0(readLines(input.pp), collapse="\n"))
-# lapply(scan(input.pp, 'character'),cat)[[1]]
-# 
-noquote("catalytic-motifs: ")
-cat(paste0(readLines(input.rep), collapse="\n"))
+cat("palmprint sequence: \n\n")
+cat(paste0(readLines(input.pp), collapse="\n"), "\n")
+cat("\n")
+
+cat("catalytic-motifs: \n")
+cat(paste0(readLines(input.rep), collapse="\n"), "\n")
+cat("\n")
 
 # lapply(scan(input.rep, 'character'),cat)[[1]]
 
-print(print.hitn)
+cat(print.hitn)
 
 ```
 
