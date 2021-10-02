@@ -11,9 +11,9 @@ set -eu
 # base: 9 Gb
 
 # Test cmd: ./serratus-align.sh 
-PIPE_VERSION="0.0.0"
+PIPE_VERSION="0.0.1"
 AMI_VERSION='ami-0fdf24f2ce3c33243'
-CONTAINER_VERSION='palmid-base:0.0.0'
+CONTAINER_VERSION='palmid-base:0.0.1'
 
 
 function usage {
@@ -115,6 +115,7 @@ fi
 # Output options
 #echo "Creating dir $OUTNAME"
 mkdir -p $OUTDIR
+cp $INPUT $OUTDIR/$OUTNAME.input.fa
 
 # PALMID
 

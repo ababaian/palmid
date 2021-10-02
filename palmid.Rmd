@@ -4,7 +4,7 @@ output:
   html_notebook:
     code_folding: hide
 params:
-  input.path: 'data/waxsys'
+  input.path: 'hz/hz'
   prod.run: FALSE
 ---
 
@@ -50,7 +50,8 @@ if (production.version){
 } else {
   # Warnings variable
   defaultW <- getOption("warn")
-  
+  options(warn = -1)
+
   # Compile a new palmid from source
   library(roxygen2)
     roxygen2::roxygenise()
@@ -135,7 +136,7 @@ orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
 
 
 ```{r, echo = FALSE}
-options(warn = defaultW)
+options(warn = -1)
 
 pro.df %>%
   downloadthis::download_this(
@@ -166,22 +167,18 @@ Identification of the the core catalytic motifs A,B,C
 within the input sequence and reporting the "palmprint"
 RNA-virus barcode.
 
-```{r}
-# noquote("palmprint sequence: ")
+```{r, echo = FALSE}
+# Palmscan-generated reports
+noquote("palmprint sequence: ")
+cat(paste0(readLines(input.pp), collapse="\n"))
 # lapply(scan(input.pp, 'character'),cat)[[1]]
 # 
-# noquote("catalytic-motifs: ")
+noquote("catalytic-motifs: ")
+cat(paste0(readLines(input.rep), collapse="\n"))
+
 # lapply(scan(input.rep, 'character'),cat)[[1]]
 
-# Palmscan-generated reports
-system(paste0( 'echo "palmprint sequence: \n" ;
-                cat ', input.pp, ';',
-               'echo "\ncatalytic-motifs: " ;
-                cat ', input.rep ))
-
 print(print.hitn)
-
-options(warn = -1)
 
 ```
 
@@ -206,7 +203,7 @@ top-10 matching hits in [`palmdb`](https://github.com/rcedgar/palmdb).
 
 ```{r}
 # Multiple Sequence Alignment of Top-10 hits in palmDB
-system( paste0 ('cat ', input.msa ))
+cat(paste0(readLines(input.msa), collapse="\n"))
 ```
 
 #### Input palmprint aligned to palmDB
@@ -270,7 +267,7 @@ Organisms associated with the matching sequencing libraries.
 Word size is scaled by a) proximity of input virus to sra-virus
 match or b) frequency of organism tag within all sra-virus matches.
 
-```{r, fig.width=8, fig.height=5, retina = 2, out.width=c('50%', '50%')}
+```{r, fig.width=8, fig.height=5, retina = 2}
 # Plot SRA-Organism Wordcloud - id
 # (scaled by AA% proximity to input palmprint)
 plot(orgn.report.pidn)
