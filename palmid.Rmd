@@ -4,7 +4,7 @@ output:
   html_notebook:
     code_folding: hide
 params:
-  input.path: 'hz/hz'
+  input.path: 'data/waxsys'
   prod.run: FALSE
 ---
 
@@ -77,6 +77,7 @@ if (is.null(input.path)){
   stop("Error: No input provided.")
 }
 
+  input.fa      <- paste0(input.path, '.input.fa')    # palmscan-palmprint sequence
   input.pp      <- paste0(input.path, '.trim.fa')    # palmscan-palmprint sequence
   input.fev     <- paste0(input.path, '.fev')    # palmscan .fev report
   input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
@@ -168,6 +169,11 @@ within the input sequence and reporting the "palmprint"
 RNA-virus barcode.
 
 ```{r, echo = FALSE}
+# Input Sequence
+noquote("Input FASTA sequence: ")
+cat(paste0(readLines(input.fa), collapse="\n"))
+
+
 # Palmscan-generated reports
 noquote("palmprint sequence: ")
 cat(paste0(readLines(input.pp), collapse="\n"))
