@@ -13,7 +13,7 @@ set -eu
 # Test cmd: ./serratus-align.sh 
 PIPE_VERSION="0.0.2"
 AMI_VERSION='ami-0fdf24f2ce3c33243'
-CONTAINER_VERSION='palmid-base:0.0.1'
+CONTAINER_VERSION='palmid:0.0.2'
 
 
 function usage {
