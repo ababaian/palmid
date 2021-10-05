@@ -11,7 +11,7 @@ set -eu
 # base: 9 Gb
 
 # Test cmd: ./serratus-align.sh 
-PIPE_VERSION="0.0.1"
+PIPE_VERSION="0.0.2"
 AMI_VERSION='ami-0fdf24f2ce3c33243'
 CONTAINER_VERSION='palmid-base:0.0.1'
 
@@ -126,7 +126,7 @@ echo '-- running palmscan RdRP-detection'
 echo ''
 
 # palmscan
-palmscan -search_pp $INPUT -hiconf -rdrp \
+palmscan -search_pp $INPUT -loconf -rdrp \
   -report $OUTDIR/$OUTNAME.txt \
   -fevout $OUTDIR/$OUTNAME.fev \
   -ppout $OUTDIR/$OUTNAME.trim.fa
@@ -213,6 +213,9 @@ INPUT_PATH="'$OUTDIR/$OUTNAME'"
 HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
 
 cp /home/palmid/palmid.Rmd /tmp/palmid.Rmd
+mkdir -p /tmp/data
+cp /home/palmid/data/tax_legend.png /tmp/data/tax_legend.png
+
 
 Rscript -e "rmarkdown::render( \
   input = '/tmp/palmid.Rmd', \

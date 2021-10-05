@@ -53,7 +53,7 @@ WORKDIR /home/palmid
 # Container Information
 ARG PROJECT='palmid'
 ARG TYPE='base'
-ARG VERSION='0.0.1'
+ARG VERSION='0.0.2'
 
 # Software Versions (pass to shell)
 #ENV SAMTOOLSVERSION='1.10'
