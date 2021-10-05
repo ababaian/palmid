@@ -17,7 +17,7 @@ FROM amazonlinux:2 AS serratus-base
 # 
 # sudo docker build \
 #  -t serratusbio/palmid \
-#  -t serratusbio/palmid:0.0.0 \
+#  -t serratusbio/palmid:0.0.1 \
 #  -t palmid:latest .
 #
 # sudo docker push serratusbio/palmid
