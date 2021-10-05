@@ -1,5 +1,5 @@
 ---
-title: "Open Virome: RNA Virus Report"
+title: "PalmID: RNA Virus RdRP Report"
 output:
   html_notebook:
     code_folding: hide
@@ -135,6 +135,7 @@ orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
 
 ```
 
+#### Download Data
 
 ```{r, echo = FALSE}
 options(warn = -1)
@@ -143,7 +144,7 @@ pro.df %>%
   downloadthis::download_this(
     output_name = paste0(input.path, '.pro'),
     output_extension = ".csv",
-    button_label = "Download palmDB.csv",
+    button_label = "Download palmdb_alignment.csv",
     button_type = "success",
     has_icon = TRUE,
     icon = "fa fa-file-export"
@@ -153,7 +154,7 @@ palm.sra %>%
   downloadthis::download_this(
     output_name = paste0(input.path, '.sra.metadata'),
     output_extension = ".csv",
-    button_label = "Download sra.metadata.csv",
+    button_label = "Download sra_metadata.csv",
     button_type = "success",
     has_icon = TRUE,
     icon = "fa fa-file-export"
@@ -224,7 +225,14 @@ are reported.
 # Protein-alignment of Input vs. palmDB
 ggplotly(pro.report)
 
+# Taxonomic Demarcations (~)
+# Species >90%   - Red
+# Genus   70-90% - Orange
+# Family  45-70% - Green
+# Phylum  <45%   - Purple
 ```
+![](data/tax_legend.png)
+
 #### Virus Taxonomy of PalmDB matches
 
 Species-, Genus- and Phylum- level taxonomy of the matching
@@ -235,21 +243,23 @@ virus.
 # Viral Taxonomy of palmDB Hits
 plot(tax.report)
 ```
+#### Input Alignment to palmDB Table
 
 ```{r, echo = FALSE}
-#### Data-Table: `palmDB.csv`
-# # Data table for palmDB Alignment
-# 
-# blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
-# 
-# cbind( pro.df[, c("qseqid", "sseqid", 'tspe', "pident", "evalue", "cigar")],
-#        blast.col) %>%
-#   DT::datatable(
-#     rownames = FALSE, filter = "top", escape = F,
-#     options = list(pageLength = 10, scrollX = T)
-#   )
+### Data-Table: `palmDB.csv`
+# Data table for palmDB Alignment
+
+blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
+
+cbind( pro.df[, c("sseqid", 'tspe', "pident", "evalue", "cigar")],
+       blast.col) %>%
+  DT::datatable(
+    rownames = FALSE, filter = "top", escape = F,
+    options = list(pageLength = 10, scrollX = T)
+  )
 
 ```
+[Download palmDB Alignment Table](#download-data)
 
 ## SRA Meta-data Analysis
 
@@ -266,7 +276,14 @@ level matches are red, orange, green and purple, respectively.
 ```{r, fig.height = 6, fig.width = 9}
 # Geo-distribution of palmprint-containing SRA
 geo.report
+
+# Taxonomic Demarcations (~)
+# Species >90%   - Red
+# Genus   70-90% - Orange
+# Family  45-70% - Green
+# Phylum  <45%   - Purple
 ```
+![](data/tax_legend.png)
 
 #### Source organism
 
@@ -286,23 +303,26 @@ plot(orgn.report.pidn)
 plot(orgn.report.freq)
 ```
 
+#### Input Alignment to SRA-RdRp Table
 
 ```{r, echo = FALSE}
-#### Data-Table: `sra.metadata.csv`
-# # Data table for palmDB Alignment
-# 
-# blast.col <- linkBLAST(palm.sra$sra_sequence, 
-#                        paste0(palm.sra$run_id,"_",palm.sra$palm_id)
-#                        )
-# 
-# cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', 'evalue', 'scientific_name')],
-#        blast.col) %>%
-#   DT::datatable(
-#     rownames = FALSE, filter = "top", escape = F,
-#     options = list(pageLength = 10, scrollX = T)
-#   )
+### Data-Table: `sra.metadata.csv`
+# Data table for palmDB Alignment
+
+blast.col <- linkBLAST(palm.sra$sra_sequence,
+                       paste0(palm.sra$run_id,"_",palm.sra$palm_id)
+                       )
+
+cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', 'evalue', 'scientific_name')],
+       blast.col) %>%
+  DT::datatable(
+    rownames = FALSE, filter = "top", escape = F,
+    options = list(pageLength = 10, scrollX = T)
+  )
 
 ```
+
+[Download SRA Metadata Table](#download-data)
 
 #### Footer
 
