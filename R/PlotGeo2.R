@@ -57,11 +57,11 @@ PlotGeo2 <- function(palm.sra) {
     palm.sra$popup <- paste0(
       '<b>run_id</b>   : ',
         '<a href="https://serratus.io/explorer/rdrp?run=',
-        palm.sra$run_id, '&identity=45-100&score=0-100">', palm.sra$run_id, '</a>',"<br>",
+        palm.sra$run_id, '&identity=45-100&score=0-100" target="_blank">', palm.sra$run_id, '</a>',"<br>",
       
       '<b>biosample</b>   : ',
       '<a href="https://www.ncbi.nlm.nih.gov/biosample/',
-      palm.sra$biosample_id, '">', palm.sra$biosample_id, '</a>',"<br>",
+      palm.sra$biosample_id, '" target="_blank">', palm.sra$biosample_id, '</a>',"<br>",
 
       "<b>organism</b> : ", palm.sra$scientific_name, "<br>",
       "<b>AA id</b>    : ", palm.sra$pident,          "%<br>",
@@ -71,9 +71,9 @@ PlotGeo2 <- function(palm.sra) {
       
       '<a href="', blast.l1, blast.l2,
       blast.l3q, palm.sra$sra_sequence,
-      blast.l4t, ">OpenVirome_", palm.sra$run_id, "_", palm.sra$palm_id,
+      blast.l4t, ">palmID_", palm.sra$run_id, "_", palm.sra$palm_id,
       blast.l5, blast.l6, blast.l7, blast.l8, blast.l9,
-      '"> [BLAST] </a>'
+      '" target="_blank"> [BLAST] </a>'
       )
     
     earth <-  leaflet(data = palm.sra) %>%

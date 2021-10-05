@@ -29,9 +29,9 @@ linkBLAST <- function(header, aa.seq, label = '[BLAST]'){
   url.link <- paste0(
     '<a href="', l0, l1, l2,
     l3q, aa.seq,
-    l4t, ">OpenVirome_", header,
+    l4t, ">palmID_", header,
     l5, l6, l7, l8, l9,
-    '"> ', label, '</a>'
+    '" target="_blank"> ', label, '</a>'
   )
    
 }
