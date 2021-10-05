@@ -31,12 +31,24 @@ PlotDistro <- function(pp, pp.bg, plotValue, distrocol = 'skyblue', set.ylab = '
   }
   
   
-  # specific plot values
-  if (plotValue == 'pp_length') {
-    set.xlim <- c(50, 200)
-  } else if (plotValue == 'score') {
+  # Specific plot values
+  if (plotValue == 'score') {
+    set.xlab <- 'RdRP Score'
     set.xlim <- c(0,75)
+  } else if (plotValue == 'pssm_total_score') {
+    set.xlab <- 'PSSM Score'
+    set.xlim <- c(0,NA)
+  } else if (plotValue == 'pp_length') {
+    set.xlab <- 'Palmprint Length (aa)'
+    set.xlim <- c(50, 200)
+  } else if (plotValue == 'v1_length') {
+    set.xlab <- 'V1-region Length'
+    set.xlim <- c(0,NA)
+  } else if (plotValue == 'v2_length') {
+    set.xlab <- 'V2-region Length'
+    set.xlim <- c(0,NA)
   } else { 
+    set.xlab <- ''
     set.xlim <- c(0,NA)
   }
   
@@ -61,7 +73,7 @@ PlotDistro <- function(pp, pp.bg, plotValue, distrocol = 'skyblue', set.ylab = '
                color = pp.col, size = 6, label = pp.value) +
     xlim(set.xlim) +
     theme_bw() +
-    xlab(plotValue) + ylab(set.ylab)
+    xlab(set.xlab) + ylab(set.ylab)
   #distPlot
   
   return(distPlot)
