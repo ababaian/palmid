@@ -23,18 +23,23 @@ PlotGeo2 <- function(palm.sra) {
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
   #rankcols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")
   rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
+  ranksize <- c(2, 3, 5, 8)
   
   palm.sra$rank <- ranklvl[1]
   palm.sra$colr <- rankcols[1]
+  palm.sra$size <- ranksize[1]
   
   palm.sra$rank[palm.sra$pident >= 45] <- ranklvl[2]
   palm.sra$colr[palm.sra$pident >= 45] <- rankcols[2]
+  palm.sra$size[palm.sra$pident >= 45] <- ranksize[2]
   
   palm.sra$rank[palm.sra$pident >= 70] <- ranklvl[3]
   palm.sra$colr[palm.sra$pident >= 70] <- rankcols[3]
+  palm.sra$size[palm.sra$pident >= 70] <- ranksize[3]
   
   palm.sra$rank[palm.sra$pident >= 90] <- ranklvl[4]
   palm.sra$colr[palm.sra$pident >= 90] <- ranklvl[4]
+  palm.sra$size[palm.sra$pident >= 90] <- ranksize[4]
   
   # Populate pop-up labels (HTML format)
   # sra.link <- function(sra){
@@ -79,6 +84,7 @@ PlotGeo2 <- function(palm.sra) {
     earth <-  leaflet(data = palm.sra) %>%
       addCircles(lng = ~lng, lat = ~lat,
                  color = ~colr,
+                 weight  = ~size,
                  popup = ~popup,
                  popupOptions = popupOptions(closeButton = F) ) %>%
       addTiles()

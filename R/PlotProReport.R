@@ -17,7 +17,9 @@ PlotProReport <- function(pro, html = F){
     tax.plot <- hide_legend( PlotTax(pro.df, html = html) )
     
     proPlot<- subplot(pro.plot, tax.plot,
-                      widths = c(0.8, 0.2))
+                      widths = c(0.8, 0.2),
+                      titleX = T, titleY = T) %>%
+      config(displaylogo = FALSE)
     
     return(proPlot)
     

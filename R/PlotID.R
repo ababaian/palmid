@@ -67,7 +67,7 @@ PlotID <- function(pro, html = T){
     geom_vline( xintercept = c(0, 45, 70, 90),
                 color = rankcols) +
     ggtitle(label = 'Palmprint alignment to palmDB') +
-    xlab('% AA-Identity') + ylab('-log(e-value)') +
+    xlab('Input identity to palmDB (aa%)') + ylab('-log(e-value)') +
     theme(legend.position='none') +
     theme_bw()
   

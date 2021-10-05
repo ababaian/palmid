@@ -31,7 +31,11 @@ PlotTax <- function(pro, html = T){
   
   if (html){
     add_label <- geom_label(data = tax, aes(x = NULL, y = 5, label = count))
+    set.xlab <- 'Count/rank'
+    set.ylab <- ''
   } else {
+    set.xlab <- 'Count/rank'
+    set.ylab <- ''
     add_label <- geom_label(data = tax, aes(x = rank, y = 5, label = count))
       
   }
@@ -40,8 +44,10 @@ PlotTax <- function(pro, html = T){
     geom_col(data = tax, aes(x=rank, y=count, fill = rank),
             show.legend = F) +
     scale_fill_manual(values = rankcols) +
+    xlab(set.xlab) + ylab(set.ylab) +
     #add_label +
-    ggtitle('') + theme_bw()
+    ggtitle('') + theme_bw() + 
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
   
   return(taxPlot)
 }
