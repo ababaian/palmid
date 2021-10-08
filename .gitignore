@@ -4,7 +4,10 @@
 .RData
 .Ruserdata
 
+palmid.nb.html
 *.tmp
 *.html
 
+palmid-lambda/*
 local/*
+tmp/*

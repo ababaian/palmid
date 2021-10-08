@@ -16,6 +16,12 @@ loads set of packages for functions
 Internal function to load a set of libraries for palmid functions
 "geo" is for static maps, "geo2" is for htmlwidget maps
 }
+\examples{
+
+# in an SQL function
+load.lib("sql")
+
+}
 \keyword{palmid}
 \keyword{serratus}
 \keyword{sql}
