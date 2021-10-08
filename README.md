@@ -31,6 +31,9 @@ encompassing three conserved catalytic motifs
 
 
 ```
+## Web Version
+
+`palmID` is available as a free web-app at [https://serratus.io/palmid](https://serratus.io/palmid)
 
 ## Install
 
