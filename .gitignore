@@ -8,6 +8,6 @@ palmid.nb.html
 *.tmp
 *.html
 
-palmid-lambda/*
+palmid-lambda
 local/*
 tmp/*
