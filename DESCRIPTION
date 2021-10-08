@@ -1,9 +1,16 @@
 Package: palmid
-Title: R Palmid Analysis Suite
-Description: R component of the `palmid` analysis suite.
+Title: Palmid: RdRP Analysis Suite
+Description: R Analysis suite for viral RNA dependent RNA polymerase (RdRP). 
+    Statistical and meta-data analysis of `palmscan` output and `palmDB`/
+    `DIAMOND` alignment files. Cross reference an input RNA virus against
+    145,000 RdRP identified in the Serratus project.
 Version: 0.0.0
 Author: ababaian (artem@rRNA.ca)
-License: GPL-3
+Authors@R: person("Babaian", "Artem", email = "artem@rRNA.ca",
+  role = c("aut", "cre"))
+URL: https://serratus.io/palmid
+BugReports: https://github.com/ababaian/palmid/issues
+License: AGPL-3
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.1.2
