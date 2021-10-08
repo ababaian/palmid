@@ -7,21 +7,24 @@
 #' @examples
 #' ppRep <- PlotReport(pp, pp.bg)
 #' plot(ppRep)
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotReport <- function(pp, pp.bg) {
-  load.lib('ggplot')
-  
+
   # Gene Diagram
-  pp.line  <- as.grob(PlotPP(pp))
+  pp.line  <- ggplotify::as.grob(PlotPP(pp))
   
   # Score distribution
-  pp.score <- as.grob(PlotDistro(pp, pp.bg, 'score', 'black'))
+  pp.score <- ggplotify::as.grob(PlotDistro(pp, pp.bg, 'score', 'black'))
   
   # Length distribution
-  pp.len   <- as.grob(PlotLengths(pp, pp.bg, set.ylab = NULL))
+  pp.len   <- ggplotify::as.grob(PlotLengths(pp, pp.bg, set.ylab = NULL))
   
   
-  PP.Report <- arrangeGrob( pp.line, pp.score, pp.len,
+  PP.Report <- gridExtra::arrangeGrob( pp.line, pp.score, pp.len,
                             layout_matrix = rbind(c(1, 1),
                                                   c(2, 3),
                                                   c(2, 3)))

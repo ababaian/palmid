@@ -7,9 +7,12 @@
 #' @examples
 #' proTax <- PlotTax(pro)
 #'
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotTax <- function(pro, html = T){
-  load.lib('ggplot')
 
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
   rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")

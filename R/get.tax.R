@@ -14,10 +14,10 @@
 #' # Return species-identifiers for a set of palmprints (uxxx)
 #' get.tax(c('u2', 'u1337'), con, rank = 'species')
 #' 
-#' 
+#' @import RPostgreSQL
+#' @import dbplyr 
 #' @export
 get.tax <- function(palm_ids, con, rank = 'family', ordinal = FALSE) {
-  load.lib('sql')
   
   # Coerce palm_ids to vector
   if (class(palm_ids) != 'character'){

@@ -6,9 +6,12 @@
 #' @examples
 #' pp.diagram <- PlotPP(ps)
 #'
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotPP <- function(ps){
-  load.lib('ggplot')
 
   # plot variables
   pp.col <- c('red', 'gray50', 'green', 'gray50', 'blue')

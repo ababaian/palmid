@@ -12,10 +12,11 @@
 #' @examples
 #' palm.sra   <- get.sra(palm.group, con)
 #' 
+#' @import RPostgreSQL
+#' @import dbplyr
 #' @export
 get.sra <- function(palm_ids, con,
                     ret_df = FALSE, ret_contig.df = FALSE, qc = TRUE) {
-  load.lib('sql')
   
   if (qc){
     # get contigs containing palm_ids WITH QC

@@ -10,7 +10,6 @@
 #'
 #' @export
 SerratusConnect <- function(){
-  load.lib('sql')
 
   con <- DBI::dbConnect(
     drv = 'PostgreSQL',

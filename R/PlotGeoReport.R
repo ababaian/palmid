@@ -10,10 +10,10 @@
 #' 
 #' geoSRA <- PlotGeoReport( run_ids, con )
 #'
+#' @import ggplotify
+#' @import gridExtra
 #' @export
 PlotGeoReport <- function(run_ids, con = SerratusConnect()) {
-  load.lib("geo")
-  
   geo      <- as.grob(PlotGeo( run_ids, con))
   timeline <- as.grob(PlotTimeline( run_ids, con))
   

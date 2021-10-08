@@ -4,7 +4,7 @@ Description: R Analysis suite for viral RNA dependent RNA polymerase (RdRP).
     Statistical and meta-data analysis of `palmscan` output and `palmDB`/
     `DIAMOND` alignment files. Cross reference an input RNA virus against
     145,000 RdRP identified in the Serratus project.
-Version: 0.0.0
+Version: 0.0.2
 Author: ababaian (artem@rRNA.ca)
 Authors@R: person("Babaian", "Artem", email = "artem@rRNA.ca",
   role = c("aut", "cre"))
@@ -19,11 +19,9 @@ Suggests:
     rnaturalearth
 Imports:
     dbplyr,
-    dplyr,
     downloadthis,
     DT,
     ggplotify,
-    ggplot2 (>= 3.3.3),
     ggwordcloud,
     ggExtra,
     gridExtra (>= 2.3),
@@ -36,4 +34,5 @@ Imports:
     scales,
     viridisLite
 Depends:
-    dplyr
+    dplyr,
+    ggplot2 (>= 3.3.3)

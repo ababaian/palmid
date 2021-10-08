@@ -12,7 +12,19 @@
 #'
 #' @export
 PlotGeo <- function(run_ids, con = SerratusConnect()){
-  load.lib("geo")
+  
+  if (!requireNamespace("sf", quietly = TRUE)) {
+    stop("The R Packages 'sf' and 'rnaturalearth' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
+         call. = FALSE)
+  }
+  if (!requireNamespace("rnaturalearth", quietly = TRUE)) {
+    stop("The R Packages 'sf' and 'rnaturalearth' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
+         call. = FALSE)
+  }
   
   # Count unique input run_ids
   run_ids <- unique(run_ids)

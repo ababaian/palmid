@@ -13,7 +13,6 @@
 #'
 #' @export
 #' 
-#' 
 get.proTax <- function(pro.df, con = SerratusConnect()) {
   
   # Retrieve "family" taxonomy from palmdb for matching

@@ -12,7 +12,6 @@
 #'
 #' @export
 #' 
-#' 
 get.palmSra <- function(pro.df, con = SerratusConnect()) {
   
   # Baseline rows from pro.df input

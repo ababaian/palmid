@@ -24,6 +24,7 @@ A wrapper for PlotDistro() for "pp_length", "v1_length", "v2_length".
 \examples{
 ppLen <- PlotLengths(pp, pp.bg)
 plot(ppLen)
+
 }
 \keyword{fev}
 \keyword{palmid}

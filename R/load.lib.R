@@ -15,17 +15,17 @@
 load.lib <- function( lib_set ){
   
   if (lib_set == 'sql'){
-    require("RPostgreSQL", quietly = T)
-    require("dplyr", quietly = T)
-    require("dbplyr", quietly = T)
+    requireNamespace("RPostgreSQL", quietly = T)
+    requireNamespace("dplyr", quietly = T)
+    requireNamespace("dbplyr", quietly = T)
     
   } else if (lib_set == 'ggplot'){
-    require("ggplot2", quietly = T)
-    require("gridExtra", quietly = T)
-    require("ggplotify", quietly = T)
-    require("viridisLite", quietly = T)
-    require("plotly", quietly = T)
-    #require("ggwordcloud", quietly = T)
+    requireNamespace("ggplot2", quietly = T)
+    requireNamespace("gridExtra", quietly = T)
+    requireNamespace("ggplotify", quietly = T)
+    requireNamespace("viridisLite", quietly = T)
+    requireNamespace("plotly", quietly = T)
+    #requireNamespace("ggwordcloud", quietly = T)
     
   } else if (lib_set == 'geo'){
     # Check for suggested packages sf and rnaturalearth
@@ -42,23 +42,23 @@ load.lib <- function( lib_set ){
            call. = FALSE)
     }
     
-    require("ggExtra", quietly = T)
-    require("sf", quietly = T)
-    require("viridisLite", quietly = T)
-    require("scales", quietly = T)
-    require("rnaturalearth", quietly = T)
-    require("rnaturalearthdata", quietly = T)
-    require("gridExtra", quietly = T)
-    require("ggplotify", quietly = T)
+    requireNamespace("ggExtra", quietly = T)
+    requireNamespace("sf", quietly = T)
+    requireNamespace("viridisLite", quietly = T)
+    requireNamespace("scales", quietly = T)
+    requireNamespace("rnaturalearth", quietly = T)
+    requireNamespace("rnaturalearthdata", quietly = T)
+    requireNamespace("gridExtra", quietly = T)
+    requireNamespace("ggplotify", quietly = T)
     
   } else if (lib_set == 'geo2'){
     
-    require("ggplot2", quietly = T)
-    require("ggExtra", quietly = T)
-    require("plotly", quietly = T)
-    require("leaflet", quietly = T)
-    require("htmltools", quietly = T)
-    require("viridisLite", quietly = T)
+    requireNamespace("ggplot2", quietly = T)
+    requireNamespace("ggExtra", quietly = T)
+    requireNamespace("plotly", quietly = T)
+    requireNamespace("leaflet", quietly = T)
+    requireNamespace("htmltools", quietly = T)
+    requireNamespace("viridisLite", quietly = T)
     
   } else {
     stop("Error: lib_set should be one of 'sql', 'ggplot', 'geo', or 'geo2'")

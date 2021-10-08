@@ -9,10 +9,11 @@
 #' @keywords palmid Serratus geo
 #' @examples
 #' palm.bio   <- get.sraBio(palm.sras, con)
-#' 
+#'
+#' @import RPostgreSQL
+#' @import dbplyr 
 #' @export
 get.sraBio <- function(run_ids, con, ordinal = F) {
-  load.lib('sql')
   
   # get biosample field for run_id
   sra.bio <- tbl(con, 'srarun') %>%

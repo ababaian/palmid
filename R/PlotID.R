@@ -7,10 +7,12 @@
 #' @examples
 #' idPlot <- PlotID(pro)
 #'
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotID <- function(pro, html = T){
-  load.lib('ggplot')
-  
   # phylum, family, genus, species
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
   

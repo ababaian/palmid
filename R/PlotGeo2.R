@@ -8,9 +8,13 @@
 #' 
 #' geoSRA <- PlotGeo2( palm.sra )
 #'
+#' @import ggExtra
+#' @import plotly
+#' @import leaflet
+#' @import htmltools
+#' @import viridisLite
 #' @export
 PlotGeo2 <- function(palm.sra) {
-  load.lib("geo2")
   n.sra  <- length(unique( palm.sra$run_id ))
   
   # HTMLwidget (leaflet) Version ------------------------

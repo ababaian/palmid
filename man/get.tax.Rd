@@ -27,7 +27,6 @@ for a given rank.
 # Return species-identifiers for a set of palmprints (uxxx)
 get.tax(c('u2', 'u1337'), con, rank = 'species')
 
-
 }
 \keyword{palmdb}
 \keyword{palmid}

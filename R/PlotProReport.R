@@ -8,9 +8,12 @@
 #' proPlot <- PlotPro(pro)
 #' plot(proPlot)
 #'
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotProReport <- function(pro, html = F){
-  load.lib('ggplot')
   
   if (html){
     pro.plot <- hide_legend( PlotID(pro.df, html = html) )

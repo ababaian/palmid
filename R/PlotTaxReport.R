@@ -9,9 +9,12 @@
 #' 
 #' proTax <- PlotTaxReport( pro.df[1:50, ])
 #'
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotTaxReport <- function(pro.df) {
-  load.lib("ggplot")
   
   # Create tax-plot 
   PlotTspe <- PlotTaxHist( pro.df$pident, pro.df$tspe, 'species')

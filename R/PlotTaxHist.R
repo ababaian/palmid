@@ -8,10 +8,13 @@
 #' @examples
 #' taxHist <- PlotTaxHist( pro.df$pident, pro.df$tax_family, 'family')
 #'
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
-  load.lib('ggplot')
-
+  
   # Remform dataframe for plotting
   repro <- data.frame( pident = pro.pident,
                        tax    = pro.tax)

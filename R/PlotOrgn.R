@@ -12,10 +12,13 @@
 #' 
 #' # Create wordcloud of organism terms
 #' PlotOrgn( palm.orgn )
-#'
+#' 
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = T){
-  load.lib("ggplot")
   require("ggwordcloud", quietly = T)
   
   if (is.null(palm.sra) & is.null(orgn.vec)){

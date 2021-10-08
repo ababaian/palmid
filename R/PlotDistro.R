@@ -10,11 +10,19 @@
 #' @return A ggplot2 object
 #' @keywords palmid fev
 #' @examples
-#' PlotDistro( ps, pp.bg, 'score', 'black')
-#' PlotDistro( ps, pp.bg, 'pp_length', 'skyblue')
+#' 
+#' pp.df <- read.fev('data/waxsys.fev', FIRST = TRUE)
+#' load("data/palmdb.Rdata")
+#' 
+#' PlotDistro( pp = pp.df, pp.bg = palmdb, 'score', 'black')
+#' PlotDistro( pp = pp.df, pp.bg = palmdb, 'pp_length', 'skyblue')
+#' 
+#' @import gridExtra
+#' @import ggplotify
+#' @import viridisLite
+#' @import plotly
 #' @export
 PlotDistro <- function(pp, pp.bg, plotValue, distrocol = 'skyblue', set.ylab = 'palmDB density') {
-  load.lib('ggplot')
   ## debug
   # pp = ps
   # plotValue = 'score'

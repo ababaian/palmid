@@ -11,10 +11,11 @@
 #' @examples
 #' palm.orgn   <- get.sraOrg(palm.group, con)
 #' 
+#' @import RPostgreSQL
+#' @import dbplyr
 #' @export
 # Retrieve date from input of sra run_ids
 get.sraOrgn <- function(run_ids, con, ordinal = F, as.df = FALSE) {
-  load.lib('sql')
   
   # get contigs containing palm_ids
   sra.orgn <- tbl(con, 'srarun') %>%

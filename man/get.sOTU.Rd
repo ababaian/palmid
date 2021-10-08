@@ -42,8 +42,6 @@ get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
 get.sOTU(c('u2'), con, get_childs = T)
 # -- returns c('u1', u2', 'u3')
 
-
-
 }
 \keyword{Serratus}
 \keyword{palmdb}

@@ -11,9 +11,10 @@
 #' @examples
 #' palm.geo   <- get.sraGeo(palm.sras, con)
 #' 
+#' @import RPostgreSQL
+#' @import dbplyr
 #' @export
 get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALSE ) {
-  load.lib('sql')
   
   if ( is.null(run_ids) & is.null(biosample_ids)){
     stop("Input either `run_ids` or `biosamples`, not both")
@@ -28,7 +29,7 @@ get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALS
   # NOTE: WARNINGS ARE SUPPRESSED HERE
   #       This table uses `jsonb` type
   #       which is not supported by
-  #       RpostgreSQL
+  #       RPostgreSQL
   ##defWarn <- getOption("warn") 
   ##options(warn = -1) 
   
