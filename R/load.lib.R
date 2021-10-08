@@ -11,7 +11,7 @@
 #' # in an SQL function
 #' load.lib("sql")
 #'
-#' 'export
+#' @export
 load.lib <- function( lib_set ){
   
   if (lib_set == 'sql'){
