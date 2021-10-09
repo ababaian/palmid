@@ -12,8 +12,6 @@ PlotLengths(pp, pp.bg, set.ylab = "palmDB density")
 \item{pp.bg}{A multiple palmprint.df  for the plot background "distribution"}
 
 \item{set.ylab}{Label for y-axis ["palmDB density"]}
-
-\item{distrocol}{Color to use for distribution ["skyblue"]}
 }
 \value{
 A grid-table object of "pp_length", "v1_length", "v2_length"

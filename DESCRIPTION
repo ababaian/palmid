@@ -12,7 +12,7 @@ URL: https://serratus.io/palmid
 BugReports: https://github.com/ababaian/palmid/issues
 License: AGPL-3
 Encoding: UTF-8
-LazyData: false
+LazyData: true
 RoxygenNote: 7.1.2
 Suggests:
     sf,
@@ -20,6 +20,7 @@ Suggests:
 Imports:
     dbplyr,
     downloadthis,
+    DBI,
     DT,
     ggplotify,
     ggwordcloud,

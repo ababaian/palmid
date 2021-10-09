@@ -35,3 +35,4 @@ Dockerfile
 palmid.Rmd
 palmid.nb.html
 ^\.Rbuildignore$
+^img$

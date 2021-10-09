@@ -32,7 +32,7 @@ or the set of all children `palm_id` within an species/sOTU
 
 # Retrieve the parent sOTU for an input of palm_ids
 get.sOTU(c('u1','u2',u4'), con, get_childs = F)
-# -- returns c('u3',u4')
+# -- returns c('u3','u4')
 
 # Return an ordinal list of sOTU for iput
 get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
