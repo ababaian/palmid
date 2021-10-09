@@ -1,0 +1,917 @@
+
+>MH013331.De.___
+   A:160-171(14.2)      B:226-239(15.9)      C:301-308(7.2)
+   FGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_016994.De.Her
+   A:160-171(12.4)      B:226-239(15.9)      C:301-308(7.2)
+   AGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+    .+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.5, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_016996.De.Moo
+   A:160-171(12.4)      B:226-239(15.9)      C:301-308(7.2)
+   AGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+    .+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.5, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK204388.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.2)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_011547.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.2)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>LC364344.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.2)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_011549.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.2)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_016995.De.And
+   A:160-171(14.2)      B:226-239(15.9)      C:301-308(7.2)
+   FGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR10873977.De.____
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.2)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_016992.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.0)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> IFSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 41.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MH532440.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.2)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_011550.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.2)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_016993.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.2)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> ILSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MG600026.Unc_Cov
+   A:161-172(11.4)      B:228-241(15.9)      C:305-312(7.9)
+   IGWDYPKCDRAM    <55> SGDATTAYANSVFN  <63> ILSDDGVV  [152]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 35.1, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.segment-length-penalty2.BC-dist-penalty.
+
+>NC_035191.Al.___
+   A:161-172(13.7)      B:228-241(17.2)      C:303-310(6.9)
+   MGWDYPKCDRSL    <55> SGDASTAYANSVFN  <61> ILSDDGVC  [150]
+   +.+|| |.|.||         || .+|.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.8, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_016991.De.Bul
+   A:160-171(14.0)      B:226-239(15.9)      C:301-308(7.0)
+   VGWDYPKCDRSM    <54> SGDATTAYANSVFN  <61> IFSDDGVA  [149]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 41.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KY967733.Al.___
+   A:161-172(13.7)      B:228-241(17.2)      C:303-310(6.9)
+   MGWDYPKCDRSL    <55> SGDASTAYANSVFN  <61> ILSDDGVC  [150]
+   +.+|| |.|.||         || .+|.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.8, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KY967723.Al.___
+   A:161-172(13.7)      B:228-241(17.2)      C:303-310(6.9)
+   MGWDYPKCDRSL    <55> SGDASTAYANSVFN  <61> ILSDDGVC  [150]
+   +.+|| |.|.||         || .+|.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.8, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>FJ938058.Al.Teg
+   A:161-172(10.8)      B:227-240(3.3)      C:302-309(7.9)
+   MGWDYPKCDRAL    <54> TSGDGTSLANSAFN <61> ILSDDGVV  [149]
+   +.+|| |.|. |             +||. || .|      .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN      vyGDDnii
+Score 17.0, low-confidence-RdRP: high-PSSM-score.good-segment-length.BC-dist-penalty.
+
+>NC_002306.Al.Teg
+   A:161-172(10.8)      B:228-241(13.1)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDGTTAYANSAFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         ||   |.. || .|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 36.8, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_030292.Al.Min
+   A:161-172(10.8)      B:228-241(13.1)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDGTTAYANSAFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         ||   |.. || .|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 36.8, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_023760.Al.Min
+   A:161-172(10.8)      B:228-241(13.1)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDGTTAYANSAFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         ||   |.. || .|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 36.8, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>ERR2744266.New_Alpha
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK249068.Al.Luc
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_009988.Al.Rhi
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_034972.Al.Luc
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_046955.Unc_Cov
+   A:161-172(11.2)      B:228-241(15.5)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAPANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.  ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.5, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK163627.Al.Luc
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_028752.Al.Duv
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>HQ728481.Al.___
+   A:161-172(11.2)      B:228-241(13.8)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSAFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. || .|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 37.8, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>EU769557.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_022103.Al.Col
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>ERR2756788.New_Alpha
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KF294382.Al.Ped
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MN611524.Al.Min
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_032730.Al.Luc
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KF294269.Unc_Cov
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(5.0)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> IFTDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 16.7, low-confidence-RdRP: high-PSSM-score.penalty-missing-GDD/SDD/GDN.good-segment-length.BC-dist-penalty.
+
+>DQ249228.Al.Min
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_010438.Al.Min
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KF294378.Al.Ped
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KF294377.Al.Ped
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>HQ728485.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KU182966.Unc_Cov
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MG923574.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MN065811.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>DQ249224.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_010437.Al.Min
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MH687951.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_009657.Al.Ped
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_003436.Al.Ped
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK472067.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK894848.Al.Luc
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KF294381.Al.Myo
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KY770850.Unc_Cov
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_028811.Al.Myo
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK720944.Al.Nyc
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK472071.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK472069.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MH938448.Al.Nyc
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_046964.Al.Nyc
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_028833.Al.Nyc
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK894847.Al.Luc
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR9643845.New_Alpha
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK472070.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MN611525.Al.Dec
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>HQ728480.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_028814.Al.Dec
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MG916904.Unc_Cov
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MG916902.Unc_Cov
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_018871.Al.Dec
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>HQ728486.Al.___
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_048216.Al.Set
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_005831.Al.Set
+   A:161-172(10.8)      B:228-241(18.1)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSIFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. |||.|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 41.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_032107.Al.Set
+   A:161-172(10.8)      B:228-241(17.2)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDASTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || .+|.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_046954.Unc_Cov
+   A:161-172(6.9)      B:228-241(16.6)       C:368-375(11.0)
+   MGWDYPKCDRAM   <55> SGDATTAFANSVFN  <126> MDGDDVFL  [215]
+   + |||  +|  +        ||  +| |+||| |         .||||.+
+   lmlDysdFNsqH        SGeRaTtfiNsvlN        hvGDDvll
+Score 29.5, high-confidence-RdRP: high-PSSM-score.reward-DDGGDD.segment-length-penalty1.BC-dist-penalty.
+
+>MK720945.Al.Dec
+   A:161-172(10.8)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAL    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.6, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_026011.Be.Emb
+   A:161-172(6.9)      B:228-241(16.6)       C:368-375(12.2)
+   MGWDYPKCDRAM   <55> SGDATTAFANSVFN  <126> MDGDDVYL  [215]
+   + |||  +|  +        ||  +| |+||| |         .|||||+
+   lmlDysdFNsqH        SGeRaTtfiNsvlN        hvGDDvll
+Score 30.7, high-confidence-RdRP: high-PSSM-score.reward-DDGGDD.segment-length-penalty1.BC-dist-penalty.
+
+>NC_006213.Be.Emb
+   A:161-172(6.9)      B:228-241(16.6)       C:368-375(12.2)
+   MGWDYPKCDRAM   <55> SGDATTAFANSVFN  <126> MDGDDVYL  [215]
+   + |||  +|  +        ||  +| |+||| |         .|||||+
+   lmlDysdFNsqH        SGeRaTtfiNsvlN        hvGDDvll
+Score 30.7, high-confidence-RdRP: high-PSSM-score.reward-DDGGDD.segment-length-penalty1.BC-dist-penalty.
+
+>SRR5447167.New_Beta
+   A:161-172(6.9)      B:228-241(16.6)       C:368-375(12.2)
+   MGWDYPKCDRAM   <55> SGDATTAFANSVFN  <126> MDGDDVYL  [215]
+   + |||  +|  +        ||  +| |+||| |         .|||||+
+   lmlDysdFNsqH        SGeRaTtfiNsvlN        hvGDDvll
+Score 30.7, high-confidence-RdRP: high-PSSM-score.reward-DDGGDD.segment-length-penalty1.BC-dist-penalty.
+
+>KY370051.Unc_Cov
+   A:161-172(11.2)      B:228-241(15.3)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAFANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.  ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.4, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK894849.Be.UNC
+   A:161-172(11.2)      B:228-241(7.0)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SRVCTTAFANSLCS <61> ILSDDGVV  [150]
+   +.+|| |.|. |         |  . |.  ||||       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN      vyGDDnii
+Score 21.1, high-confidence-RdRP: high-PSSM-score.good-segment-length.BC-dist-penalty.
+
+>NC_006577.Be.Emb
+   A:161-172(11.2)      B:228-241(15.3)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAFANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.  ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.4, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK894850.Be.UNC
+   A:161-172(11.2)      B:228-241(7.2)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SRVCPTAFANSVFN <61> ILSDDGVV  [150]
+   +.+|| |.|. |         |  . |.  ||..|      .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN      vyGDDnii
+Score 21.3, high-confidence-RdRP: high-PSSM-score.good-segment-length.BC-dist-penalty.
+
+>NC_039207.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MK907286.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_009020.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_012936.Be.Emb
+   A:161-172(11.2)      B:228-241(15.3)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAFANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.  ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.4, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KJ473821.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MG596803.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_019843.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_009019.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_045512.Be.Sar
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.2)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDAVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. || |+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 39.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KX442565.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MG021451.Be.Mer
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_030886.Be.Nob
+   A:161-172(11.2)      B:228-241(16.2)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDSTTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || + |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_048212.Unc_Cov
+   A:161-172(11.2)      B:228-241(16.2)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDSTTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || + |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MT337385.Be.Nob
+   A:160-171(11.2)      B:227-240(16.2)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDSTTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || + |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_009021.Be.Nob
+   A:161-172(11.2)      B:228-241(16.2)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDSTTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || + |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>HM211099.Be.Nob
+   A:161-172(11.2)      B:228-241(16.2)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDSTTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || + |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_010646.Ga.Ceg
+   A:161-172(10.4)      B:228-241(13.8)      C:303-310(7.9)
+   MGWDYPKCDRAV    <55> SGDATTAYANSAFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. +         || . |.. || .|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 37.1, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_025217.Be.Hib
+   A:161-172(11.2)      B:228-241(15.9)      C:303-310(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_048213.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MN025308.Unc_Cov
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KP118893.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_046965.Ga.___
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KX219801.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>AY338732.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MN894506.Ga.Iga
+   A:160-171(9.1)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAT   <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|.          || . |.. ||..|       .. ||.|+
+   iagDySkFDssl        SGsplTsidNSivN       vyGDDnii
+Score 37.8, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KX252780.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KX252778.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_048214.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(2.5)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSGDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       ..  |.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 14.5, low-confidence-RdRP: high-PSSM-score.penalty-missing-GDD/SDD/GDN.good-segment-length.BC-dist-penalty.
+
+>AY646283.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>NC_001451.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KU556805.Ga.Iga
+   A:160-171(11.2)      B:226-239(15.9)      C:301-308(7.9)
+   MGWDYPKCDRAM    <54> SGDATTAYANSVFN  <61> ILSDDGVV  [149]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>MN517817.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KX252776.Ga.Iga
+   A:160-171(11.2)      B:227-240(11.1)      C:302-309(4.6)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFY  <61> ILFDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..        .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 11.9, low-confidence-RdRP: high-PSSM-score.penalty-missing-GDD/SDD/GDN.good-segment-length.BC-dist-penalty.
+
+>KJ135013.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>EU637854.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR10917299.Epsy.TparNV
+   A:160-171(14.2)      B:226-239(14.5)      C:295-302(7.2)
+   IGWDYPKCDRSM    <54> SGDGTTAFANSFFN  <55> ILSDDGVA  [143]
+   +.+|| |.|.||         ||   |.  ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR7507741.Epsy.PtetNV
+   A:160-171(14.2)      B:227-240(16.1)      C:297-304(6.9)
+   IGWDYPKCDRSM    <55> SGDASTAYANSHFN  <56> ILSDDGVC  [145]
+   +.+|| |.|.||         || .+|.. || .|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>ERR3994223.Epsy.StypNV
+   A:160-171(14.6)      B:226-239(15.9)      C:295-302(7.7)
+   CGWDYPKCDRSM    <54> SGDASTAYANSYFN  <55> ILSDDGIA  [143]
+   |.+|| |.|.||         || .+|.. || .|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 43.1, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>KX252782.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(7.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILSDDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR6788790.Epsy.AmexNV
+   A:160-171(14.2)      B:227-240(15.9)      C:300-307(7.2)
+   IGWDYPKCDRSM    <55> SGDATTAYANSVFN  <59> ILSDDGVA  [148]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>EU022525.Ga.Iga
+   A:160-171(11.2)      B:227-240(15.9)      C:302-309(5.9)
+   MGWDYPKCDRAM    <55> SGDATTAYANSVFN  <61> ILADDGVV  [150]
+   +.+|| |.|. |         || . |.. ||..|       .. ||.|+
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 18.0, low-confidence-RdRP: high-PSSM-score.penalty-missing-GDD/SDD/GDN.good-segment-length.BC-dist-penalty.
+
+>SRR2418623.Epsy.MeLV
+   A:161-172(11.4)      B:228-241(14.7)      C:307-314(7.2)
+   IGWDYPKCDRAM    <55> SGDATTATANSVFN  <65> ILSDDGVA  [154]
+   +.+|| |.|. |         || . |.  ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 33.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.segment-length-penalty2.BC-dist-penalty.
+
+>QEG08237.1.Epsy.PsNV
+   A:160-171(14.2)      B:226-239(13.8)      C:296-303(7.2)
+   FGWDYPKCDRSM    <54> SGDATTAYANSAFN  <56> ILSDDGVA  [144]
+   +.+|| |.|.||         || . |.. || .|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 40.2, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR5997671.Epsy.AcaNV
+   A:160-171(14.2)      B:226-239(15.9)      C:294-301(7.2)
+   IGWDYPKCDRSM    <54> SGDATTAYANSVFN  <54> ILSDDGVA  [142]
+   +.+|| |.|.||         || . |.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 42.3, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR10402291.Epsy.MalbNV
+   A:160-171(11.4)      B:228-241(12.6)      C:295-302(6.9)
+   FGWDYPKCDRAM    <56> SGDSTTAHANSAFN  <53> ILSDDGVC  [143]
+   +.+|| |.|. |         || + |.  || .|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 35.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR8389791.Epsy.HtraNV
+   A:161-172(12.2)      B:228-241(15.7)      C:304-311(7.2)
+   YGWDYPKCDRSY    <55> SGDALTAYSNSCFN  <62> ILSDDGVA  [151]
+   +.+|| |.|.|          || .+|.. || .|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 35.1, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.segment-length-penalty2.BC-dist-penalty.
+
+>SRR1324965.Epsy.HkudNV
+   A:160-171(14.6)      B:226-239(17.1)      C:295-302(7.2)
+   FGFDYPKCDRSM    <54> SGDASTAYANSFFN  <55> ILSDDGVA  [143]
+   +.+|| |.|.||         || .+|.. ||..|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 43.9, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.
+
+>SRR12184956.Epsy.SilNV
+   A:160-171(11.4)      B:227-240(13.8)      C:294-301(6.9)
+   FGWDYPKCDRAM    <55> SGDATTAYANSAFN  <53> ILSDDGVC  [142]
+   +.+|| |.|. |         || . |.. || .|       .. ||.| 
+   iagDySkFDssl         SGsplTsidNSivN       vyGDDnii
+Score 37.0, high-confidence-RdRP: high-PSSM-score.reward-DDGSDD.good-segment-length.BC-dist-penalty.

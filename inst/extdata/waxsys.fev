@@ -1,0 +1,1 @@
+score=55.4	query=SRR9968562_waxsystermes_virus_microassembly	gene=RdRP	confidence=high	comments=high-PSSM-score.reward-DDGGDD.good-segment-length.	order=ABC	qlen=493	pp_start=209	pp_end=319	pp_length=111	pssm_total_score=45.4	pssm_min_score=11.8	order=ABC	v1_length=56	v2_length=21	group=Kitrino	super=DDGGDD	motifs=FQGDIAGWDTRVxxxSGTIVTYAMNTITNxxxISGDDCLV
