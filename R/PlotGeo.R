@@ -10,6 +10,8 @@
 #' 
 #' geoSRA <- PlotGeoReport( XXX )
 #'
+#' @import sf
+#' @import rnaturalearth
 #' @export
 PlotGeo <- function(run_ids, con = SerratusConnect()){
   

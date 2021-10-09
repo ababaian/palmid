@@ -8,18 +8,28 @@
 #' @examples
 #' 
 #' # Retrive organism identifiers from SRA Run Info Table
-#' palm.orgn <- get.sraOrgn(run_ids, con)
+#' # palm.orgn <- get.sraOrgn(run_ids, con)
+#' 
+#' # Load Waxsystermes Exampel data
+#' data("waxsys.palm.sra")
 #' 
 #' # Create wordcloud of organism terms
-#' PlotOrgn( palm.orgn )
+#' # using column "scientific_name" in data.frame
+#' 
+#' # Scaled by frequency of organism term in all of data.frame
+#' PlotOrgn( waxsys.palm.sra )
+#' 
+#' # Scaled by proximity of organism tag to input sequence (pident)
+#' PlotOrgn( waxsys.palm.sra , freq = FALSE)
 #' 
 #' @import gridExtra
 #' @import ggplotify
 #' @import viridisLite
 #' @import plotly
+#' @import ggwordcloud
 #' @export
 PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = T){
-  require("ggwordcloud", quietly = T)
+  requireNamespace("ggwordcloud", quietly = T)
   
   if (is.null(palm.sra) & is.null(orgn.vec)){
     stop("One of palm.sra or orgn.vec needs to be provided")
