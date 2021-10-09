@@ -4,7 +4,7 @@ output:
   html_notebook:
     code_folding: hide
 params:
-  input.path: 'data/waxsys'
+  input.path: 'inst/extdata/waxsys'
   prod.run: FALSE
 ---
 
@@ -42,7 +42,7 @@ production.version = params$prod.run
 if (production.version){
   # Load stable palmid package
   library('palmid', quietly = T)
-  load("/home/palmid/data/palmdb.Rdata") 
+  load("/home/palmid/data/palmdb.RData") 
 
   # Disable warnings
    defaultW <- getOption("warn")
@@ -55,7 +55,7 @@ if (production.version){
   # Compile a new palmid from source
   library(roxygen2)
     roxygen2::roxygenise()
-    load("data/palmdb.Rdata")
+    load("data/palmdb.RData")
 }
 
 ```
@@ -223,15 +223,16 @@ are reported.
 
 ```{r, fig.height = 5, fig.width = 9}
 # Protein-alignment of Input vs. palmDB
-ggplotly(pro.report)
-
 # Taxonomic Demarcations (~)
 # Species >90%   - Red
 # Genus   70-90% - Orange
 # Family  45-70% - Green
 # Phylum  <45%   - Purple
+
+ggplotly(pro.report)
+
 ```
-![](data/tax_legend.png)
+![](img/tax_legend.png)
 
 #### Virus Taxonomy of PalmDB matches
 
@@ -275,15 +276,16 @@ level matches are red, orange, green and purple, respectively.
 
 ```{r, fig.height = 6, fig.width = 9}
 # Geo-distribution of palmprint-containing SRA
-geo.report
-
 # Taxonomic Demarcations (~)
 # Species >90%   - Red
 # Genus   70-90% - Orange
 # Family  45-70% - Green
 # Phylum  <45%   - Purple
+
+geo.report
+
 ```
-![](data/tax_legend.png)
+![](img/tax_legend.png)
 
 #### Source organism
 

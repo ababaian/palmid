@@ -1,2 +1,0 @@
-score	query	gene	order	confidence	qlen	pp_start	pp_end	pp_len	v1_length	v2_length	pssm_total_score	motifs	super
-55.4	SRR9968562_waxsystermes_virus_microassembly	RdRP	ABC	high	493	209	319	.	56	21	45.4	FQGDIAGWDTRVxxxSGTIVTYAMNTITNxxxISGDDCLV	DDGGDD

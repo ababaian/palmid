@@ -1,7 +1,0 @@
-
->SRR9968562_waxsystermes_virus_microassembly
-   A:209-220(11.8)      B:277-290(19.3)      C:312-319(14.3)
-   FQGDIAGWDTRV    <56> SGTIVTYAMNTITN  <21> ISGDDCLV  [111]
-   |  |.+.||++|         ||  .||. |||||       .|||||||
-   lenDyskFDksq         SGdanTslGNTltn       vsGDDsvv
-Score 55.4, high-confidence-RdRP: high-PSSM-score.reward-DDGGDD.good-segment-length.
