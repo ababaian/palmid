@@ -22,7 +22,7 @@ character, string vector
 Retrieve the 'scientific_name' for a set of SRA `run_id`
 }
 \examples{
-palm.orgn   <- get.sraOrg(palm.group, con)
+#palm.orgn   <- get.sraOrg(palm.group, con)
 
 }
 \keyword{Serratus}

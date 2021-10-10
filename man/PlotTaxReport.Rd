@@ -18,8 +18,9 @@ A multi-plot wrapper to convert a list of SRA `run_ids` into
 a geographic world-map and timeline.
 }
 \examples{
+data("waxsys.pro.df")
 
-proTax <- PlotTaxReport( pro.df[1:50, ])
+proTax <- PlotTaxReport( waxsys.pro.df )
 
 }
 \keyword{Serratus}

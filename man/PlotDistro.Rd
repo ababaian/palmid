@@ -34,11 +34,11 @@ Plot a value relative to a background distribution from a palmprint
 }
 \examples{
 
-pp.df <- read.fev('data/waxsys.fev', FIRST = TRUE)
-load("data/palmdb.Rdata")
+data("waxsys.palmprint")
+data("palmdb")
 
-PlotDistro( pp = pp.df, pp.bg = palmdb, 'score', 'black')
-PlotDistro( pp = pp.df, pp.bg = palmdb, 'pp_length', 'skyblue')
+PlotDistro( pp = waxsys.palmprint, pp.bg = palmdb, 'score', 'black')
+PlotDistro( pp = waxsys.palmprint, pp.bg = palmdb, 'pp_length', 'skyblue')
 
 }
 \keyword{fev}

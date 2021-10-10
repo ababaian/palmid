@@ -20,7 +20,12 @@ A histogram as a ggplot2 object
 Plot Percent-identity, factored on taxonomic strings of a pro df
 }
 \examples{
-taxHist <- PlotTaxHist( pro.df$pident, pro.df$tax_family, 'family')
+
+data("waxsys.pro.df")
+
+taxHist <- PlotTaxHist(pro.pident = waxsys.pro.df$pident,
+                       pro.tax    = waxsys.pro.df$tfam,
+                       rank       = 'family')
 
 }
 \keyword{palmid}

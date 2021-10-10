@@ -16,7 +16,11 @@ A gene-diagram as a ggplot2 object
 Plot the palmprint-diagram for a palmscan df object
 }
 \examples{
-pp.diagram <- PlotPP(ps)
+data("waxsys.palmprint")
+
+palmprint.diagram <- PlotPP(waxsys.palmprint)
+
+plot(palmprint.diagram)
 
 }
 \keyword{palmid}

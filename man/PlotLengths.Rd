@@ -20,7 +20,10 @@ A grid-table object of "pp_length", "v1_length", "v2_length"
 A wrapper for PlotDistro() for "pp_length", "v1_length", "v2_length".
 }
 \examples{
-ppLen <- PlotLengths(pp, pp.bg)
+data("waxsys.palmprint")
+data("palmdb")
+
+ppLen <- PlotLengths(pp = waxsys.palmprint, pp.bg = palmdb)
 plot(ppLen)
 
 }

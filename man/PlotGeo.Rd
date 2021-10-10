@@ -20,8 +20,7 @@ A multi-plot wrapper to convert a list of SRA `run_ids` into
 a geographic world-map and timeline.
 }
 \examples{
-
-geoSRA <- PlotGeoReport( XXX )
+NULL 
 
 }
 \keyword{Serratus}

@@ -19,7 +19,7 @@ Internal function to load a set of libraries for palmid functions
 \examples{
 
 # in an SQL function
-load.lib("sql")
+# load.lib("sql")
 
 }
 \keyword{palmid}

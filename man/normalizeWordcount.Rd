@@ -24,8 +24,7 @@ Create frequency-count table from a set of characters
 which are normalized as percentage of total corpus
 }
 \examples{
-# Desc
-function_name( var1 = x, var2 = T)
+NULL
 
 }
 \keyword{palmid}

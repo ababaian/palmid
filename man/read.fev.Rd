@@ -18,7 +18,10 @@ A palmscan data.frame object
 Reads a .fev file created by `palmscan`
 }
 \examples{
-ps <- read.fev(waxsys/waxsys.fev, FIRST = TRUE)
+
+# palmscan fev file
+ps.fev.path <- system.file( "extdata", "waxsys.fev", package = 'palmid')
+palmprint <- read.fev(ps.fev.path, FIRST = TRUE)
 
 }
 \keyword{fev}

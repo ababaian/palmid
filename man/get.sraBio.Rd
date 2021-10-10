@@ -20,7 +20,7 @@ data.frame, run_id, biosample character vectors
 Retrieve the "BioSample" field for a set of SRA `run_id`
 }
 \examples{
-palm.bio   <- get.sraBio(palm.sras, con)
+# palm.bio   <- get.sraBio(palm.sras, con)
 
 }
 \keyword{Serratus}

@@ -19,7 +19,10 @@ A wrapper of several get* functions to create a palm.sra data.frame
 }
 \examples{
 
-get.palmSra( pro.df, con )
+data("waxsys.pro.df")
+con <- SerratusConnect()
+ 
+get.palmSra( waxsys.pro.df, con )
 
 }
 \keyword{Serratus}

@@ -24,6 +24,8 @@ Retrieve the taxonomic identifiers for a set of `palm_id`
 for a given rank.
 }
 \examples{
+con <- SerratusConnect()
+
 # Return species-identifiers for a set of palmprints (uxxx)
 get.tax(c('u2', 'u1337'), con, rank = 'species')
 

@@ -22,8 +22,8 @@ PlotTimeline
 Create a timeline of
 }
 \examples{
-sc2.timeline <- PlotTimeline(sra.date)
-plot(sc2.timeline)
+#sc2.timeline <- PlotTimeline(sra.date)
+#plot(sc2.timeline)
 
 }
 \keyword{palmid}

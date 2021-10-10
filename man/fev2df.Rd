@@ -16,7 +16,7 @@ A 1-column data.frame
 Convert a palmscan Field-Equals-Value (FEV) column into a dataframe
 }
 \examples{
-fev.df <- as.data.frame( apply(fev.tsv, 2, fev2df) )
+# fev.df <- as.data.frame( apply(fev.tsv, 2, fev2df) )
 }
 \keyword{fev}
 \keyword{palmid}

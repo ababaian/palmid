@@ -16,8 +16,9 @@ A plotly map
 Create a rich plotly geo map from a palm.sra data.frame
 }
 \examples{
-
-geoSRA <- PlotGeo2( palm.sra )
+# Waxsystermes example data
+data("waxsys.palm.sra")
+geoSRA <- PlotGeo2( waxsys.palm.sra )
 
 }
 \keyword{Serratus}

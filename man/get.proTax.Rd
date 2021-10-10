@@ -23,7 +23,13 @@ columns of `pro.df` based on the "sseqid" column
 }
 \examples{
 
-geoSRA <- PlotGeoReport( XXX )
+## Prepare data
+# data("waxsys.pro.df")
+# con <- SerratusConnect()
+
+## Generate Report
+# geoSRA <- PlotGeoReport( waxsys.pro.df )
+
 
 }
 \keyword{Serratus}

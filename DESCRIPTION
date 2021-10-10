@@ -16,7 +16,8 @@ LazyData: true
 RoxygenNote: 7.1.2
 Suggests:
     sf,
-    rnaturalearth
+    rnaturalearth,
+    rnaturalearthdata
 Imports:
     dbplyr,
     downloadthis,
@@ -25,14 +26,18 @@ Imports:
     ggplotify,
     ggwordcloud,
     ggExtra,
+    grDevices,
     gridExtra (>= 2.3),
     htmltools,
     htmlwidgets,
     leaflet,
+    methods,
     plotly,
     rmarkdown,
     RPostgreSQL,
     scales,
+    stats,
+    utils,
     viridisLite
 Depends:
     dplyr,

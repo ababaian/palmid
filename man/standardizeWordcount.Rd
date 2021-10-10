@@ -24,8 +24,7 @@ which are assigned a standardized rank-order scores
 from 10.0 to 1.0.
 }
 \examples{
-# Desc
-function_name( var1 = x, var2 = T)
+NULL
 
 }
 \keyword{palmid}

@@ -22,7 +22,7 @@ POSIXct, date object vector
 Retrieve the 'Load_Date' for a set of SRA `run_id`
 }
 \examples{
-palm.date   <- get.sraDate(palm.group, con)
+#palm.date   <- get.sraDate(palm.group, con)
 
 }
 \keyword{Serratus}
