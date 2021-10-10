@@ -10,6 +10,7 @@
 #'
 #' blast.link <- linkBLAST('u1337', 'MYAASTRING', 'BLAST')
 #'
+#' @import dplyr ggplot2
 #' @export
 linkBLAST <- function(header, aa.seq, label = '[BLAST]'){
  

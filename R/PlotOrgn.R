@@ -22,11 +22,9 @@
 #' # Scaled by proximity of organism tag to input sequence (pident)
 #' PlotOrgn( waxsys.palm.sra , freq = FALSE)
 #' 
-#' @import gridExtra
-#' @import ggplotify
-#' @import viridisLite
-#' @import plotly
+#' @import gridExtra ggplotify viridisLite plotly
 #' @import ggwordcloud
+#' @import dplyr ggplot2
 #' @export
 PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = T){
   requireNamespace("ggwordcloud", quietly = T)

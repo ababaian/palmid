@@ -5,13 +5,17 @@
 #' @return A grid-table object. Dimension standard is 800 x 400 px.
 #' @keywords palmid pro plot
 #' @examples
-#' proPlot <- PlotPro(pro)
+#' data("waxsys.pro.df")
+#'
+#' proPlot <- PlotProReport(waxsys.pro.df)
+#' 
 #' plot(proPlot)
 #'
 #' @import gridExtra
 #' @import ggplotify
 #' @import viridisLite
 #' @import plotly
+#' @import dplyr ggplot2
 #' @export
 PlotProReport <- function(pro, html = F){
   

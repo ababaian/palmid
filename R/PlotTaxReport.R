@@ -6,13 +6,15 @@
 #' @return A grid-table object. Dimension standard is 800 x 600 px.
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
+#' data("waxsys.pro.df")
 #' 
-#' proTax <- PlotTaxReport( pro.df[1:50, ])
+#' proTax <- PlotTaxReport( waxsys.pro.df )
 #'
 #' @import gridExtra
 #' @import ggplotify
 #' @import viridisLite
 #' @import plotly
+#' @import dplyr ggplot2
 #' @export
 PlotTaxReport <- function(pro.df) {
   

@@ -8,9 +8,9 @@
 #' @return table, frequency-count table with 10:1 standard
 #' @keywords palmid wordcloud plot
 #' @examples
-#' # Desc
-#' function_name( var1 = x, var2 = T)
+#' NULL
 #'
+#' @import dplyr ggplot2
 #' @export
 standardizeWordcount <- function(words, ntop = 50){
   # Standardize wordcount to fixed-rank values

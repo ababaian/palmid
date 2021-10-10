@@ -8,9 +8,16 @@
 #' @return pro.df  data.frame
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
-#' 
-#' geoSRA <- PlotGeoReport( XXX )
 #'
+#' ## Prepare data
+#' # data("waxsys.pro.df")
+#' # con <- SerratusConnect()
+#'
+#' ## Generate Report
+#' # geoSRA <- PlotGeoReport( waxsys.pro.df )
+#' 
+#'
+#' @import dplyr ggplot2
 #' @export
 #' 
 get.proTax <- function(pro.df, con = SerratusConnect()) {

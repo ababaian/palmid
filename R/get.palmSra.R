@@ -8,8 +8,12 @@
 #' @keywords palmid sql geo biosample timeline Serratus Tantalus
 #' @examples
 #' 
-#' get.palmSra( pro.df, con )
+#' data("waxsys.pro.df")
+#' con <- SerratusConnect()
+#'  
+#' get.palmSra( waxsys.pro.df, con )
 #'
+#' @import dplyr ggplot2
 #' @export
 #' 
 get.palmSra <- function(pro.df, con = SerratusConnect()) {

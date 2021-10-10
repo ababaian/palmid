@@ -4,7 +4,8 @@
 #' @return A 1-column data.frame
 #' @keywords palmid fev
 #' @examples
-#' fev.df <- as.data.frame( apply(fev.tsv, 2, fev2df) )
+#' # fev.df <- as.data.frame( apply(fev.tsv, 2, fev2df) )
+#' @import dplyr ggplot2
 #' @export
 fev2df <- function(fev.col) {
   # input FEV 

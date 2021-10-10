@@ -16,21 +16,25 @@
 #' # u3         u3
 #' # u4         u4
 #' # 
-#' 
+#'
 #' # Retrieve the parent sOTU for an input of palm_ids
-#' get.sOTU(c('u1','u2',u4'), con, get_childs = F)
+#' # get.sOTU(c('u1','u2',u4'), con, get_childs = F)
 #' # -- returns c('u3','u4')
 #' 
 #' # Return an ordinal list of sOTU for iput
-#' get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
-#' # -- returns c('u3', u4', 'u3', 'u3')
+#' # get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
+#' # -- returns c('u3', 'u4', 'u3', 'u3')
 #' 
 #' # Return all children palm_id within an sOTU
-#' get.sOTU(c('u2'), con, get_childs = T)
+#' # get.sOTU(c('u2'), con, get_childs = T)
 #' # -- returns c('u1', u2', 'u3')
-#' 
+#'
+#' con <- SerratusConnect()
+#' get.sOTU(c('u1','u2',u4'), con, get_childs = T)
+#'  
 #' @import RPostgreSQL
 #' @import dbplyr
+#' @import dplyr ggplot2
 #' @export
 # Retrieve sOTU or sOTU-palm_ids from an input of a palm_ids 
 get.sOTU <- function(palm_ids, con, get_childs = FALSE, ordinal = FALSE) {

@@ -5,14 +5,16 @@
 #' @return A plotly map
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
-#' 
-#' geoSRA <- PlotGeo2( palm.sra )
+#' # Waxsystermes example data
+#' data("waxsys.palm.sra")
+#' geoSRA <- PlotGeo2( waxsys.palm.sra )
 #'
 #' @import ggExtra
 #' @import plotly
 #' @import leaflet
 #' @import htmltools
 #' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 PlotGeo2 <- function(palm.sra) {
   n.sra  <- length(unique( palm.sra$run_id ))

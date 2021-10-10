@@ -9,10 +9,11 @@
 #' @return data.frame, lon and lat numeric vectors
 #' @keywords palmid Serratus geo
 #' @examples
-#' palm.geo   <- get.sraGeo(palm.sras, con)
+#' #palm.geo   <- get.sraGeo(palm.sras, con)
 #' 
 #' @import RPostgreSQL
 #' @import dbplyr
+#' @import dplyr ggplot2
 #' @export
 get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALSE ) {
   

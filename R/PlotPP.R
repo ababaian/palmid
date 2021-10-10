@@ -4,12 +4,17 @@
 #' @return A gene-diagram as a ggplot2 object
 #' @keywords palmid plot
 #' @examples
-#' pp.diagram <- PlotPP(ps)
+#' data("waxsys.palmprint")
+#' 
+#' palmprint.diagram <- PlotPP(waxsys.palmprint)
+#' 
+#' plot(palmprint.diagram)
 #'
 #' @import gridExtra
 #' @import ggplotify
 #' @import viridisLite
 #' @import plotly
+#' @import dplyr ggplot2
 #' @export
 PlotPP <- function(ps){
 

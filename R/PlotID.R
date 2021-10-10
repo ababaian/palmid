@@ -5,12 +5,14 @@
 #' @return A scatterplot as a ggplot2 object
 #' @keywords palmid pro plot
 #' @examples
-#' idPlot <- PlotID(pro)
+#' data("waxsys.pro.df")
+#' PlotID(waxsys.pro.df)
 #'
 #' @import gridExtra
 #' @import ggplotify
 #' @import viridisLite
 #' @import plotly
+#' @import dplyr ggplot2
 #' @export
 PlotID <- function(pro, html = T){
   # phylum, family, genus, species

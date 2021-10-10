@@ -9,10 +9,11 @@
 #' @return character, string vector
 #' @keywords palmid Serratus taxonomy
 #' @examples
-#' palm.orgn   <- get.sraOrg(palm.group, con)
+#' #palm.orgn   <- get.sraOrg(palm.group, con)
 #' 
 #' @import RPostgreSQL
 #' @import dbplyr
+#' @import dplyr ggplot2
 #' @export
 # Retrieve date from input of sra run_ids
 get.sraOrgn <- function(run_ids, con, ordinal = F, as.df = FALSE) {

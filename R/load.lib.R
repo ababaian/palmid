@@ -9,8 +9,9 @@
 #' @examples
 #' 
 #' # in an SQL function
-#' load.lib("sql")
+#' # load.lib("sql")
 #'
+#' @import dplyr ggplot2
 #' @export
 load.lib <- function( lib_set ){
   

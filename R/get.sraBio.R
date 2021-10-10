@@ -8,10 +8,11 @@
 #' @return data.frame, run_id, biosample character vectors
 #' @keywords palmid Serratus geo
 #' @examples
-#' palm.bio   <- get.sraBio(palm.sras, con)
+#' # palm.bio   <- get.sraBio(palm.sras, con)
 #'
 #' @import RPostgreSQL
 #' @import dbplyr 
+#' @import dplyr ggplot2
 #' @export
 get.sraBio <- function(run_ids, con, ordinal = F) {
   

@@ -4,14 +4,15 @@
 #' @return A diamond-pro data.frame object
 #' @keywords palmid diamond pro
 #' @examples
-#' ps <- read.pro(waxsys/waxsys.pro)
+#' # palmDB Alignment file (.pro)
+#' pro.path <- system.file( "extdata", "waxsys.pro", package = 'palmid')
+#' pro.df <- read.pro(pro.path)
 #'
+#' @import dplyr ggplot2
 #' @export
-# dev
-#pro.path <- 'data/waxsys.pro'
 read.pro <- function(pro.path) {
   # read fev as tsv
-  pro.df <- read.csv2(pro.path, header = F, sep = '\t',
+  pro.df <- utils::read.csv2(pro.path, header = F, sep = '\t',
                       stringsAsFactors=FALSE)
   
   pro.cols <- c("qseqid", "qstart", "qend", "qlen",

@@ -7,9 +7,9 @@
 #' @return data.frame
 #' @keywords palmid geo
 #' @examples
-#' 
-#' sra.geo.filtered <- geoFilter(sra.geo.full)
+#' # NULL
 #'
+#' @import dplyr ggplot2
 #' @export
 geoFilter <- function(sra.geo, wobble = F, wradius = 0.005){
   # id, lat, lon data.frame
@@ -24,10 +24,10 @@ geoFilter <- function(sra.geo, wobble = F, wradius = 0.005){
   
   if (wobble){
     # Generate N random vectors for wobble radius
-    latwobs <- wradius * runif( length( sra.geo$lat), -1, 1)
+    latwobs <- wradius * stats::runif( length( sra.geo$lat), -1, 1)
     sra.geo$lat <- sra.geo$lat + latwobs
       
-    lngwobs <- wradius * runif( length( sra.geo$lng), -1, 1)
+    lngwobs <- wradius * stats::runif( length( sra.geo$lng), -1, 1)
     sra.geo$lng <- sra.geo$lng + lngwobs 
   }
   

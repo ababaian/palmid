@@ -13,7 +13,8 @@
 #' 
 #' @slot fev palmscan fev
 #' @keywords palmid palmscan fev data.frame
+#' @import dplyr ggplot2
 #' @export
 #' @rdname palmscan.df
-palmscan.df <- setClass(Class = "palmscan.df",
-                 slots = c(fev = "data.frame"))
+#palmscan.df <- methods::setClass(Class = "palmscan.df",
+#                 slots = c(fev = "data.frame"))

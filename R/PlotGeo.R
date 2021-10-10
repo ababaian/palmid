@@ -7,11 +7,9 @@
 #' @return A grid-table object. Dimension standard is 800 x 600 px.
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
-#' 
-#' geoSRA <- PlotGeoReport( XXX )
+#' NULL 
 #'
-#' @import sf
-#' @import rnaturalearth
+#' @import dplyr ggplot2
 #' @export
 PlotGeo <- function(run_ids, con = SerratusConnect()){
   
@@ -27,6 +25,13 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
            use 'sudo apt-get install libudunits2-dev' to install",
          call. = FALSE)
   }
+  if (!requireNamespace("rnaturalearthdata", quietly = TRUE)) {
+    stop("The R Packages 'sf' and 'rnaturalearthdata' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
+         call. = FALSE)
+  }
+  
   
   # Count unique input run_ids
   run_ids <- unique(run_ids)
@@ -52,7 +57,7 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
   rdrp_col <- rdrp_lite
   
   # Plot Worldmap
-  world <- ne_countries(scale = "medium", returnclass = "sf")
+  world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
   ggplot() + geom_sf(data = world) + theme_bw()
   
   # Overlay worldmap with hex plot and summary stats

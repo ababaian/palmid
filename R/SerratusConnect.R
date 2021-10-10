@@ -8,6 +8,7 @@
 #' @examples
 #' con <- SerratusConnect()
 #'
+#' @import dplyr ggplot2
 #' @export
 SerratusConnect <- function(){
 

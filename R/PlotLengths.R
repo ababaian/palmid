@@ -6,13 +6,17 @@
 #' @return A grid-table object of "pp_length", "v1_length", "v2_length"
 #' @keywords palmid fev
 #' @examples
-#' ppLen <- PlotLengths(pp, pp.bg)
+#' data("waxsys.palmprint")
+#' data("palmdb")
+#' 
+#' ppLen <- PlotLengths(pp = waxsys.palmprint, pp.bg = palmdb)
 #' plot(ppLen)
 #' 
 #' @import gridExtra
 #' @import ggplotify
 #' @import viridisLite
 #' @import plotly
+#' @import dplyr ggplot2
 #' @export
 PlotLengths <- function(pp, pp.bg, set.ylab = 'palmDB density') {
 

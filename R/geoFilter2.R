@@ -8,8 +8,16 @@
 #' @keywords palmid geo
 #' @examples
 #' 
-#' sra.geo.filtered <- geoFilter2(sra.geo.full)
+#' data("waxsys.palm.sra")
+#' # waxsys.palm.sra
+#' # -- 4159 rows
+#' 
+#' waxsys.geo.filtered <- geoFilter2(waxsys.palm.sra)
+#' # -- 2300 rows
+#' 
+#' # 2300 / 4159 SRA-libraries have associated geospatial meta-data 
 #'
+#' @import dplyr ggplot2
 #' @export
 geoFilter2 <- function(palm.sra, wobble = F, wradius = 0.005){
   # id, lat, lon data.frame
@@ -24,10 +32,10 @@ geoFilter2 <- function(palm.sra, wobble = F, wradius = 0.005){
   
   if (wobble){
     # Generate N random vectors for wobble radius
-    latwobs <- wradius * runif( length( palm.sra$lat), -1, 1)
+    latwobs <- wradius * stats::runif( length( palm.sra$lat), -1, 1)
     palm.sra$lat <- palm.sra$lat + latwobs
       
-    lngwobs <- wradius * runif( length( palm.sra$lng), -1, 1)
+    lngwobs <- wradius * stats::runif( length( palm.sra$lng), -1, 1)
     palm.sra$lng <- palm.sra$lng + lngwobs 
   }
   
