@@ -23,7 +23,7 @@ PlotProReport <- function(pro, html = F){
     proPlot<- plotly::subplot(pro.plot, tax.plot,
                       widths = c(0.8, 0.2),
                       titleX = T, titleY = T) %>%
-      config(displaylogo = FALSE)
+      plotly::config(displaylogo = FALSE)
     
     return(proPlot)
     

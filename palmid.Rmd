@@ -229,7 +229,7 @@ are reported.
 # Family  45-70% - Green
 # Phylum  <45%   - Purple
 
-ggplotly(pro.report)
+plotly::ggplotly(pro.report)
 
 ```
 ![](img/tax_legend.png)
