@@ -13,7 +13,7 @@ make_bg_data(fev.path, dataset.id = NULL)
 \item{dataset.id}{Name for output dataset.}
 }
 \value{
-NULL: will write an Rdata file to data/<fev.path>.Rdata
+NULL: will write an RData file to data/<fev.path>.RData
 }
 \description{
 Read a multiple-FEV file to create a background set of palmprints

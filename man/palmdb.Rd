@@ -15,7 +15,7 @@ data(palmdb)
 }
 \description{
 Palmprint database - initial version (210302) containing GenBank v241
-RNA depenendent RNA polymerase palmprints
+RNA dependent RNA polymerase palmprints
 }
 \details{
 #' \itemize{

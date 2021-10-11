@@ -3,7 +3,7 @@
 #' Standard approach is to use palmDB 
 #' @param fev.path Path to multiple fev file
 #' @param dataset.id Name for output dataset.
-#' @return NULL: will write an Rdata file to data/<fev.path>.Rdata
+#' @return NULL: will write an RData file to data/<fev.path>.RData
 #' @keywords palmid palmdb palmprints
 #' @examples
 #' ## Download palmDB to make background set on

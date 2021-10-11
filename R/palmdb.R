@@ -1,7 +1,7 @@
 #' palmdb
 #'
 #' Palmprint database - initial version (210302) containing GenBank v241
-#' RNA depenendent RNA polymerase palmprints
+#' RNA dependent RNA polymerase palmprints
 #'
 #'#' \itemize{
 #'   \item score. palmscan PSSM motif score. 20+ is high confidence RdRP
