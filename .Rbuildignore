@@ -36,3 +36,4 @@ palmid.nb.html
 ^\.Rbuildignore$
 ^img$
 ^cran-comments\.md$
+^CRAN-RELEASE$
