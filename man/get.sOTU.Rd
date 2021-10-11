@@ -43,7 +43,7 @@ or the set of all children `palm_id` within an species/sOTU
 # -- returns c('u1', u2', 'u3')
 
 con <- SerratusConnect()
-get.sOTU(c('u1','u2','u4'), con, get_childs = T)
+get.sOTU(c('u1337'), con, get_childs = TRUE)
  
 }
 \keyword{Serratus}
