@@ -12,7 +12,6 @@
 #' #palm.date   <- get.sraDate(palm.group, con)
 #'
 #' @import RPostgreSQL
-#' @import dbplyr 
 #' @import dplyr ggplot2
 #' @export
 # Retrieve date from input of sra run_ids

@@ -10,10 +10,7 @@
 #' #sc2.timeline <- PlotTimeline(sra.date)
 #' #plot(sc2.timeline)
 #'
-#' @import gridExtra
-#' @import ggplotify
 #' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 # Retrieve date from input of sra run_ids

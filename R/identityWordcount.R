@@ -8,8 +8,6 @@
 #' @param  ntop     numeric,   return only N top words [50]
 #' @return table,   identity-count table with 100% - 20% standard
 #' @keywords palmid wordcloud plot
-#' @example 
-#' NULL
 #'
 #' @import dplyr ggplot2
 #' @export

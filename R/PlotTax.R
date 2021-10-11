@@ -10,10 +10,7 @@
 #' proTax <- PlotTax(waxsys.pro.df, html = TRUE)
 #'
 #' plot(proTax)
-#' @import gridExtra
-#' @import ggplotify
 #' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 PlotTax <- function(pro, html = T){

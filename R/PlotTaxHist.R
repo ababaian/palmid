@@ -13,10 +13,7 @@
 #'                        pro.tax    = waxsys.pro.df$tfam,
 #'                        rank       = 'family')
 #'
-#' @import gridExtra
-#' @import ggplotify
 #' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){

@@ -11,10 +11,7 @@
 #' ppRep <- PlotReport(waxsys.palmprint, palmdb)
 #' 
 #' plot(ppRep)
-#' @import gridExtra
-#' @import ggplotify
 #' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 PlotReport <- function(pp, pp.bg) {

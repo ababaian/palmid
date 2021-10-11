@@ -8,10 +8,7 @@
 #' data("waxsys.pro.df")
 #' PlotID(waxsys.pro.df)
 #'
-#' @import gridExtra
-#' @import ggplotify
 #' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 PlotID <- function(pro, html = T){

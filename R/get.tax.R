@@ -17,7 +17,6 @@
 #' get.tax(c('u2', 'u1337'), con, rank = 'species')
 #' 
 #' @import RPostgreSQL
-#' @import dbplyr 
 #' @import dplyr ggplot2
 #' @export
 get.tax <- function(palm_ids, con, rank = 'family', ordinal = FALSE) {

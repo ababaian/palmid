@@ -10,10 +10,7 @@
 #' 
 #' proTax <- PlotTaxReport( waxsys.pro.df )
 #'
-#' @import gridExtra
-#' @import ggplotify
 #' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 PlotTaxReport <- function(pro.df) {
@@ -23,7 +20,7 @@ PlotTaxReport <- function(pro.df) {
   PlotTfam <- PlotTaxHist( pro.df$pident, pro.df$tfam, 'family')
   PlotTphy <- PlotTaxHist( pro.df$pident, pro.df$tphy, 'phylum')
   
-  PalmTax  <- arrangeGrob( PlotTspe, PlotTfam, PlotTphy,
+  PalmTax  <- gridExtra::arrangeGrob( PlotTspe, PlotTfam, PlotTphy,
                            layout_matrix = rbind(c(1, 1, 1, 1),
                                                  c(1, 1, 1, 1),
                                                  c(2, 2, 3, 3),

@@ -11,19 +11,16 @@
 #' 
 #' plot(proPlot)
 #'
-#' @import gridExtra
-#' @import ggplotify
 #' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 PlotProReport <- function(pro, html = F){
   
   if (html){
-    pro.plot <- hide_legend( PlotID(pro.df, html = html) )
-    tax.plot <- hide_legend( PlotTax(pro.df, html = html) )
+    pro.plot <- plotly::hide_legend( PlotID(pro.df, html = html) )
+    tax.plot <- plotly::hide_legend( PlotTax(pro.df, html = html) )
     
-    proPlot<- subplot(pro.plot, tax.plot,
+    proPlot<- plotly::subplot(pro.plot, tax.plot,
                       widths = c(0.8, 0.2),
                       titleX = T, titleY = T) %>%
       config(displaylogo = FALSE)
@@ -32,10 +29,10 @@ PlotProReport <- function(pro, html = F){
     
   } else {
     # Create individual plots
-    id  <- as.grob(PlotID(pro, html = html))
-    tax <- as.grob(PlotTax(pro, html = html))
+    id  <- ggplotify::as.grob(PlotID(pro, html = html))
+    tax <- ggplotify::as.grob(PlotTax(pro, html = html))
     
-    proPlot <- arrangeGrob( id, tax,
+    proPlot <- gridExtra::arrangeGrob( id, tax,
                             layout_matrix = rbind(c(1, 1, 2),
                                                   c(1, 1, 2)) )
   }

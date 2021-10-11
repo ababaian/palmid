@@ -9,15 +9,13 @@
 #' @examples
 #' #geoSRA <- PlotGeoReport( run_ids = sras, con )
 #'
-#' @import ggplotify
-#' @import gridExtra
 #' @import dplyr ggplot2
 #' @export
 PlotGeoReport <- function(run_ids, con = SerratusConnect()) {
-  geo      <- as.grob(PlotGeo( run_ids, con))
-  timeline <- as.grob(PlotTimeline( run_ids, con))
+  geo      <- ggplotify::as.grob(PlotGeo( run_ids, con))
+  timeline <- ggplotify::as.grob(PlotTimeline( run_ids, con))
   
-  GeoTime  <- arrangeGrob( geo, timeline,
+  GeoTime  <- gridExtra::arrangeGrob( geo, timeline,
                            layout_matrix = rbind(c(1, 1),
                                                  c(1, 1),
                                                  c(1, 1),

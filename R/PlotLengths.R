@@ -12,10 +12,6 @@
 #' ppLen <- PlotLengths(pp = waxsys.palmprint, pp.bg = palmdb)
 #' plot(ppLen)
 #' 
-#' @import gridExtra
-#' @import ggplotify
-#' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 PlotLengths <- function(pp, pp.bg, set.ylab = 'palmDB density') {
@@ -24,7 +20,7 @@ PlotLengths <- function(pp, pp.bg, set.ylab = 'palmDB density') {
   v1Plot    <- PlotDistro( pp, pp.bg, 'v1_length', 'gray50',  set.ylab)
   v2Plot    <- PlotDistro( pp, pp.bg, 'v2_length', 'gray50',  set.ylab)
   
-  lenGrid <- arrangeGrob( plPlot, v1Plot, v2Plot,
+  lenGrid <- gridExtra::arrangeGrob( plPlot, v1Plot, v2Plot,
                           layout_matrix = rbind(c(1, 1),
                                                 c(2, 3)))
   return(lenGrid)

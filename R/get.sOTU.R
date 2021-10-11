@@ -30,10 +30,9 @@
 #' # -- returns c('u1', u2', 'u3')
 #'
 #' con <- SerratusConnect()
-#' get.sOTU(c('u1','u2',u4'), con, get_childs = T)
+#' get.sOTU(c('u1','u2','u4'), con, get_childs = T)
 #'  
 #' @import RPostgreSQL
-#' @import dbplyr
 #' @import dplyr ggplot2
 #' @export
 # Retrieve sOTU or sOTU-palm_ids from an input of a palm_ids 

@@ -16,7 +16,6 @@
 #' palm.sra   <- get.sra(palmid_of_interest, con)
 #' 
 #' @import RPostgreSQL
-#' @import dbplyr
 #' @import dplyr ggplot2
 #' @export
 get.sra <- function(palm_ids, con,

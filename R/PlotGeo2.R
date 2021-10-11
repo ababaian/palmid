@@ -9,10 +9,7 @@
 #' data("waxsys.palm.sra")
 #' geoSRA <- PlotGeo2( waxsys.palm.sra )
 #'
-#' @import ggExtra
-#' @import plotly
-#' @import leaflet
-#' @import htmltools
+#' @import leaflet htmltools
 #' @import viridisLite
 #' @import dplyr ggplot2
 #' @export

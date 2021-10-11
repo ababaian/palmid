@@ -10,10 +10,6 @@
 #' 
 #' plot(palmprint.diagram)
 #'
-#' @import gridExtra
-#' @import ggplotify
-#' @import viridisLite
-#' @import plotly
 #' @import dplyr ggplot2
 #' @export
 PlotPP <- function(ps){
