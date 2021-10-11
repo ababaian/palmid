@@ -52,7 +52,7 @@ WORKDIR $BASEDIR
 # Container Build Information
 ARG PROJECT='palmid'
 ARG TYPE='base'
-ARG VERSION='0.0.2'
+ARG VERSION='0.0.3'
 
 # Software Versions (pass to shell)
 ENV PALMIDVERSION=$VERSION
