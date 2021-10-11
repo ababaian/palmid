@@ -46,17 +46,17 @@ FROM amazonlinux:2 AS serratus-base
 #==========================================================
 # Set working directory
 # RUN adduser palmid
-ARG BASEDIR=/home/palmid
 ENV BASEDIR=/home/palmid
-WORKDIR /home/palmid
+WORKDIR $BASEDIR
 
-# Container Information
+# Container Build Information
 ARG PROJECT='palmid'
 ARG TYPE='base'
 ARG VERSION='0.0.2'
 
 # Software Versions (pass to shell)
-#ENV SAMTOOLSVERSION='1.10'
+ENV PALMIDVERSION=$VERSION
+
 ENV SEQKITVERSION='2.0.0'
 ENV DIAMONDVERSION='2.0.6-dev'
 ENV MUSCLEVERSION='3.8.31'
@@ -68,15 +68,14 @@ ENV R='4'
 LABEL author="ababaian"
 LABEL container.base.image="amazonlinux:2"
 LABEL project.name=${PROJECT}
-LABEL project.website="https://github.com/ababaian/serratus"
+LABEL project.website="https://github.com/ababaian/palmid"
 LABEL container.type=${TYPE}
 LABEL container.version=${VERSION}
 LABEL container.description="palmid-base image"
 LABEL software.license="GPLv3"
-LABEL tags="palmscan, diamond, muscle, R"
+LABEL tags="palmscan, diamond, muscle, R, palmid"
 
 #==========================================================
-# Dependencies ============================================
 # Dependencies ============================================
 #==========================================================
 # Update Core
@@ -177,9 +176,8 @@ RUN \
 # palmid Initialize =======================================
 #==========================================================
 # scripts + test data
-COPY palmid.Rmd ./
-COPY scripts/* ./
-COPY data/* data/
+COPY palmid.Rmd scripts/* ./
+COPY data/* inst/extdata/* img/* data/
 RUN chmod 755 palmid.sh &&\
     chmod 755 fev2tsv.py
 

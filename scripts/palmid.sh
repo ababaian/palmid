@@ -6,14 +6,13 @@ set -eu
 #
 # Base: palmid-base
 # Amazon Linux 2 with Docker
-# AMI : aami-0fdf24f2ce3c33243
+# AMI : ami-0fdf24f2ce3c33243
 # login: ec2-user@<ipv4>
 # base: 9 Gb
 
-# Test cmd: ./serratus-align.sh 
-PIPE_VERSION="0.0.2"
+PIPE_VERSION="$PALMIDVERSION"
+CONTAINER_VERSION="palmid:$PALMIDVERSION"
 AMI_VERSION='ami-0fdf24f2ce3c33243'
-CONTAINER_VERSION='palmid:0.0.2'
 
 
 function usage {

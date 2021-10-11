@@ -42,7 +42,7 @@ production.version = params$prod.run
 if (production.version){
   # Load stable palmid package
   library('palmid', quietly = T)
-  load("/home/palmid/data/palmdb.RData") 
+  data("palmdb") 
 
   # Disable warnings
    defaultW <- getOption("warn")
