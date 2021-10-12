@@ -139,7 +139,7 @@ The `palmid` R package visualizes this data, showing the relative palmprint scor
 
 `data/waxsys_pp.png`
 
-![Waxsystermes virus palmprint report](data/waxsys_pp.png)
+![Waxsystermes virus palmprint report](img/waxsys_pp.png)
 
 ### 2) Comparison to PalmDB
 
@@ -147,13 +147,13 @@ Input RdRP palmprint is aligned against [`palmdb`](https://github.com/rcedgar/pa
 
 `data/waxsys_pro.png`
 
-![Waxsystermes virus palmdb report](data/waxsys_pro.png)
+![Waxsystermes virus palmdb report](img/waxsys_pro.png)
 
 Known virus taxonomy is extracted from `palmdb`-matches (when available) and the species/family/phylum are shown as a function of percent-identity to the input sequence.
 
 `data/waxsys_tax.png`
 
-![Waxsystermes virus palmdb-tax report](data/waxsys_tax.png)
+![Waxsystermes virus palmdb-tax report](img/waxsys_tax.png)
 
 A multiple sequence alignment of the top 10 palmprint hits is produced for manual validation. A central observation here is that the A,B,C catalytic motifs align to one another.
 
@@ -190,13 +190,13 @@ Palmprints matching the input-sequence (upto a threshold) are cross-referenced a
 
 `data/waxsys_geo.png`
 
-![Waxsystermes virus geospatial](data/waxsys_geo.png)
+![Waxsystermes virus geospatial](img/waxsys_geo.png)
 
 The organism reported with each sequencing run is conglomerated into a wordcloud to visualize possible hosts. Current default will report the organisms associated with all palmprint-matches, for specificity to the input virus species use a threshold of 90%.
 
 `data/waxsys_orgn.png`
 
-![Waxsystermes virus organism](data/waxsys_orgn.png)
+![Waxsystermes virus organism](img/waxsys_orgn.png)
 
 
 ## References
