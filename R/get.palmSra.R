@@ -11,9 +11,10 @@
 #' data("waxsys.pro.df")
 #' con <- SerratusConnect()
 #'
-#' # Reduce runtime by looking at top-match only
-#' get.palmSra( head(waxsys.pro.df, 1), con )
-#'
+#' \donttest{
+#' get.palmSra( waxsys.pro.df, con )
+#' }
+#' 
 #' @import dplyr ggplot2
 #' @export
 #' 

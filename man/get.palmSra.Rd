@@ -22,8 +22,9 @@ A wrapper of several get* functions to create a palm.sra data.frame
 data("waxsys.pro.df")
 con <- SerratusConnect()
 
-# Reduce runtime by looking at top-match only
-get.palmSra( head(waxsys.pro.df, 1), con )
+\donttest{
+get.palmSra( waxsys.pro.df, con )
+}
 
 }
 \keyword{Serratus}
