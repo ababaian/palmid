@@ -15,6 +15,8 @@
 #' @import dplyr ggplot2
 #' @export
 get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALSE ) {
+  # Bind Local Variables
+  biosample_id <- coordinate_x <- coordinate_y <- NULL
   
   if ( is.null(run_ids) & is.null(biosample_ids)){
     stop("Input either `run_ids` or `biosamples`, not both")

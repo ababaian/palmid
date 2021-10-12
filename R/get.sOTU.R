@@ -37,6 +37,8 @@
 #' @export
 # Retrieve sOTU or sOTU-palm_ids from an input of a palm_ids 
 get.sOTU <- function(palm_ids, con, get_childs = FALSE, ordinal = FALSE) {
+  # Bind Local Variables
+  palm_id <- sotu <- NULL
   
   # Coerce palm_ids to vector
   if (class(palm_ids) != 'character'){

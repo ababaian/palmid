@@ -13,6 +13,9 @@
 #' @import dplyr ggplot2
 #' @export
 read.fev <- function(fev.path, FIRST = FALSE) {
+  # Bind Local Variables
+  fev.name <- NULL
+  
   # read fev as tsv
   fev.tsv <- utils::read.csv2(fev.path, header = F, sep = '\t',
                        stringsAsFactors = FALSE)

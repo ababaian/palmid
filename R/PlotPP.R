@@ -13,6 +13,8 @@
 #' @import dplyr ggplot2
 #' @export
 PlotPP <- function(ps){
+  # Bind Local Variables
+  segstrt <- segend <- segment <- NULL
 
   # plot variables
   pp.col <- c('red', 'gray50', 'green', 'gray50', 'blue')

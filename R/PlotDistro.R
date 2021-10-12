@@ -21,6 +21,8 @@
 #' @import dplyr ggplot2
 #' @export
 PlotDistro <- function(pp, pp.bg, plotValue, distrocol = 'skyblue', set.ylab = 'palmDB density') {
+  # Bind variables locally
+  bg <- NULL
   ## debug
   # pp = ps
   # plotValue = 'score'

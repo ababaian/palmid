@@ -32,6 +32,8 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
          call. = FALSE)
   }
   
+  # Bind local variables
+  lng <- lat <- NULL
   
   # Count unique input run_ids
   run_ids <- unique(run_ids)
@@ -46,7 +48,7 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
   # Static (sf) Version ---------------------------------
   
   # biosample_id --> geo_coordinates.df (and filter)
-  pp.geo <- get.sraGeo(palm.usra, con = con)
+  pp.geo <- get.sraGeo(biosample_ids = pp.bs, con = con)
   pp.geo <- geoFilter(pp.geo, wobble = F)
     n.geo  <- length(pp.geo[,1])
     nn.stat <- paste0("geo-data for ", n.geo, " / ", n.sra," runs retrieved")

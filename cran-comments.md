@@ -1,3 +1,30 @@
+# Resubmission
+
+## Previous cran-comments
+
+> Use standard evaluation whenever possible.
+> If you use non standard evaluation e.g. with asome of the (un)tidyverse packages, declare these via globalVariables(), see its help page.
+
+Updated to standard evaluation, and using local variables bindings and .data with associated tidyverse functions.
+
+> RE: Runtime
+> Please reduce.
+
+Reduced the example data to a single query, runtime is still 5s, which is the server processing time. Query cannot be reduced any further.
+
+## Test environments
+* local ubuntu 20.01, R 4.0.3
+* win-builder (devel)
+
+## R CMD check results
+
+0 errors | 0 warnings | 1 notes
+
+### Notes
+* This is a new release.
+
+# Initial Submission
+
 ## Test environments
 * local ubuntu 20.01, R 4.0.3
 * win-builder (devel)

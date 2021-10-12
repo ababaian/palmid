@@ -17,6 +17,8 @@
 #' @import dplyr ggplot2
 #' @export
 PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
+  # Bind Local Variables
+  pident <- tax <- NULL
   
   # Remform dataframe for plotting
   repro <- data.frame( pident = pro.pident,

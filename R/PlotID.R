@@ -12,6 +12,10 @@
 #' @import dplyr ggplot2
 #' @export
 PlotID <- function(pro, html = T){
+  # Bind Local Variables
+  sseqid <- matching <- label <- NULL
+  pident <- evalue <- escore <- 0
+  
   # phylum, family, genus, species
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
   

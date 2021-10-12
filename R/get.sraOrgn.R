@@ -16,6 +16,8 @@
 #' @export
 # Retrieve date from input of sra run_ids
 get.sraOrgn <- function(run_ids, con, ordinal = F, as.df = FALSE) {
+  # Bind Local Variables
+  run <- scientific_name <- NULL
   
   # get contigs containing palm_ids
   sra.orgn <- tbl(con, 'srarun') %>%

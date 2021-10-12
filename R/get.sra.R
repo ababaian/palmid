@@ -20,6 +20,8 @@
 #' @export
 get.sra <- function(palm_ids, con,
                     ret_df = FALSE, ret_contig.df = FALSE, qc = TRUE) {
+  # Bind Local Variables
+  run <- bio_sample <- palm_id <- qc_pass <- NULL
   
   if (qc){
     # get contigs containing palm_ids WITH QC

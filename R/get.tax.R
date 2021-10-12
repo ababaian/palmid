@@ -20,6 +20,8 @@
 #' @import dplyr ggplot2
 #' @export
 get.tax <- function(palm_ids, con, rank = 'family', ordinal = FALSE) {
+  # Bind Local Variables
+  palm_id <- NULL
   
   # Coerce palm_ids to vector
   if (class(palm_ids) != 'character'){

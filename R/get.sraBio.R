@@ -14,6 +14,8 @@
 #' @import dplyr ggplot2
 #' @export
 get.sraBio <- function(run_ids, con, ordinal = F) {
+  # Bind Local Variables
+  run <- bio_sample <- biosample_id <- coordinate_x <- coordinate_y <- NULL
   
   # get biosample field for run_id
   sra.bio <- tbl(con, 'srarun') %>%

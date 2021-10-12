@@ -28,6 +28,9 @@
 PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = T){
   requireNamespace("ggwordcloud", quietly = T)
   
+  # Bind Local Variables
+  segstrt <- segend <- segment <- scientific_name <- Freq <- NULL
+  
   if (is.null(palm.sra) & is.null(orgn.vec)){
     stop("One of palm.sra or orgn.vec needs to be provided")
   } else if (!is.null(palm.sra)){

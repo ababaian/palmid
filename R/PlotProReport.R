@@ -15,10 +15,12 @@
 #' @import dplyr ggplot2
 #' @export
 PlotProReport <- function(pro, html = F){
+  # Bind Local Variables
+  pro.df <- NULL
   
   if (html){
-    pro.plot <- plotly::hide_legend( PlotID(pro.df, html = html) )
-    tax.plot <- plotly::hide_legend( PlotTax(pro.df, html = html) )
+    pro.plot <- plotly::hide_legend( PlotID(pro, html = html) )
+    tax.plot <- plotly::hide_legend( PlotTax(pro, html = html) )
     
     proPlot<- plotly::subplot(pro.plot, tax.plot,
                       widths = c(0.8, 0.2),
