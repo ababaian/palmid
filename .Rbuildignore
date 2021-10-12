@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .gitignore
+.dockerignore
 tikzDictionary$
 aux$
 log$
@@ -23,9 +24,16 @@ Makefile
 ^README-ES\.md$
 ^README-PT\.md$
 ^codecov\.yml$
-^NEWS\.md$
+^LICENSE$
 local
 tmp
+scripts
+png
+Dockerfile
 ^palmid-lambda$
+palmid.Rmd
 palmid.nb.html
 ^\.Rbuildignore$
+^img$
+^cran-comments\.md$
+^CRAN-RELEASE$

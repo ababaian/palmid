@@ -10,11 +10,19 @@
 #' @return A ggplot2 object
 #' @keywords palmid fev
 #' @examples
-#' PlotDistro( ps, pp.bg, 'score', 'black')
-#' PlotDistro( ps, pp.bg, 'pp_length', 'skyblue')
+#' 
+#' data("waxsys.palmprint")
+#' data("palmdb")
+#' 
+#' PlotDistro( pp = waxsys.palmprint, pp.bg = palmdb, 'score', 'black')
+#' PlotDistro( pp = waxsys.palmprint, pp.bg = palmdb, 'pp_length', 'skyblue')
+#' 
+#' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 PlotDistro <- function(pp, pp.bg, plotValue, distrocol = 'skyblue', set.ylab = 'palmDB density') {
-  load.lib('ggplot')
+  # Bind variables locally
+  bg <- NULL
   ## debug
   # pp = ps
   # plotValue = 'score'

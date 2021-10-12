@@ -5,12 +5,19 @@
 #' @return A palmscan data.frame object
 #' @keywords palmid fev
 #' @examples
-#' ps <- read.fev(waxsys/waxsys.fev, FIRST = TRUE)
+#' 
+#' # palmscan fev file
+#' ps.fev.path <- system.file( "extdata", "waxsys.fev", package = 'palmid')
+#' palmprint <- read.fev(ps.fev.path, FIRST = TRUE)
 #'
+#' @import dplyr ggplot2
 #' @export
 read.fev <- function(fev.path, FIRST = FALSE) {
+  # Bind Local Variables
+  fev.name <- NULL
+  
   # read fev as tsv
-  fev.tsv <- read.csv2(fev.path, header = F, sep = '\t',
+  fev.tsv <- utils::read.csv2(fev.path, header = F, sep = '\t',
                        stringsAsFactors = FALSE)
   
   # For single palmprint analysis, only use first palmprint

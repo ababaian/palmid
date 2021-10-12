@@ -5,30 +5,36 @@
 #' @return A grid-table object. Dimension standard is 800 x 400 px.
 #' @keywords palmid pro plot
 #' @examples
-#' proPlot <- PlotPro(pro)
+#' data("waxsys.pro.df")
+#'
+#' proPlot <- PlotProReport(waxsys.pro.df)
+#' 
 #' plot(proPlot)
 #'
+#' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 PlotProReport <- function(pro, html = F){
-  load.lib('ggplot')
+  # Bind Local Variables
+  pro.df <- NULL
   
   if (html){
-    pro.plot <- hide_legend( PlotID(pro.df, html = html) )
-    tax.plot <- hide_legend( PlotTax(pro.df, html = html) )
+    pro.plot <- plotly::hide_legend( PlotID(pro, html = html) )
+    tax.plot <- plotly::hide_legend( PlotTax(pro, html = html) )
     
-    proPlot<- subplot(pro.plot, tax.plot,
+    proPlot<- plotly::subplot(pro.plot, tax.plot,
                       widths = c(0.8, 0.2),
                       titleX = T, titleY = T) %>%
-      config(displaylogo = FALSE)
+      plotly::config(displaylogo = FALSE)
     
     return(proPlot)
     
   } else {
     # Create individual plots
-    id  <- as.grob(PlotID(pro, html = html))
-    tax <- as.grob(PlotTax(pro, html = html))
+    id  <- ggplotify::as.grob(PlotID(pro, html = html))
+    tax <- ggplotify::as.grob(PlotTax(pro, html = html))
     
-    proPlot <- arrangeGrob( id, tax,
+    proPlot <- gridExtra::arrangeGrob( id, tax,
                             layout_matrix = rbind(c(1, 1, 2),
                                                   c(1, 1, 2)) )
   }

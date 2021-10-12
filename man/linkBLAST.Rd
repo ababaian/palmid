@@ -9,9 +9,9 @@ linkBLAST(header, aa.seq, label = "[BLAST]")
 \arguments{
 \item{header}{character, header for blast search}
 
-\item{label}{character, Display string["BLAST"]}
+\item{aa.seq}{character, query sequence (amino acid)}
 
-\item{seq}{character, query sequence (amino acid)}
+\item{label}{character, Display string["BLAST"]}
 }
 \value{
 character, html link for click to search

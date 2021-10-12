@@ -6,19 +6,21 @@
 #' @return A grid-table object. Dimension standard is 800 x 600 px.
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
+#' data("waxsys.pro.df")
 #' 
-#' proTax <- PlotTaxReport( pro.df[1:50, ])
+#' proTax <- PlotTaxReport( waxsys.pro.df )
 #'
+#' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 PlotTaxReport <- function(pro.df) {
-  load.lib("ggplot")
   
   # Create tax-plot 
   PlotTspe <- PlotTaxHist( pro.df$pident, pro.df$tspe, 'species')
   PlotTfam <- PlotTaxHist( pro.df$pident, pro.df$tfam, 'family')
   PlotTphy <- PlotTaxHist( pro.df$pident, pro.df$tphy, 'phylum')
   
-  PalmTax  <- arrangeGrob( PlotTspe, PlotTfam, PlotTphy,
+  PalmTax  <- gridExtra::arrangeGrob( PlotTspe, PlotTfam, PlotTphy,
                            layout_matrix = rbind(c(1, 1, 1, 1),
                                                  c(1, 1, 1, 1),
                                                  c(2, 2, 3, 3),

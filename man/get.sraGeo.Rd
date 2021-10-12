@@ -22,7 +22,7 @@ data.frame, lon and lat numeric vectors
 Retrieve the geo_coordinates for a set of SRA `run_id`
 }
 \examples{
-palm.geo   <- get.sraGeo(palm.sras, con)
+#palm.geo   <- get.sraGeo(palm.sras, con)
 
 }
 \keyword{Serratus}

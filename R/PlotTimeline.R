@@ -2,18 +2,19 @@
 #' Create a timeline of 
 #' 
 #' @param run_ids     character, vector of sra run_ids
-#' @param sra.date POSIXct, set of dates
+#' @param sra.dates POSIXct, set of dates
 #' @param con      pq-connection, use SerratusConnect()
 #' @return ggplot2, timeline of SRA load dates
 #' @keywords palmid sql timeline
 #' @examples
-#' sc2.timeline <- PlotTimeline(sra.date)
-#' plot(sc2.timeline)
-#' 
+#' #sc2.timeline <- PlotTimeline(sra.date)
+#' #plot(sc2.timeline)
+#'
+#' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 # Retrieve date from input of sra run_ids
 PlotTimeline <- function(run_ids = NULL, sra.dates = NULL, con = SerratusConnect()){
-  load.lib('ggplot')
   
   if ( is.null(run_ids) & is.null(sra.dates) ){
     stop("One of 'run_ids' or 'sra.dates' needs to be set")

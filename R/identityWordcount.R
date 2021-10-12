@@ -8,8 +8,8 @@
 #' @param  ntop     numeric,   return only N top words [50]
 #' @return table,   identity-count table with 100% - 20% standard
 #' @keywords palmid wordcloud plot
-#' @examples
 #'
+#' @import dplyr ggplot2
 #' @export
 identityWordcount <- function(orgn.df, ntop = 50){
   # Standardize wordcount to fixed-rank values

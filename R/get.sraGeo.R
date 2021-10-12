@@ -9,11 +9,14 @@
 #' @return data.frame, lon and lat numeric vectors
 #' @keywords palmid Serratus geo
 #' @examples
-#' palm.geo   <- get.sraGeo(palm.sras, con)
+#' #palm.geo   <- get.sraGeo(palm.sras, con)
 #' 
+#' @import RPostgreSQL
+#' @import dplyr ggplot2
 #' @export
 get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALSE ) {
-  load.lib('sql')
+  # Bind Local Variables
+  biosample_id <- coordinate_x <- coordinate_y <- NULL
   
   if ( is.null(run_ids) & is.null(biosample_ids)){
     stop("Input either `run_ids` or `biosamples`, not both")
@@ -28,7 +31,7 @@ get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALS
   # NOTE: WARNINGS ARE SUPPRESSED HERE
   #       This table uses `jsonb` type
   #       which is not supported by
-  #       RpostgreSQL
+  #       RPostgreSQL
   ##defWarn <- getOption("warn") 
   ##options(warn = -1) 
   

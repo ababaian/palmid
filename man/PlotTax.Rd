@@ -18,8 +18,11 @@ A histogram ggplot2
 Plot a taxonomic-classifier based histogram
 }
 \examples{
-proTax <- PlotTax(pro)
+data("waxsys.pro.df")
 
+proTax <- PlotTax(waxsys.pro.df, html = TRUE)
+
+plot(proTax)
 }
 \keyword{palmid}
 \keyword{plot}

@@ -2,7 +2,7 @@
 #' Parse an input sequence into a BLAST-able HTML link
 #' 
 #' @param header   character, header for blast search
-#' @param seq      character, query sequence (amino acid)
+#' @param aa.seq   character, query sequence (amino acid)
 #' @param label    character, Display string["BLAST"]
 #' @return character, html link for click to search
 #' @keywords palmid sql BLAST html
@@ -10,6 +10,7 @@
 #'
 #' blast.link <- linkBLAST('u1337', 'MYAASTRING', 'BLAST')
 #'
+#' @import dplyr ggplot2
 #' @export
 linkBLAST <- function(header, aa.seq, label = '[BLAST]'){
  

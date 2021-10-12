@@ -16,7 +16,9 @@ A diamond-pro data.frame object
 Reads a .pro file created by `diamond`
 }
 \examples{
-ps <- read.pro(waxsys/waxsys.pro)
+# palmDB Alignment file (.pro)
+pro.path <- system.file( "extdata", "waxsys.pro", package = 'palmid')
+pro.df <- read.pro(pro.path)
 
 }
 \keyword{diamond}

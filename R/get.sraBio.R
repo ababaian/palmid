@@ -8,11 +8,14 @@
 #' @return data.frame, run_id, biosample character vectors
 #' @keywords palmid Serratus geo
 #' @examples
-#' palm.bio   <- get.sraBio(palm.sras, con)
-#' 
+#' # palm.bio   <- get.sraBio(palm.sras, con)
+#'
+#' @import RPostgreSQL
+#' @import dplyr ggplot2
 #' @export
 get.sraBio <- function(run_ids, con, ordinal = F) {
-  load.lib('sql')
+  # Bind Local Variables
+  run <- bio_sample <- biosample_id <- coordinate_x <- coordinate_y <- NULL
   
   # get biosample field for run_id
   sra.bio <- tbl(con, 'srarun') %>%

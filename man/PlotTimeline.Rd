@@ -10,9 +10,9 @@ PlotTimeline(run_ids = NULL, sra.dates = NULL, con = SerratusConnect())
 \arguments{
 \item{run_ids}{character, vector of sra run_ids}
 
-\item{con}{pq-connection, use SerratusConnect()}
+\item{sra.dates}{POSIXct, set of dates}
 
-\item{sra.date}{POSIXct, set of dates}
+\item{con}{pq-connection, use SerratusConnect()}
 }
 \value{
 ggplot2, timeline of SRA load dates
@@ -22,8 +22,8 @@ PlotTimeline
 Create a timeline of
 }
 \examples{
-sc2.timeline <- PlotTimeline(sra.date)
-plot(sc2.timeline)
+#sc2.timeline <- PlotTimeline(sra.date)
+#plot(sc2.timeline)
 
 }
 \keyword{palmid}

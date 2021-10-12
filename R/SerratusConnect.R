@@ -8,9 +8,9 @@
 #' @examples
 #' con <- SerratusConnect()
 #'
+#' @import dplyr ggplot2
 #' @export
 SerratusConnect <- function(){
-  load.lib('sql')
 
   con <- DBI::dbConnect(
     drv = 'PostgreSQL',

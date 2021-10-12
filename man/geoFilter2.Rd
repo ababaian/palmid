@@ -23,7 +23,14 @@ This removes NA-containing rows
 }
 \examples{
 
-sra.geo.filtered <- geoFilter2(sra.geo.full)
+data("waxsys.palm.sra")
+# waxsys.palm.sra
+# -- 4159 rows
+
+waxsys.geo.filtered <- geoFilter2(waxsys.palm.sra)
+# -- 2300 rows
+
+# 2300 / 4159 SRA-libraries have associated geospatial meta-data 
 
 }
 \keyword{geo}

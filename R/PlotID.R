@@ -5,11 +5,16 @@
 #' @return A scatterplot as a ggplot2 object
 #' @keywords palmid pro plot
 #' @examples
-#' idPlot <- PlotID(pro)
+#' data("waxsys.pro.df")
+#' PlotID(waxsys.pro.df)
 #'
+#' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 PlotID <- function(pro, html = T){
-  load.lib('ggplot')
+  # Bind Local Variables
+  sseqid <- matching <- label <- NULL
+  pident <- evalue <- escore <- 0
   
   # phylum, family, genus, species
   ranklvl <-  c('phylum',  'family',  'genus',   'species')

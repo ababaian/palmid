@@ -4,11 +4,17 @@
 #' @return A gene-diagram as a ggplot2 object
 #' @keywords palmid plot
 #' @examples
-#' pp.diagram <- PlotPP(ps)
+#' data("waxsys.palmprint")
+#' 
+#' palmprint.diagram <- PlotPP(waxsys.palmprint)
+#' 
+#' plot(palmprint.diagram)
 #'
+#' @import dplyr ggplot2
 #' @export
 PlotPP <- function(ps){
-  load.lib('ggplot')
+  # Bind Local Variables
+  segstrt <- segend <- segment <- NULL
 
   # plot variables
   pp.col <- c('red', 'gray50', 'green', 'gray50', 'blue')

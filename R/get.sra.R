@@ -10,12 +10,18 @@
 #' @return character, de-duplicated run_ids with a potential match for `palm_ids`
 #' @keywords palmid Serratus palmdb sOTU
 #' @examples
-#' palm.sra   <- get.sra(palm.group, con)
+#' palmid_of_interest <- c('u1337')
+#' con <- SerratusConnect()
 #' 
+#' palm.sra   <- get.sra(palmid_of_interest, con)
+#' 
+#' @import RPostgreSQL
+#' @import dplyr ggplot2
 #' @export
 get.sra <- function(palm_ids, con,
                     ret_df = FALSE, ret_contig.df = FALSE, qc = TRUE) {
-  load.lib('sql')
+  # Bind Local Variables
+  run <- bio_sample <- palm_id <- qc_pass <- NULL
   
   if (qc){
     # get contigs containing palm_ids WITH QC

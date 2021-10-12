@@ -22,8 +22,7 @@ Conversion between run_ids and geo objects often contain NA/NULL values
 This removes NA-containing rows
 }
 \examples{
-
-sra.geo.filtered <- geoFilter(sra.geo.full)
+# NULL
 
 }
 \keyword{geo}

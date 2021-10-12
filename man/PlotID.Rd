@@ -18,7 +18,8 @@ A scatterplot as a ggplot2 object
 Plot Percent-identity vs. E-value of a pro file
 }
 \examples{
-idPlot <- PlotID(pro)
+data("waxsys.pro.df")
+PlotID(waxsys.pro.df)
 
 }
 \keyword{palmid}

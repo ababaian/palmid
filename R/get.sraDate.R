@@ -9,12 +9,15 @@
 #' @return POSIXct, date object vector
 #' @keywords palmid Serratus timeline
 #' @examples
-#' palm.date   <- get.sraDate(palm.group, con)
-#' 
+#' #palm.date   <- get.sraDate(palm.group, con)
+#'
+#' @import RPostgreSQL
+#' @import dplyr ggplot2
 #' @export
 # Retrieve date from input of sra run_ids
 get.sraDate <- function(run_ids, con, ordinal = FALSE, as.df = FALSE) {
-  load.lib('sql')
+  # Bind Local Variables
+  run <- load_date <- NULL
   
   # get contigs containing palm_ids
   sra.date <- tbl(con, 'srarun') %>%

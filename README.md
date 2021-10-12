@@ -186,7 +186,7 @@ FQGDISGWDTRVSEYELEWEQRTLVERAQTEGHKRAIMTQYEC-YRNPIIKM--PQQGG---REVWLSGRGQRMSGTNVT
 
 ### 3) Cross-analysis to SRA metadata
 
-Palmprints matching the input-sequence (upto a threshold) are cross-referneced against all processed SRA sequencing libraries. Geo-spatial data (when available) and timeline of the matching sequencing runs are reported.
+Palmprints matching the input-sequence (upto a threshold) are cross-referenced against all processed SRA sequencing libraries. Geo-spatial data (when available) and timeline of the matching sequencing runs are reported.
 
 `data/waxsys_geo.png`
 

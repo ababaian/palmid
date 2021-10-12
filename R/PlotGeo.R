@@ -7,12 +7,33 @@
 #' @return A grid-table object. Dimension standard is 800 x 600 px.
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
-#' 
-#' geoSRA <- PlotGeoReport( XXX )
+#' NULL 
 #'
+#' @import dplyr ggplot2
 #' @export
 PlotGeo <- function(run_ids, con = SerratusConnect()){
-  load.lib("geo")
+  
+  if (!requireNamespace("sf", quietly = TRUE)) {
+    stop("The R Packages 'sf' and 'rnaturalearth' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
+         call. = FALSE)
+  }
+  if (!requireNamespace("rnaturalearth", quietly = TRUE)) {
+    stop("The R Packages 'sf' and 'rnaturalearth' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
+         call. = FALSE)
+  }
+  if (!requireNamespace("rnaturalearthdata", quietly = TRUE)) {
+    stop("The R Packages 'sf' and 'rnaturalearthdata' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
+         call. = FALSE)
+  }
+  
+  # Bind local variables
+  lng <- lat <- NULL
   
   # Count unique input run_ids
   run_ids <- unique(run_ids)
@@ -27,7 +48,7 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
   # Static (sf) Version ---------------------------------
   
   # biosample_id --> geo_coordinates.df (and filter)
-  pp.geo <- get.sraGeo(palm.usra, con = con)
+  pp.geo <- get.sraGeo(biosample_ids = pp.bs, con = con)
   pp.geo <- geoFilter(pp.geo, wobble = F)
     n.geo  <- length(pp.geo[,1])
     nn.stat <- paste0("geo-data for ", n.geo, " / ", n.sra," runs retrieved")
@@ -38,7 +59,7 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
   rdrp_col <- rdrp_lite
   
   # Plot Worldmap
-  world <- ne_countries(scale = "medium", returnclass = "sf")
+  world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
   ggplot() + geom_sf(data = world) + theme_bw()
   
   # Overlay worldmap with hex plot and summary stats

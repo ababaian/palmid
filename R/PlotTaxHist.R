@@ -6,12 +6,20 @@
 #' @return A histogram as a ggplot2 object
 #' @keywords palmid taxonomy pro plot
 #' @examples
-#' taxHist <- PlotTaxHist( pro.df$pident, pro.df$tax_family, 'family')
+#' 
+#' data("waxsys.pro.df")
+#' 
+#' taxHist <- PlotTaxHist(pro.pident = waxsys.pro.df$pident,
+#'                        pro.tax    = waxsys.pro.df$tfam,
+#'                        rank       = 'family')
 #'
+#' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
-  load.lib('ggplot')
-
+  # Bind Local Variables
+  pident <- tax <- NULL
+  
   # Remform dataframe for plotting
   repro <- data.frame( pident = pro.pident,
                        tax    = pro.tax)
@@ -33,7 +41,7 @@ PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
   
   if ( ntax >= 10 ){
     # Use rainbow for >10
-    ncolr <- rainbow(ntax)
+    ncolr <- grDevices::rainbow(ntax)
     nlegend <- theme( legend.position = "right")
   } else {
     # Use Viridis for <10

@@ -5,12 +5,15 @@
 #' @return A plotly map
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
-#' 
-#' geoSRA <- PlotGeo2( palm.sra )
+#' # Waxsystermes example data
+#' data("waxsys.palm.sra")
+#' geoSRA <- PlotGeo2( waxsys.palm.sra )
 #'
+#' @import leaflet htmltools
+#' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 PlotGeo2 <- function(palm.sra) {
-  load.lib("geo2")
   n.sra  <- length(unique( palm.sra$run_id ))
   
   # HTMLwidget (leaflet) Version ------------------------
@@ -23,7 +26,7 @@ PlotGeo2 <- function(palm.sra) {
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
   #rankcols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")
   rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
-  ranksize <- c(2, 3, 5, 8)
+  ranksize <- c(2, 3, 4, 6)
   
   palm.sra$rank <- ranklvl[1]
   palm.sra$colr <- rankcols[1]
@@ -38,7 +41,7 @@ PlotGeo2 <- function(palm.sra) {
   palm.sra$size[palm.sra$pident >= 70] <- ranksize[3]
   
   palm.sra$rank[palm.sra$pident >= 90] <- ranklvl[4]
-  palm.sra$colr[palm.sra$pident >= 90] <- ranklvl[4]
+  palm.sra$colr[palm.sra$pident >= 90] <- rankcols[4]
   palm.sra$size[palm.sra$pident >= 90] <- ranksize[4]
   
   # Populate pop-up labels (HTML format)

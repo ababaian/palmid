@@ -7,17 +7,15 @@
 #' @return A grid-table object. Dimension standard is 800 x 600 px.
 #' @keywords palmid sql geo timeline Serratus Tantalus
 #' @examples
-#' 
-#' geoSRA <- PlotGeoReport( run_ids, con )
+#' #geoSRA <- PlotGeoReport( run_ids = sras, con )
 #'
+#' @import dplyr ggplot2
 #' @export
 PlotGeoReport <- function(run_ids, con = SerratusConnect()) {
-  load.lib("geo")
+  geo      <- ggplotify::as.grob(PlotGeo( run_ids, con))
+  timeline <- ggplotify::as.grob(PlotTimeline( run_ids, con))
   
-  geo      <- as.grob(PlotGeo( run_ids, con))
-  timeline <- as.grob(PlotTimeline( run_ids, con))
-  
-  GeoTime  <- arrangeGrob( geo, timeline,
+  GeoTime  <- gridExtra::arrangeGrob( geo, timeline,
                            layout_matrix = rbind(c(1, 1),
                                                  c(1, 1),
                                                  c(1, 1),

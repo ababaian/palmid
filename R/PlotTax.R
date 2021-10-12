@@ -5,11 +5,15 @@
 #' @return A histogram ggplot2
 #' @keywords palmid pro plot
 #' @examples
-#' proTax <- PlotTax(pro)
+#' data("waxsys.pro.df")
+#' 
+#' proTax <- PlotTax(waxsys.pro.df, html = TRUE)
 #'
+#' plot(proTax)
+#' @import viridisLite
+#' @import dplyr ggplot2
 #' @export
 PlotTax <- function(pro, html = T){
-  load.lib('ggplot')
 
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
   rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")

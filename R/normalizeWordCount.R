@@ -8,9 +8,9 @@
 #' @return table, frequency-count table
 #' @keywords palmid wordcloud plot
 #' @examples
-#' # Desc
-#' function_name( var1 = x, var2 = T)
+#' NULL
 #'
+#' @import dplyr ggplot2
 #' @export
 normalizeWordcount <- function(words, ntop = 50, logTwo = F){
   # Normalize wordcount to shared percentage of all libraries

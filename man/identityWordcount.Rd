@@ -19,9 +19,6 @@ Create frequency-count table from a set of characters
 which are assigned a standardized rank-order scores
 from 10.0 to 1.0.
 }
-\examples{
-
-}
 \keyword{palmid}
 \keyword{plot}
 \keyword{wordcloud}

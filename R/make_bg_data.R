@@ -3,15 +3,19 @@
 #' Standard approach is to use palmDB 
 #' @param fev.path Path to multiple fev file
 #' @param dataset.id Name for output dataset.
-#' @return NULL: will write an Rdata file to data/<fev.path>.Rdata
+#' @return NULL: will write an RData file to data/<fev.path>.RData
 #' @keywords palmid palmdb palmprints
 #' @examples
-#' # Download palmDB to make background set on
-#' system("git clone https://github.com/rcedgar/palmdb.git")
-#' # Generate FEV with palmscan
-#' system("palmscan -search_pp palmdb/2021-03-02/otu_centroids.fa -all -rdrp -fevout data/palmdb210302.fev")
-#' # Create R object (data.frame)
-#' make_bg_data(data/palmdb210302.fev, dataset.it = 'palmdb')
+#' ## Download palmDB to make background set on
+#' # system("git clone https://github.com/rcedgar/palmdb.git")
+#' 
+#' ## Generate FEV with palmscan
+#' # system("palmscan -search_pp palmdb/2021-03-02/otu_centroids.fa \
+#' #         -all -rdrp -fevout data/palmdb210302.fev")
+#' ## Create R object (data.frame)
+#' # make_bg_data(data/palmdb210302.fev, dataset.it = 'palmdb')
+#' 
+#' @import dplyr ggplot2
 #' @export
 make_bg_data <- function(fev.path, dataset.id = NULL) {
   # Read a multiple-FEV file from palmscan

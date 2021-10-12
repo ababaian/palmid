@@ -31,19 +31,20 @@ or the set of all children `palm_id` within an species/sOTU
 # 
 
 # Retrieve the parent sOTU for an input of palm_ids
-get.sOTU(c('u1','u2',u4'), con, get_childs = F)
-# -- returns c('u3',u4')
+# get.sOTU(c('u1','u2',u4'), con, get_childs = F)
+# -- returns c('u3','u4')
 
 # Return an ordinal list of sOTU for iput
-get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
-# -- returns c('u3', u4', 'u3', 'u3')
+# get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
+# -- returns c('u3', 'u4', 'u3', 'u3')
 
 # Return all children palm_id within an sOTU
-get.sOTU(c('u2'), con, get_childs = T)
+# get.sOTU(c('u2'), con, get_childs = T)
 # -- returns c('u1', u2', 'u3')
 
-
-
+con <- SerratusConnect()
+get.sOTU(c('u1337'), con, get_childs = TRUE)
+ 
 }
 \keyword{Serratus}
 \keyword{palmdb}

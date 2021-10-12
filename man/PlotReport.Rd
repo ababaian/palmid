@@ -18,7 +18,11 @@ A grid-table object. Dimension standard is 800 x 400 px.
 A wrapper for palmid Plot* functions to create a standard "report"
 }
 \examples{
-ppRep <- PlotReport(pp, pp.bg)
+data("waxsys.palmprint")
+data("palmdb")
+
+ppRep <- PlotReport(waxsys.palmprint, palmdb)
+
 plot(ppRep)
 }
 \keyword{fev}

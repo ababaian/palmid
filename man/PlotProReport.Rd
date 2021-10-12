@@ -18,7 +18,10 @@ A grid-table object. Dimension standard is 800 x 400 px.
 Create PlotID and PlotTax grid-plot
 }
 \examples{
-proPlot <- PlotPro(pro)
+data("waxsys.pro.df")
+
+proPlot <- PlotProReport(waxsys.pro.df)
+
 plot(proPlot)
 
 }
