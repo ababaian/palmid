@@ -4,12 +4,12 @@
 \alias{PlotTax}
 \title{Plot a taxonomic-classifier based histogram}
 \usage{
-PlotTax(pro, html = T)
+PlotTax(pro, html = TRUE)
 }
 \arguments{
 \item{pro}{data.frame, A diamond-aligned pro file}
 
-\item{html}{boolean, include additional parsing for htmlwidget display}
+\item{html}{boolean, include additional parsing for htmlwidget display [TRUE]}
 }
 \value{
 A histogram ggplot2

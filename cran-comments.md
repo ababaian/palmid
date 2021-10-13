@@ -2,6 +2,8 @@
 
 ## Previous cran-comments
 
+> Wrap the lengthy example in \donttest{}, please.
+...
 > Use standard evaluation whenever possible.
 > If you use non standard evaluation e.g. with asome of the (un)tidyverse packages, declare these via globalVariables(), see its help page.
 

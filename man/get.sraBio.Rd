@@ -4,24 +4,27 @@
 \alias{get.sraBio}
 \title{get.sraBio}
 \usage{
-get.sraBio(run_ids, con, ordinal = F)
+get.sraBio(run_ids, con, ordinal = FALSE)
 }
 \arguments{
-\item{run_ids}{character, SRA `run_id`}
+\item{run_ids}{character, SRA 'run_id'}
 
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{ordinal}{boolean, return `run_ids` ordered vector [F]}
+\item{ordinal}{boolean, return 'run_ids' ordered vector [FALSE]}
 }
 \value{
 data.frame, run_id, biosample character vectors
 }
 \description{
-Retrieve the "BioSample" field for a set of SRA `run_id`
+Retrieve the "BioSample" field for a set of SRA 'run_id'
 }
 \examples{
-# palm.bio   <- get.sraBio(palm.sras, con)
-
+\donttest{
+# SRA Library of interest
+con <- SerratusConnect()
+library.bioSample   <- get.sraBio( 'SRR9968562' , con)
+}
 }
 \keyword{Serratus}
 \keyword{geo}

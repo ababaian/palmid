@@ -2,7 +2,7 @@
 % Please edit documentation in R/read.fev.R
 \name{read.fev}
 \alias{read.fev}
-\title{Reads a .fev file created by `palmscan`}
+\title{Reads a .fev file created by 'palmscan'}
 \usage{
 read.fev(fev.path, FIRST = FALSE)
 }
@@ -15,12 +15,12 @@ read.fev(fev.path, FIRST = FALSE)
 A palmscan data.frame object
 }
 \description{
-Reads a .fev file created by `palmscan`
+Reads a .fev file created by 'palmscan'
 }
 \examples{
 
 # palmscan fev file
-ps.fev.path <- system.file( "extdata", "waxsys.fev", package = 'palmid')
+ps.fev.path <- system.file( "extdata", "waxsys.fev", package = "palmid")
 palmprint <- read.fev(ps.fev.path, FIRST = TRUE)
 
 }

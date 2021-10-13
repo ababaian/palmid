@@ -2,7 +2,7 @@
 % Please edit documentation in R/PlotTaxReport.R
 \name{PlotTaxReport}
 \alias{PlotTaxReport}
-\title{A multi-plot wrapper to convert a list of SRA `run_ids` into
+\title{A multi-plot wrapper to convert a list of SRA 'run_ids' into
 a geographic world-map and timeline.}
 \usage{
 PlotTaxReport(pro.df)
@@ -14,7 +14,7 @@ PlotTaxReport(pro.df)
 A grid-table object. Dimension standard is 800 x 600 px.
 }
 \description{
-A multi-plot wrapper to convert a list of SRA `run_ids` into
+A multi-plot wrapper to convert a list of SRA 'run_ids' into
 a geographic world-map and timeline.
 }
 \examples{

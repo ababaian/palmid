@@ -5,14 +5,14 @@
 #' against PalmDB.
 #'
 #'#' \itemize{
-#'   \item qseqid. Query or input sequence name ('SRR9968562_waxsystermes_virus_microassembly')
+#'   \item qseqid. Query or input sequence name ("SRR9968562_waxsystermes_virus_microassembly")
 #'   \item qstart. Coordinate of alignment start, 1 based
 #'   \item qend. Coordinate of alignment end, 1 based
-#'   \item qlen. Length of aligned sequence on query 
+#'   \item qlen. Length of aligned sequence on query
 #'   \item sseqid. Subject (palmDB) sequence identifier, sOTU used.
 #'   \item sstart. Coordinate of alignment start, 1 based
 #'   \item send. Coordinate of alignment end, 1 based
-#'   \item slen. Length of aligned sequence on query 
+#'   \item slen. Length of aligned sequence on query
 #'   \item pident. Percent AA-identity between query and subject. (0--100)
 #'   \item evalue. Expectance value for alignment
 #'   \item cigar. CIGAR alignment string for query alignment

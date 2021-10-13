@@ -5,12 +5,12 @@
 \title{Conversion between run_ids and geo objects often contain NA/NULL values
 This removes NA-containing rows}
 \usage{
-geoFilter2(palm.sra, wobble = F, wradius = 0.005)
+geoFilter2(palm.sra, wobble = FALSE, wradius = 0.005)
 }
 \arguments{
 \item{palm.sra}{data.frame, output df from get.sraGeo()}
 
-\item{wobble}{boolean, add a wobble to each point to prevent overplotting [T]}
+\item{wobble}{boolean, add a wobble to each point to prevent overplotting [FALSE]}
 
 \item{wradius}{numeric, maximum magnitude of wobble [0.005]}
 }
@@ -30,7 +30,7 @@ data("waxsys.palm.sra")
 waxsys.geo.filtered <- geoFilter2(waxsys.palm.sra)
 # -- 2300 rows
 
-# 2300 / 4159 SRA-libraries have associated geospatial meta-data 
+# 2300 / 4159 SRA-libraries have associated geospatial meta-data
 
 }
 \keyword{geo}
