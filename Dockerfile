@@ -15,9 +15,10 @@ FROM amazonlinux:2 AS serratus-base
 ## Push to dockerhub
 # sudo docker login
 # 
-# sudo docker build \
+# sudo docker build --no-cache \
 #  -t serratusbio/palmid \
-#  -t serratusbio/palmid:0.0.1 \
+#  -t serratusbio/palmid:0.0.3 \
+#  -t serratusbio/palmid:latest \
 #  -t palmid:latest .
 #
 # sudo docker push serratusbio/palmid
@@ -93,24 +94,47 @@ RUN yum -y install gcc make \
     ncurses-devel
 
 # Python3
-RUN yum -y install python3 python3-devel
-RUN alias python=python3
-RUN curl -O https://bootstrap.pypa.io/get-pip.py &&\
-    python3 get-pip.py &&\
-    rm get-pip.py
+RUN yum -y install python3 python3-devel &&\
+  alias python=python3 &&\
+  curl -O https://bootstrap.pypa.io/get-pip.py &&\
+  python3 get-pip.py &&\
+  rm get-pip.py
 
 # AWS S3
-RUN pip install boto3 awscli
-RUN yum -y install jq
+RUN pip install boto3 awscli &&\
+  yum -y install jq
 
 # R package dependencies
-RUN yum -y install libxml2-devel postgresql-devel
-
-# libgit2-dev required for DT
-# 'gert', 'gh', 'jsonlite'
-
-# pandoc for RMarkdown
-RUN wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz &&\
+# PostgreSQL
+# Leaflet
+# RMarkdown
+RUN \
+  echo "PostgreSQL" &&\
+  yum -y install libxml2-devel postgresql-devel &&\
+echo "Leaflet" &&\
+  yum install -y gcc-c++.x86_64 cpp.x86_64 sqlite-devel.x86_64 libtiff.x86_64 cmake3.x86_64 &&\
+  wget https://download.osgeo.org/geos/geos-3.9.1.tar.bz2 &&\
+  tar -xvf geos-3.9.1.tar.bz2 &&\
+  cd geos-3.9.1 &&\
+  ./configure --libdir=/usr/lib64 &&\
+  sudo make &&\
+  sudo make install &&\
+  wget https://download.osgeo.org/proj/proj-6.1.1.tar.gz &&\
+  tar -xvf proj-6.1.1.tar.gz &&\
+  cd proj-6.1.1 &&\
+  ./configure --libdir=/usr/lib64 &&\
+  sudo make &&\
+  sudo make install &&\
+  cd .. && rm -rf proj-* &&\
+  wget https://github.com/OSGeo/gdal/releases/download/v3.2.1/gdal-3.2.1.tar.gz &&\
+  tar -xvf gdal-3.2.1.tar.gz &&\
+  cd gdal-3.2.1 &&\
+  ./configure --libdir=/usr/lib64 --with-proj=/usr/local --with-geos=/usr/local &&\
+  sudo make &&\
+  sudo make install &&\
+  cd .. && rm -rf gdal-* &&\
+echo "RMarkdown" &&\
+  wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz &&\
   tar xvzf pandoc-2.14.2-linux-amd64.tar.gz --strip-components 1 -C /usr/local &&\
   rm -rf pandoc-2.14.2*
 
@@ -132,13 +156,13 @@ RUN wget https://github.com/shenwei356/seqkit/releases/download/v${SEQKITVERSION
 #   cd samtools-${SAMTOOLSVERSION} && make && make install &&\
 #   cd .. && rm -rf samtools-${SAMTOOLSVERSION}
 
-# MUSCLE =======================================
+# MUSCLE ========================================
 RUN wget http://drive5.com/muscle/downloads"$MUSCLEVERSION"/muscle"$MUSCLEVERSION"_i86linux64.tar.gz &&\
   tar -xvf muscle* &&\
   rm muscle*.tar.gz &&\
   mv muscle* /usr/local/bin/muscle
 
-# DIAMOND ======================================
+# DIAMOND =======================================
 # RUN wget --quiet https://github.com/bbuchfink/diamond/releases/download/v"$DIAMONDVERSION"/diamond-linux64.tar.gz &&\
 #   tar -xvf diamond-linux64.tar.gz &&\
 #   rm    diamond-linux64.tar.gz &&\
@@ -169,7 +193,7 @@ RUN amazon-linux-extras install R4
 
 # R Packages ====================================
 RUN \
-  R -e 'install.packages( c("roxygen2", "devtools"), repos = "http://cran.us.r-project.org")' &&\
+  R -e 'install.packages( c("devtools"), repos = "http://cran.us.r-project.org")' &&\
   R -e 'library("devtools"); install_github("ababaian/palmid")'
 
 #==========================================================

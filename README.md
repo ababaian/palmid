@@ -35,7 +35,7 @@ encompassing three conserved catalytic motifs
 
 `palmID` is available as a free web-app at [https://serratus.io/palmid](https://serratus.io/palmid)
 
-## Install
+## Local Install
 
 `palmid` (container)
 ```bash
@@ -55,7 +55,7 @@ sudo docker build -t serratusbio/palmid:latest ./
 
 ```
 
-`palmid` (R package)
+`palmid` (R package Only)
 
 ```R
 # R (>= v4.0.3)
@@ -77,7 +77,7 @@ install.packages("rnaturalearth")
 
 ```
 
-## Usage
+## Local usage
 
 ### 0) Input
 
@@ -98,7 +98,7 @@ NVRLAANMVRAIVPRGLLPMGRAKDPWWREQPWMSTNNMIQAFNQIWEGWPPISSMKDIK
 YVGRAREQMLDST
 ```
 
-Run `palmid` workflow
+Run the containerized `palmid` workflow
 
 ```bash
 # Run palmid analysis suite
@@ -186,7 +186,7 @@ FQGDISGWDTRVSEYELEWEQRTLVERAQTEGHKRAIMTQYEC-YRNPIIKM--PQQGG---REVWLSGRGQRMSGTNVT
 
 ### 3) Cross-analysis to SRA metadata
 
-Palmprints matching the input-sequence (upto a threshold) are cross-referenced against all processed SRA sequencing libraries. Geo-spatial data (when available) and timeline of the matching sequencing runs are reported.
+The `palmid.Rmd` notebook performs an analysis of the detection/alignment files produced above. Palmprints matching the input-sequence are cross-referenced against all processed SRA sequencing libraries. Geo-spatial data (when available) and timeline of the matching sequencing runs are reported. A full example of the output is available [here](https://serratus.io/palmid?hash=3xample)
 
 `data/waxsys_geo.png`
 
