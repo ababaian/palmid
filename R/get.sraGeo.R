@@ -9,10 +9,10 @@
 #' @return data.frame, lon and lat numeric vectors
 #' @keywords palmid Serratus geo
 #' @examples
-#' 
+#' \donttest{
 #' con <- SerratusConnect()
-#' palm.geo   <- get.sraGeo("SRR9968562", con)
-#' 
+#' palm.geo   <- get.sraGeo(run_ids = "SRR9968562", con = con)
+#' }
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
@@ -26,7 +26,7 @@ get.sraGeo <- function(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALS
     # If run_ids are provided,
     # first convert to biosample_id
     biosample_ids <- get.sraBio(run_ids, con, ordinal = ordinal)
-    biosample_ids <- biosample_ids$biosample_id
+    biosample_ids <- as.character(biosample_ids)
   }
 
   # get geo_coordinates for biosample

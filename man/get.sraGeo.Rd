@@ -22,10 +22,10 @@ data.frame, lon and lat numeric vectors
 Retrieve the geo_coordinates for a set of SRA 'run_id'
 }
 \examples{
-
+\donttest{
 con <- SerratusConnect()
-palm.geo   <- get.sraGeo("SRR9968562", con)
-
+palm.geo   <- get.sraGeo(run_ids = "SRR9968562", con = con)
+}
 }
 \keyword{Serratus}
 \keyword{geo}

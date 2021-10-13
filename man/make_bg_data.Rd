@@ -5,12 +5,14 @@
 \title{Read a multiple-FEV file to create a background set of palmprints
 Standard approach is to use palmDB}
 \usage{
-make_bg_data(fev.path, dataset.id = NULL)
+make_bg_data(fev.path, dataset.id = NULL, return.data = TRUE)
 }
 \arguments{
 \item{fev.path}{Path to multiple fev file}
 
 \item{dataset.id}{Name for output dataset.}
+
+\item{return.data}{Boolean. Return data.frame instead of writing file [TRUE]}
 }
 \value{
 NULL: will write an RData file to data/<fev.path>.RData
@@ -23,9 +25,7 @@ Standard approach is to use palmDB
 
 #' # palmscan example fev file
 ps.fev.path <- system.file( "extdata", "waxsys.fev", package = "palmid")
-make_bg_data(fev.path = ps.fev.path, dataset.id = 'example_bg')
-
-load("data/example_bg.Rdata")
+example_bg <- make_bg_data(fev.path = ps.fev.path, dataset.id = 'example_bg')
 
 ## Documentation on Making Background Dataset from palmDB
 ##  i.e. load("palmdb")
@@ -38,7 +38,9 @@ load("data/example_bg.Rdata")
 #         -all -rdrp -fevout data/palmdb210302.fev")
 #
 ## Create R object (data.frame)
-# make_bg_data(data/palmdb210302.fev, dataset.it = "palmdb")
+# make_bg_data(fev.path = "data/palmdb210302.fev",
+#              dataset.it = "palmdb",
+#              return.data = FALSE)
 #
 # load("palmdb")
 

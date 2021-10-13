@@ -3,15 +3,14 @@
 #' Standard approach is to use palmDB
 #' @param fev.path Path to multiple fev file
 #' @param dataset.id Name for output dataset.
+#' @param return.data  Boolean. Return data.frame instead of writing file [TRUE]
 #' @return NULL: will write an RData file to data/<fev.path>.RData
 #' @keywords palmid palmdb palmprints
 #' @examples
 #' 
 #' #' # palmscan example fev file
 #' ps.fev.path <- system.file( "extdata", "waxsys.fev", package = "palmid")
-#' make_bg_data(fev.path = ps.fev.path, dataset.id = 'example_bg')
-#' 
-#' load("data/example_bg.Rdata")
+#' example_bg <- make_bg_data(fev.path = ps.fev.path, dataset.id = 'example_bg')
 #' 
 #' ## Documentation on Making Background Dataset from palmDB
 #' ##  i.e. load("palmdb")
@@ -24,13 +23,15 @@
 #' #         -all -rdrp -fevout data/palmdb210302.fev")
 #' #
 #' ## Create R object (data.frame)
-#' # make_bg_data(data/palmdb210302.fev, dataset.it = "palmdb")
+#' # make_bg_data(fev.path = "data/palmdb210302.fev",
+#' #              dataset.it = "palmdb",
+#' #              return.data = FALSE)
 #' #
 #' # load("palmdb")
 #'
 #' @import dplyr ggplot2
 #' @export
-make_bg_data <- function(fev.path, dataset.id = NULL) {
+make_bg_data <- function(fev.path, dataset.id = NULL, return.data = TRUE) {
   # Read a multiple-FEV file from palmscan
   # to create a background dataset of RdRP statistics
   # - palmprint lengths
@@ -52,8 +53,13 @@ make_bg_data <- function(fev.path, dataset.id = NULL) {
   #bg.fev <- bg.fev[, c("score", "pssm_total_score", "pp_length", "v1_length", "v2_length")]
 
   rdata.path <- paste0("data/", dataset.id, ".Rdata")
-
-  save( list = dataset.id, file = rdata.path)
   
-  return( dataset.id )
+  if (return.data){
+    return( dataset.id )
+  } else  {
+    save( list = dataset.id, file = rdata.path)
+  }
+
+  
+
 }

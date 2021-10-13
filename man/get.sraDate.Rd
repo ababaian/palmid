@@ -22,10 +22,10 @@ POSIXct, date object vector
 Retrieve the "Load_Date" for a set of SRA 'run_id'
 }
 \examples{
-
+\donttest{
 con <- SerratusConnect()
 palm.date   <- get.sraDate("SRR9968562", con)
-
+}
 }
 \keyword{Serratus}
 \keyword{palmid}

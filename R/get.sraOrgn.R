@@ -9,11 +9,11 @@
 #' @return character, string vector
 #' @keywords palmid Serratus taxonomy
 #' @examples
-#' # Retrive a single "scientific_name" 
-#' con <- SerratusConnect()
-#' palm.orgn   <- get.sraOrg('SRR9968562', con)
-#'
 #' \donttest{
+#'  # Retrive a single "scientific_name" 
+#' con <- SerratusConnect()
+#' palm.orgn   <- get.sraOrgn('SRR9968562', con)
+#'
 #' # Retrieve an ordered vector of "scientific_name"
 #' data( waxsys.palm.sra)
 #' waxsys_runs <- waxsys.palm.sra$run_id
