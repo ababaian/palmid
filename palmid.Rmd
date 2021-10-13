@@ -86,7 +86,7 @@ if (is.null(input.path)){
 
 # Output HTML Report
 output.html   <- paste0(input.path, '.html')
-save.plots    <- F # save individual plots as png
+save.plots    <- FALSE # save individual plots as png
 
 # Parameters
   id_threshold    <- 0   # Minimum AA% to retain a hit
@@ -255,8 +255,8 @@ blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
 cbind( pro.df[, c("sseqid", 'tspe', "pident", "evalue", "cigar")],
        blast.col) %>%
   DT::datatable(
-    rownames = FALSE, filter = "top", escape = F,
-    options = list(pageLength = 10, scrollX = T)
+    rownames = FALSE, filter = "top", escape = FALSE,
+    options = list(pageLength = 10, scrollX = TRUE)
   )
 
 ```

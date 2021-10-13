@@ -2,7 +2,7 @@
 % Please edit documentation in R/PlotGeoReport.R
 \name{PlotGeoReport}
 \alias{PlotGeoReport}
-\title{A multi-plot wrapper to convert a list of SRA `run_ids` into
+\title{A multi-plot wrapper to convert a list of SRA 'run_ids' into
 a geographic world-map and timeline.}
 \usage{
 PlotGeoReport(run_ids, con = SerratusConnect())
@@ -16,12 +16,8 @@ PlotGeoReport(run_ids, con = SerratusConnect())
 A grid-table object. Dimension standard is 800 x 600 px.
 }
 \description{
-A multi-plot wrapper to convert a list of SRA `run_ids` into
+A multi-plot wrapper to convert a list of SRA 'run_ids' into
 a geographic world-map and timeline.
-}
-\examples{
-#geoSRA <- PlotGeoReport( run_ids = sras, con )
-
 }
 \keyword{Serratus}
 \keyword{Tantalus}

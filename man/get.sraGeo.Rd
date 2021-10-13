@@ -7,22 +7,24 @@
 get.sraGeo(run_ids = NULL, biosample_ids = NULL, con, ordinal = FALSE)
 }
 \arguments{
-\item{run_ids}{character, SRA `run_id`}
+\item{run_ids}{character, SRA 'run_id'}
 
-\item{biosample_ids}{character, BioSample `biosample_id`}
+\item{biosample_ids}{character, BioSample 'biosample_id'}
 
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{ordinal}{boolean, return `run_ids` ordered vector [F]}
+\item{ordinal}{boolean, return 'run_ids' ordered vector [F]}
 }
 \value{
 data.frame, lon and lat numeric vectors
 }
 \description{
-Retrieve the geo_coordinates for a set of SRA `run_id`
+Retrieve the geo_coordinates for a set of SRA 'run_id'
 }
 \examples{
-#palm.geo   <- get.sraGeo(palm.sras, con)
+
+con <- SerratusConnect()
+palm.geo   <- get.sraGeo("SRR9968562", con)
 
 }
 \keyword{Serratus}

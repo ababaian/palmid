@@ -2,7 +2,7 @@
 % Please edit documentation in R/PlotDistro.R
 \name{PlotDistro}
 \alias{PlotDistro}
-\title{Plot a value relative to a background distribution from a palmprint 
+\title{Plot a value relative to a background distribution from a palmprint
   data.frame.}
 \usage{
 PlotDistro(
@@ -29,7 +29,7 @@ PlotDistro(
 A ggplot2 object
 }
 \description{
-Plot a value relative to a background distribution from a palmprint 
+Plot a value relative to a background distribution from a palmprint
   data.frame.
 }
 \examples{
@@ -37,8 +37,8 @@ Plot a value relative to a background distribution from a palmprint
 data("waxsys.palmprint")
 data("palmdb")
 
-PlotDistro( pp = waxsys.palmprint, pp.bg = palmdb, 'score', 'black')
-PlotDistro( pp = waxsys.palmprint, pp.bg = palmdb, 'pp_length', 'skyblue')
+PlotDistro( pp = waxsys.palmprint, pp.bg = palmdb, "score", "black")
+PlotDistro( pp = waxsys.palmprint, pp.bg = palmdb, "pp_length", "skyblue")
 
 }
 \keyword{fev}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/read.pro.R
 \name{read.pro}
 \alias{read.pro}
-\title{Reads a .pro file created by `diamond`}
+\title{Reads a .pro file created by 'diamond'}
 \usage{
 read.pro(pro.path)
 }
@@ -13,11 +13,11 @@ read.pro(pro.path)
 A diamond-pro data.frame object
 }
 \description{
-Reads a .pro file created by `diamond`
+Reads a .pro file created by 'diamond'
 }
 \examples{
 # palmDB Alignment file (.pro)
-pro.path <- system.file( "extdata", "waxsys.pro", package = 'palmid')
+pro.path <- system.file( "extdata", "waxsys.pro", package = "palmid")
 pro.df <- read.pro(pro.path)
 
 }
