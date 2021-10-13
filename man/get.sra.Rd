@@ -7,24 +7,24 @@
 get.sra(palm_ids, con, ret_df = FALSE, ret_contig.df = FALSE, qc = TRUE)
 }
 \arguments{
-\item{palm_ids}{character or list, set of `palm_id` to lookup in palmdb}
+\item{palm_ids}{character or list, set of 'palm_id' to lookup in palmdb}
 
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{ret_df}{boolean, return a `palm_id` `run_id`, `coverage`, `qsequence` data.frame [F]}
+\item{ret_df}{boolean, return a 'palm_id' 'run_id', 'coverage', 'qsequence' data.frame [F]}
 
 \item{ret_contig.df}{boolean, return a data.frame of matching contigs [F]}
 
 \item{qc}{boolean, require 85-percent palmprint coverage and e-value < 1e-6}
 }
 \value{
-character, de-duplicated run_ids with a potential match for `palm_ids`
+character, de-duplicated run_ids with a potential match for 'palm_ids'
 }
 \description{
-Retrieve the SRA runs containing a `palm_id`-matching contig.
+Retrieve the SRA runs containing a 'palm_id'-matching contig.
 }
 \examples{
-palmid_of_interest <- c('u1337')
+palmid_of_interest <- c("u1337")
 con <- SerratusConnect()
 
 palm.sra   <- get.sra(palmid_of_interest, con)

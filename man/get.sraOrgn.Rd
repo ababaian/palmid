@@ -4,25 +4,36 @@
 \alias{get.sraOrgn}
 \title{get.sraOrgn}
 \usage{
-get.sraOrgn(run_ids, con, ordinal = F, as.df = FALSE)
+get.sraOrgn(run_ids, con, ordinal = FALSE, as.df = FALSE)
 }
 \arguments{
-\item{run_ids}{character, SRA `run_id`}
+\item{run_ids}{character, SRA 'run_id'}
 
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{ordinal}{boolean, return `run_ids` ordered vector [F]}
+\item{ordinal}{boolean, return 'run_ids' ordered vector [FALSE]}
 
-\item{as.df}{boolean, return run_id, date data.frame [F]}
+\item{as.df}{boolean, return run_id, date data.frame [FALSE]}
 }
 \value{
 character, string vector
 }
 \description{
-Retrieve the 'scientific_name' for a set of SRA `run_id`
+Retrieve the "scientific_name" for a set of SRA 'run_id'
 }
 \examples{
-#palm.orgn   <- get.sraOrg(palm.group, con)
+\donttest{
+ # Retrive a single "scientific_name" 
+con <- SerratusConnect()
+palm.orgn   <- get.sraOrgn('SRR9968562', con)
+
+# Retrieve an ordered vector of "scientific_name"
+data( waxsys.palm.sra)
+waxsys_runs <- waxsys.palm.sra$run_id
+
+waxsys_orgn <- get.sraOrgn(waxsys_runs, con, ordinal = TRUE)
+
+}
 
 }
 \keyword{Serratus}

@@ -5,12 +5,12 @@
 \title{Conversion between run_ids and geo objects often contain NA/NULL values
 This removes NA-containing rows}
 \usage{
-geoFilter(sra.geo, wobble = F, wradius = 0.005)
+geoFilter(sra.geo, wobble = FALSE, wradius = 0.005)
 }
 \arguments{
 \item{sra.geo}{data.frame, output df from get.sraGeo()}
 
-\item{wobble}{boolean, add a wobble to each point to prevent overplotting [T]}
+\item{wobble}{boolean, add a wobble to each point to prevent overplotting [FALSE]}
 
 \item{wradius}{numeric, maximum magnitude of wobble [0.005]}
 }
@@ -20,10 +20,6 @@ data.frame
 \description{
 Conversion between run_ids and geo objects often contain NA/NULL values
 This removes NA-containing rows
-}
-\examples{
-# NULL
-
 }
 \keyword{geo}
 \keyword{palmid}

@@ -7,27 +7,27 @@
 get.tax(palm_ids, con, rank = "family", ordinal = FALSE)
 }
 \arguments{
-\item{palm_ids}{character, set of `palm_id` to lookup in palmdb}
+\item{palm_ids}{character, set of 'palm_id' to lookup in palmdb}
 
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{rank}{character, taxonomic rank to retrieve. One of 
+\item{rank}{character, taxonomic rank to retrieve. One of
 "species", "genus", "family" (Default), "phylum"}
 
-\item{ordinal}{boolean, return an ordered vector based on input `palm_ids`}
+\item{ordinal}{boolean, return an ordered vector based on input 'palm_ids'}
 }
 \value{
-character, unique `tax_id` vector (i.e. "Coronaviridae")
+character, unique 'tax_id' vector (i.e. "Coronaviridae")
 }
 \description{
-Retrieve the taxonomic identifiers for a set of `palm_id` 
+Retrieve the taxonomic identifiers for a set of 'palm_id'
 for a given rank.
 }
 \examples{
 con <- SerratusConnect()
 
 # Return species-identifiers for a set of palmprints (uxxx)
-get.tax(c('u2', 'u1337'), con, rank = 'species')
+get.tax(c("u2", "u1337"), con, rank = "species")
 
 }
 \keyword{palmdb}

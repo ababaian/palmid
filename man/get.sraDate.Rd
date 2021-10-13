@@ -7,11 +7,11 @@
 get.sraDate(run_ids, con, ordinal = FALSE, as.df = FALSE)
 }
 \arguments{
-\item{run_ids}{character, SRA `run_id`}
+\item{run_ids}{character, SRA 'run_id'}
 
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{ordinal}{boolean, return `run_ids` ordered vector [F]}
+\item{ordinal}{boolean, return 'run_ids' ordered vector [F]}
 
 \item{as.df}{boolean, return run_id, date data.frame [F]}
 }
@@ -19,11 +19,13 @@ get.sraDate(run_ids, con, ordinal = FALSE, as.df = FALSE)
 POSIXct, date object vector
 }
 \description{
-Retrieve the 'Load_Date' for a set of SRA `run_id`
+Retrieve the "Load_Date" for a set of SRA 'run_id'
 }
 \examples{
-#palm.date   <- get.sraDate(palm.group, con)
-
+\donttest{
+con <- SerratusConnect()
+palm.date   <- get.sraDate("SRR9968562", con)
+}
 }
 \keyword{Serratus}
 \keyword{palmid}

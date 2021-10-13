@@ -21,7 +21,7 @@ Parse an input sequence into a BLAST-able HTML link
 }
 \examples{
 
-blast.link <- linkBLAST('u1337', 'MYAASTRING', 'BLAST')
+blast.link <- linkBLAST("u1337", "MYAASTRING", "BLAST")
 
 }
 \keyword{BLAST}

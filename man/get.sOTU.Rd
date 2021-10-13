@@ -7,44 +7,47 @@
 get.sOTU(palm_ids, con, get_childs = FALSE, ordinal = FALSE)
 }
 \arguments{
-\item{palm_ids}{character, set of `palm_id` to lookup in palmdb}
+\item{palm_ids}{character, set of 'palm_id' to lookup in palmdb}
 
 \item{con}{pq-connection, use SerratusConnect()}
 
-\item{get_childs}{boolean, return all children `palm_id` instead of parent sOTU [F]}
+\item{get_childs}{boolean, return all children 'palm_id' instead of parent sOTU [FALSE]}
 
-\item{ordinal}{boolean, return an ordered sOTU vector based on input `palm_ids`}
+\item{ordinal}{boolean, return an ordered sOTU vector based on input 'palm_ids'}
 }
 \value{
-character, unique `palm_id` sOTU or sOTU-children
+character, unique 'palm_id' sOTU or sOTU-children
 }
 \description{
-Retrieve the parent sOTU for a `palm_id` in palmdb
-or the set of all children `palm_id` within an species/sOTU
+Retrieve the parent sOTU for a 'palm_id' in palmdb
+or the set of all children 'palm_id' within an species/sOTU
 }
 \examples{
+
+## R Code Example 
+con <- SerratusConnect()
+get.sOTU(c("u1337"), con, get_childs = TRUE)
+
+## Non-Running Example to demonstrate sOTU Relationships
 # palm_id    sOTU
 # u1         u3
 # u2         u3
 # u3         u3
 # u4         u4
-# 
 
 # Retrieve the parent sOTU for an input of palm_ids
-# get.sOTU(c('u1','u2',u4'), con, get_childs = F)
-# -- returns c('u3','u4')
+# get.sOTU(c("u1","u2",u4"), con, get_childs = FALSE)
+# -- returns c("u3","u4")
 
 # Return an ordinal list of sOTU for iput
-# get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
-# -- returns c('u3', 'u4', 'u3', 'u3')
+# get.sOTU(c("u2","u4","u2","u1"), con, ordinal = TRUE)
+# -- returns c("u3", "u4", "u3", "u3")
 
 # Return all children palm_id within an sOTU
-# get.sOTU(c('u2'), con, get_childs = T)
-# -- returns c('u1', u2', 'u3')
+# get.sOTU(c("u2"), con, get_childs = TRUE)
+# -- returns c("u1", u2", "u3")
 
-con <- SerratusConnect()
-get.sOTU(c('u1337'), con, get_childs = TRUE)
- 
+
 }
 \keyword{Serratus}
 \keyword{palmdb}

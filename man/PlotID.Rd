@@ -4,12 +4,12 @@
 \alias{PlotID}
 \title{Plot Percent-identity vs. E-value of a pro file}
 \usage{
-PlotID(pro, html = T)
+PlotID(pro, html = TRUE)
 }
 \arguments{
 \item{pro}{data.frame, A diamond-aligned pro file}
 
-\item{html}{boolean, include additional parsing for htmlwidget display}
+\item{html}{boolean, include additional parsing for htmlwidget display [TRUE]}
 }
 \value{
 A scatterplot as a ggplot2 object

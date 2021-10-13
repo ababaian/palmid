@@ -25,7 +25,7 @@ data("waxsys.pro.df")
 
 taxHist <- PlotTaxHist(pro.pident = waxsys.pro.df$pident,
                        pro.tax    = waxsys.pro.df$tfam,
-                       rank       = 'family')
+                       rank       = "family")
 
 }
 \keyword{palmid}

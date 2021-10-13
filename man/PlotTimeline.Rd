@@ -21,11 +21,6 @@ ggplot2, timeline of SRA load dates
 PlotTimeline
 Create a timeline of
 }
-\examples{
-#sc2.timeline <- PlotTimeline(sra.date)
-#plot(sc2.timeline)
-
-}
 \keyword{palmid}
 \keyword{sql}
 \keyword{timeline}

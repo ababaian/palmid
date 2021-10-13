@@ -4,12 +4,12 @@
 \alias{PlotProReport}
 \title{Create PlotID and PlotTax grid-plot}
 \usage{
-PlotProReport(pro, html = F)
+PlotProReport(pro, html = FALSE)
 }
 \arguments{
 \item{pro}{data.frame, pro.df object}
 
-\item{html}{boolean, generate htmlWidget instead of ggplot [F]}
+\item{html}{boolean, generate htmlWidget instead of ggplot [FALSE]}
 }
 \value{
 A grid-table object. Dimension standard is 800 x 400 px.
