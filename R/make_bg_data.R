@@ -6,14 +6,27 @@
 #' @return NULL: will write an RData file to data/<fev.path>.RData
 #' @keywords palmid palmdb palmprints
 #' @examples
-#' ## Download palmDB to make background set on
+#' 
+#' #' # palmscan example fev file
+#' ps.fev.path <- system.file( "extdata", "waxsys.fev", package = "palmid")
+#' make_bg_data(fev.path = ps.fev.path, dataset.id = 'example_bg')
+#' 
+#' load("data/example_bg.Rdata")
+#' 
+#' ## Documentation on Making Background Dataset from palmDB
+#' ##  i.e. load("palmdb")
+#' ## 
+#' ## Download palmDB to make background set
 #' # system("git clone https://github.com/rcedgar/palmdb.git")
-#'
-#' ## Generate FEV with palmscan
+#' #
+#' ## Generate the palmprint-FEV with palmscan
 #' # system("palmscan -search_pp palmdb/2021-03-02/otu_centroids.fa \
 #' #         -all -rdrp -fevout data/palmdb210302.fev")
+#' #
 #' ## Create R object (data.frame)
 #' # make_bg_data(data/palmdb210302.fev, dataset.it = "palmdb")
+#' #
+#' # load("palmdb")
 #'
 #' @import dplyr ggplot2
 #' @export
@@ -41,8 +54,6 @@ make_bg_data <- function(fev.path, dataset.id = NULL) {
   rdata.path <- paste0("data/", dataset.id, ".Rdata")
 
   save( list = dataset.id, file = rdata.path)
+  
+  return( dataset.id )
 }
-## Make background data-set (run once)
-#fev.path <- "R/palmdb210302.fev"
-#make_bg_data(fev.path)
-#pp.bg <- readRDS(paste0( fev.path, ".RDS") )

@@ -9,8 +9,10 @@
 #' @return data.frame, lon and lat numeric vectors
 #' @keywords palmid Serratus geo
 #' @examples
-#' #palm.geo   <- get.sraGeo(palm.sras, con)
-#'
+#' 
+#' con <- SerratusConnect()
+#' palm.geo   <- get.sraGeo("SRR9968562", con)
+#' 
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export

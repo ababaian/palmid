@@ -2,7 +2,7 @@
 #' Conversion between run_ids and geo objects often contain NA/NULL values
 #' This removes NA-containing rows
 #' @param palm.sra data.frame, output df from get.sraGeo()
-#' @param wobble   boolean, add a wobble to each point to prevent overplotting [T]
+#' @param wobble   boolean, add a wobble to each point to prevent overplotting [FALSE]
 #' @param wradius  numeric, maximum magnitude of wobble [0.005]
 #' @return modified palm.sra data.frame
 #' @keywords palmid geo
@@ -19,7 +19,7 @@
 #'
 #' @import dplyr ggplot2
 #' @export
-geoFilter2 <- function(palm.sra, wobble = F, wradius = 0.005){
+geoFilter2 <- function(palm.sra, wobble = FALSE, wradius = 0.005){
   # id, lat, lon data.frame
 
   # Remove NA columns

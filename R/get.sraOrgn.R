@@ -4,18 +4,29 @@
 #'
 #' @param run_ids character, SRA 'run_id'
 #' @param con     pq-connection, use SerratusConnect()
-#' @param ordinal boolean, return 'run_ids' ordered vector [F]
-#' @param as.df   boolean, return run_id, date data.frame [F]
+#' @param ordinal boolean, return 'run_ids' ordered vector [FALSE]
+#' @param as.df   boolean, return run_id, date data.frame [FALSE]
 #' @return character, string vector
 #' @keywords palmid Serratus taxonomy
 #' @examples
-#' #palm.orgn   <- get.sraOrg(palm.group, con)
+#' # Retrive a single "scientific_name" 
+#' con <- SerratusConnect()
+#' palm.orgn   <- get.sraOrg('SRR9968562', con)
 #'
+#' \donttest{
+#' # Retrieve an ordered vector of "scientific_name"
+#' data( waxsys.palm.sra)
+#' waxsys_runs <- waxsys.palm.sra$run_id
+#' 
+#' waxsys_orgn <- get.sraOrgn(waxsys_runs, con, ordinal = TRUE)
+#' 
+#' }
+#' 
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
 # Retrieve date from input of sra run_ids
-get.sraOrgn <- function(run_ids, con, ordinal = F, as.df = FALSE) {
+get.sraOrgn <- function(run_ids, con, ordinal = FALSE, as.df = FALSE) {
   # Bind Local Variables
   run <- scientific_name <- NULL
 

@@ -1,7 +1,7 @@
 # PlotID
 #' Plot Percent-identity vs. E-value of a pro file
 #' @param pro   data.frame, A diamond-aligned pro file
-#' @param html  boolean, include additional parsing for htmlwidget display
+#' @param html  boolean, include additional parsing for htmlwidget display [TRUE]
 #' @return A scatterplot as a ggplot2 object
 #' @keywords palmid pro plot
 #' @examples
@@ -11,7 +11,7 @@
 #' @import viridisLite
 #' @import dplyr ggplot2
 #' @export
-PlotID <- function(pro, html = T){
+PlotID <- function(pro, html = TRUE){
   # Bind Local Variables
   sseqid <- matching <- label <- NULL
   pident <- evalue <- escore <- 0
@@ -26,7 +26,7 @@ PlotID <- function(pro, html = T){
 
   # Process data for plotting
   pro$escore <- -(log10(pro$evalue))
-  pro <- pro[ order(pro$escore, decreasing = T), ]
+  pro <- pro[ order(pro$escore, decreasing = TRUE), ]
 
   # Add color highlight to hits within the same phylum
   pro$matching <- ranklvl[1]
@@ -63,12 +63,12 @@ PlotID <- function(pro, html = T){
   idPlot <- ggplot() +
     geom_point(data = pro, aes(uid=sseqid, seq=seq,
                                x=pident, y=escore, color = matching),
-                show.legend = F,
+                show.legend = FALSE,
                alpha = 0.75) +
     scale_color_manual(values = rankcols, drop = FALSE) +
     geom_text(data = pro, aes(x=pident, y=escore, label=label),
               color = c("#4D4D4D"),
-              hjust = "right", vjust = "bottom", check_overlap = T) +
+              hjust = "right", vjust = "bottom", check_overlap = TRUE) +
     geom_vline( xintercept = c(0, 45, 70, 90),
                 color = rankcols) +
     ggtitle(label = "Palmprint alignment to palmDB") +

@@ -4,15 +4,13 @@
 #'
 #' @param  words  character, description of vector [Default]
 #' @param  ntop   numeric,   return only N top words [50]
-#' @param  logTwo boolean,   apply a log2 transformation [F]
+#' @param  logTwo boolean,   apply a log2 transformation [FALSE]
 #' @return table, frequency-count table
 #' @keywords palmid wordcloud plot
-#' @examples
-#' NULL
 #'
 #' @import dplyr ggplot2
 #' @export
-normalizeWordcount <- function(words, ntop = 50, logTwo = F){
+normalizeWordcount <- function(words, ntop = 50, logTwo = FALSE){
   # Normalize wordcount to shared percentage of all libraries
   # for consistent wordcloud plotting
   # return only 'ntop' words

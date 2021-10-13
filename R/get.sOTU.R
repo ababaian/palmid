@@ -5,32 +5,35 @@
 #'
 #' @param palm_ids character, set of 'palm_id' to lookup in palmdb
 #' @param con      pq-connection, use SerratusConnect()
-#' @param get_childs boolean, return all children 'palm_id' instead of parent sOTU [F]
+#' @param get_childs boolean, return all children 'palm_id' instead of parent sOTU [FALSE]
 #' @param ordinal  boolean, return an ordered sOTU vector based on input 'palm_ids'
 #' @return character, unique 'palm_id' sOTU or sOTU-children
 #' @keywords palmid Serratus palmdb sOTU
 #' @examples
+#' 
+#' ## R Code Example 
+#' con <- SerratusConnect()
+#' get.sOTU(c("u1337"), con, get_childs = TRUE)
+#' 
+#' ## Non-Running Example to demonstrate sOTU Relationships
 #' # palm_id    sOTU
 #' # u1         u3
 #' # u2         u3
 #' # u3         u3
 #' # u4         u4
-#' #
 #'
 #' # Retrieve the parent sOTU for an input of palm_ids
-#' # get.sOTU(c("u1","u2",u4"), con, get_childs = F)
+#' # get.sOTU(c("u1","u2",u4"), con, get_childs = FALSE)
 #' # -- returns c("u3","u4")
 #'
 #' # Return an ordinal list of sOTU for iput
-#' # get.sOTU(c("u2","u4","u2","u1"), con, ordinal = T)
+#' # get.sOTU(c("u2","u4","u2","u1"), con, ordinal = TRUE)
 #' # -- returns c("u3", "u4", "u3", "u3")
 #'
 #' # Return all children palm_id within an sOTU
-#' # get.sOTU(c("u2"), con, get_childs = T)
+#' # get.sOTU(c("u2"), con, get_childs = TRUE)
 #' # -- returns c("u1", u2", "u3")
 #'
-#' con <- SerratusConnect()
-#' get.sOTU(c("u1337"), con, get_childs = TRUE)
 #'
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
@@ -99,7 +102,7 @@ get.sOTU <- function(palm_ids, con, get_childs = FALSE, ordinal = FALSE) {
     if (ordinal){
       # Left join on palm_ids to make a unique vector
       ord.sotu <- merge(data.frame( palm_id = palm_ids), sotus,
-                        all.x = T, by ="palm_id")
+                        all.x = TRUE, by ="palm_id")
 
       # Add back in duplicates if they are present
       ord.sotu <- ord.sotu$sotu[ match(palm_ids, ord.sotu$palm_id) ]

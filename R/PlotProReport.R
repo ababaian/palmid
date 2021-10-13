@@ -1,7 +1,7 @@
 # PlotProReport
 #' Create PlotID and PlotTax grid-plot
 #' @param pro data.frame, pro.df object
-#' @param html boolean, generate htmlWidget instead of ggplot [F]
+#' @param html boolean, generate htmlWidget instead of ggplot [FALSE]
 #' @return A grid-table object. Dimension standard is 800 x 400 px.
 #' @keywords palmid pro plot
 #' @examples
@@ -14,7 +14,7 @@
 #' @import viridisLite
 #' @import dplyr ggplot2
 #' @export
-PlotProReport <- function(pro, html = F){
+PlotProReport <- function(pro, html = FALSE){
   # Bind Local Variables
   pro.df <- NULL
 
@@ -24,7 +24,7 @@ PlotProReport <- function(pro, html = F){
 
     proPlot<- plotly::subplot(pro.plot, tax.plot,
                       widths = c(0.8, 0.2),
-                      titleX = T, titleY = T) %>%
+                      titleX = TRUE, titleY = TRUE) %>%
       plotly::config(displaylogo = FALSE)
 
     return(proPlot)

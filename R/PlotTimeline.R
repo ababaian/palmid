@@ -6,9 +6,6 @@
 #' @param con      pq-connection, use SerratusConnect()
 #' @return ggplot2, timeline of SRA load dates
 #' @keywords palmid sql timeline
-#' @examples
-#' #sc2.timeline <- PlotTimeline(sra.date)
-#' #plot(sc2.timeline)
 #'
 #' @import viridisLite
 #' @import dplyr ggplot2

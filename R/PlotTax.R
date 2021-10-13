@@ -1,7 +1,7 @@
 # PlotTax
 #' Plot a taxonomic-classifier based histogram
 #' @param pro   data.frame, A diamond-aligned pro file
-#' @param html  boolean, include additional parsing for htmlwidget display
+#' @param html  boolean, include additional parsing for htmlwidget display [TRUE]
 #' @return A histogram ggplot2
 #' @keywords palmid pro plot
 #' @examples
@@ -13,7 +13,7 @@
 #' @import viridisLite
 #' @import dplyr ggplot2
 #' @export
-PlotTax <- function(pro, html = T){
+PlotTax <- function(pro, html = TRUE){
 
   ranklvl <-  c("phylum",  "family",  "genus",   "species")
   rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
@@ -46,7 +46,7 @@ PlotTax <- function(pro, html = T){
   # Bar plot of ranks
   taxPlot <- ggplot() +
     geom_col(data = tax, aes(x=rank, y=count, fill = rank),
-            show.legend = F) +
+            show.legend = FALSE) +
     scale_fill_manual(values = rankcols) +
     xlab(set.xlab) + ylab(set.ylab) +
     #add_label +

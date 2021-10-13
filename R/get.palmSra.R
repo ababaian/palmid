@@ -24,16 +24,16 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
   palm.sra <- pro.df[ , c("qseqid", "sseqid", "pident", "evalue") ]
 
   # Retrieve each parent sOTU, keep 1 best match within an sOTU
-  palm.sra$sOTU <- get.sOTU(palm.sra$sseqid, con, ordinal = T)
-    palm.sra <- palm.sra[order(palm.sra$pident, decreasing = T), ]
+  palm.sra$sOTU <- get.sOTU(palm.sra$sseqid, con, ordinal = TRUE)
+    palm.sra <- palm.sra[order(palm.sra$pident, decreasing = TRUE), ]
     palm.sra <- palm.sra[ !duplicated(palm.sra$sOTU), ]
 
   # For each parent sOTU, retrieve a list of all children palm_id
   palm.sra$child_uid  <- get.sOTU(palm.sra$sOTU, con,
-                                  get_childs = T, ordinal = T)
+                                  get_childs = TRUE, ordinal = TRUE)
 
   # For each parent OR child palm_id, retrieve matching SRA runs
-  sra.df <- get.sra(unlist(palm.sra$child_uid), con, ret_df = T)
+  sra.df <- get.sra(unlist(palm.sra$child_uid), con, ret_df = TRUE)
 
   # For each returned SRA-contig, merge-order to palm.sra
   # spagetti code incoming...
@@ -58,21 +58,21 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
                           "sOTU", "qseqid", "pident", "evalue",
                           "sra_sequence")
 
-  palm.sra <- palm.sra[ order(palm.sra$evalue, decreasing = F), ]
-  palm.sra <- palm.sra[ order(palm.sra$pident, decreasing = T), ]
+  palm.sra <- palm.sra[ order(palm.sra$evalue, decreasing = FALSE), ]
+  palm.sra <- palm.sra[ order(palm.sra$pident, decreasing = TRUE), ]
 
   # Add BioSample, Geo data to palm.sra
-  palm.sra$biosample_id <- get.sraBio(palm.sra$run_id, con, T)
+  palm.sra$biosample_id <- get.sraBio(palm.sra$run_id, con, TRUE)
 
   # Add Organism/scientific_name of sra run
-  palm.sra$scientific_name <- get.sraOrgn(palm.sra$run_id, con, T)
+  palm.sra$scientific_name <- get.sraOrgn(palm.sra$run_id, con, TRUE)
 
   # Add time (release date) to palm.sra
-  palm.sra$date <- get.sraDate(palm.sra$run_id, con, T)
+  palm.sra$date <- get.sraDate(palm.sra$run_id, con, TRUE)
 
   # Add geo-data if available to palm.sra
   palm.geo.tmp <- get.sraGeo( run_ids = NULL,
-                              biosample_ids = palm.sra$biosample_id, con = con, ordinal =  T)
+                              biosample_ids = palm.sra$biosample_id, con = con, ordinal =  TRUE)
 
   if (!all(palm.geo.tmp$biosample_id == palm.sra$biosample_id)){
     stop("Error in geo lookup.")

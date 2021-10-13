@@ -9,7 +9,9 @@
 #' @return POSIXct, date object vector
 #' @keywords palmid Serratus timeline
 #' @examples
-#' #palm.date   <- get.sraDate(palm.group, con)
+#' 
+#' con <- SerratusConnect()
+#' palm.date   <- get.sraDate("SRR9968562", con)
 #'
 #' @import RPostgreSQL
 #' @import dplyr ggplot2

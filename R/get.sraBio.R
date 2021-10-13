@@ -4,16 +4,19 @@
 #'
 #' @param run_ids character, SRA 'run_id'
 #' @param con     pq-connection, use SerratusConnect()
-#' @param ordinal boolean, return 'run_ids' ordered vector [F]
+#' @param ordinal boolean, return 'run_ids' ordered vector [FALSE]
 #' @return data.frame, run_id, biosample character vectors
 #' @keywords palmid Serratus geo
 #' @examples
-#' # palm.bio   <- get.sraBio(palm.sras, con)
-#'
+#' \donttest{
+#' # SRA Library of interest
+#' con <- SerratusConnect()
+#' library.bioSample   <- get.sraBio( 'SRR9968562' , con)
+#' }
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
-get.sraBio <- function(run_ids, con, ordinal = F) {
+get.sraBio <- function(run_ids, con, ordinal = FALSE) {
   # Bind Local Variables
   run <- bio_sample <- biosample_id <- coordinate_x <- coordinate_y <- NULL
 
@@ -29,7 +32,7 @@ get.sraBio <- function(run_ids, con, ordinal = F) {
   if (ordinal){
     # Left join on palm_ids to make a unique vector
     ord.bio <- data.frame( run_id = run_ids )
-    ord.bio <- merge(ord.bio, sra.bio, all.x = T)
+    ord.bio <- merge(ord.bio, sra.bio, all.x = TRUE)
     ord.bio <- ord.bio[ match(run_ids, ord.bio$run_id), ]
 
     return(ord.bio$biosample_id)
