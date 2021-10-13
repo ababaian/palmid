@@ -2,6 +2,25 @@
 
 ## Previous cran-comments
 
+> Thanks, Please use only undirected quotation marks in the description text. e.g. `palmscan` --> 'palmscan'
+
+Updated code to double-quotes only and documentation contains undirected quotation marks.
+
+> Please write TRUE and FALSE instead of T and F. (Please don't use 'T' or'F' as vector names.), e.g.:
+>  man/geoFilter.Rd, man/geoFilter2.Rd, man/get.sraBio.Rd, man/get.sraOrgn.Rd, man/normalizeWordcount.Rd, man/PlotID.Rd, man/PlotOrgn.Rd, man/PlotProReport.Rd, man/PlotTax.Rd
+
+Updated to use of full 'TRUE' or 'FALSE' throughout code and documentation.
+
+> Some code lines in examples are commented out. Please never do that. Ideally find toy examples that can be regularly executed and checked. Lengthy examples (> 5 sec), can be wrapped in \donttest. Warning: Examples in comments in:
+> get.sOTU.Rd, get.sraBio.Rd, get.sraDate.Rd, get.sraGeo.Rd, get.sraOrgn.Rd, make_bg_data.Rd, PlotGeoReport.Rd, PlotTimeline.Rd, SerratusConnect.Rd, waxsys.palm.sra.Rd, waxsys.pro.df.Rd
+
+I've updated the toy examples and made more donttest{} examples where they are needed. Please note, waxsys.palm.sra.Rd and waxsys.palm.sra.Rd are dataest description files and do not contain examples.
+
+> Please fix and resubmit.
+<3
+
+## Previous cran-comments
+
 > Wrap the lengthy example in \donttest{}, please.
 ...
 > Use standard evaluation whenever possible.
@@ -54,8 +73,7 @@ N  checking R code for possible problems (8.3s)
 ```
 N  Flavor: r-devel-windows-ix86+x86_64
    Check: examples, Result: NOTE
-      Examples with CPU (user + system) or elapsed time > 10s
-              user system elapsed
+      Examples with CPU (user + system) or elapsed time > 10s,        user system elapsed
   get.palmSra 4.57   0.17      32
 
 ```
