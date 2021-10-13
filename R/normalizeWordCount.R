@@ -15,7 +15,7 @@
 normalizeWordcount <- function(words, ntop = 50, logTwo = F){
   # Normalize wordcount to shared percentage of all libraries
   # for consistent wordcloud plotting
-  # return only `ntop` words
+  # return only 'ntop' words
   word.tbl <- table(scientific_name = words[1])
   word.tbl <- word.tbl[ order(word.tbl, decreasing = T) ]
   ntotal <- sum(word.tbl)

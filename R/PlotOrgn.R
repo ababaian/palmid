@@ -45,12 +45,12 @@ PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = T){
   if (freq){
     # Transform to a standardized table for consistent plotting
     ntop <- 50
-    otitle <- 'Sequencing Library Associated Organisms -- sra frequency'
+    otitle <- "Sequencing Library Associated Organisms -- sra frequency"
     orgn.df <- data.frame( standardizeWordcount(orgn.df, ntop) )
   } else {
     # Transform to an identity-standard table for consistency
     ntop <- 50
-    otitle <- 'Sequencing Library Associated Organisms -- %id match'
+    otitle <- "Sequencing Library Associated Organisms -- %id match"
     orgn.df <- identityWordcount(orgn.df, ntop)
   }
 

@@ -1,13 +1,13 @@
 #' get.sOTU
 #'
-#' Retrieve the parent sOTU for a `palm_id` in palmdb
-#' or the set of all children `palm_id` within an species/sOTU
+#' Retrieve the parent sOTU for a 'palm_id' in palmdb
+#' or the set of all children 'palm_id' within an species/sOTU
 #'
-#' @param palm_ids character, set of `palm_id` to lookup in palmdb
+#' @param palm_ids character, set of 'palm_id' to lookup in palmdb
 #' @param con      pq-connection, use SerratusConnect()
-#' @param get_childs boolean, return all children `palm_id` instead of parent sOTU [F]
-#' @param ordinal  boolean, return an ordered sOTU vector based on input `palm_ids`
-#' @return character, unique `palm_id` sOTU or sOTU-children
+#' @param get_childs boolean, return all children 'palm_id' instead of parent sOTU [F]
+#' @param ordinal  boolean, return an ordered sOTU vector based on input 'palm_ids'
+#' @return character, unique 'palm_id' sOTU or sOTU-children
 #' @keywords palmid Serratus palmdb sOTU
 #' @examples
 #' # palm_id    sOTU
@@ -18,19 +18,19 @@
 #' #
 #'
 #' # Retrieve the parent sOTU for an input of palm_ids
-#' # get.sOTU(c('u1','u2',u4'), con, get_childs = F)
-#' # -- returns c('u3','u4')
+#' # get.sOTU(c("u1","u2",u4"), con, get_childs = F)
+#' # -- returns c("u3","u4")
 #'
 #' # Return an ordinal list of sOTU for iput
-#' # get.sOTU(c('u2','u4','u2','u1'), con, ordinal = T)
-#' # -- returns c('u3', 'u4', 'u3', 'u3')
+#' # get.sOTU(c("u2","u4","u2","u1"), con, ordinal = T)
+#' # -- returns c("u3", "u4", "u3", "u3")
 #'
 #' # Return all children palm_id within an sOTU
-#' # get.sOTU(c('u2'), con, get_childs = T)
-#' # -- returns c('u1', u2', 'u3')
+#' # get.sOTU(c("u2"), con, get_childs = T)
+#' # -- returns c("u1", u2", "u3")
 #'
 #' con <- SerratusConnect()
-#' get.sOTU(c('u1337'), con, get_childs = TRUE)
+#' get.sOTU(c("u1337"), con, get_childs = TRUE)
 #'
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
@@ -41,16 +41,16 @@ get.sOTU <- function(palm_ids, con, get_childs = FALSE, ordinal = FALSE) {
   palm_id <- sotu <- NULL
 
   # Coerce palm_ids to vector
-  if (class(palm_ids) != 'character'){
+  if (class(palm_ids) != "character"){
     palm_ids <- as.character(palm_ids)
   }
 
   # get sOTU from palm_id
-  sotus <- tbl(con, 'palmdb') %>%
+  sotus <- tbl(con, "palmdb") %>%
     filter(palm_id %in% palm_ids) %>%
     select(palm_id, sotu) %>%
     as.data.frame()
-    colnames(sotus) <- c('palm_id', 'sotu')
+    colnames(sotus) <- c("palm_id", "sotu")
 
   # Bit of a sloppy check here
   if ( length(sotus$sotu) == 0 ){
@@ -63,11 +63,11 @@ get.sOTU <- function(palm_ids, con, get_childs = FALSE, ordinal = FALSE) {
     # get palm_ids from sOTU with their children
     sotu.lookup <- as.character(sotus$sotu)
 
-    child <- tbl(con, 'palmdb') %>%
+    child <- tbl(con, "palmdb") %>%
       filter(sotu %in% sotu.lookup) %>%
       select(palm_id, sotu) %>%
       as.data.frame()
-      colnames(child) <- c('child_id', 'sotu')
+      colnames(child) <- c("child_id", "sotu")
 
     # Initialize output list
     out.list <- vector("list", length(palm_ids))

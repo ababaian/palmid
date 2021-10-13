@@ -26,7 +26,7 @@ geoFilter2 <- function(palm.sra, wobble = F, wradius = 0.005){
   palm.sra <- palm.sra[ !is.na(palm.sra$lat), ]
   palm.sra <- palm.sra[ !is.na(palm.sra$lng), ]
 
-  # Retain only lat/lon if it's within worldmap coordinates
+  # Retain only lat/lon if it"s within worldmap coordinates
   palm.sra <- palm.sra[ (palm.sra$lat > -90  & palm.sra$lat < 90), ]
   palm.sra <- palm.sra[ (palm.sra$lng > -180 & palm.sra$lng < 180), ]
 

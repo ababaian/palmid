@@ -1,5 +1,5 @@
 # read.fev
-#' Reads a .fev file created by `palmscan`
+#' Reads a .fev file created by 'palmscan'
 #' @param fev.path relative system path to .fev file
 #' @param FIRST read only the first palmscan-line in .fev [FALSE]
 #' @return A palmscan data.frame object
@@ -7,7 +7,7 @@
 #' @examples
 #'
 #' # palmscan fev file
-#' ps.fev.path <- system.file( "extdata", "waxsys.fev", package = 'palmid')
+#' ps.fev.path <- system.file( "extdata", "waxsys.fev", package = "palmid")
 #' palmprint <- read.fev(ps.fev.path, FIRST = TRUE)
 #'
 #' @import dplyr ggplot2
@@ -17,7 +17,7 @@ read.fev <- function(fev.path, FIRST = FALSE) {
   fev.name <- NULL
 
   # read fev as tsv
-  fev.tsv <- utils::read.csv2(fev.path, header = F, sep = '\t',
+  fev.tsv <- utils::read.csv2(fev.path, header = F, sep = "\t",
                        stringsAsFactors = FALSE)
 
   # For single palmprint analysis, only use first palmprint
@@ -36,7 +36,7 @@ read.fev <- function(fev.path, FIRST = FALSE) {
                 "qlen",	"pp_start",	"pp_end",	"pp_length",
                 "v1_length", "v2_length",
                 "pssm_total_score", "pssm_min_score",
-                "motifs",	"super", 'group', 'comments')
+                "motifs",	"super", "group", "comments")
 
   if ( !(all( fev.cols %in% colnames(fev.df))) ) {
     print("fev.input:")

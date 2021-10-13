@@ -14,11 +14,11 @@
 identityWordcount <- function(orgn.df, ntop = 50){
   # Standardize wordcount to fixed-rank values
   # for consistent wordcloud plotting
-  # return only `ntop` words
+  # return only 'ntop' words
   # in worcloud2() use:
   #   size = 0.2, ellipticity = 0.5
 
-  # Sort by `pident`, keep highest unique scientific_name match
+  # Sort by 'pident', keep highest unique scientific_name match
   orgn.df <- orgn.df[ order(orgn.df$pident, decreasing = T), ]
   orgn.df <- orgn.df[ !duplicated(orgn.df$scientific_name), ]
 

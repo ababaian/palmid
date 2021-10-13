@@ -21,7 +21,7 @@
 get.palmSra <- function(pro.df, con = SerratusConnect()) {
 
   # Baseline rows from pro.df input
-  palm.sra <- pro.df[ , c('qseqid', 'sseqid', 'pident', 'evalue') ]
+  palm.sra <- pro.df[ , c("qseqid", "sseqid", "pident", "evalue") ]
 
   # Retrieve each parent sOTU, keep 1 best match within an sOTU
   palm.sra$sOTU <- get.sOTU(palm.sra$sseqid, con, ordinal = T)
@@ -50,13 +50,13 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
   merge.order <- sapply( sra.df$palm_id, id.in.list, palm.sra$child_uid)
   palm.sra <- cbind( palm.sra[merge.order, ], sra.df)
 
-  palm.sra <- palm.sra[ , c('run_id', 'palm_id', 'coverage',
-                            'sOTU', 'qseqid', 'pident', 'evalue',
-                            'q_sequence')]
+  palm.sra <- palm.sra[ , c("run_id", "palm_id", "coverage",
+                            "sOTU", "qseqid", "pident", "evalue",
+                            "q_sequence")]
 
-  colnames(palm.sra) <- c('run_id', 'palm_id', 'coverage',
-                          'sOTU', 'qseqid', 'pident', 'evalue',
-                          'sra_sequence')
+  colnames(palm.sra) <- c("run_id", "palm_id", "coverage",
+                          "sOTU", "qseqid", "pident", "evalue",
+                          "sra_sequence")
 
   palm.sra <- palm.sra[ order(palm.sra$evalue, decreasing = F), ]
   palm.sra <- palm.sra[ order(palm.sra$pident, decreasing = T), ]

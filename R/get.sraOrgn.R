@@ -1,10 +1,10 @@
 #' get.sraOrgn
 #'
-#' Retrieve the 'scientific_name' for a set of SRA `run_id`
+#' Retrieve the "scientific_name" for a set of SRA 'run_id'
 #'
-#' @param run_ids character, SRA `run_id`
+#' @param run_ids character, SRA 'run_id'
 #' @param con     pq-connection, use SerratusConnect()
-#' @param ordinal boolean, return `run_ids` ordered vector [F]
+#' @param ordinal boolean, return 'run_ids' ordered vector [F]
 #' @param as.df   boolean, return run_id, date data.frame [F]
 #' @return character, string vector
 #' @keywords palmid Serratus taxonomy
@@ -20,7 +20,7 @@ get.sraOrgn <- function(run_ids, con, ordinal = F, as.df = FALSE) {
   run <- scientific_name <- NULL
 
   # get contigs containing palm_ids
-  sra.orgn <- tbl(con, 'srarun') %>%
+  sra.orgn <- tbl(con, "srarun") %>%
     filter(run %in% run_ids) %>%
     select(run, scientific_name) %>%
     as.data.frame()
@@ -37,7 +37,7 @@ get.sraOrgn <- function(run_ids, con, ordinal = F, as.df = FALSE) {
 
     return(ord.orgn$scientific_name)
   } else if (as.df){
-    colnames(sra.orgn) <- c('run_id','scientific_name')
+    colnames(sra.orgn) <- c("run_id","scientific_name")
   } else {
     sra.orgn <- data.frame( scientific_name = sra.orgn[,2])
   }

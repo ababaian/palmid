@@ -13,7 +13,7 @@
 SerratusConnect <- function(){
 
   con <- DBI::dbConnect(
-    drv = 'PostgreSQL',
+    drv = "PostgreSQL",
     user="public_reader",
     password="serratus",
     host="serratus-aurora-20210406.cluster-ro-ccz9y6yshbls.us-east-1.rds.amazonaws.com",

@@ -15,7 +15,7 @@
 standardizeWordcount <- function(words, ntop = 50){
   # Standardize wordcount to fixed-rank values
   # for consistent wordcloud plotting
-  # return only `ntop` words
+  # return only 'ntop' words
   # in worcloud2() use:
   #   size = 0.2, ellipticity = 0.5
   word.tbl <- table(scientific_name = words[1])

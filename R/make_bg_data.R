@@ -13,7 +13,7 @@
 #' # system("palmscan -search_pp palmdb/2021-03-02/otu_centroids.fa \
 #' #         -all -rdrp -fevout data/palmdb210302.fev")
 #' ## Create R object (data.frame)
-#' # make_bg_data(data/palmdb210302.fev, dataset.it = 'palmdb')
+#' # make_bg_data(data/palmdb210302.fev, dataset.it = "palmdb")
 #'
 #' @import dplyr ggplot2
 #' @export
@@ -36,13 +36,13 @@ make_bg_data <- function(fev.path, dataset.id = NULL) {
 
   assign(dataset.id, read.fev(fev.path))
 
-  #bg.fev <- bg.fev[, c('score', 'pssm_total_score', 'pp_length', 'v1_length', 'v2_length')]
+  #bg.fev <- bg.fev[, c("score", "pssm_total_score", "pp_length", "v1_length", "v2_length")]
 
   rdata.path <- paste0("data/", dataset.id, ".Rdata")
 
   save( list = dataset.id, file = rdata.path)
 }
 ## Make background data-set (run once)
-#fev.path <- 'R/palmdb210302.fev'
+#fev.path <- "R/palmdb210302.fev"
 #make_bg_data(fev.path)
-#pp.bg <- readRDS(paste0( fev.path, '.RDS') )
+#pp.bg <- readRDS(paste0( fev.path, ".RDS") )

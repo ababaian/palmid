@@ -11,7 +11,7 @@
 #'
 #' taxHist <- PlotTaxHist(pro.pident = waxsys.pro.df$pident,
 #'                        pro.tax    = waxsys.pro.df$tfam,
-#'                        rank       = 'family')
+#'                        rank       = "family")
 #'
 #' @import viridisLite
 #' @import dplyr ggplot2
@@ -24,13 +24,13 @@ PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
   repro <- data.frame( pident = pro.pident,
                        tax    = pro.tax)
   repro <- repro[ order(repro$pident, decreasing = T), ]
-  repro$tax[ repro$tax == '.' ] <- 'Unclassified'
+  repro$tax[ repro$tax == "." ] <- "Unclassified"
 
   # Plot title
-  if ( class(rank) == 'character' ){
-    title <- paste0( 'PalmDB Taxonomy - ', rank[1])
+  if ( class(rank) == "character" ){
+    title <- paste0( "PalmDB Taxonomy - ", rank[1])
   } else {
-    title <- 'PalmDB Taxonomy'
+    title <- "PalmDB Taxonomy"
   }
 
   # Plot colors based on % identity
@@ -51,9 +51,9 @@ PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
   }
 
   # set "Unclassified" to gray
-  unctax <- which( unique( pro.tax ) == '.')
+  unctax <- which( unique( pro.tax ) == ".")
   if (length(unctax) == 1){
-    ncolr[unctax] <- 'gray50'
+    ncolr[unctax] <- "gray50"
   }
 
   # Create pallete
@@ -67,7 +67,7 @@ PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
     taxHistCol +
     ggtitle(label = title) +
     xlim(c(0,102)) +
-    xlab('% AA-identity to Input') + ylab('count') +
+    xlab("% AA-identity to Input") + ylab("count") +
     theme_bw() +
     nlegend
   #taxHist

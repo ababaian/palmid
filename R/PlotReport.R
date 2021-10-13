@@ -20,7 +20,7 @@ PlotReport <- function(pp, pp.bg) {
   pp.line  <- ggplotify::as.grob(PlotPP(pp))
 
   # Score distribution
-  pp.score <- ggplotify::as.grob(PlotDistro(pp, pp.bg, 'score', 'black'))
+  pp.score <- ggplotify::as.grob(PlotDistro(pp, pp.bg, "score", "black"))
 
   # Length distribution
   pp.len   <- ggplotify::as.grob(PlotLengths(pp, pp.bg, set.ylab = NULL))

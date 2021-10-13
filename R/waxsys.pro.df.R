@@ -5,7 +5,7 @@
 #' against PalmDB.
 #'
 #'#' \itemize{
-#'   \item qseqid. Query or input sequence name ('SRR9968562_waxsystermes_virus_microassembly')
+#'   \item qseqid. Query or input sequence name ("SRR9968562_waxsystermes_virus_microassembly")
 #'   \item qstart. Coordinate of alignment start, 1 based
 #'   \item qend. Coordinate of alignment end, 1 based
 #'   \item qlen. Length of aligned sequence on query

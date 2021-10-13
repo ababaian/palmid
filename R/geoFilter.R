@@ -18,7 +18,7 @@ geoFilter <- function(sra.geo, wobble = F, wradius = 0.005){
   sra.geo <- sra.geo[ !is.na(sra.geo$lat), ]
   sra.geo <- sra.geo[ !is.na(sra.geo$lng), ]
 
-  # Retain only lat/lon if it's within worldmap coordinates
+  # Retain only lat/lon if it"s within worldmap coordinates
   sra.geo <- sra.geo[ (sra.geo$lat > -90  & sra.geo$lat < 90), ]
   sra.geo <- sra.geo[ (sra.geo$lng > -180 & sra.geo$lng < 180), ]
 

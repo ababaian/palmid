@@ -1,12 +1,12 @@
 #' waxsys.palmprint
 #'
 #' Waxsystermes Virus example data. Palmprint RdRP-barcode information generated
-#' by `palmscan` and imported via read.fev().
+#' by 'palmscan' and imported via read.fev().
 #'
 #'#' \itemize{
 #'   \item score. palmscan PSSM motif score. 20+ is high confidence RdRP
 #'   \item query. input fasta query name
-#'   \item gene. One of 'RdRP' or 'RT'
+#'   \item gene. One of "RdRP" or "RT"
 #'   \item order. Order of catalytic motifs on input. "ABC" or "CAB"
 #'   \item confidence. "high" or "low" confidence classification
 #'   \item qlen. input query length. Is truncated on long input sequences

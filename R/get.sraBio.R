@@ -1,10 +1,10 @@
 #' get.sraBio
 #'
-#' Retrieve the "BioSample" field for a set of SRA `run_id`
+#' Retrieve the "BioSample" field for a set of SRA 'run_id'
 #'
-#' @param run_ids character, SRA `run_id`
+#' @param run_ids character, SRA 'run_id'
 #' @param con     pq-connection, use SerratusConnect()
-#' @param ordinal boolean, return `run_ids` ordered vector [F]
+#' @param ordinal boolean, return 'run_ids' ordered vector [F]
 #' @return data.frame, run_id, biosample character vectors
 #' @keywords palmid Serratus geo
 #' @examples
@@ -18,11 +18,11 @@ get.sraBio <- function(run_ids, con, ordinal = F) {
   run <- bio_sample <- biosample_id <- coordinate_x <- coordinate_y <- NULL
 
   # get biosample field for run_id
-  sra.bio <- tbl(con, 'srarun') %>%
+  sra.bio <- tbl(con, "srarun") %>%
     filter(run %in% run_ids) %>%
     select(run, bio_sample) %>%
     as.data.frame()
-    colnames(sra.bio) <- c('run_id', 'biosample_id')
+    colnames(sra.bio) <- c("run_id", "biosample_id")
     # must be unique
     sra.bio <- sra.bio[ !duplicated(sra.bio$run_id), ]
 

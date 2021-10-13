@@ -8,7 +8,7 @@
 #'  "qlen",	"pp_start",	"pp_end",	"pp_length",
 #'  "v1_length", "v2_length",
 #'  "pssm_total_score", "pssm_min_score",
-#'  "motifs",	"super", 'group', 'comments' )
+#'  "motifs",	"super", "group", "comments" )
 #'
 #'
 #' @slot fev palmscan fev

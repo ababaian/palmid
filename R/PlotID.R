@@ -17,12 +17,12 @@ PlotID <- function(pro, html = T){
   pident <- evalue <- escore <- 0
 
   # phylum, family, genus, species
-  ranklvl <-  c('phylum',  'family',  'genus',   'species')
+  ranklvl <-  c("phylum",  "family",  "genus",   "species")
 
-  rankcols <- c('phylum' = "#9f62a1",
-                'family' = "#00cc07",
-                'genus'  = "#ff9607",
-                'species'= "#ff2a24")
+  rankcols <- c("phylum" = "#9f62a1",
+                "family" = "#00cc07",
+                "genus"  = "#ff9607",
+                "species"= "#ff2a24")
 
   # Process data for plotting
   pro$escore <- -(log10(pro$evalue))
@@ -38,7 +38,7 @@ PlotID <- function(pro, html = T){
                          levels = ranklvl)
 
   # Add a line-wrapped seq for html display
-  pro$seq <- gsub('(.{20})', '\\1\n', pro$full_sseq)
+  pro$seq <- gsub("(.{20})", "\\1\n", pro$full_sseq)
 
   #pro$paint <- rankCols[1]
   #pro$paint[ which( pro$pident > 45 ) ] <- rankCols[2]
@@ -47,17 +47,17 @@ PlotID <- function(pro, html = T){
 
 
   if (html){
-    pro$label = ''
+    pro$label = ""
   } else {
     # Add plot labels for best 10 hits within phylum (45%)
-    pro$label  <- ''
+    pro$label  <- ""
     if (length(pro$qseqid) >= 10){
       pro$label[1:10] <- pro$sseqid[1:10]
     } else {
       pro$label <- pro$sseqid
     }
     # unassign labels from sub-family match
-    pro$label[ which( pro$pident < 45 ) ] <- ''
+    pro$label[ which( pro$pident < 45 ) ] <- ""
   }
 
   idPlot <- ggplot() +
@@ -68,12 +68,12 @@ PlotID <- function(pro, html = T){
     scale_color_manual(values = rankcols, drop = FALSE) +
     geom_text(data = pro, aes(x=pident, y=escore, label=label),
               color = c("#4D4D4D"),
-              hjust = 'right', vjust = "bottom", check_overlap = T) +
+              hjust = "right", vjust = "bottom", check_overlap = T) +
     geom_vline( xintercept = c(0, 45, 70, 90),
                 color = rankcols) +
-    ggtitle(label = 'Palmprint alignment to palmDB') +
-    xlab('Input identity to palmDB (aa%)') + ylab('-log(e-value)') +
-    theme(legend.position='none') +
+    ggtitle(label = "Palmprint alignment to palmDB") +
+    xlab("Input identity to palmDB (aa%)") + ylab("-log(e-value)") +
+    theme(legend.position="none") +
     theme_bw()
 
   #idPlot

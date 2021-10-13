@@ -15,13 +15,13 @@
 #' @export
 PlotTax <- function(pro, html = T){
 
-  ranklvl <-  c('phylum',  'family',  'genus',   'species')
+  ranklvl <-  c("phylum",  "family",  "genus",   "species")
   rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
 
   # Taxonomic ranges
   tax <- data.frame(
     rank = factor(
-          c('species', 'genus', 'family', 'phylum'),
+          c("species", "genus", "family", "phylum"),
            levels = ranklvl ),
     llim = c(90,        70,      45,        0),
     ulim = c(101,       90,      70,        45),
@@ -35,11 +35,11 @@ PlotTax <- function(pro, html = T){
 
   if (html){
     add_label <- geom_label(data = tax, aes(x = NULL, y = 5, label = count))
-    set.xlab <- 'Count/rank'
-    set.ylab <- ''
+    set.xlab <- "Count/rank"
+    set.ylab <- ""
   } else {
-    set.xlab <- 'Count/rank'
-    set.ylab <- ''
+    set.xlab <- "Count/rank"
+    set.ylab <- ""
     add_label <- geom_label(data = tax, aes(x = rank, y = 5, label = count))
 
   }
@@ -50,7 +50,7 @@ PlotTax <- function(pro, html = T){
     scale_fill_manual(values = rankcols) +
     xlab(set.xlab) + ylab(set.ylab) +
     #add_label +
-    ggtitle('') + theme_bw() +
+    ggtitle("") + theme_bw() +
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
 
   return(taxPlot)

@@ -9,15 +9,15 @@
 #' @export
 fev2df <- function(fev.col) {
   # input FEV
-  fev.name  <- gsub('=.*', '', fev.col[1])
-  fev.value <- gsub('.*=', '', fev.col)
+  fev.name  <- gsub("=.*", "", fev.col[1])
+  fev.value <- gsub(".*=", "", fev.col)
 
   # check column names match
   fev.cols <- c("score", "query", "gene",	"order", "confidence",
                 "qlen",	"pp_start",	"pp_end",	"pp_length",
                 "v1_length", "v2_length",
                 "pssm_total_score", "pssm_min_score",
-                "motifs",	"super", 'group', 'comments')
+                "motifs",	"super", "group", "comments")
 
 
 
@@ -26,15 +26,15 @@ fev2df <- function(fev.col) {
     print(fev.name)
     print("fev.expect:")
     print(fev.cols)
-    error_msg <- c("'.fev input has an unrecognized .fev value")
+    error_msg <- c("".fev input has an unrecognized .fev value")
     stop(error_msg)
   }
 
   # Convert certain columns to different type
   # numerics
-  fev.numerics <- c('score', 'qlen', 'pp_start', 'pp_end', 'pp_length',
-                    'v1_length', 'v2_length', 'pssm_total_score')
-  fev.factors <- c('gene', 'order', 'confidence')
+  fev.numerics <- c("score", "qlen", "pp_start", "pp_end", "pp_length",
+                    "v1_length", "v2_length", "pssm_total_score")
+  fev.factors <- c("gene", "order", "confidence")
   # else character
 
   if (fev.name %in% fev.numerics) {

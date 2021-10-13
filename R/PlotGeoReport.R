@@ -1,5 +1,5 @@
 # PlotGeoReport
-#' A multi-plot wrapper to convert a list of SRA `run_ids` into
+#' A multi-plot wrapper to convert a list of SRA 'run_ids' into
 #' a geographic world-map and timeline.
 #'
 #' @param run_ids character, vector of SRA run_id

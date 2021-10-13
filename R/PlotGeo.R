@@ -1,5 +1,5 @@
 # PlotGeo
-#' A multi-plot wrapper to convert a list of SRA `run_ids` into
+#' A multi-plot wrapper to convert a list of SRA 'run_ids' into
 #' a geographic world-map and timeline.
 #'
 #' @param run_ids character, vector of SRA run_id
@@ -14,21 +14,21 @@
 PlotGeo <- function(run_ids, con = SerratusConnect()){
 
   if (!requireNamespace("sf", quietly = TRUE)) {
-    stop("The R Packages 'sf' and 'rnaturalearth' are needed for mapping functionality \n
-           and require the system dependency 'libudunits2-dev'.\n
-           use 'sudo apt-get install libudunits2-dev' to install",
+    stop("The R Packages "sf" and "rnaturalearth" are needed for mapping functionality \n
+           and require the system dependency "libudunits2-dev".\n
+           use "sudo apt-get install libudunits2-dev" to install",
          call. = FALSE)
   }
   if (!requireNamespace("rnaturalearth", quietly = TRUE)) {
-    stop("The R Packages 'sf' and 'rnaturalearth' are needed for mapping functionality \n
-           and require the system dependency 'libudunits2-dev'.\n
-           use 'sudo apt-get install libudunits2-dev' to install",
+    stop("The R Packages "sf" and "rnaturalearth" are needed for mapping functionality \n
+           and require the system dependency "libudunits2-dev".\n
+           use "sudo apt-get install libudunits2-dev" to install",
          call. = FALSE)
   }
   if (!requireNamespace("rnaturalearthdata", quietly = TRUE)) {
-    stop("The R Packages 'sf' and 'rnaturalearthdata' are needed for mapping functionality \n
-           and require the system dependency 'libudunits2-dev'.\n
-           use 'sudo apt-get install libudunits2-dev' to install",
+    stop("The R Packages "sf" and "rnaturalearthdata" are needed for mapping functionality \n
+           and require the system dependency "libudunits2-dev".\n
+           use "sudo apt-get install libudunits2-dev" to install",
          call. = FALSE)
   }
 
@@ -54,8 +54,8 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
     nn.stat <- paste0("geo-data for ", n.geo, " / ", n.sra," runs retrieved")
 
   # Map pallete-set
-  rdrp_dark <- c('black',  'gray5', 'gray10', 'gray20')
-  rdrp_lite <- c('white',   NA,   'gray70', 'gray95')
+  rdrp_dark <- c("black",  "gray5", "gray10", "gray20")
+  rdrp_lite <- c("white",   NA,   "gray70", "gray95")
   rdrp_col <- rdrp_lite
 
   # Plot Worldmap
@@ -65,21 +65,21 @@ PlotGeo <- function(run_ids, con = SerratusConnect()){
   # Overlay worldmap with hex plot and summary stats
   earth <- ggplot(data = world) +
     geom_sf(fill = rdrp_col[1], color = rdrp_col[2]) +
-    xlab('') + ylab('') +
+    xlab("") + ylab("") +
     ggtitle("Global Palmprint Distribution") +
     theme(panel.background = element_rect( fill = rdrp_col[3]),
           panel.grid.major = element_line(color = rdrp_col[4],
-                                          linetype = 'dashed',
+                                          linetype = "dashed",
                                           size = 0.2)) +
     # Summary statistic for SQL retrival
     geom_text( data = data.frame(nn.stat),
                x = Inf, y = -Inf,
                hjust = "inward", vjust = "inward",
-               color = 'black', size = 5, label = nn.stat) +
+               color = "black", size = 5, label = nn.stat) +
     # Hex points of available data
     geom_hex( bins = 36, data = pp.geo,
               aes(x = lng, y = lat)) +
-    scale_fill_continuous(name = 'runs/point',
+    scale_fill_continuous(name = "runs/point",
                           type = "viridis", option = "plasma", trans = "log2")
 
   return(earth)

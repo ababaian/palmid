@@ -1,18 +1,18 @@
 # read.pro
-#' Reads a .pro file created by `diamond`
+#' Reads a .pro file created by 'diamond'
 #' @param pro.path relative system path to .fev file
 #' @return A diamond-pro data.frame object
 #' @keywords palmid diamond pro
 #' @examples
 #' # palmDB Alignment file (.pro)
-#' pro.path <- system.file( "extdata", "waxsys.pro", package = 'palmid')
+#' pro.path <- system.file( "extdata", "waxsys.pro", package = "palmid")
 #' pro.df <- read.pro(pro.path)
 #'
 #' @import dplyr ggplot2
 #' @export
 read.pro <- function(pro.path) {
   # read fev as tsv
-  pro.df <- utils::read.csv2(pro.path, header = F, sep = '\t',
+  pro.df <- utils::read.csv2(pro.path, header = F, sep = "\t",
                       stringsAsFactors=FALSE)
 
   pro.cols <- c("qseqid", "qstart", "qend", "qlen",
