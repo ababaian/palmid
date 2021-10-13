@@ -8,10 +8,10 @@
 #' @examples
 #' data("waxsys.palmprint")
 #' data("palmdb")
-#' 
+#'
 #' ppLen <- PlotLengths(pp = waxsys.palmprint, pp.bg = palmdb)
 #' plot(ppLen)
-#' 
+#'
 #' @import dplyr ggplot2
 #' @export
 PlotLengths <- function(pp, pp.bg, set.ylab = 'palmDB density') {
@@ -19,7 +19,7 @@ PlotLengths <- function(pp, pp.bg, set.ylab = 'palmDB density') {
   plPlot    <- PlotDistro( pp, pp.bg, 'pp_length', 'skyblue', set.ylab)
   v1Plot    <- PlotDistro( pp, pp.bg, 'v1_length', 'gray50',  set.ylab)
   v2Plot    <- PlotDistro( pp, pp.bg, 'v2_length', 'gray50',  set.ylab)
-  
+
   lenGrid <- gridExtra::arrangeGrob( plPlot, v1Plot, v2Plot,
                           layout_matrix = rbind(c(1, 1),
                                                 c(2, 3)))

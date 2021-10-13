@@ -1,7 +1,7 @@
 #' waxsys.palmprint
 #'
 #' Waxsystermes Virus example data. Palmprint RdRP-barcode information generated
-#' by `palmscan` and imported via read.fev(). 
+#' by `palmscan` and imported via read.fev().
 #'
 #'#' \itemize{
 #'   \item score. palmscan PSSM motif score. 20+ is high confidence RdRP

@@ -1,6 +1,6 @@
 # linkBLAST
 #' Parse an input sequence into a BLAST-able HTML link
-#' 
+#'
 #' @param header   character, header for blast search
 #' @param aa.seq   character, query sequence (amino acid)
 #' @param label    character, Display string["BLAST"]
@@ -13,7 +13,7 @@
 #' @import dplyr ggplot2
 #' @export
 linkBLAST <- function(header, aa.seq, label = '[BLAST]'){
- 
+
   # Blast link preamble
   l0 <- 'https://blast.ncbi.nlm.nih.gov/Blast.cgi'
   l1 <- '?PAGE_TYPE=BlastSearch&USER_FORMAT_DEFAULTS=on&SET_SAVED_SEARCH=true'
@@ -25,7 +25,7 @@ linkBLAST <- function(header, aa.seq, label = '[BLAST]'){
   l7 <- '&PROG_DEFAULTS=on&SHOW_OVERVIEW=on&SHOW_LINKOUT=on&ALIGNMENT_VIEW=Pairwise'
   l8 <- '&MASK_CHAR=2&MASK_COLOR=1&GET_SEQUENCE=on&NEW_VIEW=on'
   l9 <- '&NUM_OVERVIEW=100&DESCRIPTIONS=100&ALIGNMENTS=100&FORMAT_OBJECT=Alignment&FORMAT_TYPE=HTML'
- 
+
   # Construct link
   url.link <- paste0(
     '<a href="', l0, l1, l2,
@@ -34,5 +34,5 @@ linkBLAST <- function(header, aa.seq, label = '[BLAST]'){
     l5, l6, l7, l8, l9,
     '" target="_blank"> ', label, '</a>'
   )
-   
+
 }

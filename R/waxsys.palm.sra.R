@@ -3,7 +3,7 @@
 #' Waxsystermes Virus example data. Sequencing libraries in the Sequence Read
 #' Archive (SRA) for which Waxsys or related viruses have been identified in
 #' the Serratus Database. Including associated sequencing library meta-data.
-#' 
+#'
 #'#' \itemize{
 #'   \item run_id. Sequencing library identifier in the SRA
 #'   \item palm_id. PalmDB unique identifier for RdRP sequence in library

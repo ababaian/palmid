@@ -8,7 +8,7 @@
 #' data("waxsys.pro.df")
 #'
 #' proPlot <- PlotProReport(waxsys.pro.df)
-#' 
+#'
 #' plot(proPlot)
 #'
 #' @import viridisLite
@@ -17,27 +17,27 @@
 PlotProReport <- function(pro, html = F){
   # Bind Local Variables
   pro.df <- NULL
-  
+
   if (html){
     pro.plot <- plotly::hide_legend( PlotID(pro, html = html) )
     tax.plot <- plotly::hide_legend( PlotTax(pro, html = html) )
-    
+
     proPlot<- plotly::subplot(pro.plot, tax.plot,
                       widths = c(0.8, 0.2),
                       titleX = T, titleY = T) %>%
       plotly::config(displaylogo = FALSE)
-    
+
     return(proPlot)
-    
+
   } else {
     # Create individual plots
     id  <- ggplotify::as.grob(PlotID(pro, html = html))
     tax <- ggplotify::as.grob(PlotTax(pro, html = html))
-    
+
     proPlot <- gridExtra::arrangeGrob( id, tax,
                             layout_matrix = rbind(c(1, 1, 2),
                                                   c(1, 1, 2)) )
   }
-  
+
   return(proPlot)
 }

@@ -15,37 +15,37 @@ PlotID <- function(pro, html = T){
   # Bind Local Variables
   sseqid <- matching <- label <- NULL
   pident <- evalue <- escore <- 0
-  
+
   # phylum, family, genus, species
   ranklvl <-  c('phylum',  'family',  'genus',   'species')
-  
+
   rankcols <- c('phylum' = "#9f62a1",
                 'family' = "#00cc07",
                 'genus'  = "#ff9607",
                 'species'= "#ff2a24")
-  
+
   # Process data for plotting
   pro$escore <- -(log10(pro$evalue))
   pro <- pro[ order(pro$escore, decreasing = T), ]
-  
+
   # Add color highlight to hits within the same phylum
   pro$matching <- ranklvl[1]
   pro$matching[ which( pro$pident >= 45 ) ] <- ranklvl[2]
   pro$matching[ which( pro$pident >= 70 ) ] <- ranklvl[3]
   pro$matching[ which( pro$pident >= 90 ) ] <- ranklvl[4]
-  
+
   pro$matching <- factor(pro$matching,
                          levels = ranklvl)
- 
+
   # Add a line-wrapped seq for html display
   pro$seq <- gsub('(.{20})', '\\1\n', pro$full_sseq)
-   
+
   #pro$paint <- rankCols[1]
   #pro$paint[ which( pro$pident > 45 ) ] <- rankCols[2]
   #pro$paint[ which( pro$pident > 70 ) ] <- rankCols[3]
   #pro$paint[ which( pro$pident > 90 ) ] <- rankCols[4]
-  
-  
+
+
   if (html){
     pro$label = ''
   } else {
@@ -59,7 +59,7 @@ PlotID <- function(pro, html = T){
     # unassign labels from sub-family match
     pro$label[ which( pro$pident < 45 ) ] <- ''
   }
-  
+
   idPlot <- ggplot() +
     geom_point(data = pro, aes(uid=sseqid, seq=seq,
                                x=pident, y=escore, color = matching),
@@ -75,8 +75,8 @@ PlotID <- function(pro, html = T){
     xlab('Input identity to palmDB (aa%)') + ylab('-log(e-value)') +
     theme(legend.position='none') +
     theme_bw()
-  
+
   #idPlot
-  
+
   return(idPlot)
 }
