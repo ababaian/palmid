@@ -17,7 +17,7 @@
 PlotTimeline <- function(run_ids = NULL, sra.dates = NULL, con = SerratusConnect()){
 
   if ( is.null(run_ids) & is.null(sra.dates) ){
-    stop("One of "run_ids" or "sra.dates" needs to be set")
+    stop("One of 'run_ids' or 'sra.dates' needs to be set")
   } else if (!is.null(run_ids)){
     sra.date   <- get.sraDate(run_ids, con = con, as.df =  T)
   } else if (!is.null(sra.dates)){

@@ -14,21 +14,21 @@
 PlotGeo <- function(run_ids, con = SerratusConnect()){
 
   if (!requireNamespace("sf", quietly = TRUE)) {
-    stop("The R Packages "sf" and "rnaturalearth" are needed for mapping functionality \n
-           and require the system dependency "libudunits2-dev".\n
-           use "sudo apt-get install libudunits2-dev" to install",
+    stop("The R Packages 'sf' and 'rnaturalearth' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
          call. = FALSE)
   }
   if (!requireNamespace("rnaturalearth", quietly = TRUE)) {
-    stop("The R Packages "sf" and "rnaturalearth" are needed for mapping functionality \n
-           and require the system dependency "libudunits2-dev".\n
-           use "sudo apt-get install libudunits2-dev" to install",
+    stop("The R Packages 'sf' and 'rnaturalearth' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
          call. = FALSE)
   }
   if (!requireNamespace("rnaturalearthdata", quietly = TRUE)) {
-    stop("The R Packages "sf" and "rnaturalearthdata" are needed for mapping functionality \n
-           and require the system dependency "libudunits2-dev".\n
-           use "sudo apt-get install libudunits2-dev" to install",
+    stop("The R Packages 'sf' and 'rnaturalearthdata' are needed for mapping functionality \n
+           and require the system dependency 'libudunits2-dev'.\n
+           use 'sudo apt-get install libudunits2-dev' to install",
          call. = FALSE)
   }
 

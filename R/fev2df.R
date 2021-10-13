@@ -26,7 +26,7 @@ fev2df <- function(fev.col) {
     print(fev.name)
     print("fev.expect:")
     print(fev.cols)
-    error_msg <- c("".fev input has an unrecognized .fev value")
+    error_msg <- c(".fev input has an unrecognized .fev value")
     stop(error_msg)
   }
 
