@@ -11,9 +11,11 @@
 #' @keywords palmid Serratus palmdb sOTU
 #' @examples
 #' 
-#' ## R Code Example 
+#' ## R Code Example
+#' /donttest{ 
 #' con <- SerratusConnect()
 #' get.sOTU(c("u1337"), con, get_childs = TRUE)
+#' }
 #' 
 #' ## Non-Running Example to demonstrate sOTU Relationships
 #' # palm_id    sOTU
