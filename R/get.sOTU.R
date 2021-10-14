@@ -12,7 +12,7 @@
 #' @examples
 #' 
 #' ## R Code Example
-#' /donttest{ 
+#' \donttest{ 
 #' con <- SerratusConnect()
 #' get.sOTU(c("u1337"), con, get_childs = TRUE)
 #' }
