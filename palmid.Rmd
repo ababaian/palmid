@@ -39,7 +39,7 @@ div.col-md-12 .pull-right {
 # Run as Production Pipeline or Development
 production.version = params$prod.run
 
-if (production.version){
+if (production.version) {
   # Load stable palmid package
   library('palmid', quietly = T)
   data("palmdb") 
@@ -73,7 +73,7 @@ con <- SerratusConnect()
 # params are defined in YAML header to expose to CLI
 input.path      <- params$input.path
 
-if (is.null(input.path)){
+if (is.null(input.path)) {
   stop("Error: No input provided.")
 }
 
@@ -100,16 +100,17 @@ pp.in <- read.fev(input.fev, FIRST = TRUE)
 
 # Import a diamond-aligned pro file
 pro.df <- read.pro(input.pro)
-  # Populate with Taxonomy-data
+  # Populate with Nickname/Taxonomy-data
+  pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
   pro.df     <- get.proTax(pro.df, con)
-
+  
 # Set backstop when too many similar hits come up
 palmdb.hits <- length(pro.df$qseqid)
-if (palmdb.hits > max_palmdb_hits){
+if (palmdb.hits > max_palmdb_hits) {
   pro.df <- pro.df[ 1:max_palmdb_hits, ]
-  print.hitn <- paste0("Reporting Top ", max_palmdb_hits, "/", palmdb.hits, " matches in PalmDB")
+  print.hitn <- paste0("Reporting Top ", max_palmdb_hits, "/", palmdb.hits, " matches")
 } else {
-  print.hitn <-  paste0("Reporting ", palmdb.hits, " matches in PalmDB")
+  print.hitn <-  paste0("Reporting all ", palmdb.hits, " matches")
 }
 
 # SQL-Import of palmprint/sra meta-data
@@ -161,6 +162,14 @@ palm.sra %>%
   )
 ```
 
+#### Summary
+
+```{r, echo = FALSE}
+# Generate text-based summary of palmID data
+palm.summary <- text.summary(pp.in, pro.df, palm.sra, palmdb.hits)
+cat(palm.summary)
+```
+
 ## RdRP palmprint QC
 
 #### palmscan motif analysis
@@ -172,21 +181,19 @@ RNA-virus barcode.
 ```{r, echo = FALSE}
 # Input Sequence
 cat("Input FASTA sequence: \n\n")
-cat(paste0(readLines(input.fa), collapse="\n"), "\n")
+cat(paste0(readLines(input.fa), collapse = "\n"), "\n")
 cat("\n")
 
 # Palmscan-generated reports
 cat("palmprint sequence: \n\n")
-cat(paste0(readLines(input.pp), collapse="\n"), "\n")
+cat(paste0(readLines(input.pp), collapse = "\n"), "\n")
 cat("\n")
 
 cat("catalytic-motifs: \n")
-cat(paste0(readLines(input.rep), collapse="\n"), "\n")
+cat(paste0(readLines(input.rep), collapse = "\n"), "\n")
 cat("\n")
 
 # lapply(scan(input.rep, 'character'),cat)[[1]]
-
-cat(print.hitn)
 
 ```
 
@@ -211,7 +218,7 @@ top-10 matching hits in [`palmdb`](https://github.com/rcedgar/palmdb).
 
 ```{r}
 # Multiple Sequence Alignment of Top-10 hits in palmDB
-cat(paste0(readLines(input.msa), collapse="\n"))
+cat(paste0(readLines(input.msa), collapse = "\n"))
 ```
 
 #### Input palmprint aligned to palmDB
