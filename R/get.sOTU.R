@@ -6,7 +6,7 @@
 #' @param palm_ids character, set of 'palm_id' to lookup in palmdb
 #' @param con      pq-connection, use SerratusConnect()
 #' @param get_childs boolean, return all children 'palm_id' instead of parent sOTU [FALSE]
-#' @param ordinal  boolean, return an ordered sOTU vector based on input 'palm_ids'
+#' @param ordinal  boolean, return an ordered sOTU vector based on input 'palm_ids' [FALSE]
 #' @return character, unique 'palm_id' sOTU or sOTU-children
 #' @keywords palmid Serratus palmdb sOTU
 #' @examples

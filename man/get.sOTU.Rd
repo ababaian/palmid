@@ -13,7 +13,7 @@ get.sOTU(palm_ids, con, get_childs = FALSE, ordinal = FALSE)
 
 \item{get_childs}{boolean, return all children 'palm_id' instead of parent sOTU [FALSE]}
 
-\item{ordinal}{boolean, return an ordered sOTU vector based on input 'palm_ids'}
+\item{ordinal}{boolean, return an ordered sOTU vector based on input 'palm_ids' [FALSE]}
 }
 \value{
 character, unique 'palm_id' sOTU or sOTU-children

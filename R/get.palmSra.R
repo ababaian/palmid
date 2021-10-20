@@ -66,6 +66,9 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
 
   # Add Organism/scientific_name of sra run
   palm.sra$scientific_name <- get.sraOrgn(palm.sra$run_id, con, TRUE)
+  
+  # Add nickname to palm.sra
+  palm.sra$nickname <- get.nickname(palm.sra$sOTU, con, ordinal = TRUE)
 
   # Add time (release date) to palm.sra
   palm.sra$date <- get.sraDate(palm.sra$run_id, con, TRUE)
@@ -74,7 +77,7 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
   palm.geo.tmp <- get.sraGeo( run_ids = NULL,
                               biosample_ids = palm.sra$biosample_id, con = con, ordinal =  TRUE)
 
-  if (!all(palm.geo.tmp$biosample_id == palm.sra$biosample_id)){
+  if (!all(palm.geo.tmp$biosample_id == palm.sra$biosample_id)) {
     stop("Error in geo lookup.")
   } else {
     palm.sra$lng <- palm.geo.tmp$lng
