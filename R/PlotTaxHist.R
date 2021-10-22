@@ -1,7 +1,7 @@
 # PlotTaxHist
 #' Plot Percent-identity, factored on taxonomic strings of a pro df
 #' @param pro.pident numeric, pident column from pro.df
-#' @param pro.tax    character, tax column from pro.df (use: get.tax)
+#' @param pro.tax    character, tax column from pro.df (use: get.palmTax)
 #' @param rank       character, string of tax-rank to label graph
 #' @return A histogram as a ggplot2 object
 #' @keywords palmid taxonomy pro plot
