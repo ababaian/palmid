@@ -1,5 +1,5 @@
 ---
-title: "PalmID: RNA Virus RdRP Report"
+title: "palmID: RNA Virus RdRP Report"
 output:
   html_notebook:
     code_folding: hide
@@ -341,7 +341,7 @@ cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', '
 To save this report: `File` --> `Save Page As`.
 
 ```{r, include=FALSE}
-if (save.plots){
+if (save.plots) {
   
   # SAVE PP-REPORT
   png(filename = output.report, width = 800, height = 400)
@@ -362,7 +362,7 @@ if (save.plots){
   )
   
   # SAVE GEO-REPORT
-  htmlwidgets::saveWidget(geo.report, file=output.geo)
+  htmlwidgets::saveWidget(geo.report, file = output.geo)
 
   # SAVE ORGN-REPORT
   png(filename = output.orgn, width = 800, height = 400, res = 100)
