@@ -53,9 +53,8 @@ if (production.version) {
   options(warn = -1)
 
   # Compile a new palmid from source
-  library(roxygen2)
-    roxygen2::roxygenise()
-    load("data/palmdb.RData")
+  roxygen2::roxygenise()
+  load("data/palmdb.RData")
 }
 
 ```
@@ -117,6 +116,10 @@ if (palmdb.hits > max_palmdb_hits) {
   # parent/child sOTU lookup, sra, biosample, date, organism, geo
 palm.sra <- get.palmSra(pro.df, con)
 
+# SQL-import of STAT kmer taxonomic analysis of the retrieved
+# matching SRA libraries
+stat.sra <- get.sraSTAT(palm.sra$run_id, con)
+
 # GENERATE REPORT-PLOTS -------------------------
 # Palmprint Report
 pp.report <- PlotReport(pp.in, palmdb)
@@ -131,8 +134,8 @@ tax.report <- PlotTaxReport(pro.df)
 geo.report <- PlotGeo2(palm.sra)
 
 # Host/Library organism Report
-orgn.report.freq <- PlotOrgn(palm.sra, freq = T)
-orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
+orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
+stat.report <- PlotSTAT(palm.sra, stat.sra, freq = FALSE)
 
 ```
 
@@ -170,7 +173,7 @@ palm.summary <- text.summary(pp.in, pro.df, palm.sra, palmdb.hits)
 cat(palm.summary)
 ```
 
-## RdRP palmprint QC
+## Input RdRP palmprint QC
 
 #### palmscan motif analysis
 
@@ -209,7 +212,7 @@ distribution from 15,010 canonical viral RdRP from GenBank.
 plot(pp.report)
 ```
 
-## Palmprint vs. PalmDB Analysis
+## Input Palmprint vs. PalmDB Analysis
 
 #### Multiple Sequence Alignment
 
@@ -221,7 +224,7 @@ top-10 matching hits in [`palmdb`](https://github.com/rcedgar/palmdb).
 cat(paste0(readLines(input.msa), collapse = "\n"))
 ```
 
-#### Input palmprint aligned to palmDB
+#### Input palmprint alignment to palmDB
 
 Input "palmprint" are aligned against [`palmdb`](https://github.com/rcedgar/palmdb)
 using `diamond` to retrieve related viruses. Upto the top 500 related viruses
@@ -251,7 +254,7 @@ virus.
 # Viral Taxonomy of palmDB Hits
 plot(tax.report)
 ```
-#### Input Alignment to palmDB Table
+#### palmDB Alignment table
 
 ```{r, echo = FALSE}
 ### Data-Table: `palmDB.csv`
@@ -294,23 +297,26 @@ geo.report
 ```
 ![](img/tax_legend.png)
 
-#### Source organism
+#### Virus-Organism Associations
 
-Organisms associated with the matching sequencing libraries.
-Word size is scaled by a) proximity of input virus to sra-virus
-match or b) frequency of organism tag within all sra-virus matches.
+Organism meta-data from the SRA sequencing libraries matching the input-virus.
+Word size and color is scaled by proximity of the input-virus to its match in 
+the library. Wordclouds show a) Researcher provided annotations of the libraries
+or b) STAT automated taxonomic (orders) analysis of the reads contained within
+the library ([Katz et al., 2021](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)).
 
 ```{r, fig.width=8, fig.height=5, retina = 2}
-# Plot SRA-Organism Wordcloud - id
+# Plot SRA  Wordcloud - id
 # (scaled by AA% proximity to input palmprint)
-plot(orgn.report.pidn)
+plot(orgn.report)
 ```
 
 ```{r, fig.width=8, fig.height=5, retina = 2}
 # Plot SRA-Organism Wordcloud - freq
 # (scaled by frequency in the SRA)
-plot(orgn.report.freq)
+plot(stat.report)
 ```
+![](img/stat_legend.png)
 
 #### Input Alignment to SRA-RdRp Table
 

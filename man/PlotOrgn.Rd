@@ -4,14 +4,14 @@
 \alias{PlotOrgn}
 \title{Plot a wordcloud of the organisms in a palm.sra object or orgn.vec}
 \usage{
-PlotOrgn(palm.sra = NULL, orgn.vec = NULL, freq = T)
+PlotOrgn(palm.sra = NULL, orgn.vec = NULL, freq = TRUE)
 }
 \arguments{
 \item{palm.sra}{data.frame, created from get.palmSra() [NULL]}
 
 \item{orgn.vec}{character, vector of "scientific_name" from sra run table [NULL]}
 
-\item{freq}{boolean, scale words by frequency, else by identity [T]}
+\item{freq}{boolean, scale words by frequency, else by identity [TRUE]}
 }
 \value{
 A ggwordcloud object of the "ntop" frequent terms

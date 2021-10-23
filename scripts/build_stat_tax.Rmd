@@ -20,6 +20,35 @@ BigQuery:
   ORDER BY acc
 `
 
+SQL calculations:
+`
+CREATE TABLE sra_stat2 AS
+	WITH total_counts AS( 
+		SELECT run, SUM(count) AS count_per_run FROM sra_stat
+		GROUP BY run
+	)
+	SELECT sra_stat.*, total_counts.count_per_run,
+		ROUND( 100*count/total_counts.count_per_run,2 ) as kmer_perc
+		FROM sra_stat
+		LEFT OUTER JOIN total_counts on (sra_stat.run = total_counts.run)
+`
+Update stat table
+`
+UPDATE sra_stat
+SET "group" = sra_stat_group.group
+FROM sra_stat_group
+WHERE sra_stat.taxid =  sra_stat_group.taxid
+`
+
+
+Make as seperate table
+`
+CREATE TABLE sra_stat2 AS
+	SELECT * 
+	FROM sra_stat 
+	INNER JOIN add_stat_label ON (sra_stat.row_id = add_stat_label.row_idd)
+`
+
 ```{r}
 # Import NCBI Taxonomy
 # install.packages("taxize")

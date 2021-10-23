@@ -213,8 +213,7 @@ HTML_OUTPUT="'$OUTDIR/$OUTNAME.html'"
 
 cp /home/palmid/palmid.Rmd /tmp/palmid.Rmd
 mkdir -p /tmp/img
-cp /home/palmid/data/tax_legend.png /tmp/img/tax_legend.png
-
+cp /home/palmid/data/*.png /tmp/img/
 
 Rscript -e "rmarkdown::render( \
   input = '/tmp/palmid.Rmd', \
