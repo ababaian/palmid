@@ -27,7 +27,7 @@ PlotSTAT <- function(palm.sra, stat.sra, freq = FALSE) {
   # Taxonomy Palette
   tax.color <- data.frame(
     tax_label = c(
-      "Primate",
+      "Primates",
       "Mammalia",
       "Vertebrata",
       "Arthropoda",
@@ -91,6 +91,7 @@ PlotSTAT <- function(palm.sra, stat.sra, freq = FALSE) {
                                             size  = pident,
                                             color = tax_color,
                                             alpha = kperc)) +
+    scale_color_identity() +
     ggtitle(label = 'STAT-taxonomy (kmer analysis) associated with input virus -- %id scaled') +
     theme_minimal()
   
