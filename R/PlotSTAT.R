@@ -63,6 +63,7 @@ PlotSTAT <- function(stat.sra) {
   order_name <- pident <- tax_color <- kmer_perc <- kperc <- NULL
 
   if (all(is.na(stat.sra$pident))){
+    #TODO: Add support for Frequency-based wordclouds similar to PlotOrgn()
     stop("No pident identity values, assign from palm.sra data.frame")
   }
   

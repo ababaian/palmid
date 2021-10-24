@@ -138,7 +138,7 @@ geo.report <- PlotGeo2(palm.sra)
 
 # Host/Library organism Report
 orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
-stat.report <- PlotSTAT(palm.sra, stat.sra, freq = FALSE)
+stat.report <- PlotSTAT(stat.sra)
 
 ```
 
