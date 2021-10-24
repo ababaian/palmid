@@ -25,8 +25,8 @@ PlotSTAT <- function(palm.sra, stat.sra, freq = FALSE) {
   requireNamespace("ggwordcloud", quietly = TRUE)
   
   # Taxonomy Palette
-  tax.colr <- data.frame(
-    tax_group = c(
+  tax.color <- data.frame(
+    tax_label = c(
       "Primate",
       "Mammalia",
       "Vertebrata",
@@ -49,8 +49,10 @@ PlotSTAT <- function(palm.sra, stat.sra, freq = FALSE) {
       "#00553d",
       "#005055",
       "#000000",
-      "#808080"
+      "#000000"
     ) )
+  
+  unclassified.color <- tax.color$tax_color[ tax.color$tax_label == "Unclassified"]
 
   # Bind Local Variables
   segstrt <- segend <- segment <- scientific_name <- Freq <- NULL
@@ -79,11 +81,15 @@ PlotSTAT <- function(palm.sra, stat.sra, freq = FALSE) {
   
   ntop <- 50
   stat.df <- stat.df[1:ntop,]
+  
+  stat.df$tax_color <- tax.color$tax_color[ match(stat.df$tax_label, tax.color$tax_label )]
+  stat.df$tax_color[ is.na(stat.df$tax_color) ] <- unclassified.color
 
   # Plot
   stat.wc <- ggplot() +
     geom_text_wordcloud(data = stat.df, aes(label = order_name,
                                             size  = pident,
+                                            color = tax_color,
                                             alpha = kperc)) +
     ggtitle(label = 'STAT-taxonomy (kmer analysis) associated with input virus -- %id scaled') +
     theme_minimal()

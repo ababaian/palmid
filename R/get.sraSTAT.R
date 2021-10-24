@@ -38,7 +38,7 @@ get.sraSTAT <- function(run_ids, con = SerratusConnect(), prc_threshold = 5) {
   
   # Sort output  
   sra.stat <- sra.stat[order(sra.stat$kmer_perc, decreasing = T), ]
-  sra.stat <- sra.stat[order(sra.stat$run_id, sra.stat$label), ]
+  sra.stat <- sra.stat[order(sra.stat$run_id, sra.stat$tax_label), ]
   
   return(sra.stat)
 }

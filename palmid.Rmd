@@ -314,6 +314,8 @@ plot(orgn.report)
 ```{r, fig.width=8, fig.height=5, retina = 2}
 # Plot SRA-Organism Wordcloud - freq
 # (scaled by frequency in the SRA)
+
+#stat.report <- PlotSTAT(palm.sra, stat.sra, freq = FALSE)
 plot(stat.report)
 ```
 ![](img/stat_legend.png)

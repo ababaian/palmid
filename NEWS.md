@@ -1,3 +1,11 @@
+# palmid 0.0.4
+
+## Features
+
+- Added Text Summary to the palmid Report
+- Added 'nickname' mnemonics for each viral sOTU
+- Added SRA-STAT taxonomy analysis
+
 # palmid 0.0.3
 
 - Initial release. `palmid` is a containerized analysis suite and R-package for the classification of **viral RNA-dependent RNA Polymerases (RdRP)** based on the **palmprint** sub-domain and the RNA viral palmprint database [`palmdb`](https://github.com/rcedgar/palmdb).
