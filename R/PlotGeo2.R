@@ -73,7 +73,7 @@ PlotGeo2 <- function(palm.sra) {
 
       "<b>organism</b> : ", palm.sra$scientific_name, "<br>",
       "<b>AA id</b>    : ", palm.sra$pident,          "%<br>",
-      "<b>palmprint</b>: ", palm.sra$palm_id,         "<br>",
+      "<b>palmprint</b>: ", palm.sra$palm_id, " (<i>", palm.sra$nickname, "</i>)", "<br>",
       "<b>palmprint seq</b>  : <br>",
       "<pre>", gsub("(.{20})", "\\1<br>", palm.sra$sra_sequence), "<br>",
 
