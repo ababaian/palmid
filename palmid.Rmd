@@ -1,9 +1,10 @@
 ---
-title: "PalmID: RNA Virus RdRP Report"
+title: "palmID: RNA Virus RdRP Report"
 output:
   html_notebook:
     code_folding: hide
 params:
+  palmid.version: '0.0.4'
   input.path: 'inst/extdata/waxsys'
   prod.run: FALSE
 ---
@@ -53,9 +54,8 @@ if (production.version) {
   options(warn = -1)
 
   # Compile a new palmid from source
-  library(roxygen2)
-    roxygen2::roxygenise()
-    load("data/palmdb.RData")
+  roxygen2::roxygenise()
+  load("data/palmdb.RData")
 }
 
 ```
@@ -77,7 +77,7 @@ if (is.null(input.path)) {
   stop("Error: No input provided.")
 }
 
-  input.fa      <- paste0(input.path, '.input.fa')    # palmscan-palmprint sequence
+  input.fa      <- paste0(input.path, '.input.fa')   # palmscan-palmprint sequence
   input.pp      <- paste0(input.path, '.trim.fa')    # palmscan-palmprint sequence
   input.fev     <- paste0(input.path, '.fev')    # palmscan .fev report
   input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
@@ -117,6 +117,13 @@ if (palmdb.hits > max_palmdb_hits) {
   # parent/child sOTU lookup, sra, biosample, date, organism, geo
 palm.sra <- get.palmSra(pro.df, con)
 
+# SQL-import of STAT kmer taxonomic analysis of the retrieved
+# matching SRA libraries
+stat.sra <- get.sraSTAT(palm.sra$run_id, con)
+# Populate stat.sra with percent identity from palm.sra
+  stat.sra$pident <- palm.sra$pident[ match(stat.sra$run_id, palm.sra$run_id) ]
+  
+
 # GENERATE REPORT-PLOTS -------------------------
 # Palmprint Report
 pp.report <- PlotReport(pp.in, palmdb)
@@ -131,9 +138,20 @@ tax.report <- PlotTaxReport(pro.df)
 geo.report <- PlotGeo2(palm.sra)
 
 # Host/Library organism Report
-orgn.report.freq <- PlotOrgn(palm.sra, freq = T)
-orgn.report.pidn <- PlotOrgn(palm.sra, freq = F)
+orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
+stat.report <- PlotSTAT(stat.sra)
 
+# Print out version
+cat( paste0("palmID Version: ", params$palmid.version) )
+
+```
+
+#### Summary
+
+```{r, echo = FALSE}
+# Generate text-based summary of palmID data
+palm.summary <- text_summary(pp.in, pro.df, palm.sra, palmdb.hits)
+cat(palm.summary)
 ```
 
 #### Download Data
@@ -161,16 +179,7 @@ palm.sra %>%
     icon = "fa fa-file-export"
   )
 ```
-
-#### Summary
-
-```{r, echo = FALSE}
-# Generate text-based summary of palmID data
-palm.summary <- text.summary(pp.in, pro.df, palm.sra, palmdb.hits)
-cat(palm.summary)
-```
-
-## RdRP palmprint QC
+## Input RdRP palmprint QC
 
 #### palmscan motif analysis
 
@@ -209,7 +218,7 @@ distribution from 15,010 canonical viral RdRP from GenBank.
 plot(pp.report)
 ```
 
-## Palmprint vs. PalmDB Analysis
+## Input Palmprint vs. PalmDB Analysis
 
 #### Multiple Sequence Alignment
 
@@ -221,7 +230,7 @@ top-10 matching hits in [`palmdb`](https://github.com/rcedgar/palmdb).
 cat(paste0(readLines(input.msa), collapse = "\n"))
 ```
 
-#### Input palmprint aligned to palmDB
+#### Input palmprint alignment to palmDB
 
 Input "palmprint" are aligned against [`palmdb`](https://github.com/rcedgar/palmdb)
 using `diamond` to retrieve related viruses. Upto the top 500 related viruses
@@ -251,7 +260,7 @@ virus.
 # Viral Taxonomy of palmDB Hits
 plot(tax.report)
 ```
-#### Input Alignment to palmDB Table
+#### palmDB Alignment table
 
 ```{r, echo = FALSE}
 ### Data-Table: `palmDB.csv`
@@ -294,23 +303,26 @@ geo.report
 ```
 ![](img/tax_legend.png)
 
-#### Source organism
+#### Virus-Organism Associations
 
-Organisms associated with the matching sequencing libraries.
-Word size is scaled by a) proximity of input virus to sra-virus
-match or b) frequency of organism tag within all sra-virus matches.
+Organism meta-data from the SRA sequencing libraries matching the input-virus.
+Word size and color is scaled by proximity of the input-virus to its match in 
+the library. Wordclouds show a) Researcher provided annotations of the libraries
+or b) STAT automated taxonomic (orders) analysis of the reads contained within
+the library ([Katz et al., 2021](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)).
 
 ```{r, fig.width=8, fig.height=5, retina = 2}
-# Plot SRA-Organism Wordcloud - id
+# Plot SRA  Wordcloud - id
 # (scaled by AA% proximity to input palmprint)
-plot(orgn.report.pidn)
+plot(orgn.report)
 ```
 
 ```{r, fig.width=8, fig.height=5, retina = 2}
 # Plot SRA-Organism Wordcloud - freq
 # (scaled by frequency in the SRA)
-plot(orgn.report.freq)
+plot(stat.report)
 ```
+![](img/stat_legend.png)
 
 #### Input Alignment to SRA-RdRp Table
 
@@ -341,7 +353,7 @@ cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', '
 To save this report: `File` --> `Save Page As`.
 
 ```{r, include=FALSE}
-if (save.plots){
+if (save.plots) {
   
   # SAVE PP-REPORT
   png(filename = output.report, width = 800, height = 400)
@@ -362,7 +374,7 @@ if (save.plots){
   )
   
   # SAVE GEO-REPORT
-  htmlwidgets::saveWidget(geo.report, file=output.geo)
+  htmlwidgets::saveWidget(geo.report, file = output.geo)
 
   # SAVE ORGN-REPORT
   png(filename = output.orgn, width = 800, height = 400, res = 100)
@@ -374,7 +386,20 @@ if (save.plots){
 ```
 
 ```{r, include = FALSE}
+# Development Code
 #rmarkdown::render('palmid_dev.Rmd',
 #                  output_file = output.html)
+
+# # Generate /data files
+# # based on waxsys example
+# waxsys.palm.sra <- palm.sra
+# waxsys.palmprint <- pp.in
+# waxsys.pro.df <- pro.df
+# waxsys.stat.sra <- stat.sra
+# 
+# save( waxsys.palm.sra, file = "data/waxsys.palm.sra.RData", compress = "xz")
+# save( waxsys.palmprint, file = "data/waxsys.palmprint.RData", compress = "xz")
+# save( waxsys.pro.df, file = "data/waxsys.pro.df.RData", compress = "xz")
+# save( waxsys.stat.sra, file = "data/waxsys.stat.sra.RData", compress = "xz")
 ```
 

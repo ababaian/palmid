@@ -1,0 +1,181 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+## STAT Taxonomy Update - BigQuery 211021
+
+Grabbing STAT analysis file from BigQuery for all SRA analyzed
+(see: https://www.ncbi.nlm.nih.gov/sra/docs/aligned-metadata-tables/)
+
+
+Retrieve STAT taxonomic "Orders", dump the data into CSV.
+The `taxid` are then extracted in an ordered list for input to this
+scrip
+
+BigQuery: 
+`
+  SELECT * FROM nih-sra-datastore.sra_tax_analysis_tool.tax_analysis AS tax
+  WHERE rank = 'order' AND
+      total_count >= 100
+  ORDER BY acc
+`
+
+SQL calculations:
+`
+CREATE TABLE sra_stat2 AS
+	WITH total_counts AS( 
+		SELECT run, SUM(count) AS count_per_run FROM sra_stat
+		GROUP BY run
+	)
+	SELECT sra_stat.*, total_counts.count_per_run,
+		ROUND( 100*count/total_counts.count_per_run,2 ) as kmer_perc
+		FROM sra_stat
+		LEFT OUTER JOIN total_counts on (sra_stat.run = total_counts.run)
+`
+Update stat table
+`
+UPDATE sra_stat
+SET "group" = sra_stat_group.group
+FROM sra_stat_group
+WHERE sra_stat.taxid =  sra_stat_group.taxid
+`
+
+
+Make as seperate table
+`
+CREATE TABLE sra_stat2 AS
+	SELECT * 
+	FROM sra_stat 
+	INNER JOIN add_stat_label ON (sra_stat.row_id = add_stat_label.row_idd)
+`
+
+```{r}
+# Import NCBI Taxonomy
+# install.packages("taxize")
+# install.packages("taxizedb")
+# Download NCBI Taxonomy
+# db_download_ncbi()
+
+# Library
+#library("taxize")
+library("taxizedb")
+library("plyr")
+
+```
+
+
+```{r}
+# Imported ordinal vector of SQL rows for STAT Orders (taxid values)
+stat.order <- read.csv(file = "taxid.list", header = FALSE)
+
+# Establish dictionary to be used
+stat <- data.frame( taxid    = unique(stat.order),
+                    sci_name = as.character(NA),
+                    group    = as.character(NA))
+  colnames(stat) <- c("taxid", "sci_name", "group")
+  
+# Initialize 'sci_name'
+  stat$sci_name <- taxid2name(stat$taxid)
+```  
+  
+```{r}
+# Target space to map NCBI Taxonomy onto for visualizing
+target_taxa <- c( "Primate", "Mammal", "Vertebrate",
+                  "Arthropod", "Invertebrate",
+                  "Fungus",
+                  "Plant",
+                  "Prokarya",
+                  "Virus",
+                  "Unclassified")
+
+# target_label | tax_name   | tax_rank
+# Primate      - primate    - order
+# Mammal       - mammalia   - class
+# Vertebrate   - vertebrata - clade
+# Arthropod    - arthropoda - phylum
+# Invertebrate - metazoa    - kingdom (not above)
+# Fungi        - fungi      - kingdom
+# Plant        - eukaryota  - superkingdom (not above)
+# Archaea      - archaea    - superkingdom
+# Bacteria     - bacteria   - superkingdom
+# Virus        - viruses    - superkingdom
+# Unclassified - NA         - NA
+```
+
+```{r}
+# Assign Labels Function
+assignTaxLabel <- function(taxid) {
+  # baseline is superkingdom
+  taxn_out <- taxa_at(taxid, rank = "superkingdom", db = "ncbi")[[1]]$name
+  
+  if (is.null(taxn_out)) {
+    return("Unclassified")
+    stop()
+  }
+  
+  # kingdom
+  kingdom <- taxa_at(taxid, rank = "kingdom", db = "ncbi")[[1]]$name
+  
+  if (kingdom == "Fungi" || kingdom == "Metazoa") {
+    taxn_out <- kingdom
+  } else {
+    return(taxn_out)
+    stop()
+  }
+  
+  # phylum
+  phylum <- taxa_at(taxid, rank = "phylum", db = "ncbi")[[1]]$name
+
+  if (phylum == "Arthropoda" || phylum == "Chordata") {
+    taxn_out <- phylum
+  } else {
+    return(taxn_out)
+    stop()
+  }
+  
+  # taxclass
+  taxclass <- taxa_at(taxid, rank = "class", db = "ncbi")[[1]]$name
+
+  if (taxclass == "Mammalia") {
+    taxn_out <- taxclass
+  } else if (phylum == "Chordata") {
+    # If Chordata is TRUE and Mammalia is False
+    # check for Vertebrate
+    taxc <- classification(taxid)[[1]]
+    
+    if ("Vertebrata" %in% taxc$name) {
+      taxn_out <- "Vertebrata"
+    } else {
+      return("Metazoa")
+      stop()
+    }
+  } else {
+    return(taxn_out)
+    stop()
+  }
+  
+  # taxorder
+  taxorder <- taxa_at(taxid, rank = "order", db = "ncbi")[[1]]$name
+
+  if (taxorder == "Primates") {
+    taxn_out <- taxorder
+  } else {
+    return(taxn_out)
+  }
+}
+```
+
+```{r}
+# Assign first labels
+stat$group <- sapply(stat$taxid, assignTaxLabel)
+
+# Map the original taxid to the labels
+stat.assign <- mapvalues(x = stat.order$V1,
+                         from = stat$taxid, to = stat$group)
+```
+
+```{r}
+# Save table
+write.table(stat.assign, file = 'label.list', quote = F, row.names = F)
+
+```

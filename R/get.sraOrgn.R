@@ -32,7 +32,7 @@ get.sraOrgn <- function(run_ids, con, ordinal = FALSE, as.df = FALSE) {
 
   # get contigs containing palm_ids
   sra.orgn <- tbl(con, "srarun") %>%
-    filter(run %in% run_ids) %>%
+    dplyr::filter(run %in% run_ids) %>%
     select(run, scientific_name) %>%
     as.data.frame()
     colnames(sra.orgn) <- c("run_id", "scientific_name")

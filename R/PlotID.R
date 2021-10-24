@@ -13,9 +13,9 @@
 #' @export
 PlotID <- function(pro, html = TRUE){
   # Bind Local Variables
-  sseqid <- matching <- label <- NULL
+  sseqid <- matching <- label <- seq <- nickname <- NULL
   pident <- evalue <- escore <- 0
-
+  
   # phylum, family, genus, species
   ranklvl <-  c("phylum",  "family",  "genus",   "species")
 
@@ -61,7 +61,7 @@ PlotID <- function(pro, html = TRUE){
   }
 
   idPlot <- ggplot() +
-    geom_point(data = pro, aes(uid=sseqid, seq=seq,
+    geom_point(data = pro, aes(uid=sseqid, nick=nickname, seq=seq,
                                x=pident, y=escore, color = matching),
                 show.legend = FALSE,
                alpha = 0.75) +

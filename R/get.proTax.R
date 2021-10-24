@@ -1,5 +1,5 @@
 # get.proTax
-#' A wrapper for get.tax() specific for 'pro.df' input
+#' A wrapper for get.palmTax() specific for 'pro.df' input
 #' and returns a populated the "tspe", "tfam", and "tphy"
 #' columns of 'pro.df' based on the "sseqid" column
 #'
@@ -27,9 +27,9 @@ get.proTax <- function(pro.df, con = SerratusConnect()) {
   # identifiers may be missed/ambiguous if it is in
   # a child-OTU
 
-  pro.df$tspe <- get.tax(pro.df$sseqid, con, rank = "species", T)
-  pro.df$tfam <- get.tax(pro.df$sseqid, con, rank = "family", T)
-  pro.df$tphy <- get.tax(pro.df$sseqid, con, rank = "phylum", T)
+  pro.df$tspe <- get.palmTax(pro.df$sseqid, con, rank = "species", T)
+  pro.df$tfam <- get.palmTax(pro.df$sseqid, con, rank = "family", T)
+  pro.df$tphy <- get.palmTax(pro.df$sseqid, con, rank = "phylum", T)
 
   return(pro.df)
 }

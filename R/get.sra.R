@@ -10,11 +10,11 @@
 #' @return character, de-duplicated run_ids with a potential match for 'palm_ids'
 #' @keywords palmid Serratus palmdb sOTU
 #' @examples
+#' \donttest{
 #' palmid_of_interest <- c("u1337")
 #' con <- SerratusConnect()
-#'
 #' palm.sra   <- get.sra(palmid_of_interest, con)
-#'
+#' }
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
@@ -26,13 +26,13 @@ get.sra <- function(palm_ids, con,
   if (qc){
     # get contigs containing palm_ids WITH QC
     contigs <- tbl(con, "palm_sra") %>%
-      filter(palm_id %in% palm_ids) %>%
-      filter(qc_pass == qc) %>%
+      dplyr::filter(palm_id %in% palm_ids) %>%
+      dplyr::filter(qc_pass == qc) %>%
       as.data.frame()
   } else {
     # get contigs containing palm_ids WITHOUT QC
     contigs <- tbl(con, "palm_sra") %>%
-      filter(palm_id %in% palm_ids) %>%
+      dplyr::filter(palm_id %in% palm_ids) %>%
       as.data.frame()
   }
 

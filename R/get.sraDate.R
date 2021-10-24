@@ -23,7 +23,7 @@ get.sraDate <- function(run_ids, con, ordinal = FALSE, as.df = FALSE) {
 
   # get contigs containing palm_ids
   sra.date <- tbl(con, "srarun") %>%
-    filter(run %in% run_ids) %>%
+    dplyr::filter(run %in% run_ids) %>%
     select(run, load_date) %>%
     as.data.frame()
     colnames(sra.date) <- c("run_id", "date")

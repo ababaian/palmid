@@ -1,4 +1,4 @@
-#' get.tax
+#' get.palmTax
 #'
 #' Retrieve the taxonomic identifiers for a set of 'palm_id'
 #' for a given rank.
@@ -14,12 +14,12 @@
 #' con <- SerratusConnect()
 #'
 #' # Return species-identifiers for a set of palmprints (uxxx)
-#' get.tax(c("u2", "u1337"), con, rank = "species")
+#' get.palmTax(c("u2", "u1337"), con, rank = "species")
 #'
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
-get.tax <- function(palm_ids, con, rank = "family", ordinal = FALSE) {
+get.palmTax <- function(palm_ids, con, rank = "family", ordinal = FALSE) {
   # Bind Local Variables
   palm_id <- NULL
 
@@ -40,7 +40,7 @@ get.tax <- function(palm_ids, con, rank = "family", ordinal = FALSE) {
 
   # get sOTU from palm_id
   tax <- tbl(con, "palmdb") %>%
-    filter(palm_id %in% palm_ids) %>%
+    dplyr::filter(palm_id %in% palm_ids) %>%
     select(palm_id, !!rank) %>%
     as.data.frame()
 

@@ -22,7 +22,7 @@ get.sraBio <- function(run_ids, con, ordinal = FALSE) {
 
   # get biosample field for run_id
   sra.bio <- tbl(con, "srarun") %>%
-    filter(run %in% run_ids) %>%
+    dplyr::filter(run %in% run_ids) %>%
     select(run, bio_sample) %>%
     as.data.frame()
     colnames(sra.bio) <- c("run_id", "biosample_id")

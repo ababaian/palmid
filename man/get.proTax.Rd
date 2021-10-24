@@ -2,7 +2,7 @@
 % Please edit documentation in R/get.proTax.R
 \name{get.proTax}
 \alias{get.proTax}
-\title{A wrapper for get.tax() specific for 'pro.df' input
+\title{A wrapper for get.palmTax() specific for 'pro.df' input
 and returns a populated the "tspe", "tfam", and "tphy"
 columns of 'pro.df' based on the "sseqid" column}
 \usage{
@@ -17,7 +17,7 @@ get.proTax(pro.df, con = SerratusConnect())
 pro.df  data.frame
 }
 \description{
-A wrapper for get.tax() specific for 'pro.df' input
+A wrapper for get.palmTax() specific for 'pro.df' input
 and returns a populated the "tspe", "tfam", and "tphy"
 columns of 'pro.df' based on the "sseqid" column
 }

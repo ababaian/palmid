@@ -2,7 +2,7 @@
 #' Plot a wordcloud of the organisms in a palm.sra object or orgn.vec
 #' @param palm.sra  data.frame, created from get.palmSra() [NULL]
 #' @param orgn.vec  character, vector of "scientific_name" from sra run table [NULL]
-#' @param freq      boolean, scale words by frequency, else by identity [T]
+#' @param freq      boolean, scale words by frequency, else by identity [TRUE]
 #' @return A ggwordcloud object of the "ntop" frequent terms
 #' @keywords palmid pro plot
 #' @examples
@@ -25,7 +25,7 @@
 #' @import viridisLite ggwordcloud
 #' @import dplyr ggplot2
 #' @export
-PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = T){
+PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = TRUE){
   requireNamespace("ggwordcloud", quietly = T)
 
   # Bind Local Variables
@@ -45,12 +45,12 @@ PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = T){
   if (freq){
     # Transform to a standardized table for consistent plotting
     ntop <- 50
-    otitle <- "Sequencing Library Associated Organisms -- sra frequency"
+    otitle <- "SRA annotations associated with input virus -- frequency scaled"
     orgn.df <- data.frame( standardizeWordcount(orgn.df, ntop) )
   } else {
     # Transform to an identity-standard table for consistency
     ntop <- 50
-    otitle <- "Sequencing Library Associated Organisms -- %id match"
+    otitle <- "SRA annotations associated with input virus -- %id scaled"
     orgn.df <- identityWordcount(orgn.df, ntop)
   }
 

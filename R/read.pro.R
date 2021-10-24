@@ -36,7 +36,7 @@ read.pro <- function(pro.path) {
     
   # Initialize empty nickname column (use get.nickname)
     pro.df$nickname <- as.character(NA)
-  # Initialize empty taxonomy columns (use get.tax)
+  # Initialize empty taxonomy columns (use get.palmTax)
     pro.df$tspe <- as.character(NA)
     pro.df$tfam <- as.character(NA)
     pro.df$tphy <- as.character(NA)

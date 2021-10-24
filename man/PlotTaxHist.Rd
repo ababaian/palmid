@@ -9,7 +9,7 @@ PlotTaxHist(pro.pident, pro.tax, rank = NA)
 \arguments{
 \item{pro.pident}{numeric, pident column from pro.df}
 
-\item{pro.tax}{character, tax column from pro.df (use: get.tax)}
+\item{pro.tax}{character, tax column from pro.df (use: get.palmTax)}
 
 \item{rank}{character, string of tax-rank to label graph}
 }
