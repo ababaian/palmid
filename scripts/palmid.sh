@@ -130,6 +130,20 @@ palmscan -search_pp $INPUT -loconf -rdrp \
   -fevout $OUTDIR/$OUTNAME.fev \
   -ppout $OUTDIR/$OUTNAME.trim.fa
 
+# hack to fix qlen to total input query length
+# (but we now assume aa-sequence input)
+seqkit stats -T $INPUT | tail -n-1 - \
+  > fa.stats
+SEQTYPE=$(cut -f 3 fa.stats)
+SEQLEN=$(cut -f 5  fa.stats)
+
+if [ "$SEQTYPE" == "DNA" ]
+then
+  SEQLEN=$(($SEQLEN*3))
+fi
+
+sed -i "s/qlen=[0-9]*/qlen=$SEQLEN/g" $OUTDIR/$OUTNAME.fev
+
 echo ''
 echo ' palmprint:'
 echo ''
