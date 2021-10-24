@@ -52,7 +52,7 @@ get.sOTU <- function(palm_ids, con, get_childs = FALSE, ordinal = FALSE) {
 
   # get sOTU from palm_id
   sotus <- tbl(con, "palmdb") %>%
-    filter(palm_id %in% palm_ids) %>%
+    dplyr::filter(palm_id %in% palm_ids) %>%
     select(palm_id, sotu) %>%
     as.data.frame()
     colnames(sotus) <- c("palm_id", "sotu")
@@ -69,7 +69,7 @@ get.sOTU <- function(palm_ids, con, get_childs = FALSE, ordinal = FALSE) {
     sotu.lookup <- as.character(sotus$sotu)
 
     child <- tbl(con, "palmdb") %>%
-      filter(sotu %in% sotu.lookup) %>%
+      dplyr::filter(sotu %in% sotu.lookup) %>%
       select(palm_id, sotu) %>%
       as.data.frame()
       colnames(child) <- c("child_id", "sotu")

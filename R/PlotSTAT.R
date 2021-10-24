@@ -72,7 +72,7 @@ PlotSTAT <- function(stat.sra) {
   stat.sra <- stat.sra[ order(stat.sra$pident, decreasing = T), ]
   
   # Aggregate 'kperc', sum percentage of kmer per runs for each order
-  stat.kperc <- aggregate(stat.sra$kmer_perc, by = list(stat.sra$order_name), FUN=sum)
+  stat.kperc <- stats::aggregate(stat.sra$kmer_perc, by = list(stat.sra$order_name), FUN=sum)
     colnames(stat.kperc) <- c("order_name", "ksum")
     
   # stat.df for Plotting

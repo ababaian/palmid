@@ -4,6 +4,7 @@ output:
   html_notebook:
     code_folding: hide
 params:
+  palmid.version: '0.0.4'
   input.path: 'inst/extdata/waxsys'
   prod.run: FALSE
 ---
@@ -76,7 +77,7 @@ if (is.null(input.path)) {
   stop("Error: No input provided.")
 }
 
-  input.fa      <- paste0(input.path, '.input.fa')    # palmscan-palmprint sequence
+  input.fa      <- paste0(input.path, '.input.fa')   # palmscan-palmprint sequence
   input.pp      <- paste0(input.path, '.trim.fa')    # palmscan-palmprint sequence
   input.fev     <- paste0(input.path, '.fev')    # palmscan .fev report
   input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
@@ -140,6 +141,17 @@ geo.report <- PlotGeo2(palm.sra)
 orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
 stat.report <- PlotSTAT(stat.sra)
 
+# Print out version
+cat( paste0("palmID Version: ", params$palmid.version) )
+
+```
+
+#### Summary
+
+```{r, echo = FALSE}
+# Generate text-based summary of palmID data
+palm.summary <- text_summary(pp.in, pro.df, palm.sra, palmdb.hits)
+cat(palm.summary)
 ```
 
 #### Download Data
@@ -167,15 +179,6 @@ palm.sra %>%
     icon = "fa fa-file-export"
   )
 ```
-
-#### Summary
-
-```{r, echo = FALSE}
-# Generate text-based summary of palmID data
-palm.summary <- text.summary(pp.in, pro.df, palm.sra, palmdb.hits)
-cat(palm.summary)
-```
-
 ## Input RdRP palmprint QC
 
 #### palmscan motif analysis
@@ -383,7 +386,20 @@ if (save.plots) {
 ```
 
 ```{r, include = FALSE}
+# Development Code
 #rmarkdown::render('palmid_dev.Rmd',
 #                  output_file = output.html)
+
+# # Generate /data files
+# # based on waxsys example
+# waxsys.palm.sra <- palm.sra
+# waxsys.palmprint <- pp.in
+# waxsys.pro.df <- pro.df
+# waxsys.stat.sra <- stat.sra
+# 
+# save( waxsys.palm.sra, file = "data/waxsys.palm.sra.RData", compress = "xz")
+# save( waxsys.palmprint, file = "data/waxsys.palmprint.RData", compress = "xz")
+# save( waxsys.pro.df, file = "data/waxsys.pro.df.RData", compress = "xz")
+# save( waxsys.stat.sra, file = "data/waxsys.stat.sra.RData", compress = "xz")
 ```
 

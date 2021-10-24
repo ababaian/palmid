@@ -13,9 +13,9 @@
 #' @export
 PlotID <- function(pro, html = TRUE){
   # Bind Local Variables
-  sseqid <- matching <- label <- seq <- nick <- NULL
+  sseqid <- matching <- label <- seq <- nickname <- NULL
   pident <- evalue <- escore <- 0
-
+  
   # phylum, family, genus, species
   ranklvl <-  c("phylum",  "family",  "genus",   "species")
 

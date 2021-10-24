@@ -1,4 +1,4 @@
-# text.summary
+# text_summary
 #' Create a human-readable text summary of palmID
 #' @param pp.in  data.frame, palmprint from read.fev()
 #' @param pro.df data.frame, DIAMOND alignment to palmDB from read.pro()
@@ -10,7 +10,7 @@
 #' @import dplyr ggplot2
 #' @export
 #' 
-text.summary <- function(pp.in, pro.df, palm.sra, palmdb.hits) {
+text_summary <- function(pp.in, pro.df, palm.sra, palmdb.hits) {
   # palmDB summary stats
   if (palmdb.hits > length(pro.df[,1])) {
     print.hitn <- paste0("Reporting Top ", length(pro.df[,1]), "/", palmdb.hits, " matches")

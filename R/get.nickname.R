@@ -30,7 +30,7 @@ get.nickname <- function(palm_ids, con, ordinal = FALSE) {
   
   # get sOTU from palm_id
   nicknames <- tbl(con, "palmdb") %>%
-    filter(palm_id %in% palm_ids) %>%
+    dplyr::filter(palm_id %in% palm_ids) %>%
     select(palm_id, nickname) %>%
     as.data.frame()
   colnames(nicknames) <- c("palm_id", "nickname")

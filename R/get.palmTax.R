@@ -40,7 +40,7 @@ get.palmTax <- function(palm_ids, con, rank = "family", ordinal = FALSE) {
 
   # get sOTU from palm_id
   tax <- tbl(con, "palmdb") %>%
-    filter(palm_id %in% palm_ids) %>%
+    dplyr::filter(palm_id %in% palm_ids) %>%
     select(palm_id, !!rank) %>%
     as.data.frame()
 

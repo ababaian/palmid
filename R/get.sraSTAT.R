@@ -26,11 +26,11 @@
 # Retrieve date from input of sra run_ids
 get.sraSTAT <- function(run_ids, con = SerratusConnect(), prc_threshold = 5) {
   # Bind Local Variables
-  run <- name <- label <- kmer <- kmer_perc <- NULL
+  run <- name <- tax_label <- kmer <- kmer_perc <- NULL
 
   #get STAT kmer taxonomy classifications from SRA
   sra.stat <- tbl(con, "sra_stat") %>%
-    filter(run %in% run_ids) %>%
+    dplyr::filter(run %in% run_ids) %>%
     select(run, name, tax_label, kmer, kmer_perc) %>%
     as.data.frame()
     colnames(sra.stat) <- c("run_id", "order_name", "tax_label", "kmer", "kmer_perc")
