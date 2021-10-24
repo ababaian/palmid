@@ -15,7 +15,9 @@
 #'  # Retrieve STAT taxonomic orders for a SRA run
 #'  # and show all results with prc_threshold of 0%
 #' con <- SerratusConnect()
-#' sra.taxa   <- get.sraTax('ERR2756788', con, prc_threshold = 0)
+#' sra.stat   <- get.sraSTAT('ERR2756788', con, prc_threshold = 0)
+#' 
+#' #NOTE: 'pident' column will be NA, match values from palm.sra object
 #'
 #' }
 #' @import RPostgreSQL
@@ -38,7 +40,10 @@ get.sraSTAT <- function(run_ids, con = SerratusConnect(), prc_threshold = 5) {
   
   # Sort output  
   sra.stat <- sra.stat[order(sra.stat$kmer_perc, decreasing = T), ]
-  sra.stat <- sra.stat[order(sra.stat$run_id, sra.stat$tax_label), ]
+  sra.stat <- sra.stat[order(sra.stat$run_id), ]
+  
+  # Initiate empty pident vector
+  sra.stat$pident <- NA
   
   return(sra.stat)
 }

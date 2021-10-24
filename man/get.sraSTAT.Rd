@@ -28,7 +28,9 @@ Data from NCBI-STAT (Katz et al., 2021)
  # Retrieve STAT taxonomic orders for a SRA run
  # and show all results with prc_threshold of 0\%
 con <- SerratusConnect()
-sra.taxa   <- get.sraTax('ERR2756788', con, prc_threshold = 0)
+sra.stat   <- get.sraSTAT('ERR2756788', con, prc_threshold = 0)
+
+#NOTE: 'pident' column will be NA, match values from palm.sra object
 
 }
 }

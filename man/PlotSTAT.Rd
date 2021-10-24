@@ -5,32 +5,36 @@
 \title{Plot a wordcloud of the STAT-classified taxonomy in a palm.sra object
 using get.sraSTAT()}
 \usage{
-PlotSTAT(palm.sra, stat.sra, freq = FALSE)
+PlotSTAT(stat.sra)
 }
 \arguments{
-\item{palm.sra}{data.frame, created from get.palmSra()}
-
-\item{stat.sra}{data.frame, created from get.sraTax()}
-
-\item{freq}{boolean, scale words by frequency, else by identity [FALSE]}
+\item{stat.sra}{data.frame, created from get.sraSTAT()}
 }
 \value{
-A ggwordcloud object of the "ntop" frequent terms
+A ggwordcloud object of the "ntop" frequent terms [50]
 }
 \description{
 Plot a wordcloud of the STAT-classified taxonomy in a palm.sra object
 using get.sraSTAT()
 }
 \examples{
+\donttest{
+
+con <- SerratusConnect()
 
 # Load Waxsystermes Example data
 data("waxsys.palm.sra")
 
-# Create wordcloud of organism terms
-# using column "order_name" in data.frame
+waxsys.stat.sra <- get.sraSTAT(waxsys.palm.sra$run_id, con)
 
-# Scaled by frequency of organism term in all of data.frame
-PlotSTAT( waxsys.palm.sra )
+# Populate stat.sra with percent identity from palm.sra
+palm.stat.lookup <- match(waxsys.stat.sra$run_id, waxsys.palm.sra$run_id)
+waxsys.stat.sra$pident <- waxsys.palm.sra$pident[palm.stat.lookup]
+
+# Create wordcloud of STAT Taxonomy
+PlotSTAT( waxsys.stat.sra)
+
+}
 
 }
 \keyword{palmid}

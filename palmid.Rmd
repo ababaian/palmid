@@ -119,6 +119,9 @@ palm.sra <- get.palmSra(pro.df, con)
 # SQL-import of STAT kmer taxonomic analysis of the retrieved
 # matching SRA libraries
 stat.sra <- get.sraSTAT(palm.sra$run_id, con)
+# Populate stat.sra with percent identity from palm.sra
+  stat.sra$pident <- palm.sra$pident[ match(stat.sra$run_id, palm.sra$run_id) ]
+  
 
 # GENERATE REPORT-PLOTS -------------------------
 # Palmprint Report

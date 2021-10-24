@@ -2,26 +2,32 @@
 #' Plot a wordcloud of the STAT-classified taxonomy in a palm.sra object
 #' using get.sraSTAT()
 #' 
-#' @param palm.sra  data.frame, created from get.palmSra()
-#' @param stat.sra  data.frame, created from get.sraTax()
-#' @param freq      boolean, scale words by frequency, else by identity [FALSE]
-#' @return A ggwordcloud object of the "ntop" frequent terms
+#' @param stat.sra  data.frame, created from get.sraSTAT()
+#' @return A ggwordcloud object of the "ntop" frequent terms [50]
 #' @keywords palmid pro plot
 #' @examples
-#'
+#' \donttest{
+#' 
+#' con <- SerratusConnect()
+#' 
 #' # Load Waxsystermes Example data
 #' data("waxsys.palm.sra")
-#'
-#' # Create wordcloud of organism terms
-#' # using column "order_name" in data.frame
-#'
-#' # Scaled by frequency of organism term in all of data.frame
-#' PlotSTAT( waxsys.palm.sra )
-#'
+#' 
+#' waxsys.stat.sra <- get.sraSTAT(waxsys.palm.sra$run_id, con)
+#' 
+#' # Populate stat.sra with percent identity from palm.sra
+#' palm.stat.lookup <- match(waxsys.stat.sra$run_id, waxsys.palm.sra$run_id)
+#' waxsys.stat.sra$pident <- waxsys.palm.sra$pident[palm.stat.lookup]
+#' 
+#' # Create wordcloud of STAT Taxonomy
+#' PlotSTAT( waxsys.stat.sra)
+#' 
+#' }
+#' 
 #' @import viridisLite ggwordcloud
 #' @import dplyr ggplot2
 #' @export
-PlotSTAT <- function(palm.sra, stat.sra, freq = FALSE) {
+PlotSTAT <- function(stat.sra) {
   requireNamespace("ggwordcloud", quietly = TRUE)
   
   # Taxonomy Palette
@@ -51,23 +57,22 @@ PlotSTAT <- function(palm.sra, stat.sra, freq = FALSE) {
       "#000000",
       "#000000"
     ) )
-  
   unclassified.color <- tax.color$tax_color[ tax.color$tax_label == "Unclassified"]
 
   # Bind Local Variables
-  segstrt <- segend <- segment <- scientific_name <- Freq <- NULL
+  order_name <- pident <- tax_color <- kmer_perc <- kperc <- NULL
 
-  # Populate stat.sra with percent identity from palm.sra
-  stat.sra$pident <- palm.sra$pident[ match(stat.sra$run_id, palm.sra$run_id) ]
+  if (all(is.na(stat.sra$pident))){
+    stop("No pident identity values, assign from palm.sra data.frame")
+  }
   
   # Transform Data for Plotting
-  
   # Sort by 'pident', keep highest unique scientific_name match
   stat.sra <- stat.sra[ order(stat.sra$pident, decreasing = T), ]
   
   # Aggregate 'kperc', sum percentage of kmer per runs for each order
   stat.kperc <- aggregate(stat.sra$kmer_perc, by = list(stat.sra$order_name), FUN=sum)
-    colnames(stat.kperc) <- c('order_name', 'ksum')
+    colnames(stat.kperc) <- c("order_name", "ksum")
     
   # stat.df for Plotting
   # Transform pident to pseudo-Freq
@@ -92,7 +97,7 @@ PlotSTAT <- function(palm.sra, stat.sra, freq = FALSE) {
                                             color = tax_color,
                                             alpha = kperc)) +
     scale_color_identity() +
-    ggtitle(label = 'STAT-taxonomy (kmer analysis) associated with input virus -- %id scaled') +
+    ggtitle(label = "STAT-taxonomy (kmer analysis) associated with input virus -- %id scaled") +
     theme_minimal()
   
   return(stat.wc)
