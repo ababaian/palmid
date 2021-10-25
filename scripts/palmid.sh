@@ -139,7 +139,7 @@ SEQLEN=$(cut -f 5  fa.stats)
 
 if [ "$SEQTYPE" == "DNA" ]
 then
-  SEQLEN=$(($SEQLEN*3))
+  SEQLEN=$(($SEQLEN/3))
 fi
 
 sed -i "s/qlen=[0-9]*/qlen=$SEQLEN/g" $OUTDIR/$OUTNAME.fev

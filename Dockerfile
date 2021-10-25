@@ -17,7 +17,7 @@ FROM amazonlinux:2 AS serratus-base
 # 
 # sudo docker build --no-cache \
 #  -t serratusbio/palmid \
-#  -t serratusbio/palmid:0.0.3 \
+#  -t serratusbio/palmid:0.0.4 \
 #  -t serratusbio/palmid:latest \
 #  -t palmid:latest .
 #
@@ -53,7 +53,7 @@ WORKDIR $BASEDIR
 # Container Build Information
 ARG PROJECT='palmid'
 ARG TYPE='base'
-ARG VERSION='0.0.3'
+ARG VERSION='0.0.4'
 
 # Software Versions (pass to shell)
 ENV PALMIDVERSION=$VERSION
