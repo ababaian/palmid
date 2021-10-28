@@ -133,9 +133,9 @@ palmscan -search_pp $INPUT -loconf -rdrp \
 # hack to fix qlen to total input query length
 # (but we now assume aa-sequence input)
 seqkit stats -T $INPUT | tail -n-1 - \
-  > fa.stats
-SEQTYPE=$(cut -f 3 fa.stats)
-SEQLEN=$(cut -f 5  fa.stats)
+  > $OUTDIR/$OUTNAME.stats
+SEQTYPE=$(cut -f 3 $OUTDIR/$OUTNAME.stats)
+SEQLEN=$(cut -f 5  $OUTDIR/$OUTNAME.stats)
 
 if [ "$SEQTYPE" == "DNA" ]
 then
