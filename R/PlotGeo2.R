@@ -23,27 +23,32 @@ PlotGeo2 <- function(palm.sra) {
     nn.stat <- paste0("geo-data for ", n.geo, " / ", n.sra," runs retrieved")
 
   # Color pallette
-  ranklvl <-  c("phylum",  "family",  "genus",   "species")
+  ranklvl   <-  c("phylum",  "family",  "genus",   "species")
   #rankcols <- c("#8B8B8B", "#8B2323", "#8B4500", "#CD9B1D")
-  rankcols <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
-  ranksize <- c(2, 3, 4, 6)
+  rankcols  <- c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
+  ranksize  <- c(2,         3,         5,         7        )
+  rankalpha <- c(0.25,      0.5,       0.5,       0.75     )
 
   palm.sra$rank <- ranklvl[1]
   palm.sra$colr <- rankcols[1]
   palm.sra$size <- ranksize[1]
+  palm.sra$alph <- rankalpha[1]
 
   palm.sra$rank[palm.sra$pident >= 45] <- ranklvl[2]
   palm.sra$colr[palm.sra$pident >= 45] <- rankcols[2]
   palm.sra$size[palm.sra$pident >= 45] <- ranksize[2]
-
+  palm.sra$alph[palm.sra$pident >= 45] <- rankalpha[2]
+  
   palm.sra$rank[palm.sra$pident >= 70] <- ranklvl[3]
   palm.sra$colr[palm.sra$pident >= 70] <- rankcols[3]
   palm.sra$size[palm.sra$pident >= 70] <- ranksize[3]
-
+  palm.sra$alph[palm.sra$pident >= 70] <- rankalpha[3]
+  
   palm.sra$rank[palm.sra$pident >= 90] <- ranklvl[4]
   palm.sra$colr[palm.sra$pident >= 90] <- rankcols[4]
   palm.sra$size[palm.sra$pident >= 90] <- ranksize[4]
-
+  palm.sra$alph[palm.sra$pident >= 90] <- rankalpha[4]
+  
   # Populate pop-up labels (HTML format)
   # sra.link <- function(sra){
   #   sra <- paste0("<a href="https://www.ncbi.nlm.nih.gov/sra/?term=",
@@ -84,12 +89,51 @@ PlotGeo2 <- function(palm.sra) {
       "' target='_blank'> [BLAST] </a>"
       )
 
-    earth <-  leaflet(data = palm.sra) %>%
-      addCircles(lng = ~lng, lat = ~lat,
+    earth <-  leaflet() %>%
+      addCircles(data = palm.sra[ (palm.sra$rank == 'phylum'), ],
+                 group = "phylum",
+                 lng = ~lng, lat = ~lat,
                  color = ~colr,
+                 opacity = ~alph,
+                 fillOpacity = ~alph,
                  weight  = ~size,
                  popup = ~popup,
                  popupOptions = popupOptions(closeButton = F) ) %>%
-      addTiles()
+      addCircles(data = palm.sra[ (palm.sra$rank == 'family'), ],
+                 group = "family",
+                 lng = ~lng, lat = ~lat,
+                 color = ~colr,
+                 opacity = ~alph,
+                 fillOpacity = ~alph,
+                 weight  = ~size,
+                 popup = ~popup,
+                 popupOptions = popupOptions(closeButton = F) ) %>%
+      addCircles(data = palm.sra[ (palm.sra$rank == 'genus'), ],
+                 group = "genus",
+                 lng = ~lng, lat = ~lat,
+                 color = ~colr,
+                 opacity = ~alph,
+                 fillOpacity = ~alph,
+                 weight  = ~size,
+                 popup = ~popup,
+                 popupOptions = popupOptions(closeButton = F) ) %>%
+      addCircles(data = palm.sra[ (palm.sra$rank == 'species'), ],
+                 group = "species",
+                 lng = ~lng, lat = ~lat,
+                 color = ~colr,
+                 opacity = ~alph,
+                 fillOpacity = ~alph,
+                 weight  = ~size,
+                 popup = ~popup,
+                 popupOptions = popupOptions(closeButton = F) ) %>%
+      addPopups(lng = 70.7269449,
+                lat = -67.5836837,
+                popup = nn.stat,
+                options = popupOptions(closeButton = TRUE) ) %>%
+      addLayersControl(
+        overlayGroups = c("species", "genus", "family", "phylum"),
+        options = layersControlOptions(collapsed = FALSE)
+      ) %>%
+      addProviderTiles(providers$CartoDB.Positron)
     return(earth)
 }
