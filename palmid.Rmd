@@ -135,7 +135,8 @@ pro.report <- PlotProReport(pro.df, html = T)
 tax.report <- PlotTaxReport(pro.df)
 
 # Geospatial distribution Report
-geo.report <- PlotGeo2(palm.sra)
+geo.report  <- PlotGeo2(palm.sra)
+date.report <- PlotTimeline(palm.sra)
 
 # Host/Library organism Report
 orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
@@ -268,7 +269,7 @@ plot(tax.report)
 
 blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
 
-cbind( pro.df[, c("sseqid", 'tspe', "pident", "evalue", "cigar")],
+cbind( pro.df[, c("sseqid", "nickname", "tspe", "pident", "evalue", "cigar")],
        blast.col) %>%
   DT::datatable(
     rownames = FALSE, filter = "top", escape = FALSE,
@@ -299,9 +300,13 @@ level matches are red, orange, green and purple, respectively.
 # Phylum  <45%   - Purple
 
 geo.report
-
 ```
 ![](img/tax_legend.png)
+
+```{r, echo = FALSE, fig.height = 3, fig.width = 9}
+# Geo-distribution of palmprint-containing SRA
+plotly::ggplotly(date.report)
+```
 
 #### Virus-Organism Associations
 

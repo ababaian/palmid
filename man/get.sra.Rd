@@ -24,11 +24,11 @@ character, de-duplicated run_ids with a potential match for 'palm_ids'
 Retrieve the SRA runs containing a 'palm_id'-matching contig.
 }
 \examples{
+\donttest{
 palmid_of_interest <- c("u1337")
 con <- SerratusConnect()
-
 palm.sra   <- get.sra(palmid_of_interest, con)
-
+}
 }
 \keyword{Serratus}
 \keyword{palmdb}

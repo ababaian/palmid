@@ -3,24 +3,21 @@
 \name{PlotTimeline}
 \alias{PlotTimeline}
 \title{PlotTimeline
-Create a timeline of}
+Create a timeline of data-releases in palm.sra}
 \usage{
-PlotTimeline(run_ids = NULL, sra.dates = NULL, con = SerratusConnect())
+PlotTimeline(palm.sra, html = TRUE)
 }
 \arguments{
-\item{run_ids}{character, vector of sra run_ids}
+\item{palm.sra}{data.frame, created with get.palmSra(pro.df, con)}
 
-\item{sra.dates}{POSIXct, set of dates}
-
-\item{con}{pq-connection, use SerratusConnect()}
+\item{html}{boolean, generate htmlWidget instead of ggplot [TRUE]}
 }
 \value{
 ggplot2, timeline of SRA load dates
 }
 \description{
 PlotTimeline
-Create a timeline of
+Create a timeline of data-releases in palm.sra
 }
 \keyword{palmid}
-\keyword{sql}
 \keyword{timeline}
