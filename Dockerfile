@@ -17,30 +17,20 @@ FROM amazonlinux:2 AS serratus-base
 # 
 # sudo docker build --no-cache \
 #  -t serratusbio/palmid \
-#  -t serratusbio/palmid:0.0.4 \
+#  -t serratusbio/palmid:0.0.5 \
 #  -t serratusbio/palmid:latest \
 #  -t palmid:latest .
 #
 # sudo docker push serratusbio/palmid
 
-## Push to ecr (palmid-lambda)
-#
-# aws ecr-public get-login-password --region us-east-1 \
-#  | sudo docker login --username AWS \
-#                      --password-stdin public.ecr.aws/q4q7t4w2
-#
-# docker build -t palmid .
-#
-# docker tag palmid
-#            palmid:0.0.0 \
-#            palmid:latest \
-#            public.ecr.aws/q4q7t4w2/palmid:latest
-# 
-# docker push public.ecr.aws/q4q7t4w2/palmid:latest
-#
-
 ## Dev testing to enter enter
 # sudo docker run --rm --entrypoint /bin/bash -it palmid:latest
+
+## Test data
+# sudo docker run  -v `pwd`:`pwd` -w `pwd`  \
+#   --entrypoint "/bin/bash" serratusbio/palmid:latest \
+#   /home/palmid/palmid.sh -i inst/extdata/waxsys.fa \
+#   -d tmp/waxsys -o waxsys
 
 #==========================================================
 # Container Meta-data =====================================
@@ -53,7 +43,7 @@ WORKDIR $BASEDIR
 # Container Build Information
 ARG PROJECT='palmid'
 ARG TYPE='base'
-ARG VERSION='0.0.4'
+ARG VERSION='0.0.5'
 
 # Software Versions (pass to shell)
 ENV PALMIDVERSION=$VERSION
