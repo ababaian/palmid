@@ -188,8 +188,7 @@ palm.sra %>%
 
 #### palmscan motif analysis
 
-Identification of the the core catalytic motifs A,B,C within the input
-sequence and reporting the "palmprint" RNA-virus barcode.
+Identification of the the core catalytic motifs A,B,C within the input sequence and reporting the "palmprint" RNA-virus barcode.
 
 ```{r, echo = FALSE}
 # Input Sequence
@@ -282,15 +281,11 @@ cbind( pro.df[, c("sseqid", "nickname", "tspe", "pident", "evalue", "cigar")],
 
 ## SRA Meta-data Analysis {.tabset}
 
-RNA viruses matching input are cross-referenced against 5.7M SRA
-sequencing libraries to identify sra-virus matches and their associated
-meta-data.
+RNA viruses matching input are cross-referenced against 5.7M SRA sequencing libraries to identify sra-virus matches and their associated meta-data.
 
 #### Geospatial distribution of related RNA viruses
 
-Distribution of matching RNA viruses. Click to explore each matching
-record. Species, genus, family and phylum level matches are red, orange,
-green and purple, respectively.
+Distribution of matching RNA viruses. Click to explore each matching record. Species, genus, family and phylum level matches are red, orange, green and purple, respectively.
 
 ```{r, fig.height = 6, fig.width = 9}
 # Geo-distribution of palmprint-containing SRA
@@ -312,13 +307,7 @@ plotly::ggplotly(date.report)
 
 #### Virus-Organism Associations
 
-Organism meta-data from the SRA sequencing libraries matching the
-input-virus. Word size and color is scaled by proximity of the
-input-virus to its match in the library. Wordclouds show a) Researcher
-provided annotations of the libraries or b) STAT automated taxonomic
-(orders) analysis of the reads contained within the library ([Katz et
-al.,
-2021](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)).
+Organism meta-data from the SRA sequencing libraries matching the input-virus. Word size and color is scaled by proximity of the input-virus to its match in the library. Wordclouds show a) Researcher provided annotations of the libraries or b) STAT automated taxonomic (orders) analysis of the reads contained within the library ([Katz et al.,2021](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)).
 
 ```{r, fig.width=8, fig.height=5, retina = 2}
 # Plot SRA  Wordcloud - id
