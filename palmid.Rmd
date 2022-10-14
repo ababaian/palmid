@@ -12,10 +12,7 @@ editor_options:
     wrap: 72
 ---
 
-`palmID` is a contained analysis suite for viral RNA-dependent RNA
-polymerases (RdRP) based on the "Palmprint" RNA virus barcodes described
-by [Babaian and Edgar,
-2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
+`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases (RdRP) based on the "Palmprint" RNA virus barcodes described by [Babaian and Edgar, 2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
 
 # {.tabset}
 
@@ -215,10 +212,7 @@ cat("\n")
 
 #### palmprint QC-report
 
-Quality control metrics on the motif-scores and size distribution of the
-"palmprint" informs the confidence that the input sequence contains a
-viral RdRP. Input scores are shown compared to score distribution from
-15,010 canonical viral RdRP from GenBank.
+Quality control metrics on the motif-scores and size distribution of the "palmprint" informs the confidence that the input sequence contains a viral RdRP. Input scores are shown compared to score distribution from 15,010 canonical viral RdRP from GenBank.
 
 ```{r, fig.height = 4.5, fig.width = 9}
 # Palmscan QC-plot
