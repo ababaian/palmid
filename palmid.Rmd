@@ -7,12 +7,16 @@ params:
   palmid.version: '0.0.4'
   input.path: 'inst/extdata/waxsys'
   prod.run: FALSE
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
-`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases
-(RdRP) based on the "Palmprint" RNA virus barcodes described by [Babaian and Edgar, 2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
+`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases (RdRP) based on the "Palmprint" RNA virus barcodes described by [Babaian and Edgar, 2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
 
-## Initialize
+# {.tabset}
+
+## Overview {.tabset}
 
 ```{r setup, include=FALSE}
 # RMarkdown Setting Initialization
@@ -59,7 +63,6 @@ if (production.version) {
 }
 
 ```
-
 
 ```{r}
 # INITIALIZE PALMID WORKSPACE -------------------
@@ -155,7 +158,7 @@ palm.summary <- text_summary(pp.in, pro.df, palm.sra, palmdb.hits)
 cat(palm.summary)
 ```
 
-#### Download Data
+#### Download Data {#download-data}
 
 ```{r, echo = FALSE}
 options(warn = -1)
@@ -180,13 +183,12 @@ palm.sra %>%
     icon = "fa fa-file-export"
   )
 ```
-## Input RdRP palmprint QC
+
+## Input RdRP palmprint QC {.tabset}
 
 #### palmscan motif analysis
 
-Identification of the the core catalytic motifs A,B,C 
-within the input sequence and reporting the "palmprint"
-RNA-virus barcode.
+Identification of the the core catalytic motifs A,B,C within the input sequence and reporting the "palmprint" RNA-virus barcode.
 
 ```{r, echo = FALSE}
 # Input Sequence
@@ -209,22 +211,19 @@ cat("\n")
 
 #### palmprint QC-report
 
-Quality control metrics on the motif-scores and size distribution
-of the "palmprint" informs the confidence that the input sequence
-contains a viral RdRP. Input scores are shown compared to score 
-distribution from 15,010 canonical viral RdRP from GenBank.
+Quality control metrics on the motif-scores and size distribution of the "palmprint" informs the confidence that the input sequence contains a viral RdRP. Input scores are shown compared to score distribution from 15,010 canonical viral RdRP from GenBank.
 
 ```{r, fig.height = 4.5, fig.width = 9}
 # Palmscan QC-plot
 plot(pp.report)
 ```
 
-## Input Palmprint vs. PalmDB Analysis
+## Input Palmprint vs. PalmDB Analysis {.tabset}
 
 #### Multiple Sequence Alignment
 
-A `MUSCLE`-generated multiple sequence alignment of the 
-top-10 matching hits in [`palmdb`](https://github.com/rcedgar/palmdb).
+A `MUSCLE`-generated multiple sequence alignment of the top-10 matching
+hits in [`palmdb`](https://github.com/rcedgar/palmdb).
 
 ```{r}
 # Multiple Sequence Alignment of Top-10 hits in palmDB
@@ -233,10 +232,9 @@ cat(paste0(readLines(input.msa), collapse = "\n"))
 
 #### Input palmprint alignment to palmDB
 
-Input "palmprint" are aligned against [`palmdb`](https://github.com/rcedgar/palmdb)
-using `diamond` to retrieve related viruses. Upto the top 500 related viruses
-are reported.
-
+Input "palmprint" are aligned against
+[`palmdb`](https://github.com/rcedgar/palmdb) using `diamond` to
+retrieve related viruses. Upto the top 500 related viruses are reported.
 
 ```{r, fig.height = 5, fig.width = 9}
 # Protein-alignment of Input vs. palmDB
@@ -249,18 +247,19 @@ are reported.
 plotly::ggplotly(pro.report)
 
 ```
+
 ![](img/tax_legend.png)
 
 #### Virus Taxonomy of PalmDB matches
 
-Species-, Genus- and Phylum- level taxonomy of the matching
-hits in PalmDB allow for taxonomic-inference of the input
-virus.
+Species-, Genus- and Phylum- level taxonomy of the matching hits in
+PalmDB allow for taxonomic-inference of the input virus.
 
 ```{r, fig.height=10, fig.width=16, retina = 1}
 # Viral Taxonomy of palmDB Hits
 plot(tax.report)
 ```
+
 #### palmDB Alignment table
 
 ```{r, echo = FALSE}
@@ -277,19 +276,16 @@ cbind( pro.df[, c("sseqid", "nickname", "tspe", "pident", "evalue", "cigar")],
   )
 
 ```
+
 [Download palmDB Alignment Table](#download-data)
 
-## SRA Meta-data Analysis
+## SRA Meta-data Analysis {.tabset}
 
-RNA viruses matching input are cross-referenced against
-5.7M SRA sequencing libraries to identify sra-virus matches
-and their associated meta-data.
+RNA viruses matching input are cross-referenced against 5.7M SRA sequencing libraries to identify sra-virus matches and their associated meta-data.
 
 #### Geospatial distribution of related RNA viruses
 
-Distribution of matching RNA viruses. Click to explore
-each matching record. Species, genus, family and phylum
-level matches are red, orange, green and purple, respectively.
+Distribution of matching RNA viruses. Click to explore each matching record. Species, genus, family and phylum level matches are red, orange, green and purple, respectively.
 
 ```{r, fig.height = 6, fig.width = 9}
 # Geo-distribution of palmprint-containing SRA
@@ -301,6 +297,7 @@ level matches are red, orange, green and purple, respectively.
 
 geo.report
 ```
+
 ![](img/tax_legend.png)
 
 ```{r, echo = FALSE, fig.height = 3, fig.width = 9}
@@ -310,11 +307,7 @@ plotly::ggplotly(date.report)
 
 #### Virus-Organism Associations
 
-Organism meta-data from the SRA sequencing libraries matching the input-virus.
-Word size and color is scaled by proximity of the input-virus to its match in 
-the library. Wordclouds show a) Researcher provided annotations of the libraries
-or b) STAT automated taxonomic (orders) analysis of the reads contained within
-the library ([Katz et al., 2021](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)).
+Organism meta-data from the SRA sequencing libraries matching the input-virus. Word size and color is scaled by proximity of the input-virus to its match in the library. Wordclouds show a) Researcher provided annotations of the libraries or b) STAT automated taxonomic (orders) analysis of the reads contained within the library ([Katz et al.,2021](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)).
 
 ```{r, fig.width=8, fig.height=5, retina = 2}
 # Plot SRA  Wordcloud - id
@@ -327,6 +320,7 @@ plot(orgn.report)
 # (scaled by frequency in the SRA)
 plot(stat.report)
 ```
+
 ![](img/stat_legend.png)
 
 #### Input Alignment to SRA-RdRp Table
@@ -352,10 +346,11 @@ cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', '
 
 #### Footer
 
-- [Source code](https://github.com/ababaian/palmid)
-- [Submit issue / ask question](https://github.com/ababaian/palmid/issues)
+-   [Source code](https://github.com/ababaian/palmid)
+-   [Submit issue / ask
+    question](https://github.com/ababaian/palmid/issues)
 
-To save this report: `File` --> `Save Page As`.
+To save this report: `File` --\> `Save Page As`.
 
 ```{r, include=FALSE}
 if (save.plots) {
@@ -407,4 +402,3 @@ if (save.plots) {
 # save( waxsys.pro.df, file = "data/waxsys.pro.df.RData", compress = "xz")
 # save( waxsys.stat.sra, file = "data/waxsys.stat.sra.RData", compress = "xz")
 ```
-
