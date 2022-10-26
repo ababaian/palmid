@@ -201,7 +201,7 @@ The organism reported with each sequencing run is conglomerated into a wordcloud
 
 ## References
 
-A. Babaian and R. C. Edgar (2021), Ribovirus classification by a polymerase barcode sequence, biorxiv
-[https://doi.org/10.1101/2021.03.02.433648](https://doi.org/10.1101/2021.03.02.433648)
+A. Babaian and R. C. Edgar (2022), Ribovirus classification by a polymerase barcode sequence.
+[PeerJ](https://peerj.com/articles/14055/)
 
-R. C. Edgar _et al._ (2021), Petabase-scale sequence alignment catalyses viral discovery, biorxiv [https://www.biorxiv.org/content/10.1101/2020.08.07.241729v2](https://www.biorxiv.org/content/10.1101/2020.08.07.241729v2)
+R. C. Edgar _et al._ (2021), Petabase-scale sequence alignment catalyses viral discovery, _Nature_ [_Nature_](https://www.nature.com/articles/s41586-021-04332-2).
