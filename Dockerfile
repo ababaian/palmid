@@ -126,7 +126,9 @@ echo "Leaflet" &&\
 echo "RMarkdown" &&\
   wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz &&\
   tar xvzf pandoc-2.14.2-linux-amd64.tar.gz --strip-components 1 -C /usr/local &&\
-  rm -rf pandoc-2.14.2*
+  rm -rf pandoc-2.14.2* &&\
+echo "devtools/textshaping" &&\
+  yum -y install harfbuzz-devel fribidi-devel freetype-devel libpng-devel libtiff-devel libjpeg-turbo-devel
 
 #==========================================================
 # Install Software ========================================
