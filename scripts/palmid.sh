@@ -98,6 +98,18 @@ if [ -z "$INPUT" ]; then
     exit 1
 fi
 
+#Print out input
+echo "Input:"
+echo ''
+cat $INPUT
+
+echo ''
+echo ''
+echo "Hash:"
+echo ''
+echo $(md5sum $INPUT) | cut -d' ' -f1
+echo ''
+
 if [ -z "$OUTNAME" ]; then
     echo "Output prefix (-o) required."
     usage
