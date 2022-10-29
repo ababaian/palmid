@@ -126,9 +126,7 @@ echo "Leaflet" &&\
 echo "RMarkdown" &&\
   wget https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-linux-amd64.tar.gz &&\
   tar xvzf pandoc-2.14.2-linux-amd64.tar.gz --strip-components 1 -C /usr/local &&\
-  rm -rf pandoc-2.14.2* &&\
-echo "devtools/textshaping" &&\
-  yum -y install harfbuzz-devel fribidi-devel freetype-devel libpng-devel libtiff-devel libjpeg-turbo-devel
+  rm -rf pandoc-2.14.2*
 
 #==========================================================
 # Install Software ========================================
@@ -184,7 +182,12 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 RUN amazon-linux-extras install R4
 
 # R Packages ====================================
-RUN \
+# libpng package here must be installed after R
+# but is required for devtools
+RUN yum -y install harfbuzz-devel fribidi-devel \
+  freetype-devel libpng-devel libtiff-devel \
+libjpeg-turbo-devel &&\
+  RUN \
   R -e 'install.packages( c("devtools"), repos = "http://cran.us.r-project.org")' &&\
   R -e 'library("devtools"); install_github("ababaian/palmid")'
 
