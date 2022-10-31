@@ -187,7 +187,6 @@ RUN amazon-linux-extras install R4
 RUN yum -y install harfbuzz-devel fribidi-devel \
   freetype-devel libpng-devel libtiff-devel \
 libjpeg-turbo-devel &&\
-  RUN \
   R -e 'install.packages( c("devtools"), repos = "http://cran.us.r-project.org")' &&\
   R -e 'library("devtools"); install_github("ababaian/palmid")'
 
