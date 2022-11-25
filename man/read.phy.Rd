@@ -2,25 +2,26 @@
 % Please edit documentation in R/read.phy.R
 \name{read.phy}
 \alias{read.phy}
-\title{Reads a .pro file created by 'diamond'}
+\title{Reads a .phy file generated from muscle}
 \usage{
-read.phy(input.phy)
+read.phy(phy.path)
 }
 \arguments{
-\item{pro.path}{relative system path to .fev file}
+\item{phy.path}{relative system path to .fev file}
 }
 \value{
-A diamond-pro data.frame object
+A phylo object
 }
 \description{
-Reads a .pro file created by 'diamond'
+Reads a .phy file generated from muscle
 }
 \examples{
-# palmDB Alignment file (.pro)
-pro.path <- system.file( "extdata", "waxsys.pro", package = "palmid")
-pro.df <- read.pro(pro.path)
+# palmDB Tree file (.phy)
+phy.path <- system.file( "extdata", "waxsys.phy", package = "palmid")
+tree.phy <- read.phy(phy.path)
 
 }
-\keyword{diamond}
+\keyword{muscle}
 \keyword{palmid}
-\keyword{pro}
+\keyword{phylogeny}
+\keyword{tree}

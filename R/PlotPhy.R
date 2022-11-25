@@ -1,10 +1,12 @@
-# PlotTaxReport
-#' A multi-plot wrapper to convert a list of SRA 'run_ids' into
-#' a geographic world-map and timeline.
+# PlotPhy
+#' A phylogeny plot wrapper to visualize a phylo object
+#' that contains tree tip labels from top-10 hits from palmDB
+#' and associated metadata from 'pro.df'
 #'
-#' @param tree.df   data.frame, merged tree labels and pro. use get.proPhy()
-#' @return A grid-table object. Dimension standard is 800 x 600 px.
-#' @keywords palmid sql geo timeline Serratus Tantalus
+#' @param tree.df   data.frame, merged tree labels and pro.df. use get.proPhy
+#' @param tree.phy  phylo object of phylogeny of top-10 hits. use read.phy
+#' @return A phylogeny plot with readable tip labels.
+#' @keywords dplyr ggplot2 treeio ggtree
 #' @examples
 #' data("waxsys.pro.df")
 #'

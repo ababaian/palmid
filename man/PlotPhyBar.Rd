@@ -2,22 +2,26 @@
 % Please edit documentation in R/PlotPhyBar.R
 \name{PlotPhyBar}
 \alias{PlotPhyBar}
-\title{A multi-plot wrapper to convert a list of SRA 'run_ids' into
-a geographic world-map and timeline.}
+\title{A plot wrapper to generate a horizontal bar plot
+of input identity to palmDB (aa%).
+The order of the bars matches the taxa order
+of the phylogenetic tree object tree.phy}
 \usage{
 PlotPhyBar(tree.df, p)
 }
 \arguments{
-\item{tree.df}{data.frame, merged tree labels and pro. use get.proPhy()}
+\item{tree.df}{data.frame, merged tree labels and pro.df. use get.proPhy}
 
-\item{p}{phylogeny visualization object. use PlotPhy}
+\item{p}{a ggtree plot of tree.phy. use PlotPhy}
 }
 \value{
-A grid-table object. Dimension standard is 800 x 600 px.
+A bar plot of % input identity to palmDB
 }
 \description{
-A multi-plot wrapper to convert a list of SRA 'run_ids' into
-a geographic world-map and timeline.
+A plot wrapper to generate a horizontal bar plot
+of input identity to palmDB (aa%).
+The order of the bars matches the taxa order
+of the phylogenetic tree object tree.phy
 }
 \examples{
 data("waxsys.pro.df")
@@ -25,9 +29,7 @@ data("waxsys.pro.df")
 proTax <- PlotTaxReport( waxsys.pro.df )
 
 }
-\keyword{Serratus}
-\keyword{Tantalus}
-\keyword{geo}
-\keyword{palmid}
-\keyword{sql}
-\keyword{timeline}
+\keyword{dplyr}
+\keyword{ggplot2}
+\keyword{ggtree}
+\keyword{treeio}

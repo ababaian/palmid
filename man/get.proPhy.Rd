@@ -2,39 +2,38 @@
 % Please edit documentation in R/get.proPhy.R
 \name{get.proPhy}
 \alias{get.proPhy}
-\title{A wrapper for get.palmTax() specific for 'pro.df' input
-and returns a populated the "tspe", "tfam", and "tphy"
-columns of 'pro.df' based on the "sseqid" column}
+\title{Merges 'pro.df' with 'tree.phy'
+to add annotations from palmDB to the phylogenetic tree object.
+Returns a data frame containing tree tip labels and palmDB columns}
 \usage{
 get.proPhy(pro.df, tree.phy)
 }
 \arguments{
 \item{pro.df}{data.frame, imported diamond pro df. use get.pro()}
 
-\item{con}{pq-connection, use SerratusConnect()}
+\item{tree.phy}{phylo object. use read.phy}
 }
 \value{
-pro.df  data.frame
+tree.df  data.frame
 }
 \description{
-A wrapper for get.palmTax() specific for 'pro.df' input
-and returns a populated the "tspe", "tfam", and "tphy"
-columns of 'pro.df' based on the "sseqid" column
+Merges 'pro.df' with 'tree.phy'
+to add annotations from palmDB to the phylogenetic tree object.
+Returns a data frame containing tree tip labels and palmDB columns
 }
 \examples{
 
 ## Prepare data
 # data("waxsys.pro.df")
-# con <- SerratusConnect()
+# phy.path <- system.file( "extdata", "waxsys.phy", package = "palmid")
+# waxsys.phy <- read.phy(phy.path)
 
-## Generate Report
-# geoSRA <- PlotGeoReport( waxsys.pro.df )
+## Generate tree data frame
+# tree.df <- get.proPhy(waxsys.pro.df, waxsys.phy)
 
 
 }
-\keyword{Serratus}
-\keyword{Tantalus}
-\keyword{geo}
+\keyword{muscle}
 \keyword{palmid}
-\keyword{sql}
-\keyword{timeline}
+\keyword{phylogeny}
+\keyword{tree}

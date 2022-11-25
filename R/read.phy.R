@@ -1,18 +1,19 @@
 # read.pro
-#' Reads a .pro file created by 'diamond'
-#' @param pro.path relative system path to .fev file
-#' @return A diamond-pro data.frame object
-#' @keywords palmid diamond pro
+#' Reads a .phy file generated from muscle
+#' @param phy.path relative system path to .fev file
+#' @return A phylo object
+#' @keywords palmid muscle phylogeny tree
 #' @examples
-#' # palmDB Alignment file (.pro)
-#' pro.path <- system.file( "extdata", "waxsys.pro", package = "palmid")
-#' pro.df <- read.pro(pro.path)
+#' # palmDB Tree file (.phy)
+#' phy.path <- system.file( "extdata", "waxsys.phy", package = "palmid")
+#' tree.phy <- read.phy(phy.path)
 #'
-#' @import dplyr ggplot2 ggtree
+#' @import ggtree
 #' @export
-read.phy <- function(input.phy) {
+
+read.phy <- function(phy.path) {
     requireNamespace("ggtree", quietly = T)
 
-    tree.phy <- read.tree(input.phy)
+    tree.phy <- read.tree(phy.path)
     return(tree.phy)
 }

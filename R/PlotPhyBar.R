@@ -1,11 +1,13 @@
-# PlotTaxReport
-#' A multi-plot wrapper to convert a list of SRA 'run_ids' into
-#' a geographic world-map and timeline.
+# PlotPhyBar
+#' A plot wrapper to generate a horizontal bar plot
+#' of input identity to palmDB (aa%).
+#' The order of the bars matches the taxa order
+#' of the phylogenetic tree object tree.phy
 #'
-#' @param tree.df   data.frame, merged tree labels and pro. use get.proPhy()
-#' @param p phylogeny visualization object. use PlotPhy
-#' @return A grid-table object. Dimension standard is 800 x 600 px.
-#' @keywords palmid sql geo timeline Serratus Tantalus
+#' @param tree.df   data.frame, merged tree labels and pro.df. use get.proPhy
+#' @param p  a ggtree plot of tree.phy. use PlotPhy
+#' @return A bar plot of % input identity to palmDB
+#' @keywords dplyr ggplot2 treeio ggtree
 #' @examples
 #' data("waxsys.pro.df")
 #'
@@ -14,7 +16,6 @@
 #' @import viridisLite
 #' @import dplyr ggplot2 treeio ggtree
 #' @export
-
 
 PlotPhyBar <- function(tree.df, p) {
     requireNamespace("ggtree", quietly = T)

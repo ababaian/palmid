@@ -1,26 +1,25 @@
 # get.proPhy
-#' A wrapper for get.palmTax() specific for 'pro.df' input
-#' and returns a populated the "tspe", "tfam", and "tphy"
-#' columns of 'pro.df' based on the "sseqid" column
+#' Merges 'pro.df' with 'tree.phy'
+#' to add annotations from palmDB to the phylogenetic tree object.
+#' Returns a data frame containing tree tip labels and palmDB columns
 #'
 #' @param pro.df   data.frame, imported diamond pro df. use get.pro()
-#' @param con      pq-connection, use SerratusConnect()
-#' @return pro.df  data.frame
-#' @keywords palmid sql geo timeline Serratus Tantalus
+#' @param tree.phy  phylo object. use read.phy
+#' @return tree.df  data.frame
+#' @keywords palmid muscle phylogeny tree
 #' @examples
 #'
 #' ## Prepare data
 #' # data("waxsys.pro.df")
-#' # con <- SerratusConnect()
+#' # phy.path <- system.file( "extdata", "waxsys.phy", package = "palmid")
+#' # waxsys.phy <- read.phy(phy.path)
 #'
-#' ## Generate Report
-#' # geoSRA <- PlotGeoReport( waxsys.pro.df )
+#' ## Generate tree data frame
+#' # tree.df <- get.proPhy(waxsys.pro.df, waxsys.phy)
 #'
 #'
 #' @import dplyr ggplot2 treeio ggtree
 #' @export
-#'
-#' 
 
 get.proPhy <- function(pro.df, tree.phy) {
 
@@ -33,7 +32,7 @@ get.proPhy <- function(pro.df, tree.phy) {
     tree.df <- merge(x = tree.phy.df, y = pro.df, by = "label", all.x = TRUE)
 
     # Clean NA values in tspe and nickname columns
-    tree.df$tspe[is.na(tree.df$tspe) | tree.df$tspe == "."] <- "Unclassified" 
+    tree.df$tspe[is.na(tree.df$tspe) | tree.df$tspe == "."] <- "Unclassified"
     tree.df$nickname[is.na(tree.df$nickname)] <- tree.df$label
 
     return(tree.df)

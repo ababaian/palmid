@@ -2,20 +2,26 @@
 % Please edit documentation in R/PlotPhyReport.R
 \name{PlotPhyReport}
 \alias{PlotPhyReport}
-\title{A multi-plot wrapper to convert a list of SRA 'run_ids' into
-a geographic world-map and timeline.}
+\title{A multi-plot wrapper to display a phylogenetic tree of
+top-10 hits from palmDB, an MSA plot, and a bar plot of
+percentage identity matched.}
 \usage{
 PlotPhyReport(input.msa, tree.df, tree.phy)
 }
 \arguments{
-\item{pro.df}{data.frame, imported diamond pro df. use get.pro()}
+\item{input.msa}{msa file path relative to .fev}
+
+\item{tree.df}{data.frame, merged tree labels and pro.df. use get.proPhy}
+
+\item{tree.phy}{phylo object. use read.phy}
 }
 \value{
 A grid-table object. Dimension standard is 800 x 600 px.
 }
 \description{
-A multi-plot wrapper to convert a list of SRA 'run_ids' into
-a geographic world-map and timeline.
+A multi-plot wrapper to display a phylogenetic tree of
+top-10 hits from palmDB, an MSA plot, and a bar plot of
+percentage identity matched.
 }
 \examples{
 data("waxsys.pro.df")
@@ -23,9 +29,7 @@ data("waxsys.pro.df")
 proTax <- PlotTaxReport( waxsys.pro.df )
 
 }
-\keyword{Serratus}
-\keyword{Tantalus}
-\keyword{geo}
+\keyword{muscle}
 \keyword{palmid}
-\keyword{sql}
-\keyword{timeline}
+\keyword{phylogeny}
+\keyword{tree}

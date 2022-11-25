@@ -1,11 +1,11 @@
-# PlotTaxReport
-#' A multi-plot wrapper to convert a list of SRA 'run_ids' into
-#' a geographic world-map and timeline.
+# PlotPhyMsa
+#' A multi-plot wrapper to generate an MSA plot from input.msa and
+#' align it with a phylogenetic tree plot.
 #'
-#' @param input.msa   msa file
+#' @param input.msa   msa file path relative to .fev
 #' @param p phylogeny visualization object. use PlotPhy
-#' @return A grid-table object. Dimension standard is 800 x 600 px.
-#' @keywords palmid sql geo timeline Serratus Tantalus
+#' @return A single object consisting of two facets for tree and MSA
+#' @keywords dplyr ggplot2 treeio ggtree msa
 #' @examples
 #' data("waxsys.pro.df")
 #'
@@ -17,6 +17,7 @@
 
 PlotPhyMsa <- function(input.msa, p) {
     requireNamespace("ggmsa", quietly = T)
+    requireNamespace("ggtree", quietly = T)
 
     aa_string <- readAAStringSet(input.msa)
     

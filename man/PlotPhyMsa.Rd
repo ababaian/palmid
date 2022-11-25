@@ -2,22 +2,22 @@
 % Please edit documentation in R/PlotPhyMsa.R
 \name{PlotPhyMsa}
 \alias{PlotPhyMsa}
-\title{A multi-plot wrapper to convert a list of SRA 'run_ids' into
-a geographic world-map and timeline.}
+\title{A multi-plot wrapper to generate an MSA plot from input.msa and
+align it with a phylogenetic tree plot.}
 \usage{
 PlotPhyMsa(input.msa, p)
 }
 \arguments{
-\item{input.msa}{msa file}
+\item{input.msa}{msa file path relative to .fev}
 
 \item{p}{phylogeny visualization object. use PlotPhy}
 }
 \value{
-A grid-table object. Dimension standard is 800 x 600 px.
+A single object consisting of two facets for tree and MSA
 }
 \description{
-A multi-plot wrapper to convert a list of SRA 'run_ids' into
-a geographic world-map and timeline.
+A multi-plot wrapper to generate an MSA plot from input.msa and
+align it with a phylogenetic tree plot.
 }
 \examples{
 data("waxsys.pro.df")
@@ -25,9 +25,8 @@ data("waxsys.pro.df")
 proTax <- PlotTaxReport( waxsys.pro.df )
 
 }
-\keyword{Serratus}
-\keyword{Tantalus}
-\keyword{geo}
-\keyword{palmid}
-\keyword{sql}
-\keyword{timeline}
+\keyword{dplyr}
+\keyword{ggplot2}
+\keyword{ggtree}
+\keyword{msa}
+\keyword{treeio}

@@ -2,20 +2,24 @@
 % Please edit documentation in R/PlotPhy.R
 \name{PlotPhy}
 \alias{PlotPhy}
-\title{A multi-plot wrapper to convert a list of SRA 'run_ids' into
-a geographic world-map and timeline.}
+\title{A phylogeny plot wrapper to visualize a phylo object
+that contains tree tip labels from top-10 hits from palmDB
+and associated metadata from 'pro.df'}
 \usage{
 PlotPhy(tree.df, tree.phy)
 }
 \arguments{
-\item{tree.df}{data.frame, merged tree labels and pro. use get.proPhy()}
+\item{tree.df}{data.frame, merged tree labels and pro.df. use get.proPhy}
+
+\item{tree.phy}{phylo object of phylogeny of top-10 hits. use read.phy}
 }
 \value{
-A grid-table object. Dimension standard is 800 x 600 px.
+A phylogeny plot with readable tip labels.
 }
 \description{
-A multi-plot wrapper to convert a list of SRA 'run_ids' into
-a geographic world-map and timeline.
+A phylogeny plot wrapper to visualize a phylo object
+that contains tree tip labels from top-10 hits from palmDB
+and associated metadata from 'pro.df'
 }
 \examples{
 data("waxsys.pro.df")
@@ -23,9 +27,7 @@ data("waxsys.pro.df")
 proTax <- PlotTaxReport( waxsys.pro.df )
 
 }
-\keyword{Serratus}
-\keyword{Tantalus}
-\keyword{geo}
-\keyword{palmid}
-\keyword{sql}
-\keyword{timeline}
+\keyword{dplyr}
+\keyword{ggplot2}
+\keyword{ggtree}
+\keyword{treeio}
