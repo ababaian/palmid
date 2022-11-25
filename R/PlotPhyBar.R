@@ -69,5 +69,7 @@ PlotPhyBar <- function(tree.df, p) {
         geom_vline(xintercept = 90, color = "#ff2a24", size=0.75) + 
         xlab("Input Identity to PalmDB (aa%)")
     
-    return(bar_plot)
+    phy_bar_plot <- p + bar_plot
+
+    return(phy_bar_plot)
 }

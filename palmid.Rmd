@@ -112,7 +112,7 @@ pro.df <- read.pro(input.pro)
   
 
 # Import a phylogenetic tree file
-tree.phy <- read.tree(input.phy)
+tree.phy <- read.phy(input.phy)
 
 # Get a dataframe from the tree phy object
 tree.df <- get.proPhy(pro.df, tree.phy)
@@ -275,13 +275,13 @@ plot(tax.report)
 
 #### Phylogenetic Tree of PalmDB matches {.tabset}
 
-##### Test Phy 1
-
-##### Test Phy 2
-
 A UPGMA tree of the top machine hits in PalmDB shows the evolutionary relationships between palmprint sequences. 
 
-```{r, fig.height = 3, fig.width = 9}
+##### Phylogeny and Bar Plot for Percentage Aligned to PalmDB for Top Hits
+
+##### Phylogeny and Multiple Sequence Alignment of Top Hits
+
+```{r, fig.height = 5, fig.width = 10}
 # Viral Taxonomy of palmDB Hits
 plot(phy.report)
 ```
@@ -395,6 +395,14 @@ if (save.plots) {
   # SAVE TAX-REPORT
   ggsave(output.tax,
     plot(tax.report),
+    width = 16,
+    height = 10,
+    dpi = 72
+  )
+  
+  # SAVE PHYLOGENY-REPORT 
+  ggsave(output.phy,
+    plot(phy.report),
     width = 16,
     height = 10,
     dpi = 72

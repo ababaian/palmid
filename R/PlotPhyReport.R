@@ -19,12 +19,17 @@ PlotPhyReport <- function(input.msa, tree.df, tree.phy) {
     PhyPlot <- PlotPhy(tree.df, tree.phy)
     
     # Create bar plot
-    BarPlot <- PlotPhyBar(tree.df, PhyPlot)
+    PhyBarPlot <- PlotPhyBar(tree.df, PhyPlot)
 
     # Create MSA plot 
-    MsaPlot <- PlotPhyMsa(input.msa, PhyPlot)
+    PhyMsaPlot <- PlotPhyMsa(input.msa, PhyPlot)
 
-    PalmPhy <- gridExtra::arrangeGrob(PhyPlot, BarPlot, ncol=2)
+    PalmPhy <- gridExtra::arrangeGrob(
+        PhyPlot,
+        PhyBarPlot,
+        PhyMsaPlot,
+        layout_matrix = rbind(c(1, 2),c(3, 3))
+    )
 
     return(PalmPhy)
 }

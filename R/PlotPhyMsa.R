@@ -12,19 +12,36 @@
 #' proTax <- PlotTaxReport( waxsys.pro.df )
 #'
 #' @import viridisLite
-#' @import dplyr ggplot2 treeio ggtree
+#' @import Biostrings dplyr ggplot2 treeio ggtree ggmsa
 #' @export
 
 PlotPhyMsa <- function(input.msa, p) {
+    requireNamespace("ggmsa", quietly = T)
 
-    msa_plot <- msaplot(
-        p,
-        input.msa,
-        offset = 0.25,
-        bg_line = TRUE,
-        color = palette(gray(seq(1, 0, len = 21)))
-    ) +
-    theme(legend.position = "none")
+    aa_string <- readAAStringSet(input.msa)
+    
+    taxa_order = get_taxa_name(p)
+    aa_df <- data.frame(
+        width = width(aa_string),
+        seq = as.character(aa_string),
+        names = names(aa_string)
+    ) %>% arrange(factor(names, levels = taxa_order))
 
-    return(msa_plot)
+    aa_set <- AAStringSet(aa_df$seq)
+    names(aa_set) = aa_df$names
+
+    phy_msa_plot <- p + 
+        geom_facet(
+            geom = geom_msa, 
+            data = tidy_msa(aa_set),
+            panel = 'Multiple Sequence Alignment',
+            color = "Taylor_AA",
+            char_width = 0,
+            border = "white",
+            show.legend = TRUE
+        ) +
+        guides(fill = guide_legend(title = NULL)) +
+        theme(legend.position = "bottom")
+
+    return(phy_msa_plot)
 }
