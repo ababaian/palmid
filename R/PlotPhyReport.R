@@ -10,9 +10,11 @@
 #' @return A grid-table object. Dimension standard is 800 x 600 px.
 #' @keywords palmid muscle phylogeny tree
 #' @examples
-#' data("waxsys.pro.df")
+#' data("waxsys.tree.df")
+#' data("waxsys.tree.phy")
+#' data("waxsys.input.msa")
 #'
-#' proTax <- PlotTaxReport( waxsys.pro.df )
+#' phyReport <- PlotPhyReport(waxsys.input.msa, waxsys.tree.df, waxsys.tree.phy)
 #'
 #' @import viridisLite
 #' @import dplyr ggplot2

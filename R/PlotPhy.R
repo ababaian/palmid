@@ -8,9 +8,10 @@
 #' @return A phylogeny plot with readable tip labels.
 #' @keywords dplyr ggplot2 treeio ggtree
 #' @examples
-#' data("waxsys.pro.df")
+#' data("waxsys.tree.df")
+#' data("waxsys.tree.phy")
 #'
-#' proTax <- PlotTaxReport( waxsys.pro.df )
+#' p <- PlotPhy(waxsys.tree.df, waxsys.tree.phy)
 #'
 #' @import viridisLite
 #' @import dplyr ggplot2 treeio ggtree

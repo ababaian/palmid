@@ -422,7 +422,7 @@ if (save.plots) {
 
 ```{r, include = FALSE}
 # Development Code
-#rmarkdown::render('palmid_dev.Rmd',
+# rmarkdown::render('palmid_dev.Rmd',
 #                  output_file = output.html)
 
 # # Generate /data files
@@ -431,9 +431,15 @@ if (save.plots) {
 # waxsys.palmprint <- pp.in
 # waxsys.pro.df <- pro.df
 # waxsys.stat.sra <- stat.sra
-# 
+# waxsys.tree.phy <- tree.phy
+# waxsys.tree.df <- tree.df
+# waxsys.input.msa <- input.msa
+
 # save( waxsys.palm.sra, file = "data/waxsys.palm.sra.RData", compress = "xz")
 # save( waxsys.palmprint, file = "data/waxsys.palmprint.RData", compress = "xz")
 # save( waxsys.pro.df, file = "data/waxsys.pro.df.RData", compress = "xz")
 # save( waxsys.stat.sra, file = "data/waxsys.stat.sra.RData", compress = "xz")
+# save( waxsys.tree.phy, file = "data/waxsys.tree.phy.RData", compress = "xz")
+# save( waxsys.tree.df, file = "data/waxsys.tree.df.RData", compress = "xz")
+# save( waxsys.input.msa, file = "data/waxsys.input.msa.RData", compress = "xz")
 ```

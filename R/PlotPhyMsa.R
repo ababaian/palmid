@@ -7,9 +7,10 @@
 #' @return A single object consisting of two facets for tree and MSA
 #' @keywords dplyr ggplot2 treeio ggtree msa
 #' @examples
-#' data("waxsys.pro.df")
-#'
-#' proTax <- PlotTaxReport( waxsys.pro.df )
+#' data("waxsys.input.msa")
+#' data("waxsys.tree.phy")
+#' p <- PlotPhy(waxsys.tree.phy)
+#' plotPhyMsa <- PlotPhyMsa(waxsys.input.msa, p)
 #'
 #' @import viridisLite
 #' @import Biostrings dplyr ggplot2 treeio ggtree ggmsa

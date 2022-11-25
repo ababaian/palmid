@@ -11,11 +11,10 @@
 #'
 #' ## Prepare data
 #' # data("waxsys.pro.df")
-#' # phy.path <- system.file( "extdata", "waxsys.phy", package = "palmid")
-#' # waxsys.phy <- read.phy(phy.path)
+#' # data("waxsys.tree.phy")
 #'
 #' ## Generate tree data frame
-#' # tree.df <- get.proPhy(waxsys.pro.df, waxsys.phy)
+#' # tree.df <- get.proPhy(waxsys.pro.df, waxsys.tree.phy)
 #'
 #'
 #' @import dplyr ggplot2 treeio ggtree
