@@ -43,6 +43,7 @@ output.pp     <- args[2]
 output.pro    <- gsub('_pp.png', '_pro.png',  output.pp)
 output.geo    <- gsub('_pp.png', '_geo.html', output.pp)
 output.tax    <- gsub('_pp.png', '_tax.png',  output.pp)
+output.phy    <- gsub('_pp.png', '_phy.png',  output.pp)
 output.orgn   <- gsub('_pp.png', '_orgn.png', output.pp)
 
 # ID Threshold for inclusion of a palmprint-match
@@ -73,6 +74,12 @@ dev.off()
 # Import a diamond-alignd pro file
 pro.df <- read.pro(input.pro)
 
+# Import a phylogenetic tree file
+tree.phy <- read.phy(input.phy)
+
+# Get a dataframe from the tree phy object
+tree.df <- get.proPhy(pro.df, tree.phy)
+
 # ANALYZE PALMPRINT 
 # Generate a palmid-report
 pro.report <- PlotProReport(pro.df)
@@ -90,9 +97,20 @@ pro.df     <- get.proTax(pro.df, con)
 # ANALYZE PALMDB TAXONOMY
 tax.report <- PlotTaxReport(pro.df)
 
+# GENERATE PHYLOGENY OF TOP-10 HITS
+phy.report <- PlotPhyReport(input.msa, tree.df, tree.phy)
+
 # SAVE TAX-REPORT 
 ggsave(output.tax,
   plot(tax.report),
+  width = 16,
+  height = 10,
+  dpi = 72
+)
+
+# SAVE PHYLOGENY-REPORT 
+ggsave(output.phy,
+  plot(phy.report),
   width = 16,
   height = 10,
   dpi = 72

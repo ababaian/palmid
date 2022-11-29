@@ -224,6 +224,13 @@ echo ''
 echo ' msa:'
 cat  $OUTDIR/$OUTNAME.msa.fa 
 
+echo ''
+echo '-- generating UPGMA tree for aligned sequences from top-10 hits'
+echo ''
+
+# make UPGMA from aligned sequences
+muscle -maketree -in $OUTDIR/$OUTNAME.msa.fa -out $OUTDIR/$OUTNAME.phy
+
 # Clean-up
 rm $OUTDIR/*.tmp
 

@@ -1,14 +1,16 @@
 ---
-title: "palmID: RNA Virus RdRP Report"
+title: 'palmID: RNA Virus RdRP Report'
 output:
+  html_document:
+    df_print: paged
   html_notebook:
     code_folding: hide
 params:
-  palmid.version: '0.0.4'
-  input.path: 'inst/extdata/waxsys'
-  prod.run: FALSE
-editor_options: 
-  markdown: 
+  palmid.version: 0.0.5
+  input.path: inst/extdata/waxsys
+  prod.run: no
+editor_options:
+  markdown:
     wrap: 72
 ---
 
@@ -86,6 +88,7 @@ if (is.null(input.path)) {
   input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
   input.pro     <- paste0(input.path, '.pro')    # diamond palmDB-alignment file
   input.msa     <- paste0(input.path, '.msa.fa') # muscle msa
+  input.phy     <- paste0(input.path, '.phy') # tree file in newick format
 
 # Output HTML Report
 output.html   <- paste0(input.path, '.html')
@@ -107,6 +110,13 @@ pro.df <- read.pro(input.pro)
   pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
   pro.df     <- get.proTax(pro.df, con)
   
+
+# Import a phylogenetic tree file
+tree.phy <- read.phy(input.phy)
+
+# Get a dataframe from the tree phy object
+tree.df <- get.proPhy(pro.df, tree.phy)
+
 # Set backstop when too many similar hits come up
 palmdb.hits <- length(pro.df$qseqid)
 if (palmdb.hits > max_palmdb_hits) {
@@ -136,6 +146,9 @@ pro.report <- PlotProReport(pro.df, html = T)
 
 # PalmDB Viral Taxonomy Report
 tax.report <- PlotTaxReport(pro.df)
+
+# Phylogeny Report
+phy.report <- PlotPhyReport(input.msa, tree.df, tree.phy)
 
 # Geospatial distribution Report
 geo.report  <- PlotGeo2(palm.sra)
@@ -260,6 +273,20 @@ PalmDB allow for taxonomic-inference of the input virus.
 plot(tax.report)
 ```
 
+#### Phylogenetic Tree of PalmDB matches {.tabset}
+
+A UPGMA tree of the top machine hits in PalmDB shows the evolutionary relationships between palmprint sequences. 
+
+##### Phylogeny and Bar Plot for Percentage Aligned to PalmDB for Top Hits
+
+##### Phylogeny and Multiple Sequence Alignment of Top Hits
+
+```{r, fig.height = 5, fig.width = 10}
+# Viral Taxonomy of palmDB Hits
+plot(phy.report)
+```
+
+
 #### palmDB Alignment table
 
 ```{r, echo = FALSE}
@@ -373,6 +400,14 @@ if (save.plots) {
     dpi = 72
   )
   
+  # SAVE PHYLOGENY-REPORT 
+  ggsave(output.phy,
+    plot(phy.report),
+    width = 16,
+    height = 10,
+    dpi = 72
+  )
+  
   # SAVE GEO-REPORT
   htmlwidgets::saveWidget(geo.report, file = output.geo)
 
@@ -387,7 +422,7 @@ if (save.plots) {
 
 ```{r, include = FALSE}
 # Development Code
-#rmarkdown::render('palmid_dev.Rmd',
+# rmarkdown::render('palmid_dev.Rmd',
 #                  output_file = output.html)
 
 # # Generate /data files
@@ -396,9 +431,15 @@ if (save.plots) {
 # waxsys.palmprint <- pp.in
 # waxsys.pro.df <- pro.df
 # waxsys.stat.sra <- stat.sra
-# 
+# waxsys.tree.phy <- tree.phy
+# waxsys.tree.df <- tree.df
+# waxsys.input.msa <- input.msa
+
 # save( waxsys.palm.sra, file = "data/waxsys.palm.sra.RData", compress = "xz")
 # save( waxsys.palmprint, file = "data/waxsys.palmprint.RData", compress = "xz")
 # save( waxsys.pro.df, file = "data/waxsys.pro.df.RData", compress = "xz")
 # save( waxsys.stat.sra, file = "data/waxsys.stat.sra.RData", compress = "xz")
+# save( waxsys.tree.phy, file = "data/waxsys.tree.phy.RData", compress = "xz")
+# save( waxsys.tree.df, file = "data/waxsys.tree.df.RData", compress = "xz")
+# save( waxsys.input.msa, file = "data/waxsys.input.msa.RData", compress = "xz")
 ```
