@@ -6,7 +6,7 @@ output:
   html_notebook:
     code_folding: hide
 params:
-  palmid.version: 0.0.4
+  palmid.version: 0.0.5
   input.path: inst/extdata/waxsys
   prod.run: no
 editor_options:
