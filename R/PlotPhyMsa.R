@@ -40,7 +40,7 @@ PlotPhyMsa <- function(input.msa, p) {
             color = "Taylor_AA",
             char_width = 0,
             border = "white",
-            show.legend = TRUE
+            show.legend = FALSE
         ) +
         guides(fill = guide_legend(title = NULL)) +
         theme(legend.position = "bottom")
