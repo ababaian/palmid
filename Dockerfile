@@ -186,9 +186,17 @@ RUN amazon-linux-extras install R4
 # but is required for devtools
 RUN yum -y install harfbuzz-devel fribidi-devel \
   freetype-devel libpng-devel libtiff-devel \
-libjpeg-turbo-devel &&\
-  R -e 'install.packages( c("devtools"), repos = "http://cran.us.r-project.org")' &&\
-  R -e 'library("devtools"); install_github("ababaian/palmid")'
+libjpeg-turbo-devel
+
+RUN R -e 'install.packages( c("devtools"), repos = "http://cran.us.r-project.org")'
+RUN R -e 'install.packages( c("remotes"), repos = "http://cran.us.r-project.org")'
+RUN R -e 'remotes::install_version("ape", 5.6, repos = "http://cran.us.r-project.org")'
+RUN R -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager", repos = "http://cran.us.r-project.org"); BiocManager::install("ggtree")'
+RUN R -e 'devtools::install_github("YuLab-SMU/ggtree", dependencies=FALSE)'
+RUN R -e 'BiocManager::install("Biostrings")'
+RUN R -e 'BiocManager::install("R4RNA")'
+RUN R -e 'remotes::install_version("ggmsa", version="1.0.2", repos = "http://cran.us.r-project.org")'
+RUN R -e 'devtools::install_github("ababaian/palmid")'
 
 #==========================================================
 # palmid Initialize =======================================

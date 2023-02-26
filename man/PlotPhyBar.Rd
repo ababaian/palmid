@@ -24,9 +24,10 @@ The order of the bars matches the taxa order
 of the phylogenetic tree object tree.phy
 }
 \examples{
-data("waxsys.pro.df")
-
-proTax <- PlotTaxReport( waxsys.pro.df )
+data("waxsys.tree.df")
+data("waxsys.tree.phy")
+p <- PlotPhy(waxsys.tree.phy)
+plotPhyBar <- PlotPhyBar(waxsys.tree.df, p)
 
 }
 \keyword{dplyr}

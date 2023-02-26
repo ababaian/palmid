@@ -22,9 +22,10 @@ that contains tree tip labels from top-10 hits from palmDB
 and associated metadata from 'pro.df'
 }
 \examples{
-data("waxsys.pro.df")
+data("waxsys.tree.df")
+data("waxsys.tree.phy")
 
-proTax <- PlotTaxReport( waxsys.pro.df )
+p <- PlotPhy(waxsys.tree.df, waxsys.tree.phy)
 
 }
 \keyword{dplyr}
