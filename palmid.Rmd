@@ -76,7 +76,7 @@ con <- SerratusConnect()
 # Input file
 # Generated within `palmid` container
 # params are defined in YAML header to expose to CLI
-input.path      <- "/root/palmid/waxsys/waxsys"
+input.path      <- params$input.path
 
 if (is.null(input.path)) {
   stop("Error: No input provided.")
