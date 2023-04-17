@@ -20,9 +20,10 @@ A multi-plot wrapper to generate an MSA plot from input.msa and
 align it with a phylogenetic tree plot.
 }
 \examples{
-data("waxsys.pro.df")
-
-proTax <- PlotTaxReport( waxsys.pro.df )
+data("waxsys.input.msa")
+data("waxsys.tree.phy")
+p <- PlotPhy(waxsys.tree.phy)
+plotPhyMsa <- PlotPhyMsa(waxsys.input.msa, p)
 
 }
 \keyword{dplyr}

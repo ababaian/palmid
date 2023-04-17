@@ -24,9 +24,11 @@ top-10 hits from palmDB, an MSA plot, and a bar plot of
 percentage identity matched.
 }
 \examples{
-data("waxsys.pro.df")
+data("waxsys.tree.df")
+data("waxsys.tree.phy")
+data("waxsys.input.msa")
 
-proTax <- PlotTaxReport( waxsys.pro.df )
+phyReport <- PlotPhyReport(waxsys.input.msa, waxsys.tree.df, waxsys.tree.phy)
 
 }
 \keyword{muscle}
