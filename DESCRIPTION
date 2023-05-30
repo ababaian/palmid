@@ -4,6 +4,8 @@ Description: R Analysis suite for viral RNA dependent RNA polymerase (RdRP).
     Statistical and meta-data analysis of 'palmscan' output and 'palmDB'/
     'DIAMOND' alignment files. Cross reference an input RNA virus against
     145,000 RdRP identified in the Serratus project.
+    Non-CRAN dependency is ggmsa (https://github.com/YuLab-SMU/ggmsa) which
+    is available on Bioconductor.
 Version: 0.0.6
 Authors@R: 
   person("Artem", "Babaian", email = "artem@rRNA.ca",
@@ -17,7 +19,6 @@ RoxygenNote: 7.2.3
 Suggests:
     sf,
     rnaturalearth,
-    ggmsa (>)
     rnaturalearthdata
 Imports:
     dbplyr,
@@ -46,4 +47,4 @@ Depends:
     dplyr,
     ggplot2 (>= 3.3.3)
 Remotes:
-    cran/ggmsa
+    bioc::release/ggmsa
