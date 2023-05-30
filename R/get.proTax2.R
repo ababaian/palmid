@@ -28,8 +28,9 @@ get.proTax2 <- function(pro.df, con = SerratusConnect()) {
   # a child-OTU
 
   pro.df$tspe <- get.palmTax2(pro.df$sseqid, con, rank = "species", ordinal = T)
-  pro.df$tfam <- get.palmTax2(pro.df$sseqid, con, rank = "family", ordinal = T)
-  pro.df$tphy <- get.palmTax2(pro.df$sseqid, con, rank = "phylum", ordinal = T)
+  pro.df$tfam <- get.palmTax2(pro.df$sseqid, con, rank = "family" , ordinal = T)
+  pro.df$tphy <- get.palmTax2(pro.df$sseqid, con, rank = "phylum" , ordinal = T)
+  pro.df$gbid <- get.palmTax2(pro.df$sseqid, con, rank = "gbid"   , ordinal = T)
 
   return(pro.df)
 }

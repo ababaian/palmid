@@ -38,6 +38,12 @@ get.palmTax2 <- function(palm_ids, con, rank = "family", ordinal = FALSE) {
     rank <- "tax_order"
   } else if ( rank == "phylum" ){
     rank <- "tax_phylum"
+  } else if ( rank == "gbid" ){
+    # percent identity of palmprint to GenBank tophit
+    rank <- "percent_identity"
+  } else if ( rank == "gbacc" ){
+    # tophit GenBank accession
+    rank <- "gb_acc"
   }
   
   # get sOTU from palm_id

@@ -40,6 +40,8 @@ read.pro <- function(pro.path) {
     pro.df$tspe <- as.character(NA)
     pro.df$tfam <- as.character(NA)
     pro.df$tphy <- as.character(NA)
+  # Initialize empty palmid to genbank %id
+    pro.df$gbid <- as.numeric(5) # 5% identity is functionally "unmapped"
 
   return(pro.df)
 }
