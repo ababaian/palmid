@@ -26,6 +26,7 @@ Imports:
     ggplotify,
     ggwordcloud,
     ggExtra,
+    ggmsa,
     grDevices,
     gridExtra (>= 2.3),
     htmltools,
