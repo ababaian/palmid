@@ -67,7 +67,7 @@ PlotID2 <- function(pro, html = TRUE){
                 show.legend = FALSE,
                alpha = 0.75) +
     scale_color_manual(values = rankcols, drop = FALSE) +
-    scale_size_binned(range = c(0.5, 5), limits = c(10, 50)) +
+    scale_size_binned(range = c(0.1, 3), limits = c(10, 50)) +
     geom_text(data = pro, aes(x=pident, y=escore, label=label),
               color = c("#4D4D4D"),
               hjust = "right", vjust = "bottom", check_overlap = TRUE) +
