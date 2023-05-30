@@ -34,13 +34,13 @@ text_summary <- function(pp.in, pro.df, palm.sra, palmdb.hits) {
   top.fam <- pro.df$tfam[1]
   top.phy <- pro.df$tphy[1]
   
-  if (top.spe == ".") {
+  if (top.spe == "." | is.na(top.spe) ) {
     top.spe <- "unclassified"
   }
-  if (top.fam == ".") {
+  if (top.fam == "." | is.na(top.fam) ) {
     top.fam <- "unclassified"
   }
-  if (top.phy == ".") {
+  if (top.phy == "." | is.na(top.phy) ) {
     top.phy <- "unclassified"
   }
   
