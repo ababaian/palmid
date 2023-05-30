@@ -14,7 +14,7 @@ editor_options:
     wrap: 72
 ---
 
-`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases (RdRP) based on the "Palmprint" RNA virus barcodes described by [Babaian and Edgar, 2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
+`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases (RdRP) based on the "Palmprint" RNA virus barcodes described by [Babaian and Edgar, 2022.](https://peerj.com/articles/14055/).
 
 # {.tabset}
 
