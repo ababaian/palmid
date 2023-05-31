@@ -112,7 +112,7 @@ pp.in <- read.fev(input.fev, FIRST = TRUE)
 pro.df <- read.pro(input.pro)
   # Populate with Nickname/Taxonomy-data
   pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
-  pro.df              <- get.proTax2(pro.df, con)
+  pro.df              <- get.proTax2(pro.df, con) # TODO OPTIMIZE proTax function
   
 
 # Import a phylogenetic tree file

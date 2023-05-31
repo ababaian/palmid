@@ -67,7 +67,7 @@ PlotID2 <- function(pro, html = TRUE){
   }
 
   idPlot <- ggplot() +
-    geom_point(data = pro, aes(x=palmdb_id, y=gb_id, size = escore,
+    geom_point(data = pro, aes(x=palm_id, y=gb_id, size = escore,
                                ppid=palmprint,
                                nick=nickname,
                                seq=palmseq,
