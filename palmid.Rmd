@@ -298,7 +298,8 @@ plot(tax.report)
 ### Data-Table: `palmDB.csv`
 # Data table for palmDB Alignment
 
-blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
+blast.col <- linkBLAST(header = pro.df$sseqid,
+                       aa.seq = pro.df$full_sseq)
 
 cbind( pro.df[, c("sseqid", "nickname", "tspe", "pident", "evalue", "cigar")],
        blast.col) %>%
