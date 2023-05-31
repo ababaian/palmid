@@ -22,21 +22,21 @@
 
 PlotPhyReport <- function(input.msa, tree.df, tree.phy) {
 
-    # Create phylogeny plot
+    # Create base phylogeny plot
     PhyPlot <- PlotPhy(tree.df, tree.phy)
     
     # Create bar plot
     PhyBarPlot <- PlotPhyBar(tree.df, PhyPlot)
 
     # Create MSA plot 
-    PhyMsaPlot <- PlotPhyMsa(input.msa, PhyPlot)
+    #PhyMsaPlot <- PlotPhyMsa(input.msa, PhyPlot)
 
     # Create a grid
     PalmPhy <- gridExtra::arrangeGrob(
         PhyPlot,
         PhyBarPlot,
-        PhyMsaPlot,
-        layout_matrix = rbind(c(1, 2),c(3, 3))
+        #PhyMsaPlot,
+        layout_matrix = rbind(c(1, 2))
     )
 
     return(PalmPhy)
