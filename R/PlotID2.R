@@ -44,7 +44,13 @@ PlotID2 <- function(pro, html = TRUE){
   #pro$paint[ which( pro$pident > 45 ) ] <- rankCols[2]
   #pro$paint[ which( pro$pident > 70 ) ] <- rankCols[3]
   #pro$paint[ which( pro$pident > 90 ) ] <- rankCols[4]
-
+  
+  # Change Column names for more descriptive hovertext
+  pro$palm_id   <- pro$pident
+  pro$gb_id     <- pro$gbid
+  pro$palmprint <- pro$sseqid
+  pro$palmseq   <- pro$seq
+  pro$GB <- paste0(pro$tspe, " (", pro$gbid, "%)")
 
   if (html){
     pro$label = ""
@@ -61,9 +67,13 @@ PlotID2 <- function(pro, html = TRUE){
   }
 
   idPlot <- ggplot() +
-    geom_point(data = pro, aes(uid=sseqid, nick=nickname, seq=seq,
-                               x=pident, y=gbid, size=escore,
-                               color = matching),
+    geom_point(data = pro, aes(x=palmdb_id, y=gb_id, size = escore,
+                               ppid=palmprint,
+                               nick=nickname,
+                               seq=palmseq,
+                               gb=GB,
+                               color = matching
+                               ),
                 show.legend = FALSE,
                alpha = 0.75) +
     scale_color_manual(values = rankcols, drop = FALSE) +
