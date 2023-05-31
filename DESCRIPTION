@@ -8,8 +8,12 @@ Description: R Analysis suite for viral RNA dependent RNA polymerase (RdRP).
     is available on Bioconductor.
 Version: 0.0.6
 Authors@R: 
-  person("Artem", "Babaian", email = "artem@rRNA.ca",
-   role = c("aut", "cre"))
+  person("Artem", "Babaian",
+    email = "artem@rRNA.ca",
+    role = c("aut", "cre"))
+  person("Hannah", "Le",
+    email = "hannah.lgbhan@gmail.com",
+    role = c("aut"))
 URL: https://serratus.io/palmid
 BugReports: https://github.com/ababaian/palmid/issues
 License: AGPL-3
