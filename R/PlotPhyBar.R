@@ -55,7 +55,7 @@ PlotPhyBar <- function(tree.df, p) {
             hjust = 'left'
             ), 
             stat = "identity", 
-            color = "gray80",
+            color = "gray90",
             fontface = "bold"
         ) +
         scale_fill_manual(values = c(
