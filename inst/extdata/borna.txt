@@ -1,0 +1,7 @@
+
+>AAA20228.1_Borna_disease_virus_1_L
+   A:242-253(17.4)      B:317-330(25.1)      C:349-356(13.8)
+   INLDYSSWCNGF    <63> MGEGMRQKLWTILT  <18> GQGDNQTI  [115]
+   ||.||| |||++         |+||||||+|||||       +|||||.|
+   islDasKWNnnq         glqGllqktSSllh       vqSDDqvi
+Score 56.2, high-confidence-RdRP: high-PSSM-score.good-segment-length.
