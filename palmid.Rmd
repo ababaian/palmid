@@ -6,8 +6,8 @@ output:
   html_notebook:
     code_folding: hide
 params:
-  palmid.version: 0.0.5
-  input.path: inst/extdata/waxsys
+  palmid.version: 0.0.6
+  input.path: inst/extdata/borna
   prod.run: no
 editor_options:
   markdown:
@@ -96,7 +96,7 @@ save.plots    <- FALSE # save individual plots as png
 
 # Parameters
   id_threshold    <- 0   # Minimum AA% to retain a hit
-  max_palmdb_hits <- 500 # Maximum number of alignment hits in PalmDB hits to return
+  max_palmdb_hits <- 200 # Maximum number of alignment hits in PalmDB hits to return
 
 run.time <- Sys.time()
 
@@ -108,7 +108,7 @@ pp.in <- read.fev(input.fev, FIRST = TRUE)
 pro.df <- read.pro(input.pro)
   # Populate with Nickname/Taxonomy-data
   pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
-  pro.df     <- get.proTax(pro.df, con)
+  pro.df              <- get.proTax2(pro.df, con)
   
 
 # Import a phylogenetic tree file
@@ -128,6 +128,7 @@ if (palmdb.hits > max_palmdb_hits) {
 
 # SQL-Import of palmprint/sra meta-data
   # parent/child sOTU lookup, sra, biosample, date, organism, geo
+  # optimization needed here
 palm.sra <- get.palmSra(pro.df, con)
 
 # SQL-import of STAT kmer taxonomic analysis of the retrieved
@@ -224,24 +225,39 @@ cat("\n")
 
 #### palmprint QC-report
 
-Quality control metrics on the motif-scores and size distribution of the "palmprint" informs the confidence that the input sequence contains a viral RdRP. Input scores are shown compared to score distribution from 15,010 canonical viral RdRP from GenBank.
+Quality control metrics on the motif-scores and size distribution of the "palmprint" informs the confidence that the input sequence contains a viral RdRP. Input scores are shown compared to score distribution from 15,010 canonical viral RdRP from GenBank. `Palmscan v1.0` (the motif-detection algorithm) has a sensitivity of 87%, and a positive predictive value of 99.89%. This is a conservative algorithm by design. While an RdRp score below `20` is deemed "Low Confidence", if you know your input is an RdRp it likely will retrieve the correct motifs. In general this tool is designed to "detect" RdRp motifs with a known RdRp input.
 
 ```{r, fig.height = 4.5, fig.width = 9}
 # Palmscan QC-plot
 plot(pp.report)
 ```
 
-## Input Palmprint vs. PalmDB Analysis {.tabset}
+## MSA & Local Tree
 
 #### Multiple Sequence Alignment
 
-A `MUSCLE`-generated multiple sequence alignment of the top-10 matching
-hits in [`palmdb`](https://github.com/rcedgar/palmdb).
+A `MUSCLE`-generated multiple sequence alignment of the input palmprint and
+the top-10 matching palmprint in [`palmdb`](https://github.com/rcedgar/palmdb).
 
 ```{r}
 # Multiple Sequence Alignment of Top-10 hits in palmDB
 cat(paste0(readLines(input.msa), collapse = "\n"))
 ```
+
+#### UPGMA Tree of palmprint alignments
+
+A _rough_ sketch (`MUSCLE` UPGMA tree) of the local evolutionary neighborhood of
+the input palmprint and it's homologs in PalmDB. To generate an accurate tree,
+use full-length, or as long as possible, RdRp sequences. Palmprints are not
+sufficient to resolve phylogeny accurately.
+
+```{r, fig.height = 5, fig.width = 10}
+# Viral Taxonomy of palmDB Hits
+plot(phy.report)
+```
+
+
+## Input Palmprint vs. PalmDB Analysis {.tabset}
 
 #### Input palmprint alignment to palmDB
 
@@ -269,23 +285,9 @@ Species-, Genus- and Phylum- level taxonomy of the matching hits in
 PalmDB allow for taxonomic-inference of the input virus.
 
 ```{r, fig.height=10, fig.width=16, retina = 1}
-# Viral Taxonomy of palmDB Hits
+# Viral Taxonomy of palmDB Hits aligned against GenBank (top hit)
 plot(tax.report)
 ```
-
-#### Phylogenetic Tree of PalmDB matches {.tabset}
-
-A UPGMA tree of the top machine hits in PalmDB shows the evolutionary relationships between palmprint sequences. 
-
-##### Phylogeny and Bar Plot for Percentage Aligned to PalmDB for Top Hits
-
-##### Phylogeny and Multiple Sequence Alignment of Top Hits
-
-```{r, fig.height = 5, fig.width = 10}
-# Viral Taxonomy of palmDB Hits
-plot(phy.report)
-```
-
 
 #### palmDB Alignment table
 
