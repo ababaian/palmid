@@ -264,9 +264,18 @@ plot(phy.report)
 
 #### Input palmprint alignment to palmDB
 
-Input "palmprint" are aligned against
-[`palmdb`](https://github.com/rcedgar/palmdb) using `diamond` to
-retrieve related viruses. Upto the top 500 related viruses are reported.
+The extracted "palmprint" from input sequence is aligned against
+[`palmdb`](https://github.com/rcedgar/palmdb) using `diamond` to retrieve 
+related palmprints (upto 200 hits).
+Each palmprint is also aligned against GenBank from which the top-hit
+taxonomy and aa% identity is reported.
+
+A "species" is not in palmDB if no point is right of the red vertical line.
+
+A "species" is not in GenBank when point is below the gray horizontal dotted
+line.
+
+
 
 ```{r, fig.height = 5, fig.width = 9}
 # Protein-alignment of Input vs. palmDB
