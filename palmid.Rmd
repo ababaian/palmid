@@ -6,7 +6,7 @@ output:
   html_notebook:
     code_folding: hide
 params:
-  palmid.version: 0.0.6
+  palmid.version: '0.0.6'
   input.path: inst/extdata/borna
   prod.run: no
 editor_options:
@@ -14,7 +14,11 @@ editor_options:
     wrap: 72
 ---
 
-`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases (RdRP) based on the "Palmprint" RNA virus barcodes described by [Babaian and Edgar, 2022.](https://peerj.com/articles/14055/).
+# palmID
+
+`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases 
+(RdRP) based on the "Palmprint" RNA virus barcodes described by
+[Babaian and Edgar, 2022.](https://peerj.com/articles/14055/).
 
 # {.tabset}
 
@@ -232,12 +236,13 @@ Quality control metrics on the motif-scores and size distribution of the "palmpr
 plot(pp.report)
 ```
 
-## MSA & Local Tree
+## MSA & Local Tree {.tabset}
 
 #### Multiple Sequence Alignment
 
 A `MUSCLE`-generated multiple sequence alignment of the input palmprint and
 the top-10 matching palmprint in [`palmdb`](https://github.com/rcedgar/palmdb).
+Header is palmprint_id and percent identity (aa%) alignment to input sequence.
 
 ```{r}
 # Multiple Sequence Alignment of Top-10 hits in palmDB
@@ -255,8 +260,6 @@ sufficient to resolve phylogeny accurately.
 # Viral Taxonomy of palmDB Hits
 plot(phy.report)
 ```
-
-
 ## Input Palmprint vs. PalmDB Analysis {.tabset}
 
 #### Input palmprint alignment to palmDB
@@ -358,9 +361,8 @@ plot(stat.report)
 ### Data-Table: `sra.metadata.csv`
 # Data table for palmDB Alignment
 
-blast.col <- linkBLAST(palm.sra$sra_sequence,
-                       paste0(palm.sra$run_id,"_",palm.sra$palm_id)
-                       )
+blast.col <- linkBLAST(header = paste0(palm.sra$run_id,"_",palm.sra$palm_id),
+                       aa.seq = palm.sra$sra_sequence )
 
 cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', 'evalue', 'scientific_name')],
        blast.col) %>%
