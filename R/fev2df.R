@@ -14,7 +14,8 @@ fev2df <- function(fev.col) {
 
   # check column names match
   fev.cols <- c("score", "query", "gene",	"order", "confidence",
-                "qlen",	"pp_start",	"pp_end",	"pp_length",
+                "qlen", "xlat", "frame",
+                "pp_start",	"pp_end",	"pp_length",
                 "v1_length", "v2_length",
                 "pssm_total_score", "pssm_min_score",
                 "motifs",	"super", "group", "comments")
