@@ -2,7 +2,6 @@
 #' Plot a scatter-plot of the organisms in a palm.sra object or orgn.vec
 #' @param palm.sra  data.frame, created from get.palmSra() [NULL]
 #' @param orgn.vec  character, vector of "scientific_name" from sra run table [NULL]
-#' @param freq      boolean, scale words by frequency, else by identity [TRUE]
 #' @return A ggwordcloud object of the "ntop" frequent terms
 #' @keywords palmid pro plot
 #' @examples
@@ -25,10 +24,10 @@
 #' @import viridisLite ggwordcloud
 #' @import dplyr ggplot2
 #' @export
-PlotOrgnScatter <- function(palm.sra = NULL , orgn.vec = NULL, freq = TRUE){
+PlotOrgnScatter <- function(palm.sra = NULL , orgn.vec = NULL){
   
   # Bind Local Variables
-  segstrt <- segend <- segment <- scientific_name <- Freq <- NULL
+  segstrt <- segend <- segment <- scientific_name <- NULL
   
   if (is.null(palm.sra) & is.null(orgn.vec)){
     stop("One of palm.sra or orgn.vec needs to be provided")
@@ -40,7 +39,7 @@ PlotOrgnScatter <- function(palm.sra = NULL , orgn.vec = NULL, freq = TRUE){
                            palm_id         = NA )
   }
   
-  otitle <- "Input id% vs. Count of SRA Annotation"
+  #otitle <- "Input id% vs. Count of SRA Annotation"
   
   orgn.tbl <- table(orgn.df$scientific_name)
     #orgn.tbl <- orgn.tbl[ order(orgn.tbl, decreasing = T) ]
@@ -54,9 +53,9 @@ PlotOrgnScatter <- function(palm.sra = NULL , orgn.vec = NULL, freq = TRUE){
                                   color = palm_id,
                                   label = scientific_name,
                                   )) +
-    geom_jitter( width = 0.5, height = 0.5) +
-    ggtitle(label = otitle) +
-    xlab("Input identity (aa%)") + ylab("Count per SRA-Annotation") +
+    geom_jitter( alpha = 0.75, width = 0.5, height = 0.5) +
+    #ggtitle(label = otitle) +
+    xlab("Input identity (aa%)") + ylab("Count SRA-Annotation") +
     scale_x_continuous(limits = c(0,100)) +
     scale_y_log10() +
     scale_color_viridis_c(option = "H") +

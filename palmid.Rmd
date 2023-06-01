@@ -14,8 +14,6 @@ editor_options:
     wrap: 72
 ---
 
-# palmID
-
 `palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases 
 (RdRP) based on the "Palmprint" RNA virus barcodes described by
 [Babaian and Edgar, 2022.](https://peerj.com/articles/14055/).
@@ -140,7 +138,6 @@ palm.sra <- get.palmSra(pro.df, con)
 stat.sra <- get.sraSTAT(palm.sra$run_id, con)
 # Populate stat.sra with percent identity from palm.sra
   stat.sra$pident <- palm.sra$pident[ match(stat.sra$run_id, palm.sra$run_id) ]
-  
 
 # GENERATE REPORT-PLOTS -------------------------
 # Palmprint Report
@@ -160,8 +157,10 @@ geo.report  <- PlotGeo2(palm.sra)
 date.report <- PlotTimeline(palm.sra)
 
 # Host/Library organism Report
-orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
-stat.report <- PlotSTAT(stat.sra)
+orgn.report  <- PlotOrgn(palm.sra, freq = FALSE)
+orgn.reportXY <- PlotOrgnScatter(palm.sra)
+
+stat.report  <- PlotSTAT(stat.sra)
 
 # Print out version
 cat( paste0("palmID Version: ", params$palmid.version) )
@@ -249,7 +248,7 @@ Header is palmprint_id and percent identity (aa%) alignment to input sequence.
 cat(paste0(readLines(input.msa), collapse = "\n"))
 ```
 
-#### UPGMA Tree of palmprint alignments
+#### Local Neighbourhood of input palmprint
 
 A _rough_ sketch (`MUSCLE` UPGMA tree) of the local evolutionary neighborhood of
 the input palmprint and it's homologs in PalmDB. To generate an accurate tree,
@@ -353,13 +352,23 @@ plotly::ggplotly(date.report)
 
 Organism meta-data from the SRA sequencing libraries matching the input-virus. Word size and color is scaled by proximity of the input-virus to its match in the library. Wordclouds show a) Researcher provided annotations of the libraries or b) STAT automated taxonomic (orders) analysis of the reads contained within the library ([Katz et al.,2021](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)).
 
+
+```{r, echo = FALSE, fig.height = 4, fig.width = 9}
+# Geo-distribution of palmprint-containing SRA
+plotly::ggplotly(orgn.reportXY)
+```
+
 ```{r, fig.width=8, fig.height=5, retina = 2}
+# Host/Library organism Report
+#orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
+#stat.report <- PlotSTAT(stat.sra)
+
 # Plot SRA  Wordcloud - id
 # (scaled by AA% proximity to input palmprint)
 plot(orgn.report)
 ```
 
-```{r, fig.width=8, fig.height=5, retina = 2}
+```{r, fig.width=8, fig.height=4, retina = 2}
 # Plot SRA-Organism Wordcloud - freq
 # (scaled by frequency in the SRA)
 plot(stat.report)
