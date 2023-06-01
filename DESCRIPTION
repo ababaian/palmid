@@ -4,9 +4,16 @@ Description: R Analysis suite for viral RNA dependent RNA polymerase (RdRP).
     Statistical and meta-data analysis of 'palmscan' output and 'palmDB'/
     'DIAMOND' alignment files. Cross reference an input RNA virus against
     145,000 RdRP identified in the Serratus project.
-Version: 0.0.4
-Authors@R: person("Artem", "Babaian", email = "artem@rRNA.ca",
-  role = c("aut", "cre"))
+    Non-CRAN dependency is ggmsa (https://github.com/YuLab-SMU/ggmsa) which
+    is available on Bioconductor.
+Version: 0.0.6
+Authors@R: 
+  person("Artem", "Babaian",
+    email = "artem@rRNA.ca",
+    role = c("aut", "cre"))
+  person("Hannah", "Le",
+    email = "hannah.lgbhan@gmail.com",
+    role = c("aut"))
 URL: https://serratus.io/palmid
 BugReports: https://github.com/ababaian/palmid/issues
 License: AGPL-3
@@ -26,6 +33,7 @@ Imports:
     ggplotify,
     ggwordcloud,
     ggExtra,
+    ggmsa,
     grDevices,
     gridExtra (>= 2.3),
     htmltools,
@@ -42,3 +50,5 @@ Imports:
 Depends:
     dplyr,
     ggplot2 (>= 3.3.3)
+Remotes:
+    bioc::release/ggmsa

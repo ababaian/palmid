@@ -22,8 +22,10 @@ PlotPhy <- function(tree.df, tree.phy) {
 
     # Plot tree with tip labels
     p <- ggtree(tree.phy) %<+% tree.df +
+        ggtitle("UPGMA Tree - Input & palmDB") +
         hexpand(0.3) +
-        geom_label(aes(label=ifelse(is.na(sseqid), nickname, paste0(sseqid, " (", nickname, ")"))))
-
+        geom_tiplab(aes(label=ifelse(is.na(sseqid), nickname, paste0(sseqid, " (", nickname, ")")))) +
+        theme_tree2() +
+        scale_x_continuous(expand = expansion(mult = c(0, 0.25)))
    return(p)
 }

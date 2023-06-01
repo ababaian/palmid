@@ -36,10 +36,15 @@ read.pro <- function(pro.path) {
     
   # Initialize empty nickname column (use get.nickname)
     pro.df$nickname <- as.character(NA)
+    
   # Initialize empty taxonomy columns (use get.palmTax)
     pro.df$tspe <- as.character(NA)
     pro.df$tfam <- as.character(NA)
     pro.df$tphy <- as.character(NA)
+    
+  # Initialize empty palmid to genbank %id
+    pro.df$gbid  <- as.numeric(5) # 5% identity is functionally "unmapped"
+    pro.df$gbacc <- as.character(NA)
 
   return(pro.df)
 }

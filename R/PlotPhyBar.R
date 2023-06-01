@@ -22,8 +22,9 @@ PlotPhyBar <- function(tree.df, p) {
     requireNamespace("ggtree", quietly = T)
 
     # Assign classification
-    tree.df <- tree.df %>% 
-        mutate(classify = case_when(pident >= 90 ~ "species",
+    tree.df2 <- tree.df %>% 
+        mutate(classify = case_when(pident == 100 ~ "input",
+                                    pident <100  & pident >= 90 ~ "species",
                                     pident >= 70 & pident < 90 ~ "genus",
                                     pident >= 45 & pident < 70 ~ "family",
                                     pident < 45 ~ "phylum"))
@@ -32,28 +33,37 @@ PlotPhyBar <- function(tree.df, p) {
     taxa_order = get_taxa_name(p)
 
     # Order rows of dataframe the same as phylogeny taxa order
-    tree.df$label <- factor(tree.df$label, levels=rev(taxa_order))
+    tree.df2$label <- factor(tree.df$label, levels=rev(taxa_order))
+    
+    # Label input node
+    tree.df2$pident[1]   <- 100
+    tree.df2$classify[1] <- 'input'
+    
+    # Add GenBank labels with percent alignment id
+    tree.df2$gblabel <- paste0( tree.df2$tspe, " (", tree.df2$gbid, "%)")
 
     bar_plot <- ggplot(
-            tree.df,
+            tree.df2,
             mapping = aes(x = pident, y = label, fill = classify),
-        ) + 
+        ) +
+        ggtitle("Alignment identity vs.palmDB & GB-taxa top-hit (aa%)") +
         geom_bar(stat="identity") +
         geom_text(
             aes(
-            label = tspe, 
+            label = gblabel, 
             x = 1.25, 
             hjust = 'left'
             ), 
             stat = "identity", 
-            color = "white",
+            color = "gray90",
             fontface = "bold"
         ) +
         scale_fill_manual(values = c(
             "phylum" = "#9f62a1",
             "family" = "#00cc07",
             "genus" = "#ff9607",
-            "species" = "#ff2a24"
+            "species" = "#ff2a24",
+            "input"  = "#000000"
         ), name = "") +
         scale_x_continuous(limits = c(0,110), expand = c(0, 0)) +
         theme_bw() +
@@ -66,11 +76,10 @@ PlotPhyBar <- function(tree.df, p) {
         theme(
             axis.line.x.bottom = element_line()
         ) +
-        geom_vline(xintercept = 45, color = "#00cc07", size=0.75) + 
-        geom_vline(xintercept = 70, color = "#ff9607", size=0.75) +
-        geom_vline(xintercept = 90, color = "#ff2a24", size=0.75) + 
-        xlab("Input Identity to PalmDB (aa%)")
-    
+        geom_vline(xintercept = 45, color = "#00cc07", alpha = 0.5, linewidth=0.75) + 
+        geom_vline(xintercept = 70, color = "#ff9607", alpha = 0.5, linewidth=0.75) +
+        geom_vline(xintercept = 90, color = "#ff2a24", alpha = 0.5, linewidth=0.75) +
+        xlab(NULL)
     phy_bar_plot <- p + bar_plot
 
     return(phy_bar_plot)

@@ -6,15 +6,17 @@ output:
   html_notebook:
     code_folding: hide
 params:
-  palmid.version: 0.0.5
-  input.path: inst/extdata/waxsys
+  palmid.version: '0.0.6'
+  input.path: inst/extdata/borna
   prod.run: no
 editor_options:
   markdown:
     wrap: 72
 ---
 
-`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases (RdRP) based on the "Palmprint" RNA virus barcodes described by [Babaian and Edgar, 2021](https://www.biorxiv.org/content/10.1101/2021.03.02.433648v1).
+`palmID` is a contained analysis suite for viral RNA-dependent RNA polymerases 
+(RdRP) based on the "Palmprint" RNA virus barcodes described by
+[Babaian and Edgar, 2022.](https://peerj.com/articles/14055/).
 
 # {.tabset}
 
@@ -96,7 +98,7 @@ save.plots    <- FALSE # save individual plots as png
 
 # Parameters
   id_threshold    <- 0   # Minimum AA% to retain a hit
-  max_palmdb_hits <- 500 # Maximum number of alignment hits in PalmDB hits to return
+  max_palmdb_hits <- 200 # Maximum number of alignment hits in PalmDB hits to return
 
 run.time <- Sys.time()
 
@@ -106,18 +108,8 @@ pp.in <- read.fev(input.fev, FIRST = TRUE)
 
 # Import a diamond-aligned pro file
 pro.df <- read.pro(input.pro)
-  # Populate with Nickname/Taxonomy-data
-  pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
-  pro.df     <- get.proTax(pro.df, con)
-  
 
-# Import a phylogenetic tree file
-tree.phy <- read.phy(input.phy)
-
-# Get a dataframe from the tree phy object
-tree.df <- get.proPhy(pro.df, tree.phy)
-
-# Set backstop when too many similar hits come up
+# Set backstop when too many similar pro.df hits come up
 palmdb.hits <- length(pro.df$qseqid)
 if (palmdb.hits > max_palmdb_hits) {
   pro.df <- pro.df[ 1:max_palmdb_hits, ]
@@ -126,8 +118,19 @@ if (palmdb.hits > max_palmdb_hits) {
   print.hitn <-  paste0("Reporting all ", palmdb.hits, " matches")
 }
 
+  # Populate with Nickname/Taxonomy-data
+  pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
+  pro.df              <- get.proTax2(pro.df, con)
+  
+# Import a phylogenetic tree file
+tree.phy <- read.phy(input.phy)
+
+# Get a dataframe from the tree phy object
+tree.df <- get.proPhy(pro.df, tree.phy)
+
 # SQL-Import of palmprint/sra meta-data
   # parent/child sOTU lookup, sra, biosample, date, organism, geo
+  # optimization needed here
 palm.sra <- get.palmSra(pro.df, con)
 
 # SQL-import of STAT kmer taxonomic analysis of the retrieved
@@ -135,7 +138,6 @@ palm.sra <- get.palmSra(pro.df, con)
 stat.sra <- get.sraSTAT(palm.sra$run_id, con)
 # Populate stat.sra with percent identity from palm.sra
   stat.sra$pident <- palm.sra$pident[ match(stat.sra$run_id, palm.sra$run_id) ]
-  
 
 # GENERATE REPORT-PLOTS -------------------------
 # Palmprint Report
@@ -155,8 +157,10 @@ geo.report  <- PlotGeo2(palm.sra)
 date.report <- PlotTimeline(palm.sra)
 
 # Host/Library organism Report
-orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
-stat.report <- PlotSTAT(stat.sra)
+orgn.report  <- PlotOrgn(palm.sra, freq = FALSE)
+orgn.reportXY <- PlotOrgnScatter(palm.sra)
+
+stat.report  <- PlotSTAT(stat.sra)
 
 # Print out version
 cat( paste0("palmID Version: ", params$palmid.version) )
@@ -224,32 +228,55 @@ cat("\n")
 
 #### palmprint QC-report
 
-Quality control metrics on the motif-scores and size distribution of the "palmprint" informs the confidence that the input sequence contains a viral RdRP. Input scores are shown compared to score distribution from 15,010 canonical viral RdRP from GenBank.
+Quality control metrics on the motif-scores and size distribution of the "palmprint" informs the confidence that the input sequence contains a viral RdRP. Input scores are shown compared to score distribution from 15,010 canonical viral RdRP from GenBank. `Palmscan v1.0` (the motif-detection algorithm) has a sensitivity of 87%, and a positive predictive value of 99.89%. This is a conservative algorithm by design. While an RdRp score below `20` is deemed "Low Confidence", if you know your input is an RdRp it likely will retrieve the correct motifs. In general this tool is designed to "detect" RdRp motifs with a known RdRp input.
 
 ```{r, fig.height = 4.5, fig.width = 9}
 # Palmscan QC-plot
 plot(pp.report)
 ```
 
-## Input Palmprint vs. PalmDB Analysis {.tabset}
+## MSA & Local Tree {.tabset}
 
 #### Multiple Sequence Alignment
 
-A `MUSCLE`-generated multiple sequence alignment of the top-10 matching
-hits in [`palmdb`](https://github.com/rcedgar/palmdb).
+A `MUSCLE`-generated multiple sequence alignment of the input palmprint and
+the top-10 matching palmprint in [`palmdb`](https://github.com/rcedgar/palmdb).
+Header is palmprint_id and percent identity (aa%) alignment to input sequence.
 
 ```{r}
 # Multiple Sequence Alignment of Top-10 hits in palmDB
 cat(paste0(readLines(input.msa), collapse = "\n"))
 ```
 
+#### Local Neighbourhood of input palmprint
+
+A _rough_ sketch (`MUSCLE` UPGMA tree) of the local evolutionary neighborhood of
+the input palmprint and it's homologs in PalmDB. To generate an accurate tree,
+use full-length, or as long as possible, RdRp sequences. Palmprints are not
+sufficient to resolve phylogeny accurately.
+
+```{r, fig.height = 5, fig.width = 10}
+# Viral Taxonomy of palmDB Hits
+plot(phy.report)
+```
+## Input Palmprint vs. PalmDB Analysis {.tabset}
+
 #### Input palmprint alignment to palmDB
 
-Input "palmprint" are aligned against
-[`palmdb`](https://github.com/rcedgar/palmdb) using `diamond` to
-retrieve related viruses. Upto the top 500 related viruses are reported.
+The extracted "palmprint" from input sequence is aligned against
+[`palmdb`](https://github.com/rcedgar/palmdb) using `diamond` to retrieve 
+related palmprints (upto 200 hits).
+Each palmprint is also aligned against GenBank from which the top-hit
+taxonomy and aa% identity is reported.
 
-```{r, fig.height = 5, fig.width = 9}
+A "species" is not in palmDB if no point is right of the red vertical line.
+
+A "species" is not in GenBank when point is below the gray horizontal dotted
+line.
+
+
+
+```{r, fig.height = 6, fig.width = 9}
 # Protein-alignment of Input vs. palmDB
 # Taxonomic Demarcations (~)
 # Species >90%   - Red
@@ -269,23 +296,9 @@ Species-, Genus- and Phylum- level taxonomy of the matching hits in
 PalmDB allow for taxonomic-inference of the input virus.
 
 ```{r, fig.height=10, fig.width=16, retina = 1}
-# Viral Taxonomy of palmDB Hits
+# Viral Taxonomy of palmDB Hits aligned against GenBank (top hit)
 plot(tax.report)
 ```
-
-#### Phylogenetic Tree of PalmDB matches {.tabset}
-
-A UPGMA tree of the top machine hits in PalmDB shows the evolutionary relationships between palmprint sequences. 
-
-##### Phylogeny and Bar Plot for Percentage Aligned to PalmDB for Top Hits
-
-##### Phylogeny and Multiple Sequence Alignment of Top Hits
-
-```{r, fig.height = 5, fig.width = 10}
-# Viral Taxonomy of palmDB Hits
-plot(phy.report)
-```
-
 
 #### palmDB Alignment table
 
@@ -293,11 +306,16 @@ plot(phy.report)
 ### Data-Table: `palmDB.csv`
 # Data table for palmDB Alignment
 
-blast.col <- linkBLAST(pro.df$sseqid, pro.df$full_sseq)
+blast.col <- linkBLAST(header = pro.df$sseqid,
+                       aa.seq = pro.df$full_sseq)
+gbacc.col <- linkGB( pro.df$gbacc , prefix_text = pro.df$tspe)
 
-cbind( pro.df[, c("sseqid", "nickname", "tspe", "pident", "evalue", "cigar")],
+cbind( pro.df[, c("sseqid", "nickname", "pident", "evalue")],
+       gbacc.col,
+       pro.df[, c( "gbid", "cigar")],
        blast.col) %>%
   DT::datatable(
+    colnames = c('palmprint', 'nickname', 'input_id%','input_evalue', 'genbank_tax', 'gb_id', 'CIGAR', 'BLAST_palm'),
     rownames = FALSE, filter = "top", escape = FALSE,
     options = list(pageLength = 10, scrollX = TRUE)
   )
@@ -314,7 +332,7 @@ RNA viruses matching input are cross-referenced against 5.7M SRA sequencing libr
 
 Distribution of matching RNA viruses. Click to explore each matching record. Species, genus, family and phylum level matches are red, orange, green and purple, respectively.
 
-```{r, fig.height = 6, fig.width = 9}
+```{r, fig.height = 5, fig.width = 10}
 # Geo-distribution of palmprint-containing SRA
 # Taxonomic Demarcations (~)
 # Species >90%   - Red
@@ -336,13 +354,23 @@ plotly::ggplotly(date.report)
 
 Organism meta-data from the SRA sequencing libraries matching the input-virus. Word size and color is scaled by proximity of the input-virus to its match in the library. Wordclouds show a) Researcher provided annotations of the libraries or b) STAT automated taxonomic (orders) analysis of the reads contained within the library ([Katz et al.,2021](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02490-0)).
 
+
+```{r, echo = FALSE, fig.height = 4, fig.width = 9}
+# Geo-distribution of palmprint-containing SRA
+plotly::ggplotly(orgn.reportXY)
+```
+
 ```{r, fig.width=8, fig.height=5, retina = 2}
+# Host/Library organism Report
+#orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
+#stat.report <- PlotSTAT(stat.sra)
+
 # Plot SRA  Wordcloud - id
 # (scaled by AA% proximity to input palmprint)
 plot(orgn.report)
 ```
 
-```{r, fig.width=8, fig.height=5, retina = 2}
+```{r, fig.width=8, fig.height=4, retina = 2}
 # Plot SRA-Organism Wordcloud - freq
 # (scaled by frequency in the SRA)
 plot(stat.report)
@@ -356,13 +384,13 @@ plot(stat.report)
 ### Data-Table: `sra.metadata.csv`
 # Data table for palmDB Alignment
 
-blast.col <- linkBLAST(palm.sra$sra_sequence,
-                       paste0(palm.sra$run_id,"_",palm.sra$palm_id)
-                       )
+blast.col <- linkBLAST(header = paste0(palm.sra$run_id,"_",palm.sra$palm_id),
+                       aa.seq = palm.sra$sra_sequence )
 
 cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', 'evalue', 'scientific_name')],
        blast.col) %>%
   DT::datatable(
+    colnames = c("sra_run", "biosample_id", "palmprint", "palm_id%", "coverage", "evalue", "sra_scientific_name", "sra_seq_BLAST"),
     rownames = FALSE, filter = "top", escape = F,
     options = list(pageLength = 10, scrollX = T)
   )

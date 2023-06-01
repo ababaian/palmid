@@ -19,7 +19,8 @@ PlotProReport <- function(pro, html = FALSE){
   pro.df <- NULL
 
   if (html){
-    pro.plot <- plotly::hide_legend( PlotID(pro, html = html) )
+    #pro.plot <- plotly::hide_legend( PlotID(pro, html = html) )
+    pro.plot <- plotly::hide_legend( PlotID2(pro, html = html) )
     tax.plot <- plotly::hide_legend( PlotTax(pro, html = html) )
 
     proPlot<- plotly::subplot(pro.plot, tax.plot,

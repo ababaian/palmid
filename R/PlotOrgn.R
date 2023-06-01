@@ -59,7 +59,7 @@ PlotOrgn <- function(palm.sra = NULL , orgn.vec = NULL, freq = TRUE){
                                             size  = Freq,
                                             color = Freq)) +
     ggtitle(label = otitle) +
-    scale_color_viridis_c(option = "C") +
+    scale_color_viridis_c(option = "H") +
     theme_minimal()
 
   return(orgn.wc)

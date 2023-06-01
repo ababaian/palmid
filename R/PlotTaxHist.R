@@ -28,9 +28,9 @@ PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
 
   # Plot title
   if ( class(rank) == "character" ){
-    title <- paste0( "PalmDB Taxonomy - ", rank[1])
+    title <- paste0( "PalmDB-GenBank Taxonomy (top hit): ", rank[1])
   } else {
-    title <- "PalmDB Taxonomy"
+    title <- "PalmDB-GenBank Taxonomy (top hit):"
   }
 
   # Plot colors based on % identity
@@ -42,12 +42,17 @@ PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
   if ( ntax >= 10 ){
     # Use rainbow for >10
     ncolr <- grDevices::rainbow(ntax)
-    nlegend <- theme( legend.position = "right")
+    nlegend <- theme(
+                      legend.background = element_rect(fill = NA),
+                      legend.justification = c("left", "top"),
+                      legend.position = c(0.55, 0.99)) 
   } else {
     # Use Viridis for <10
     ncolr <- viridis(ntax)
-    nlegend <- theme(legend.justification = c(1,1),
-                     legend.position = c(0.95,0.95))
+    nlegend <- theme(
+                     legend.background = element_rect(fill = NA),
+                     legend.justification = c(1,1),
+                     legend.position = c(0.85, 0.99))
   }
 
   # set "Unclassified" to gray
@@ -69,7 +74,8 @@ PlotTaxHist <- function(pro.pident, pro.tax, rank = NA){
     xlim(c(0,102)) +
     xlab("% AA-identity to Input") + ylab("count") +
     theme_bw() +
-    nlegend
+    nlegend + 
+    guides( fill = guide_legend(title = NULL, nrow = 10, label.hjust = 0) )
   #taxHist
 
   return(taxHist)
