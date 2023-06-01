@@ -28,7 +28,9 @@ get.palmTax2 <- function(palm_ids, con, rank = "family", ordinal = FALSE) {
     palm_ids <- as.character(palm_ids)
   }
   
-  if ( rank == "species" ){
+  if ( all( rank == c("tspe", "tfam", "tphy", "gbid", "gbacc")) ){
+    rank <- c("tax_species", "tax_family", "tax_phylum", "percent_identity", "gb_acc")
+  } else if ( rank == "species" ){
     rank <- "tax_species"
   } else if ( rank == "genus" ){
     rank <- "tax_genus"
@@ -66,8 +68,8 @@ get.palmTax2 <- function(palm_ids, con, rank = "family", ordinal = FALSE) {
     # rename rows by palm_id
     # return rows in order of palm_ids input (ordinal)
     rownames(tax) <- tax$palm_id
-    return(tax[palm_ids, 2])
+    return(tax[palm_ids, -1])
   } else {
-    return(unique(tax[, 2]))
+    return(unique(tax[, -1]))
   }
 }

@@ -108,18 +108,8 @@ pp.in <- read.fev(input.fev, FIRST = TRUE)
 
 # Import a diamond-aligned pro file
 pro.df <- read.pro(input.pro)
-  # Populate with Nickname/Taxonomy-data
-  pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
-  pro.df              <- get.proTax2(pro.df, con) # TODO OPTIMIZE proTax function
-  
 
-# Import a phylogenetic tree file
-tree.phy <- read.phy(input.phy)
-
-# Get a dataframe from the tree phy object
-tree.df <- get.proPhy(pro.df, tree.phy)
-
-# Set backstop when too many similar hits come up
+# Set backstop when too many similar pro.df hits come up
 palmdb.hits <- length(pro.df$qseqid)
 if (palmdb.hits > max_palmdb_hits) {
   pro.df <- pro.df[ 1:max_palmdb_hits, ]
@@ -127,6 +117,16 @@ if (palmdb.hits > max_palmdb_hits) {
 } else {
   print.hitn <-  paste0("Reporting all ", palmdb.hits, " matches")
 }
+
+  # Populate with Nickname/Taxonomy-data
+  pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
+  pro.df              <- get.proTax2(pro.df, con)
+  
+# Import a phylogenetic tree file
+tree.phy <- read.phy(input.phy)
+
+# Get a dataframe from the tree phy object
+tree.df <- get.proPhy(pro.df, tree.phy)
 
 # SQL-Import of palmprint/sra meta-data
   # parent/child sOTU lookup, sra, biosample, date, organism, geo
@@ -276,7 +276,7 @@ line.
 
 
 
-```{r, fig.height = 5, fig.width = 9}
+```{r, fig.height = 6, fig.width = 9}
 # Protein-alignment of Input vs. palmDB
 # Taxonomic Demarcations (~)
 # Species >90%   - Red
@@ -308,12 +308,14 @@ plot(tax.report)
 
 blast.col <- linkBLAST(header = pro.df$sseqid,
                        aa.seq = pro.df$full_sseq)
+gbacc.col <- linkGB( pro.df$gbacc , prefix_text = pro.df$tspe)
 
-
-cbind( pro.df[, c("sseqid", "nickname", "pident", "evalue", "tspe", "gbid", "cigar")],
+cbind( pro.df[, c("sseqid", "nickname", "pident", "evalue")],
+       gbacc.col,
+       pro.df[, c( "gbid", "cigar")],
        blast.col) %>%
   DT::datatable(
-    colnames = c('palm_id', 'nickname', 'input_id%','evalue', 'genbank_tax', 'genbank_id%', 'CIGAR', 'palm_BLAST'),
+    colnames = c('palmprint', 'nickname', 'input_id%','input_evalue', 'genbank_tax', 'gb_id', 'CIGAR', 'BLAST_palm'),
     rownames = FALSE, filter = "top", escape = FALSE,
     options = list(pageLength = 10, scrollX = TRUE)
   )
@@ -330,7 +332,7 @@ RNA viruses matching input are cross-referenced against 5.7M SRA sequencing libr
 
 Distribution of matching RNA viruses. Click to explore each matching record. Species, genus, family and phylum level matches are red, orange, green and purple, respectively.
 
-```{r, fig.height = 6, fig.width = 9}
+```{r, fig.height = 5, fig.width = 10}
 # Geo-distribution of palmprint-containing SRA
 # Taxonomic Demarcations (~)
 # Species >90%   - Red

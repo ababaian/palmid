@@ -26,11 +26,16 @@ get.proTax2 <- function(pro.df, con = SerratusConnect()) {
   # palmDB. NOTE: this currently is sOTU based so some
   # identifiers may be missed/ambiguous if it is in
   # a child-OTU
-
-  pro.df$tspe <- get.palmTax2(pro.df$sseqid, con, rank = "species", ordinal = T)
-  pro.df$tfam <- get.palmTax2(pro.df$sseqid, con, rank = "family" , ordinal = T)
-  pro.df$tphy <- get.palmTax2(pro.df$sseqid, con, rank = "phylum" , ordinal = T)
-  pro.df$gbid <- get.palmTax2(pro.df$sseqid, con, rank = "gbid"   , ordinal = T)
+  
+  rank_order <- c("tspe", "tfam", "tphy", "gbid", "gbacc")
+  rank_cols  <- match( rank_order, colnames(pro.df))
+  
+  pro.df[ , rank_cols] <- get.palmTax2(pro.df$sseqid, con, rank = rank_order, ordinal = T)
+  
+  # pro.df$tspe <- get.palmTax2(pro.df$sseqid, con, rank = "species", ordinal = T)
+  # pro.df$tfam <- get.palmTax2(pro.df$sseqid, con, rank = "family" , ordinal = T)
+  # pro.df$tphy <- get.palmTax2(pro.df$sseqid, con, rank = "phylum" , ordinal = T)
+  # pro.df$gbid <- get.palmTax2(pro.df$sseqid, con, rank = "gbid"   , ordinal = T)
 
   return(pro.df)
 }
