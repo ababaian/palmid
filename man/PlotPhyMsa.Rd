@@ -8,7 +8,7 @@ align it with a phylogenetic tree plot.}
 PlotPhyMsa(input.msa, p)
 }
 \arguments{
-\item{input.msa}{msa file path relative to .fev}
+\item{input.msa}{msa file path relative OR AAStringSet MSA object}
 
 \item{p}{phylogeny visualization object. use PlotPhy}
 }
@@ -20,7 +20,7 @@ A multi-plot wrapper to generate an MSA plot from input.msa and
 align it with a phylogenetic tree plot.
 }
 \examples{
-data("waxsys.input.msa")
+data("waxsys.msa")
 data("waxsys.tree.phy")
 p <- PlotPhy(waxsys.tree.df, waxsys.tree.phy)
 plotPhyMsa <- PlotPhyMsa(waxsys.input.msa, p)

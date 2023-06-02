@@ -123,7 +123,7 @@ if (palmdb.hits > max_palmdb_hits) {
   pro.df              <- get.proTax2(pro.df, con)
   
 # Import a phylogenetic tree file
-tree.phy <- read.phy(input.phy)
+tree.phy <- ggtree::read.tree(input.phy)
 
 # Get a dataframe from the tree phy object
 tree.df <- get.proPhy(pro.df, tree.phy)
