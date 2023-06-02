@@ -10,7 +10,7 @@ Version: 0.0.6
 Authors@R: 
   person("Artem", "Babaian",
     email = "artem@rRNA.ca",
-    role = c("aut", "cre"))
+    role = c("aut", "cre")),
   person("Hannah", "Le",
     email = "hannah.lgbhan@gmail.com",
     role = c("aut"))
@@ -45,6 +45,7 @@ Imports:
     RPostgreSQL,
     scales,
     stats,
+    treeio,
     utils,
     viridisLite
 Depends:
