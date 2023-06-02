@@ -4,7 +4,7 @@
 #' Returns a data frame containing tree tip labels and palmDB columns
 #'
 #' @param pro.df   data.frame, imported diamond pro df. use get.pro()
-#' @param tree.phy  phylo object. use read.phy
+#' @param tree.phy  phylo object. use ggtree::read.tree
 #' @return tree.df  data.frame
 #' @keywords palmid muscle phylogeny tree
 #' @examples

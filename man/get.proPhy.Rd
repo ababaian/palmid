@@ -11,7 +11,7 @@ get.proPhy(pro.df, tree.phy)
 \arguments{
 \item{pro.df}{data.frame, imported diamond pro df. use get.pro()}
 
-\item{tree.phy}{phylo object. use read.phy}
+\item{tree.phy}{phylo object. use ggtree::read.tree}
 }
 \value{
 tree.df  data.frame
