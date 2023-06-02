@@ -23,6 +23,7 @@ Suggests:
     rnaturalearth,
     rnaturalearthdata
 Imports:
+    treeio,
     Biostrings,
     dbplyr,
     downloadthis,
@@ -44,7 +45,6 @@ Imports:
     RPostgreSQL,
     scales,
     stats,
-    treeio,
     utils,
     viridisLite
 Depends:
