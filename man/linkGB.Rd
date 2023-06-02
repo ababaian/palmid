@@ -11,7 +11,9 @@ linkGB(accession, label = "<accession>", DB = "protein", prefix_text = NULL)
 
 \item{label}{character, Display string or accesion var ["<accesion>"]}
 
-\item{database}{character, GenBank database to prefix ["protein"]}
+\item{DB}{character, GenBank database to prefix ["protein"]}
+
+\item{prefix_text}{character, prefix to add to label when using accession}
 }
 \value{
 character, html link for click to search

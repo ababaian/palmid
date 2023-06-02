@@ -7,13 +7,11 @@ Description: R Analysis suite for viral RNA dependent RNA polymerase (RdRP).
     Non-CRAN dependency is ggmsa (https://github.com/YuLab-SMU/ggmsa) which
     is available on Bioconductor.
 Version: 0.0.6
-Authors@R: 
-  person("Artem", "Babaian",
-    email = "artem@rRNA.ca",
-    role = c("aut", "cre")),
-  person("Hannah", "Le",
-    email = "hannah.lgbhan@gmail.com",
-    role = c("aut"))
+Authors@R: c( 
+  person("Artem", "Babaian", , "artem@rRNA.ca", role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-4315-6262")),
+  person("Hannah", "Le", , "hannah.lgbhan@gmail.com", role = "aut")
+    )
 URL: https://serratus.io/palmid
 BugReports: https://github.com/ababaian/palmid/issues
 License: AGPL-3
@@ -25,6 +23,7 @@ Suggests:
     rnaturalearth,
     rnaturalearthdata
 Imports:
+    Biostrings,
     dbplyr,
     downloadthis,
     DBI,

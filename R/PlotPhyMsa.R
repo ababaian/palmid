@@ -9,7 +9,7 @@
 #' @examples
 #' data("waxsys.input.msa")
 #' data("waxsys.tree.phy")
-#' p <- PlotPhy(waxsys.tree.phy)
+#' p <- PlotPhy(waxsys.tree.df, waxsys.tree.phy)
 #' plotPhyMsa <- PlotPhyMsa(waxsys.input.msa, p)
 #'
 #' @import viridisLite

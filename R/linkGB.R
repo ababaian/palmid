@@ -3,7 +3,8 @@
 #'
 #' @param accession character, header for blast search
 #' @param label     character, Display string or accesion var ["<accesion>"]
-#' @param database  character, GenBank database to prefix ["protein"]
+#' @param DB        character, GenBank database to prefix ["protein"]
+#' @param prefix_text character, prefix to add to label when using accession
 #' @return character, html link for click to search
 #' @keywords palmid sql BLAST html
 #' @examples

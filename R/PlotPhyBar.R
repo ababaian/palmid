@@ -11,7 +11,8 @@
 #' @examples
 #' data("waxsys.tree.df")
 #' data("waxsys.tree.phy")
-#' p <- PlotPhy(waxsys.tree.phy)
+#' 
+#' p <- PlotPhy(waxsys.tree.df, waxsys.tree.phy)
 #' plotPhyBar <- PlotPhyBar(waxsys.tree.df, p)
 #'
 #' @import viridisLite
