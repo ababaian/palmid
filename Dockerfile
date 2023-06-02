@@ -102,7 +102,7 @@ RUN \
   echo "PostgreSQL" &&\
   yum -y install libxml2-devel postgresql-devel &&\
 echo "Leaflet" &&\
-  yum install -y gcc-c++.x86_64 cpp.x86_64 sqlite-devel.x86_64 libtiff.x86_64 cmake3.x86_64 &&\
+  yum install -y gcc-c++.x86_64 cpp.x86_64 sqlite-devel.x86_64 libtiff.x86_64 &&\
   wget https://download.osgeo.org/geos/geos-3.9.1.tar.bz2 &&\
   tar -xvf geos-3.9.1.tar.bz2 &&\
   cd geos-3.9.1 &&\
