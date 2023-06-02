@@ -23,17 +23,16 @@ Suggests:
     rnaturalearth,
     rnaturalearthdata
 Imports:
-    treeio,
     Biostrings,
+    DBI,
     dbplyr,
     downloadthis,
-    DBI,
     DT,
-    ggtree,
-    ggplotify,
-    ggwordcloud,
     ggExtra,
     ggmsa,
+    ggplotify,
+    ggtree,
+    ggwordcloud,
     grDevices,
     gridExtra (>= 2.3),
     htmltools,
@@ -45,6 +44,7 @@ Imports:
     RPostgreSQL,
     scales,
     stats,
+    treeio,
     utils,
     viridisLite
 Depends:

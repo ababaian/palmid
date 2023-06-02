@@ -2,7 +2,7 @@
 # PALMID BASE CONTAINER ===================================
 #==========================================================
 # Docker Base: amazon linux2
-FROM amazonlinux:2 AS serratus-base
+FROM amazonlinux:2023 AS serratus-base
 
 ## Build/test container for palmid
 # sudo yum install -y docker git
@@ -181,6 +181,9 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 # Note: 1 GB install
 RUN amazon-linux-extras install R4
 
+sudo amazon-linux-extras install epel -y
+sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+
 # R Packages ====================================
 # libpng package here must be installed after R
 # but is required for devtools
@@ -190,8 +193,8 @@ libjpeg-turbo-devel
 
 RUN R -e 'install.packages( c("devtools"), repos = "http://cran.us.r-project.org")'
 RUN R -e 'install.packages( c("remotes"), repos = "http://cran.us.r-project.org")'
+#RUN R -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager", repos = "http://cran.us.r-project.org"); BiocManager::install("treeio")' # needs to be installed prior to ggtree
 #RUN R -e 'remotes::install_version("ape", 5.6, repos = "http://cran.us.r-project.org")'
-#RUN R -e 'if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager", repos = "http://cran.us.r-project.org"); BiocManager::install("ggtree")'
 #RUN R -e 'devtools::install_github("YuLab-SMU/ggtree", dependencies=FALSE)'
 #RUN R -e 'BiocManager::install("Biostrings")'
 #RUN R -e 'BiocManager::install("R4RNA")'
