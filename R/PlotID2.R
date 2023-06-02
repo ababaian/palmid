@@ -13,7 +13,7 @@
 #' @export
 PlotID2 <- function(pro, html = TRUE){
   # Bind Local Variables
-  sseqid <- matching <- label <- seq <- nickname <- NULL
+  palm_id <- sseqid <- matching <- label <- seq <- nickname <- gb_id <- palmprint <- palmseq <- GB <- NULL
   pident <- evalue <- escore <- 0
   
   # phylum, family, genus, species

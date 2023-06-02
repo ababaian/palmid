@@ -19,6 +19,8 @@
 
 PlotPhy <- function(tree.df, tree.phy) {
     requireNamespace("ggtree", quietly = T)
+  
+    nickname <- sseqid <- NULL
 
     # Plot tree with tip labels
     p <- ggtree(tree.phy) %<+% tree.df +

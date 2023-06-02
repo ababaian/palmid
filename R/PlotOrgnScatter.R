@@ -27,7 +27,7 @@
 PlotOrgnScatter <- function(palm.sra = NULL , orgn.vec = NULL){
   
   # Bind Local Variables
-  segstrt <- segend <- segment <- scientific_name <- NULL
+  segstrt <- segend <- segment <- scientific_name <- palm_id <- sra_count <- NULL
   
   if (is.null(palm.sra) & is.null(orgn.vec)){
     stop("One of palm.sra or orgn.vec needs to be provided")
