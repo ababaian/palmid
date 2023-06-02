@@ -10,7 +10,7 @@
 #' data("waxsys.msa")
 #' data("waxsys.tree.phy")
 #' p <- PlotPhy(waxsys.tree.df, waxsys.tree.phy)
-#' plotPhyMsa <- PlotPhyMsa(waxsys.input.msa, p)
+#' plotPhyMsa <- PlotPhyMsa(waxsys.msa, p)
 #'
 #' @import viridisLite
 #' @import Biostrings dplyr ggplot2 treeio ggtree ggmsa

@@ -21,6 +21,10 @@
 
 PlotPhyBar <- function(tree.df, p) {
     requireNamespace("ggtree", quietly = T)
+  
+    # Bind Local Variables
+    label  <- classify <- gblabel <- NULL
+    pident <- 0
 
     # Assign classification
     tree.df2 <- tree.df %>% 

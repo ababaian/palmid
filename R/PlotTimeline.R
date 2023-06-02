@@ -12,6 +12,9 @@
 # Retrieve date from input of sra run_ids
 PlotTimeline <- function(palm.sra, html = TRUE){
   
+  # Bind Local Variables
+  setNames <- colr <- NULL
+  
   # Color pallette
   ranklvl   <-  c("phylum",  "family",  "genus",   "species")
   rankcols  <-  c("#9f62a1", "#00cc07", "#ff9607", "#ff2a24")
