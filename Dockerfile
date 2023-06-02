@@ -181,9 +181,6 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 # Note: 1 GB install
 RUN amazon-linux-extras install R4
 
-sudo amazon-linux-extras install epel -y
-sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
-
 # R Packages ====================================
 # libpng package here must be installed after R
 # but is required for devtools
