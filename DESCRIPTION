@@ -51,4 +51,5 @@ Depends:
     dplyr,
     ggplot2 (>= 3.3.3)
 Remotes:
+    bioc::release/ggtree
     bioc::release/ggmsa

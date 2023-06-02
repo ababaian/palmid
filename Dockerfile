@@ -196,7 +196,7 @@ RUN R -e 'install.packages( c("remotes"), repos = "http://cran.us.r-project.org"
 #RUN R -e 'BiocManager::install("Biostrings")'
 #RUN R -e 'BiocManager::install("R4RNA")'
 #RUN R -e 'remotes::install_version("ggmsa", version="1.0.2", repos = "http://cran.us.r-project.org")'
-RUN R -e 'devtools::install_github("https://github.com/ababaian/palmid")'
+RUN R -e 'devtools::install_github("ababaian/palmid")'
 
 #==========================================================
 # palmid Initialize =======================================
