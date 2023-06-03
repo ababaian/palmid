@@ -179,7 +179,7 @@ RUN git clone https://github.com/rcedgar/palmdb.git &&\
 # R 4.0 =========================================
 # Install R
 # Note: 1 GB install
-RUN amazon-linux-extras install R4
+RUN yum -y install R4
 
 # R Packages ====================================
 # libpng package here must be installed after R
