@@ -45,8 +45,10 @@ PlotPhyBar <- function(tree.df, p) {
     tree.df2$classify[1] <- 'input'
     
     # Add GenBank labels with percent alignment id
-    tree.df2$gblabel <- paste0( tree.df2$tspe, " (", tree.df2$gbid, "%)")
-
+    tree.df2$gblabel <- tree.df2$tspe
+    tree.df2$gblabel[ tree.df2$gbid < 90 & !is.na(tree.df2$gbid) ] <- paste0( tree.df2$gblabel[ tree.df2$gbid < 90 & !is.na(tree.df2$gbid) ] , "-like")
+    tree.df2$gblabel <- paste0( tree.df2$gblabel, " (", tree.df2$gbid, "%)")
+    
     bar_plot <- ggplot(
             tree.df2,
             mapping = aes(x = pident, y = label, fill = classify),
