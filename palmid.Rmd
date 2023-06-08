@@ -69,28 +69,31 @@ if (production.version) {
 ```
 
 ```{r}
+# Print out version
+cat( paste0("palmID Version: ", params$palmid.version) )
+
 # INITIALIZE PALMID WORKSPACE -------------------
-# library("palmid")
 
 # Establish Serratus server connection
 con <- SerratusConnect()
 
-# Input file
+# Input files
 # Generated within `palmid` container
-# params are defined in YAML header to expose to CLI
-input.path      <- params$input.path
+# input.path parameter is defined in YAML header
+# which is exposed to CLI
+input.path <- params$input.path
 
 if (is.null(input.path)) {
   stop("Error: No input provided.")
 }
 
-  input.fa      <- paste0(input.path, '.input.fa')   # palmscan-palmprint sequence
-  input.pp      <- paste0(input.path, '.trim.fa')    # palmscan-palmprint sequence
-  input.fev     <- paste0(input.path, '.fev')    # palmscan .fev report
-  input.rep     <- paste0(input.path, '.txt')    # palmscan text motif-report
-  input.pro     <- paste0(input.path, '.pro')    # diamond palmDB-alignment file
-  input.msa     <- paste0(input.path, '.msa.fa') # muscle msa
-  input.phy     <- paste0(input.path, '.phy') # tree file in newick format
+  input.fa      <- paste0(input.path, '.input.fa')# palmscan-palmprint sequence
+  input.pp      <- paste0(input.path, '.trim.fa') # palmscan-palmprint sequence
+  input.fev     <- paste0(input.path, '.fev')     # palmscan .fev report
+  input.rep     <- paste0(input.path, '.txt')     # palmscan text motif-report
+  input.pro     <- paste0(input.path, '.pro')     # diamond palmDB-alignment file
+  input.msa     <- paste0(input.path, '.msa.fa')  # muscle msa
+  input.phy     <- paste0(input.path, '.phy')     # tree file in newick format
 
 # Output HTML Report
 output.html   <- paste0(input.path, '.html')
@@ -118,9 +121,9 @@ if (palmdb.hits > max_palmdb_hits) {
   print.hitn <-  paste0("Reporting all ", palmdb.hits, " matches")
 }
 
-  # Populate with Nickname/Taxonomy-data
-  pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
-  pro.df              <- get.proTax2(pro.df, con)
+# Populate with Nickname/Taxonomy-data
+pro.df$nickname     <- get.nickname(pro.df$sseqid, con, ordinal = T)
+pro.df              <- get.proTax2(pro.df, con)
   
 # Import a phylogenetic tree file
 tree.phy <- ggtree::read.tree(input.phy)
@@ -156,14 +159,14 @@ phy.report <- PlotPhyReport(input.msa, tree.df, tree.phy)
 geo.report  <- PlotGeo2(palm.sra)
 date.report <- PlotTimeline(palm.sra)
 
+# SRA Expression Report
+expr.report  <- PlotSraExpr(palm.sra)
+
 # Host/Library organism Report
 orgn.report  <- PlotOrgn(palm.sra, freq = FALSE)
 orgn.reportXY <- PlotOrgnScatter(palm.sra)
 
 stat.report  <- PlotSTAT(stat.sra)
-
-# Print out version
-cat( paste0("palmID Version: ", params$palmid.version) )
 
 ```
 
@@ -295,7 +298,7 @@ plotly::ggplotly(pro.report)
 Species-, Genus- and Phylum- level taxonomy of the matching hits in
 PalmDB allow for taxonomic-inference of the input virus.
 
-```{r, fig.height=10, fig.width=16, retina = 1}
+```{r, fig.height=8, fig.width=14, retina = 1}
 # Viral Taxonomy of palmDB Hits aligned against GenBank (top hit)
 plot(tax.report)
 ```
@@ -315,7 +318,7 @@ cbind( pro.df[, c("sseqid", "nickname", "pident", "evalue")],
        pro.df[, c( "gbid", "cigar")],
        blast.col) %>%
   DT::datatable(
-    colnames = c('palmprint', 'nickname', 'input_id%','input_evalue', 'genbank_tax', 'gb_id', 'CIGAR', 'BLAST_palm'),
+    colnames = c('palmprint', 'nickname', 'id%_to_input','input_evalue', 'genbank_tax', 'gb_id', 'CIGAR', 'BLAST'),
     rownames = FALSE, filter = "top", escape = FALSE,
     options = list(pageLength = 10, scrollX = TRUE)
   )
@@ -346,8 +349,21 @@ geo.report
 ![](img/tax_legend.png)
 
 ```{r, echo = FALSE, fig.height = 3, fig.width = 9}
-# Geo-distribution of palmprint-containing SRA
+# Timeline of "Release Dates" for matching datsets
+# click on legend to unselect certain rank_matches
 plotly::ggplotly(date.report)
+```
+
+#### Virus Expression in SRA (approx.)
+
+From each SRA dataset, RdRp-mapping reads are "micro-assembled" into contigs. The fold read-coverage of the contigs is
+an indirect measurement of the expression level of the virus in that datasets. Here the per-SRA expression for each
+palmprint sOTU are shown. Expression of high-divergence (<60% identity to known) RdRp are under-estimated due to
+lower sensitivity for recovering RdRp-reads.
+
+```{r, echo = FALSE, fig.height = 4, fig.width = 9}
+# SRA Expression Report
+plotly::ggplotly(expr.report)
 ```
 
 #### Virus-Organism Associations
@@ -356,23 +372,21 @@ Organism meta-data from the SRA sequencing libraries matching the input-virus. W
 
 
 ```{r, echo = FALSE, fig.height = 4, fig.width = 9}
-# Geo-distribution of palmprint-containing SRA
+# Count of each Organism (Scientific_Name, taken from SRA meta-data)
+# plotted against the maximum id% to input sequence for that organism
 plotly::ggplotly(orgn.reportXY)
 ```
 
 ```{r, fig.width=8, fig.height=5, retina = 2}
-# Host/Library organism Report
-#orgn.report <- PlotOrgn(palm.sra, freq = FALSE)
-#stat.report <- PlotSTAT(stat.sra)
-
 # Plot SRA  Wordcloud - id
-# (scaled by AA% proximity to input palmprint)
+# scaled by AA% proximity to input palmprint
 plot(orgn.report)
 ```
 
 ```{r, fig.width=8, fig.height=4, retina = 2}
 # Plot SRA-Organism Wordcloud - freq
-# (scaled by frequency in the SRA)
+# scaled by frequency in the SRA
+# alpha scaled by the abundance of the organism in the target datasets
 plot(stat.report)
 ```
 
@@ -387,10 +401,10 @@ plot(stat.report)
 blast.col <- linkBLAST(header = paste0(palm.sra$run_id,"_",palm.sra$palm_id),
                        aa.seq = palm.sra$sra_sequence )
 
-cbind( palm.sra[, c("run_id", "biosample_id", 'palm_id', 'pident', 'coverage', 'evalue', 'scientific_name')],
+cbind( palm.sra[, c("run_id", "biosample_id", 'sOTU', 'nickname', 'pident', 'coverage', 'evalue', 'scientific_name')],
        blast.col) %>%
   DT::datatable(
-    colnames = c("sra_run", "biosample_id", "palmprint", "palm_id%", "coverage", "evalue", "sra_scientific_name", "sra_seq_BLAST"),
+    colnames = c("sra_run", "biosample_id", "sOTU", 'nickname', "input_id%", "coverage", "evalue", "sra_scientific_name", "BLAST"),
     rownames = FALSE, filter = "top", escape = F,
     options = list(pageLength = 10, scrollX = T)
   )
