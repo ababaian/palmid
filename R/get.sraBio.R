@@ -18,7 +18,7 @@
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
-get.sraBio <- function(run_ids, con, biodb = "Both", ordinal = FALSE) {
+get.sraBio <- function(run_ids, con, biodb = "BioSample", ordinal = FALSE) {
   # Bind Local Variables
   run <- bio_sample <- biosample_id <- bioproject <- coordinate_x <- coordinate_y <- NULL
 
