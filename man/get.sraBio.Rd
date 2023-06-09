@@ -15,7 +15,7 @@ get.sraBio(run_ids, con, ordinal = FALSE)
 
 \item{ordinal}{boolean, return 'run_ids' ordered vector [FALSE]}
 
-\item{db_id}{character, one of "both", "BioProject", or ["BioSample"]}
+\item{biodb}{character, one of "both", "BioProject", or ["BioSample"]}
 }
 \value{
 data.frame, run_id, biosample character vectors

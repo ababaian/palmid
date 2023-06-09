@@ -5,7 +5,7 @@
 #'
 #' @param run_ids character, SRA 'run_id'
 #' @param con     pq-connection, use SerratusConnect()
-#' @param db_id   character, one of "both", "BioProject", or ["BioSample"] 
+#' @param biodb   character, one of "both", "BioProject", or ["BioSample"] 
 #' @param ordinal boolean, return 'run_ids' ordered vector [FALSE]
 #' @return data.frame, run_id, biosample character vectors
 #' @keywords palmid Serratus geo
@@ -18,7 +18,7 @@
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
-get.sraBio <- function(run_ids, con, db_id = "BioSample", ordinal = FALSE) {
+get.sraBio <- function(run_ids, con, biodb = "Both", ordinal = FALSE) {
   # Bind Local Variables
   run <- bio_sample <- biosample_id <- bioproject <- coordinate_x <- coordinate_y <- NULL
 
@@ -39,11 +39,11 @@ get.sraBio <- function(run_ids, con, db_id = "BioSample", ordinal = FALSE) {
       ord.bio <- ord.bio[ match(run_ids, ord.bio$run_id), ]
     
     # Which columns to return
-    if (db_id == "BioSample"){
+    if (biodb == "BioSample"){
       return(ord.bio$biosample_id)
-    } else if (db_id == "BioProject"){
+    } else if (biodb == "BioProject"){
       return(ord.bio$bioproject)
-    } else if (db_id == "Both" | db_id == "both"){
+    } else if (biodb == "Both" | biodb == "both"){
       #return( ord.bio )
       return( ord.bio[ , c("biosample_id", "bioproject")] )
     }
@@ -51,11 +51,11 @@ get.sraBio <- function(run_ids, con, db_id = "BioSample", ordinal = FALSE) {
     # Non-Ordinal, return unique entries
     
     # Which columns to return
-    if (db_id == "BioSample"){
+    if (biodb == "BioSample"){
       return( unique(sra.bio$biosample_id) )
-    } else if (db_id == "BioProject"){
+    } else if (biodb == "BioProject"){
       return( unique(sra.bio$bioproject) )
-    } else if (db_id == "Both" | db_id == "both"){
+    } else if (biodb == "Both" | biodb == "both"){
       return( ord.bio[ , c("biosample_id", "bioproject")] )
     }
   }

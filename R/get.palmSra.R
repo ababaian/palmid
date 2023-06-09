@@ -63,7 +63,8 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
 
   # Add BioSample, Geo data to palm.sra
   bio_ids <- get.sraBio(palm.sra$run_id,
-                        con = con, db_id = "both", ordinal = TRUE)
+                        con = con, ordinal = TRUE)
+    print(bio_ids)
     palm.sra$biosample_id  <- bio_ids$biosample_id
     palm.sra$bioproject_id <- bio_ids$bioproject
 
