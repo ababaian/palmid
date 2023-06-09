@@ -23,9 +23,9 @@ get.sraBio <- function(run_ids, con, ordinal = FALSE) {
   # get biosample field for run_id
   sra.bio <- tbl(con, "srarun") %>%
     dplyr::filter(run %in% run_ids) %>%
-    select(run, bio_sample) %>%
+    select(run, bio_sample, bio_project) %>%
     as.data.frame()
-    colnames(sra.bio) <- c("run_id", "biosample_id")
+    colnames(sra.bio) <- c("run_id", "biosample_id", "bioproject")
     # must be unique
     sra.bio <- sra.bio[ !duplicated(sra.bio$run_id), ]
 

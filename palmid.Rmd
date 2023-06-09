@@ -348,7 +348,7 @@ geo.report
 
 ![](img/tax_legend.png)
 
-```{r, echo = FALSE, fig.height = 3, fig.width = 9}
+```{r, echo = FALSE, fig.height = 3, fig.width = 10}
 # Timeline of "Release Dates" for matching datsets
 # click on legend to unselect certain rank_matches
 plotly::ggplotly(date.report)
@@ -361,7 +361,7 @@ an indirect measurement of the expression level of the virus in that datasets. H
 palmprint sOTU are shown. Expression of high-divergence (<60% identity to known) RdRp are under-estimated due to
 lower sensitivity for recovering RdRp-reads.
 
-```{r, echo = FALSE, fig.height = 4, fig.width = 9}
+```{r, echo = FALSE, fig.height = 5, fig.width = 10}
 # SRA Expression Report
 plotly::ggplotly(expr.report)
 ```
@@ -400,11 +400,14 @@ plot(stat.report)
 
 blast.col <- linkBLAST(header = paste0(palm.sra$run_id,"_",palm.sra$palm_id),
                        aa.seq = palm.sra$sra_sequence )
+sra.col       <- linkDB(palm.sra$run_id)
+biosample.col <- linkDB(palm.sra$biosample_id, DB = "biosample")
 
-cbind( palm.sra[, c("run_id", "biosample_id", 'sOTU', 'nickname', 'pident', 'coverage', 'evalue', 'scientific_name')],
+cbind( sra.col, biosample.col,
+       palm.sra[, c('sOTU', 'nickname', 'pident', 'coverage', 'evalue', 'scientific_name')],
        blast.col) %>%
   DT::datatable(
-    colnames = c("sra_run", "biosample_id", "sOTU", 'nickname', "input_id%", "coverage", "evalue", "sra_scientific_name", "BLAST"),
+    colnames = c("sra_run", "biosample_id", "sOTU", 'nickname', "id%", "coverage", "evalue", "sra_tag", "BLAST"),
     rownames = FALSE, filter = "top", escape = F,
     options = list(pageLength = 10, scrollX = T)
   )
