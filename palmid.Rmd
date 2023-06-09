@@ -161,6 +161,7 @@ date.report <- PlotTimeline(palm.sra)
 
 # SRA Expression Report
 expr.report  <- PlotSraExpr(palm.sra)
+proj.report  <- PlotProjExpr(palm.sra)
 
 # Host/Library organism Report
 orgn.report  <- PlotOrgn(palm.sra, freq = FALSE)
@@ -364,6 +365,11 @@ lower sensitivity for recovering RdRp-reads.
 ```{r, echo = FALSE, fig.height = 5, fig.width = 10}
 # SRA Expression Report
 plotly::ggplotly(expr.report)
+```
+
+```{r, echo = FALSE, fig.height= 4, fig.width=10}
+# BioProject Level Variance in Expression
+plotly::ggplotly( proj.report )
 ```
 
 #### Virus-Organism Associations

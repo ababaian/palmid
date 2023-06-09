@@ -1,9 +1,11 @@
 #' get.sraBio
 #'
-#' Retrieve the "BioSample" field for a set of SRA 'run_id'
+#' Retrieve the "BioSample", "BioProject", or "Both" field for a set of 
+#' input SRA 'run_id'
 #'
 #' @param run_ids character, SRA 'run_id'
 #' @param con     pq-connection, use SerratusConnect()
+#' @param db_id   character, one of "both", "BioProject", or ["BioSample"] 
 #' @param ordinal boolean, return 'run_ids' ordered vector [FALSE]
 #' @return data.frame, run_id, biosample character vectors
 #' @keywords palmid Serratus geo
@@ -16,9 +18,9 @@
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
-get.sraBio <- function(run_ids, con, ordinal = FALSE) {
+get.sraBio <- function(run_ids, con, db_id = "BioSample", ordinal = FALSE) {
   # Bind Local Variables
-  run <- bio_sample <- biosample_id <- coordinate_x <- coordinate_y <- NULL
+  run <- bio_sample <- biosample_id <- bioproject <- coordinate_x <- coordinate_y <- NULL
 
   # get biosample field for run_id
   sra.bio <- tbl(con, "srarun") %>%
@@ -30,14 +32,31 @@ get.sraBio <- function(run_ids, con, ordinal = FALSE) {
     sra.bio <- sra.bio[ !duplicated(sra.bio$run_id), ]
 
   if (ordinal){
-    # Left join on palm_ids to make a unique vector
-    ord.bio <- data.frame( run_id = run_ids )
-    ord.bio <- merge(ord.bio, sra.bio, all.x = TRUE)
-    ord.bio <- ord.bio[ match(run_ids, ord.bio$run_id), ]
-
-    return(ord.bio$biosample_id)
+    # Ordinal return
+      # Left join on palm_ids to make a unique vector
+      ord.bio <- data.frame( run_id = run_ids )
+      ord.bio <- merge(ord.bio, sra.bio, all.x = TRUE)
+      ord.bio <- ord.bio[ match(run_ids, ord.bio$run_id), ]
+    
+    # Which columns to return
+    if (db_id == "BioSample"){
+      return(ord.bio$biosample_id)
+    } else if (db_id == "BioProject"){
+      return(ord.bio$bioproject)
+    } else if (db_id == "Both" | db_id == "both"){
+      #return( ord.bio )
+      return( ord.bio[ , c("biosample_id", "bioproject")] )
+    }
   } else {
-    unq.bio <- unique(sra.bio$biosample_id)
-    return(unq.bio)
+    # Non-Ordinal, return unique entries
+    
+    # Which columns to return
+    if (db_id == "BioSample"){
+      return( unique(sra.bio$biosample_id) )
+    } else if (db_id == "BioProject"){
+      return( unique(sra.bio$bioproject) )
+    } else if (db_id == "Both" | db_id == "both"){
+      return( ord.bio[ , c("biosample_id", "bioproject")] )
+    }
   }
 }

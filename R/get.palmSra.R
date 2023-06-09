@@ -62,7 +62,10 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
   palm.sra <- palm.sra[ order(palm.sra$pident, decreasing = TRUE), ]
 
   # Add BioSample, Geo data to palm.sra
-  palm.sra$biosample_id <- get.sraBio(palm.sra$run_id, con, TRUE)
+  bio_ids <- get.sraBio(palm.sra$run_id,
+                        con = con, db_id = "both", ordinal = TRUE)
+    palm.sra$biosample_id  <- bio_ids$biosample_id
+    palm.sra$bioproject_id <- bio_ids$bioproject
 
   # Add Organism/scientific_name of sra run
   palm.sra$scientific_name <- get.sraOrgn(palm.sra$run_id, con, TRUE)
@@ -86,3 +89,4 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
 
   return(palm.sra)
 }
+

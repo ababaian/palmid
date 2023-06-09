@@ -29,7 +29,7 @@ PlotSraExpr <- function(palm.sra = NULL, ntop = 10){
   }
   
   # Make Expression Data frame for plotting
-  expr.df <- palm.sra[ c('sOTU', 'nickname', 'run_id', 'pident', 'coverage')]
+  expr.df <- palm.sra[ c('sOTU', 'nickname', 'run_id', 'pident', 'coverage', 'bioproject_id')]
   expr.df$ppLabel <- paste0(expr.df$sOTU, " (", expr.df$nickname, ")" )
   
   # Ordered list of sOTU by pident
