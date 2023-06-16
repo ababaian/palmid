@@ -28,6 +28,7 @@ input SRA 'run_id'
 
 Retrieve the "BioProject" field for a set of SRA 'run_id'
 and return all SRA run_id for each unique BioProject
+<UNDER DEVELOPMENT>
 }
 \examples{
 \donttest{

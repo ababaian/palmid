@@ -20,36 +20,36 @@
 #' @import dplyr ggplot2
 #' @export
 #' 
-ProjZscore   <- function(expr.df = NULL){
-  # Initialize Zscore column
-  expr.df$Zcov <- 0
-  expr.df$Zcov <- NaN
-    
-  # Sub-Function to return a per-project Z-score for expression
-  for (bproj in unique(expr.df$bioproject_id)){
-    bp_rows <- (expr.df$bioproject_id == bproj)
-    nsamples <- length( which(bp_rows) )
-    
-    # Require at least 3 data-points to calculate Z-score
-    if ( nsamples < 3 ){
-      # Do not calculate Z-score
-      expr.df$mean[ bp_rows ]  <- mean( expr.df$coverage[ bp_rows ] )
-      expr.df$sd[ bp_rows ] <- mean( expr.df$coverage[ bp_rows ] )
-      expr.df$Z[ bp_rows ] <- NaN
-    } else {
-      # Calculate Z-score
-      expr.mean <- mean( expr.df$coverage[ bp_rows ] )
-      expr.sd   <-   sd( expr.df$coverage[ bp_rows ] )
-      
-      expr.df$mean[ bp_rows ]  <- expr.mean
-      expr.df$sd[ bp_rows ] <- expr.sd 
-      expr.df$Z[ bp_rows ] <- (expr.df$coverage[ bp_rows ] - expr.mean) / expr.sd
-    }
-  }
-  return(expr.df)
-}
-
 PlotProjExpr <- function(palm.sra = NULL, ntop = 10){
+  
+  ProjZscore   <- function(expr.df = NULL){
+    # Initialize Zscore column
+    expr.df$Zcov <- 0
+    expr.df$Zcov <- NaN
+    
+    # Sub-Function to return a per-project Z-score for expression
+    for (bproj in unique(expr.df$bioproject_id)){
+      bp_rows <- (expr.df$bioproject_id == bproj)
+      nsamples <- length( which(bp_rows) )
+      
+      # Require at least 3 data-points to calculate Z-score
+      if ( nsamples < 3 ){
+        # Do not calculate Z-score
+        expr.df$mean[ bp_rows ]  <- mean( expr.df$coverage[ bp_rows ] )
+        expr.df$sd[ bp_rows ] <- mean( expr.df$coverage[ bp_rows ] )
+        expr.df$Z[ bp_rows ] <- NaN
+      } else {
+        # Calculate Z-score
+        expr.mean <- mean( expr.df$coverage[ bp_rows ] )
+        expr.sd   <-   sd( expr.df$coverage[ bp_rows ] )
+        
+        expr.df$mean[ bp_rows ]  <- expr.mean
+        expr.df$sd[ bp_rows ] <- expr.sd 
+        expr.df$Z[ bp_rows ] <- (expr.df$coverage[ bp_rows ] - expr.mean) / expr.sd
+      }
+    }
+    return(expr.df)
+  }
   
   # Bind Local Variables
   run_id <- match_rank <- label <- NULL
