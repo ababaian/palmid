@@ -5,7 +5,7 @@
 #' @param pro.df   data.frame, imported diamond pro df. use get.pro()
 #' @param con      pq-connection, use SerratusConnect()
 #' @return palm.sra  data.frame
-#' @keywords palmid sql geo biosample timeline Serratus Tantalus
+#' @keywords palmid sql sra geo biosample bioproject timeline Serratus Tantalus
 #' @examples
 #'
 #' data("waxsys.pro.df")
@@ -62,7 +62,7 @@ get.palmSra <- function(pro.df, con = SerratusConnect()) {
   palm.sra <- palm.sra[ order(palm.sra$pident, decreasing = TRUE), ]
 
   # Add BioSample, Geo data to palm.sra
-  bio_ids <- get.sraBio(palm.sra$run_id, con,
+  bio_ids <- get.sraBio2(palm.sra$run_id, con,
                         biodb = "both", ordinal = TRUE)
     palm.sra$biosample_id  <- bio_ids$biosample_id
     palm.sra$bioproject_id <- bio_ids$bioproject

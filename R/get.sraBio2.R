@@ -1,4 +1,4 @@
-#' get.sraBio
+#' get.sraBio2
 #'
 #' Retrieve the "BioSample", "BioProject", or "Both" field for a set of 
 #' input SRA 'run_id'
@@ -18,10 +18,9 @@
 #' @import RPostgreSQL
 #' @import dplyr ggplot2
 #' @export
-get.sraBio <- function(run_ids, con, biodb = "BioSample", ordinal = FALSE) {
+get.sraBio2 <- function(run_ids, con, biodb = "BioSample", ordinal = FALSE) {
   # Bind Local Variables
   run <- bio_sample <- biosample_id <- bioproject <- coordinate_x <- coordinate_y <- NULL
-  print(biodb)
 
   # get biosample field for run_id
   sra.bio <- tbl(con, "srarun") %>%

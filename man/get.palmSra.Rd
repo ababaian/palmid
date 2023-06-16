@@ -29,8 +29,10 @@ get.palmSra( waxsys.pro.df, con )
 }
 \keyword{Serratus}
 \keyword{Tantalus}
+\keyword{bioproject}
 \keyword{biosample}
 \keyword{geo}
 \keyword{palmid}
 \keyword{sql}
+\keyword{sra}
 \keyword{timeline}
