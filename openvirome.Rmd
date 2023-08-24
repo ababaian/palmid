@@ -1,0 +1,388 @@
+---
+title: 'Open Virome: Earths viruses in your palm'
+output:
+  html_document:
+    df_print: paged
+  html_notebook:
+    code_folding: hide
+params:
+  palmid.version: '0.0.7'
+  virome_search_term: 'Saccharomyce%'
+  input.path: inst/extdata/yeast
+  prod.run: no
+editor_options:
+  markdown:
+    wrap: 72
+---
+
+#  {.tabset}
+
+## Overview {.tabset}
+
+```{r setup, include=FALSE}
+# RMarkdown Setting Initialization
+# Command Line Interface ----
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+```{css, echo=FALSE}
+/* Move code folding buttons to the left */
+div.col-md-12 .pull-right {
+  float: left !important
+}
+```
+
+```{r production, include=FALSE, warning=FALSE}
+# Run as Production Pipeline or Development
+production.version = params$prod.run
+
+if (production.version) {
+  # Load stable palmid package
+  library('palmid', quietly = T)
+  data("palmdb") 
+
+  # Disable warnings
+   defaultW <- getOption("warn")
+   options(warn = -1)
+} else {
+  # Warnings variable
+  defaultW <- getOption("warn")
+  options(warn = -1)
+
+  # Compile a new palmid from source
+  roxygen2::roxygenise()
+  load("data/palmdb.RData")
+}
+
+```
+
+```{r initaialize, include = FALSE}
+# INITIALIZE OPEN VIROME WORKSPACE -------------------
+
+# Establish Serratus server connection
+con <- SerratusConnect()
+
+
+# Input files
+# Generated within `palmid` container
+# input.path parameter is defined in YAML header
+# which is exposed to CLI
+input.path <- params$input.path
+
+if (is.null(input.path)) {
+  stop("Error: No input provided.")
+}
+
+  input.list      <- paste0(input.path, '.list')    # list of yeast runs
+  input.virome    <- paste0(input.path, '.virome')  # palm_virome query
+
+# Output HTML Report
+output.html   <- paste0(input.path, '.html')
+
+# Parameters
+# Search Term of SRA "Scientific Name" field,
+# uses SQL "like" operator, which allows for regex
+# expression i.e. 'Saccharomyces%'
+virome_search_term <- params$virome_search_term
+
+```
+```{r initialize message}
+# Print out version
+cat( paste0("palmID Version: ", params$palmid.version) )
+cat( paste0("Taxa search term: ", params$virome_search_term))
+
+```
+
+```{r, echo = FALSE}
+# Import virome data
+
+## Retrieve Virome using a SRA Run vector
+# virome.runs <- read.csv(input.list)[,1]
+# virome.df <- get.palmVirome(run.vec = virome.runs)
+
+# Retrieve virome using search term
+virome.df <- get.palmVirome(org.search = virome_search_term)
+
+# Melt virome, grouping by "sOTU"
+virx.df   <- melt.virome( virome.df )
+```
+
+#### Download Virome Data Tables {#download-data}
+
+```{r, echo = FALSE}
+options(warn = -1)
+
+virome.df  %>%
+  downloadthis::download_this(
+    output_name = paste0(input.path, '_virome_full.csv'),
+    output_extension = ".csv",
+    button_label = "Download virome_full.csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-file-export"
+  )
+
+virx.df  %>%
+  downloadthis::download_this(
+    output_name = paste0(input.path, '_virome_summary.csv'),
+    output_extension = ".csv",
+    button_label = "Download virome_sumnmary.csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-file-export"
+  )
+
+```
+
+#### Virome Summary
+
+```{r, echo = FALSE}
+library(ggplot2)
+
+# Initialize vorgx.df
+# Scientific Name - Virus Taxonomy count frame
+# with ordered factors for plotting
+
+makeTop10 <- function( invec ){
+  # For an input character vector invec
+  # returns invec as a  factor
+  # of only top 10 entries
+  # Remaining entries named "Other"
+  # levels are rank-ordered for plotting
+  #
+  # Convert to character
+  invec <- as.character(invec)
+  # Count entries, return top-10
+  t10.entries <- table( invec )
+  t10.entries <- t10.entries[ rev( order(t10.entries) ) ]
+  t10.entries <- rownames(t10.entries)[1:10]
+  
+  # Refactor input vector to only top-10 entries
+  # and levels ordered by top-10 order
+  invec2 <- invec
+  invec2[ !(invec2 %in% t10.entries) ] <- "Other"
+  invec2 <- factor(invec2,
+                   levels = c(t10.entries, "Other"))
+  
+  return(invec2)
+
+}
+
+# # Select top 10 terms in Scientific Name and Virus Family
+# # for plot, create ordered vector by count
+# t10.org <- virome.df %>%
+#   count(scientific_name, sort = TRUE) %>%
+#   select(scientific_name) %>% slice_head(n = 10)
+#   t10.org <- as.character(t10.org$scientific_name)
+# 
+# t10.fam <- virome.df %>%
+#   count(tax_family, sort = TRUE) %>%
+#   select(tax_family) %>% slice_head(n = 10)
+# t10.fam <- as.character(t10.fam$tax_family)
+
+# Summarize (count) for plotting
+# organism and virus family
+virome.df2 <- virome.df
+  # scientific name, simplify to top 10
+  virome.df2$scientific_name <- makeTop10(virome.df2$scientific_name)
+  # virus family taxonomy, simplify to top 10
+  virome.df2$tax_family      <- makeTop10(virome.df2$tax_family)
+  
+# Create virome organism summary data.frame
+vorgx.df <- virome.df2 %>% count(scientific_name, tax_family, sort = TRUE)
+  vorgx.df$scientific_name <- factor(vorgx.df$scientific_name,
+                                     levels = rev( levels(virome.df2$scientific_name)))
+  vorgx.df$tax_family      <- factor(vorgx.df$tax_family,
+                                     levels = levels(virome.df2$tax_family ))
+
+# Virome bar organism bar plot
+virome.org <- ggplot(vorgx.df, aes( scientific_name, n,
+                                    fill = tax_family)) +
+  geom_bar( stat = 'identity') +
+  coord_flip() +  theme_bw() +
+  xlab("Scientific Name (metadata)") +
+  ylab("Count SRA libraries")
+
+```
+
+```{r, fig.height = 4.5, fig.width = 9}
+# Virome bar plot of "Scientific Name" Fields
+plotly::hide_colorbar( virome.org )
+```
+
+```{r, echo = FALSE}
+# Virome Tax Distribution
+virome2.org <- ggplot(vorgx.df, aes( x = tax_family, n,
+                                    fill = tax_family)) +
+  geom_bar( stat = 'identity') +
+  scale_y_log10() + coord_polar("x", start = 0) +
+  theme_bw() + 
+  theme(aspect.ratio = 1, legend.position = "none") + 
+  facet_wrap(~scientific_name, ncol = 4)
+
+```
+
+```{r,  fig.height = 8, fig.width = 10, retina = 3}
+# Per "Species" family-levle virome summary
+virome2.org
+```
+
+#### Per Virus-sOTU Summary - Expression and Frequency
+
+```{r, echo = FALSE}
+# Create plot-color scheme
+
+# phylum, family, genus, species
+  ranklvl <-  c("phylum",  "family",  "genus",   "species")
+
+  rankcols <- c("phylum" = "#9f62a1",
+                "family" = "#00cc07",
+                "genus"  = "#ff9607",
+                "species"= "#ff2a24")
+
+  # Add color highlight to hits within the same phylum
+  virx.df$gb_match <- ranklvl[1]
+  virx.df$gb_match[ which( virx.df$gb_pid >= 45 ) ] <- ranklvl[2]
+  virx.df$gb_match[ which( virx.df$gb_pid >= 70 ) ] <- ranklvl[3]
+  virx.df$gb_match[ which( virx.df$gb_pid >= 90 ) ] <- ranklvl[4]
+
+  virx.df$gb_match <- factor(virx.df$gb_match,
+                         levels = ranklvl)
+
+
+# Virus Abundance and Expression
+virus.exp <- ggplot() + 
+  geom_point( data = virx.df, aes(n, mean_coverage,
+                                  pp    = sotu,
+                                  gbacc = gb_acc,
+                                  gbid  = gb_pid,
+                                  tax   = tax_species,
+                                  fam   = tax_family,
+                                  color = gb_match ),
+              show.legend = FALSE,
+              alpha = 0.8, size = 3) +
+  geom_rug(outside = FALSE) +
+  theme_bw() +
+  scale_color_manual(values = rankcols, drop = FALSE) +
+  scale_x_log10() + scale_y_log10() +
+  xlab("sOTU frequency in SRA Runs") +
+  ylab("sOTU mean contig coverage")
+
+```
+
+```{r}
+# Virus Expression and SRA-Frequency
+plotly::hide_legend( virus.exp )
+```
+
+```{r, echo = FALSE}
+# Create univariable histograms to see underlying distrubition
+virx.df$tax_family2 <- makeTop10(virx.df$tax_family)
+
+virus.hist.cov <- ggplot( virx.df, aes(mean_coverage,
+                                       fill = tax_family2) ) +
+  geom_histogram() +
+  scale_x_log10() +
+  theme_bw()
+
+virus.hist.n   <- ggplot( virx.df, aes(n,
+                                       fill = tax_family2) ) +
+  geom_histogram() +
+  scale_x_log10() +
+  theme_bw()
+
+virus.hist.gbid <- ggplot( virx.df, aes(gb_pid,
+                                       fill = tax_family2) ) +
+  geom_histogram() +
+  scale_x_log10() +
+  theme_bw()
+
+```
+
+```{r}
+# Virus (sOTU) summary statistics histogram
+# Frequency in SRA
+virus.hist.n
+# Mean coverage of contigs
+virus.hist.cov
+# Alignment identity to nearest GenBank record
+virus.hist.gbid
+
+```
+
+#### Virome Data Tables
+
+- `full_virome.csv`
+
+```{r, echo = FALSE}
+### Data-Table: `virome.csv`
+# Data table for Full Virome table
+
+blast.col <- linkBLAST(header = paste0(virome.df$run,"_",
+                                       virome.df$palm_id,"_",
+                                       virome.df$nickname),
+                       aa.seq = virome.df$node_seq )
+
+sra.col       <- linkDB(virome.df$run)
+biosample.col <- linkDB(virome.df$bio_sample, DB = "biosample")
+
+cbind( as.character(virome.df$scientific_name),
+       sra.col, biosample.col,
+       as.character(virome.df$bio_project),
+       as.character(virome.df$sotu),
+       as.character(virome.df$nickname),
+       virome.df$node_coverage,
+       as.character(virome.df$gb_acc),
+       virome.df$gb_pid,
+       as.character(virome.df$tax_species),
+       as.character(virome.df$tax_family),
+       blast.col) %>%
+  DT::datatable(
+    colnames = c( "scientific_name", "sra_run", "biosample_id", "bioproject",
+                 "sOTU", 'nickname', 'coverage', "gb_accession", "gb_id%", "tax_species", "tax_family", "BLAST"),
+    rownames = FALSE, filter = "top", escape = F,
+    options = list(pageLength = 20, scrollX = T,
+                   order = list(list(6, 'desc')))
+  )
+
+
+```
+
+- `summary_virome.csv`
+
+```{r, echo = FALSE}
+### Data-Table: `summary_virome.csv`
+# Data table for Summary Virome table
+
+cbind( as.character(virx.df$sotu),
+       as.character(virx.df$nickname),
+       virx.df$n,
+       virx.df$mean_coverage,
+       as.character(virx.df$gb_acc),
+       as.character(virx.df$gb_pid),
+       as.character(virx.df$tax_species),
+       as.character(virx.df$tax_family)
+       ) %>%
+  DT::datatable(
+    colnames = c("sOTU", "nickname",
+                 "n_SRA_runs", "mean_coverage", "gb_accession", "gb_id%", "tax_species", "tax_family"),
+    rownames = FALSE, filter = "top", escape = F,
+    options = list(ordering = TRUE, order = list(list(2, 'desc')),
+                   pageLength = 20, scrollX = T)
+  )
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
