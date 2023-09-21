@@ -7,7 +7,7 @@ output:
     code_folding: hide
 params:
   palmid.version: '0.0.7'
-  virome_search_term: 'Saccharomyce%'
+  virome_search_term: 'Candida albican%'
   input.path: inst/extdata/yeast
   prod.run: no
 editor_options:
