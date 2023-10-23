@@ -7,8 +7,9 @@ output:
     code_folding: hide
 params:
   palmid.version: '0.0.7'
-  virome_search_term: 'Candida albican%'
-  input.path: inst/extdata/yeast
+  search_type: "SEARCH" # "LIST" or "SEARCH"
+  virome_search_term: 'Eimeria%'
+  input.path: inst/extdata/microsporidia
   prod.run: no
 editor_options:
   markdown:
@@ -86,25 +87,30 @@ output.html   <- paste0(input.path, '.html')
 virome_search_term <- params$virome_search_term
 
 ```
+
 ```{r initialize message}
 # Print out version
 cat( paste0("palmID Version: ", params$palmid.version) )
-cat( paste0("Taxa search term: ", params$virome_search_term))
-
+cat( paste0("-- Search Type: ", params$search_type) )
+cat( paste0("-- Taxa search term: ", params$virome_search_term))
 ```
 
 ```{r, echo = FALSE}
 # Import virome data
 
-## Retrieve Virome using a SRA Run vector
-# virome.runs <- read.csv(input.list)[,1]
-# virome.df <- get.palmVirome(run.vec = virome.runs)
-
-# Retrieve virome using search term
-virome.df <- get.palmVirome(org.search = virome_search_term)
+if (params$search_type == "LIST"){
+  # Retrieve Virome using a SRA Run vector
+  virome.runs <- read.csv(input.list)[,1]
+  virome.df <- get.palmVirome(run.vec = virome.runs)
+} else {
+  # Retrieve virome using search term
+  virome.df <- get.palmVirome(org.search = virome_search_term)
+}
 
 # Melt virome, grouping by "sOTU"
-virx.df   <- melt.virome( virome.df )
+  virx.df   <- melt.virome( virome.df )
+
+
 ```
 
 #### Download Virome Data Tables {#download-data}
